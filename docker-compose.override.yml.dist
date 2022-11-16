@@ -1,0 +1,250 @@
+version: '3.9'
+
+configs:
+  redis.conf:
+    file: ./docker/redis/config/redis.conf
+
+networks:
+  traefik:
+    external:
+      name: traefik
+
+services:
+  user:
+    build:
+      context: ./docker/microservices/user
+    restart: unless-stopped
+    volumes:
+      - ./src:/app:cached
+    networks:
+      - traefik
+    ports:
+      - target: 80
+        published: 8000
+        mode: host
+    labels:
+      # Docker
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      # Routers
+      - "traefik.http.routers.wannabe-api-user.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-user.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/user`)"
+      - "traefik.http.routers.wannabe-api-user.tls=true"
+      - "traefik.http.routers.wannabe-api-user.tls.certresolver=default"
+      # Cors
+      - "traefik.http.middlewares.wannabe-api-user-cors.headers.accesscontrolmaxage=3600"
+      - "traefik.http.middlewares.wannabe-api-user-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.wannabe-api-user-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,PATCH,POST,DELETE"
+      - "traefik.http.middlewares.wannabe-api-user-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.wannabe-api-user-cors.headers.accesscontrolallowheaders=Accept,Authorization,X-Requested-With,If-Modified-Since,Content-Type,Cache-Control,Range"
+      # Auth
+      - "traefik.http.middlewares.wannabe-api-user-secret.basicauth.users=wannabe:$$apr1$$fk0i5a8o$$sdV0PRiNnaNycF8OOMwG41"
+      - "traefik.http.routers.wannabe-api-user-secret.middlewares=wannabe-api-user-cors,wannabe-api-user-secret"
+      - "traefik.http.routers.wannabe-api-user-secret.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-user-secret.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/user`)"
+
+  contract:
+    build:
+      context: ./docker/microservices/contract
+    restart: unless-stopped
+    volumes:
+      - ./src:/app:cached
+    networks:
+      - traefik
+    ports:
+      - target: 80
+        published: 8001
+        mode: host
+    labels:
+      # Docker
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      # Routers
+      - "traefik.http.routers.wannabe-api-contract.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-contract.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/contract`)"
+      - "traefik.http.routers.wannabe-api-contract.tls=true"
+      - "traefik.http.routers.wannabe-api-contract.tls.certresolver=default"
+      # Cors
+      - "traefik.http.middlewares.wannabe-api-contract-cors.headers.accesscontrolmaxage=3600"
+      - "traefik.http.middlewares.wannabe-api-contract-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.wannabe-api-contract-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,PATCH,POST,DELETE"
+      - "traefik.http.middlewares.wannabe-api-contract-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.wannabe-api-contract-cors.headers.accesscontrolallowheaders=Accept,Authorization,X-Requested-With,If-Modified-Since,Content-Type,Cache-Control,Range"
+      # Auth
+      - "traefik.http.middlewares.wannabe-api-contract-secret.basicauth.users=wannabe:$$apr1$$fk0i5a8o$$sdV0PRiNnaNycF8OOMwG41"
+      - "traefik.http.routers.wannabe-api-contract-secret.middlewares=wannabe-api-contract-cors,wannabe-api-contract-secret"
+      - "traefik.http.routers.wannabe-api-contract-secret.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-contract-secret.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/contract`)"
+
+  nft:
+    build:
+      context: ./docker/microservices/nft
+    restart: unless-stopped
+    volumes:
+      - ./src:/app:cached
+    networks:
+      - traefik
+    ports:
+      - target: 80
+        published: 8002
+        mode: host
+    labels:
+      # Docker
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      # Routers
+      - "traefik.http.routers.wannabe-api-nft.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-nft.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/nft`)"
+      - "traefik.http.routers.wannabe-api-nft.tls=true"
+      - "traefik.http.routers.wannabe-api-nft.tls.certresolver=default"
+      # Cors
+      - "traefik.http.middlewares.wannabe-api-nft-cors.headers.accesscontrolmaxage=3600"
+      - "traefik.http.middlewares.wannabe-api-nft-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.wannabe-api-nft-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,PATCH,POST,DELETE"
+      - "traefik.http.middlewares.wannabe-api-nft-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.wannabe-api-nft-cors.headers.accesscontrolallowheaders=Accept,Authorization,X-Requested-With,If-Modified-Since,Content-Type,Cache-Control,Range"
+      # Auth
+      - "traefik.http.middlewares.wannabe-api-nft-secret.basicauth.users=wannabe:$$apr1$$fk0i5a8o$$sdV0PRiNnaNycF8OOMwG41"
+      - "traefik.http.routers.wannabe-api-nft-secret.middlewares=wannabe-api-nft-cors,wannabe-api-nft-secret"
+      - "traefik.http.routers.wannabe-api-nft-secret.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-nft-secret.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/nft`)"
+
+  cron:
+    build:
+      context: ./docker/microservices/cron
+    restart: unless-stopped
+    volumes:
+      - ./src:/app:cached
+    networks:
+      - traefik
+    ports:
+      - target: 80
+        published: 8003
+        mode: host
+    labels:
+      # Docker
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      # Routers
+      - "traefik.http.routers.wannabe-api-cron.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-cron.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/cron`)"
+      - "traefik.http.routers.wannabe-api-cron.tls=true"
+      - "traefik.http.routers.wannabe-api-cron.tls.certresolver=default"
+      # Cors
+      - "traefik.http.middlewares.wannabe-api-cron-cors.headers.accesscontrolmaxage=3600"
+      - "traefik.http.middlewares.wannabe-api-cron-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.wannabe-api-cron-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,PATCH,POST,DELETE"
+      - "traefik.http.middlewares.wannabe-api-cron-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.wannabe-api-cron-cors.headers.accesscontrolallowheaders=Accept,Authorization,X-Requested-With,If-Modified-Since,Content-Type,Cache-Control,Range"
+      # Auth
+      - "traefik.http.middlewares.wannabe-api-cron-secret.basicauth.users=wannabe:$$apr1$$fk0i5a8o$$sdV0PRiNnaNycF8OOMwG41"
+      - "traefik.http.routers.wannabe-api-cron-secret.middlewares=wannabe-api-cron-cors,wannabe-api-cron-secret"
+      - "traefik.http.routers.wannabe-api-cron-secret.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-cron-secret.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/cron`)"
+
+  game:
+    build:
+      context: ./docker/microservices/game
+    restart: unless-stopped
+    volumes:
+      - ./src:/app:cached
+    networks:
+      - traefik
+    ports:
+      - target: 80
+        published: 8004
+        mode: host
+    labels:
+      # Docker
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      # Routers
+      - "traefik.http.routers.wannabe-api-game.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-game.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/game`)"
+      - "traefik.http.routers.wannabe-api-game.tls=true"
+      - "traefik.http.routers.wannabe-api-game.tls.certresolver=default"
+      # Cors
+      - "traefik.http.middlewares.wannabe-api-game-cors.headers.accesscontrolmaxage=3600"
+      - "traefik.http.middlewares.wannabe-api-game-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.wannabe-api-game-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,PATCH,POST,DELETE"
+      - "traefik.http.middlewares.wannabe-api-game-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.wannabe-api-game-cors.headers.accesscontrolallowheaders=Accept,Authorization,X-Requested-With,If-Modified-Since,Content-Type,Cache-Control,Range"
+      # Auth
+      - "traefik.http.middlewares.wannabe-api-game-secret.basicauth.users=wannabe:$$apr1$$fk0i5a8o$$sdV0PRiNnaNycF8OOMwG41"
+      - "traefik.http.routers.wannabe-api-game-secret.middlewares=wannabe-api-game-cors,wannabe-api-game-secret"
+      - "traefik.http.routers.wannabe-api-game-secret.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-game-secret.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/game`)"
+
+  portal:
+    build:
+      context: ./docker/microservices/portal
+    restart: unless-stopped
+    volumes:
+      - ./src:/app:cached
+    networks:
+      - traefik
+    ports:
+      - target: 80
+        published: 8005
+        mode: host
+    labels:
+      # Docker
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      # Routers
+      - "traefik.http.routers.wannabe-api-portal.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-portal.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/portal`)"
+      - "traefik.http.routers.wannabe-api-portal.tls=true"
+      - "traefik.http.routers.wannabe-api-portal.tls.certresolver=default"
+      # Cors
+      - "traefik.http.middlewares.wannabe-api-portal-cors.headers.accesscontrolmaxage=3600"
+      - "traefik.http.middlewares.wannabe-api-portal-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.wannabe-api-portal-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,PATCH,POST,DELETE"
+      - "traefik.http.middlewares.wannabe-api-portal-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.wannabe-api-portal-cors.headers.accesscontrolallowheaders=Accept,Authorization,X-Requested-With,If-Modified-Since,Content-Type,Cache-Control,Range"
+      # Auth
+      - "traefik.http.middlewares.wannabe-api-portal-secret.basicauth.users=wannabe:$$apr1$$fk0i5a8o$$sdV0PRiNnaNycF8OOMwG41"
+      - "traefik.http.routers.wannabe-api-portal-secret.middlewares=wannabe-api-portal-cors,wannabe-api-portal-secret"
+      - "traefik.http.routers.wannabe-api-portal-secret.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-api-portal-secret.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/portal`)"
+
+  postgres:
+    restart: unless-stopped
+    ports:
+      - target: 5432
+        published: 5432
+        mode: host
+    volumes:
+      - pg-database:/data/postgres
+    networks:
+      - traefik
+
+  redis:
+### uncomment 'ports' section if you want to expose Redis to node local network
+#    ports:
+#      - target: 6379
+#        published: 6379
+#        mode: host
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=false"
+
+  openethereum:
+    restart: unless-stopped
+    init: true
+    user: root
+    command:
+      --jsonrpc-port=8545
+      --jsonrpc-cors=all
+      --jsonrpc-interface=all
+      --jsonrpc-hosts=all
+      --jsonrpc-apis=web3,eth,net,parity
+      --logging=info
+    expose:
+      - "8545"
+    ports:
+      - "8545:8545"
+      - "30303:30303"
+      - "30303:30303/udp"

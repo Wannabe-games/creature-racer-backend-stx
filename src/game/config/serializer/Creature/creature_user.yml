@@ -1,0 +1,30 @@
+App\Entity\Creature\CreatureUser:
+    attributes:
+        uuid:
+            groups: ['api']
+        creature:
+            groups: [ 'api' ]
+        muscles:
+            groups: [ 'api' ]
+        lungs:
+            groups: [ 'api' ]
+        heart:
+            groups: [ 'api' ]
+        belly:
+            groups: [ 'api' ]
+        buttocks:
+            groups: [ 'api' ]
+        upgradeMusclesEnd:
+            groups: [ 'api' ]
+        upgradeLungsEnd:
+            groups: [ 'api' ]
+        upgradeHeartEnd:
+            groups: [ 'api' ]
+        upgradeBellyEnd:
+            groups: [ 'api' ]
+        upgradeButtocksEnd:
+            groups: [ 'api' ]
+        bonus:
+            groups: ['api']
+        
+

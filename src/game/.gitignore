@@ -1,0 +1,9 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/public/bundles/
+/public/social-media.data
+/var/
+/vendor/
+###< symfony/framework-bundle ###

@@ -1,0 +1,156 @@
+version: '3.9'
+
+volumes:
+  pg-database:
+    name: pg-database-wannabe
+    external: true
+  mongo-database:
+    name: mongo-database-wannabe
+    external: true
+  mgob-data:
+    name: mgob-data-wannabe
+    external: true
+
+networks:
+  services:
+    driver: bridge
+    name: services
+    external: false
+
+services:
+  user:
+    build:
+      context: ./docker/microservices/user
+    image: creature-racer-user:latest
+    container_name: service-creature-racer-user
+    volumes:
+      - ./src:/app:cached
+    tty: true
+    networks:
+      - services
+
+  contract:
+    build:
+      context: ./docker/microservices/contract
+    image: creature-racer-contract:latest
+    container_name: service-creature-racer-contract
+    volumes:
+      - ./src:/app:cached
+    tty: true
+    networks:
+      - services
+
+  nft:
+    build:
+      context: ./docker/microservices/nft
+    image: creature-racer-nft:latest
+    container_name: service-creature-racer-nft
+    volumes:
+      - ./src:/app:cached
+    tty: true
+    networks:
+      - services
+
+  cron:
+    build:
+      context: ./docker/microservices/cron
+    image: creature-racer-cron:latest
+    container_name: service-creature-racer-cron
+    volumes:
+      - ./src:/app:cached
+    tty: true
+    networks:
+      - services
+
+  game:
+    build:
+      context: ./docker/microservices/game
+    image: creature-racer-game:latest
+    container_name: service-creature-racer-game
+    volumes:
+      - ./src:/app:cached
+    tty: true
+    networks:
+      - services
+
+  portal:
+    build:
+      context: ./docker/microservices/portal
+    image: creature-racer-portal:latest
+    container_name: service-creature-racer-portal
+    volumes:
+      - ./src:/app:cached
+    tty: true
+    networks:
+      - services
+
+  postgres:
+    build:
+      context: ./docker/postgres
+    image: creature-racer-postgres:latest
+    restart: unless-stopped
+    container_name: service-creature-racer-postgres
+    volumes:
+      - pg-database:/data/postgres
+    networks:
+      - services
+    env_file:
+      - ./src/common/.env.local
+    labels:
+      - "pgbackup.enable=true"
+
+  redis:
+    build:
+      context: ./docker/redis
+    image: creature-racer-redis:latest
+    container_name: service-creature-racer-redis
+    networks:
+      - services
+
+  openethereum:
+    image: openethereum/openethereum:v3.3.2
+    container_name: service-creature-racer-openethereum
+    networks:
+      - services
+
+  mongo:
+    image: mongo:4.4.12
+    volumes:
+      - mongo-database:/data/db:cached
+    env_file:
+      - ./src/common/.env.local
+    container_name: service-creature-racer-mongo
+    networks:
+      - services
+
+  mailer:
+    image: schickling/mailcatcher
+    container_name: service-creature-racer-mailer
+    ports: [1025, 1080]
+
+  mongobackup:
+    image: stefanprodan/mgob:1.1
+    container_name: service-creature-racer-mgob
+    env_file:
+      - ./src/common/.env.local
+    networks:
+      - services
+    volumes:
+      - ./backup:/storage
+      - ./docker/mgob/config/creature_racer.yaml:/config/creature_racer.yaml
+      - mgob-data:/data:cached
+
+  pgbackups:
+    image: justb4/pgbackup:13
+    container_name: service-creature-racer-pgbackups
+    env_file:
+      - ./src/common/.env.local
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./backup/postgres:/backup
+    environment:
+      - PGB_SCHEDULE=30 23 * * *
+    networks:
+      - services
+    depends_on:
+      - postgres

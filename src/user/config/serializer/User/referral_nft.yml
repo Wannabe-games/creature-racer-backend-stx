@@ -1,0 +1,6 @@
+App\Entity\ReferralNft:
+    attributes:
+        refCode:
+            groups: ['apiGet']
+        hash:
+            groups: ['apiGet']

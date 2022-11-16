@@ -1,0 +1,6 @@
+App\Entity\Creature\Creature:
+    attributes:
+        id:
+            groups: ['api']
+        
+

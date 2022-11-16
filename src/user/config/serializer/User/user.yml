@@ -1,0 +1,24 @@
+App\Entity\User:
+    attributes:
+        id:
+            groups: ['apiGet']
+        nick:
+            groups: ['api', 'apiGet']
+        firstName:
+            groups: ['api', 'apiGet']
+        lastName:
+            groups: ['api', 'apiGet']
+        email:
+            groups: ['api', 'apiGet']
+        createdAt:
+            groups: ['api', 'apiGet']
+        wallet:
+            groups: ['api', 'apiGet']
+        groups:
+            groups: ['api', 'apiGet']
+        player:
+            groups: ['apiGet']
+        myReferralNft:
+            groups: ['apiGet']
+        fromReferralNft:
+            groups: ['apiGet']

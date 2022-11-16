@@ -1,0 +1,12 @@
+###> Project configurations ###
+/.idea/
+/.settings
+/.buildpath
+/.project
+/nbproject
+/backup/*
+###< Project configurations ###
+
+###> Individual settings for docker dev ###
+/docker-compose.override.yml
+####< Individual settings for docker dev ###

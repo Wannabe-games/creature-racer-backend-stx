@@ -1,0 +1,6 @@
+App\Entity\Group:
+    attributes:
+        id:
+            groups: ['api', 'apiGet']
+        name:
+            groups: ['api', 'apiGet']

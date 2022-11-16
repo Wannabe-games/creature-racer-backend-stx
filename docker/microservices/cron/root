@@ -1,0 +1,10 @@
+# Reward Pool
+*/2 * * * * /usr/local/bin/php /app/cron/bin/console app:user-reward-pool:get-settlement  >> /var/log/reward_pool/get_settlement.log 2>&1
+59 23 * * * /usr/local/bin/php /app/cron/bin/console app:reward-pool-contract:cycle:open  >> /var/log/reward_pool/cycle_open.log 2>&1
+
+# Staking
+59 23 * * * /usr/local/bin/php /app/cron/bin/console app:staking-contract:cycle:open  >> /var/log/staking/cycle_open.log 2>&1
+
+# Referral Pool
+*/5 * * * * /usr/local/bin/php /app/cron/bin/console app:logs:referral-data  >> /var/log/referral_pool/get_settlement.log 2>&1
+

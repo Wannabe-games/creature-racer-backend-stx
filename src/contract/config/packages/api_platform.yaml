@@ -1,0 +1,18 @@
+api_platform:
+    title: 'Creature Race API'
+    description: 'API for user - Creature Race'
+    version: '1.0.0'
+    allow_plain_identifiers: true
+    mapping:
+        paths: ['%kernel.project_dir%/../common/src/Entity']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
+    collection:
+        pagination:
+            client_items_per_page: true
+            items_per_page_parameter_name: itemsPerPage

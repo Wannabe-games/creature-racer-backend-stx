@@ -1,0 +1,153 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+
+parameters:
+    public_wallet_key: '%env(string:PUBLIC_WALLET_KEY)%'
+    private_wallet_key: '%env(string:PRIVATE_WALLET_KEY)%'
+    base_url: '%env(string:BASE_URL)%'
+    mint_matic_price: '%env(string:MINT_MATIC_PRICE)%'
+    app_env: '%env(string:APP_ENV)%'
+    chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
+    staking_contract_address: '%env(string:STAGING_CONTRACT_ADDRESS)%'
+    reward_pool_contract_address: '%env(string:REWARD_POOL_CONTRACT_ADDRESS)%'
+    creature_nft_contract_address: '%env(string:CREATURE_NFT_CONTRACT_ADDRESS)%'
+    referral_contract_address: '%env(string:REFERRAL_CONTRACT_ADDRESS)%'
+    referral_pool_contract_address: '%env(string:REFERRAL_CONTRACT_ADDRESS)%'
+    qr_code_referral_redirect_address: '%env(string:QR_CODE_REFERRAL_REDIRECT_ADDRESS)%'
+    env(MONGODB_URL): ''
+    env(MONGODB_DB): ''
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Kernel.php'
+
+#### Common Service ####
+    App\Entity\:
+        resource: '%kernel.project_dir%/../common/src/Entity'
+        tags: [ 'app.security.provider.voter' ]
+
+    App\Security\:
+        resource: '%kernel.project_dir%/../common/src/Security'
+        tags: [ 'app.security.provider.voter' ]
+
+    App\Document\:
+        resource: '%kernel.project_dir%/../common/src/Document'
+        tags: [ 'app.security.provider.voter' ]
+
+    App\Common\Service\:
+        resource: '%kernel.project_dir%/../common/src/Service'
+        tags: [ 'app.common.service' ]
+
+    App\Common\Repository\:
+        resource: '%kernel.project_dir%/../common/src/Repository'
+        tags: [ 'app.common.repository' ]
+
+    App\Common\Exception\:
+        resource: '%kernel.project_dir%/../common/src/Exception'
+        tags: [ 'app.common.exception' ]
+
+    App\Doctrine\:
+        resource: '%kernel.project_dir%/../common/src/Doctrine'
+        tags: [ 'app.common.doctrine' ]
+
+    App\Common\Enum\:
+        resource: '%kernel.project_dir%/../common/src/Enum'
+        tags: [ 'app.common.enum' ]
+#### End Common Service ####
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    Redis:
+        # you can also use \RedisArray, \RedisCluster or \Predis\Client classes
+        class: Redis
+        calls:
+            - connect:
+                  - '%env(REDIS_HOST)%'
+                  - '%env(int:REDIS_PORT)%'
+    #            - auth:
+    #                - '%env(REDIS_PASSWORD)%'
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - '@Redis'
+            # you can optionally pass an array of options. The only options are 'prefix' and 'ttl',
+            # which define the prefix to use for the keys to avoid collision on the Redis server
+            # and the expiration time for any given entry (in seconds), defaults are 'sf_s' and null:
+            # - { 'prefix': 'my_prefix', 'ttl': 600 }
+
+    App\Service\OpenApi\MintDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\ExposureMetadataDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\SignCreatureDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\CreatureNftNameDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\refCodeDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\ValidateRefCodeDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\UserCardDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\UserStatisticDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\StackedDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\IncrementInvitationsDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\UsersInviteesDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\UserRewardPoolListDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\UserRewardPoolWithdrawDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\UserReferralPoolWithdrawDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    App\Service\OpenApi\UserRewardPoolWithdrawReceivedDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+    ##################
+    gesdinet.jwtrefreshtoken.refresh_token_manager:
+        class:  App\Doctrine\RefreshTokenManager
+        public: true
+        arguments: [ '@gesdinet.jwtrefreshtoken.object_manager', '%gesdinet.jwtrefreshtoken.refresh_token.class%' ]

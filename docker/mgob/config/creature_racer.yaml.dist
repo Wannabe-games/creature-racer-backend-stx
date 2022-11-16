@@ -1,0 +1,11 @@
+scheduler:
+  cron: "15 2 */1 * *" # run at 2.15 on every day of a month
+  retention: 14 # keep backups from last 14 days
+  timeout: 60
+target:
+  host: "mongo"
+  port: 27017
+  database: "wannabe"
+  username: "dummy"
+  password: "dummy"
+  params: "--authenticationDatabase=admin"

@@ -1,0 +1,21 @@
+authentication_token:
+    path: /api/user/login_check
+    methods:
+      - 'POST'
+      - 'OPTIONS'
+
+gesdinet_jwt_refresh_token:
+    path:     /api/user/token/refresh
+    defaults: { _controller: gesdinet.jwtrefreshtoken:refresh }
+
+controllers:
+    resource: ../src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+
+swagger_ui:
+    path: /api/user/docs
+    controller: api_platform.swagger.action.ui

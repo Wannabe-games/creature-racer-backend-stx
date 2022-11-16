@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+POSTGRES_DB=wannabe
+POSTGRES_USER=wannabe
+POSTGRES_PASSWORD=wannabe
+POSTGRES_CONTAINER=service-creature-racer-postgres
+PGBACKUPS_SERVICE_NAME=service-creature-racer-pgbackups
+SQL_CONNECTION_KILL="SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE pid <> pg_backend_pid() AND datname = '${POSTGRES_DB}';"
+
+while [[ "$#" -gt 0 ]]; do case $1 in
+  -l|--list) LIST_MODE=1;;
+  -c|--create) CREATE_MODE=1;;
+  -r|--restore) BACKUP_FILE_NAME="$2"; shift;;
+  *) echo "Unknown parameter passed: $1"; exit 1;;
+esac; shift; done
+
+set -o pipefail
+
+if [[ -n "$LIST_MODE" ]]; then
+  docker exec -it "${PGBACKUPS_SERVICE_NAME}" /pgbackup/list-backups.sh
+  exit 0
+elif [[ -n "$CREATE_MODE" ]]; then
+  echo "Creating postgres backup...";
+  if docker exec -it "${PGBACKUPS_SERVICE_NAME}" /pgbackup/backup.sh "${POSTGRES_CONTAINER}" /backup/creature_racer.sql.gz 2>&1 ; then
+    echo "Database backups has been created";
+    exit 0
+  else
+    echo "Failed to create database backup! Aborting...";
+  fi
+else
+  if [[ -f backup/postgres/"$BACKUP_FILE_NAME" ]]; then
+    echo "Restoring postgres backup...";
+    echo "Backup file: ${BACKUP_FILE_NAME}";
+
+    docker exec -it "${POSTGRES_CONTAINER}" psql --username="${POSTGRES_USER}" --command="${SQL_CONNECTION_KILL}" 2>&1
+    echo "All connections to database \"${POSTGRES_DB}\" have been closed";
+
+    if docker exec -it "${POSTGRES_CONTAINER}" dropdb --username="${POSTGRES_USER}" --if-exists "${POSTGRES_DB}" 2>&1 ; then
+      echo "Database \"${POSTGRES_DB}\" has been removed";
+    else
+      echo "Failed to remove database \"${POSTGRES_DB}\"! Aborting...";
+      exit 4
+    fi
+
+    if docker exec -it "${POSTGRES_CONTAINER}" createdb --username="${POSTGRES_USER}" --owner="${POSTGRES_USER}" --echo "${POSTGRES_DB}" 2>&1 ; then
+      echo "Database \"${POSTGRES_DB}\" has been created}";
+    else
+      echo "Failed to create database \"${POSTGRES_DB}\"! Aborting...";
+      exit 5
+    fi
+    if docker exec -i "${PGBACKUPS_SERVICE_NAME}" /pgbackup/restore.sh "${POSTGRES_CONTAINER}" "/backup/${BACKUP_FILE_NAME}" 2>&1 ; then
+      echo "Database backups has been restored";
+      exit 0
+    else
+      echo "Failed to restore database backup! Aborting...";
+      exit 6
+    fi
+  else
+    echo "Backup file not provided or does not exist! Aborting...";
+  fi
+fi
+
+exit 2

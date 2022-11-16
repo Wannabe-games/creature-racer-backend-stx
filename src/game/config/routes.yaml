@@ -1,0 +1,11 @@
+controllers:
+    resource: ../src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+
+swagger_ui:
+    path: /api/game/docs
+    controller: api_platform.swagger.action.ui
