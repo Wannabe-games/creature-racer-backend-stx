@@ -12,19 +12,21 @@ final class UserCreaturesDecorator implements OpenApiFactoryInterface
 {
     public function __construct(
         private OpenApiFactoryInterface $decorated
-    ) {}
+    ) {
+    }
 
     public function __invoke(array $context = []): OpenApi
     {
         $openApi = ($this->decorated)($context);
         $schemas = $openApi->getComponents()->getSchemas();
 
-        $schemas['UserCreatures'] = new \ArrayObject([
-            'type' => 'object',
-            'properties' => [
-                'creatures' => [
-                    'type' => 'array',
-                    'example' => '[
+        $schemas['UserCreatures'] = new \ArrayObject(
+            [
+                'type' => 'object',
+                'properties' => [
+                    'creatures' => [
+                        'type' => 'array',
+                        'example' => '[
                     {
                         "uuid": "1ec95cb9-ab25-6cb6-ab06-cbed9fc6407d",
                         "creature": {
@@ -180,30 +182,56 @@ final class UserCreaturesDecorator implements OpenApiFactoryInterface
                     }
                 ]'
                     ],
-            ],
-        ]);
+                ],
+            ]
+        );
 
         $pathItem = new Model\PathItem(
             ref: 'User Creature',
             get: new Model\Operation(
-                operationId: 'userCreatures',
-                tags: ['Creature User'],
-                responses: [
-                    '200' => [
-                        'description' => 'Get all creatures signed to user',
-                        'content' => [
-                            'application/json' => [
-                                'schema' => [
-                                    '$ref' => '#/components/schemas/UserCreatures',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                summary: 'User Creature',
-            ),
+                     operationId: 'userCreatures',
+                     tags:        ['Creature User'],
+                     responses:   [
+                                      '200' => [
+                                          'description' => 'Get all creatures signed to user',
+                                          'content' => [
+                                              'application/json' => [
+                                                  'schema' => [
+                                                      '$ref' => '#/components/schemas/UserCreatures',
+                                                  ],
+                                              ],
+                                          ],
+                                      ],
+                                  ],
+                     summary:     'User Creature',
+                 ),
         );
         $openApi->getPaths()->addPath('/api/game/user-creatures', $pathItem);
+
+        $pathItemByWallet = new Model\PathItem(
+            ref: 'User Creature',
+            get: new Model\Operation(
+                     operationId: 'wallet',
+                     tags:        ['Creature User'],
+                     responses:   [
+                                      '200' => [
+                                          'description' => 'Get all creatures signed to user',
+                                          'content' => [
+                                              'application/json' => [
+                                                  'schema' => [
+                                                      '$ref' => '#/components/schemas/UserCreatures',
+                                                  ],
+                                              ],
+                                          ],
+                                      ],
+                                  ],
+                     summary:     'User Creature by Wallet',
+                     parameters:  [
+                                      new Model\Parameter('id', 'path'),
+                                  ],
+                 ),
+        );
+        $openApi->getPaths()->addPath('/api/game/wallet/{id}/user-creatures', $pathItemByWallet);
 
         return $openApi;
     }

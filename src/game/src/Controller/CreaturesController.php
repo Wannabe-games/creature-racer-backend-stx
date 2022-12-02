@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Common\Exception\Api\ApiException;
+use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Entity\Creature\CreatureUser;
+use App\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,7 +44,8 @@ class CreaturesController extends SymfonyAbstractController
      */
     public function creatures(): JsonResponse
     {
-        return new JsonResponse('[{
+        return new JsonResponse(
+            '[{
                         "id":0,
                         "name":"Boar",
                         "tier":1,
@@ -207,7 +212,8 @@ class CreaturesController extends SymfonyAbstractController
                         "deliveryDelay":27000,
                         "diamondCost":357,
                         "instantDeliveryDiamondCost":226
-                      }]', 200, [], true);
+                      }]', 200, [], true
+        );
     }
 
     /**
@@ -223,6 +229,33 @@ class CreaturesController extends SymfonyAbstractController
 
         /** @var CreatureUser $creatureUser */
         foreach ($this->getUser()->getCreatures() as $creatureUser) {
+            if ($creatureUser->isForGame()) {
+                $result[] = $creatureUser;
+            }
+        }
+
+        return new JsonResponse($serializer->serialize($result, 'json', ['groups' => 'api']), 200, [], true);
+    }
+
+    /**
+     * @param User|null $user
+     * @param SerializerInterface $serializer
+     *
+     * @return JsonResponse
+     *
+     * @Route("/wallet/{id}/user-creatures", name="user_creatures_by_wallet_id", methods={"GET"})
+     * @ParamConverter("user", options={"mapping": {"id": "wallet"}})
+     */
+    public function getUserCreaturesByWallet(?User $user, SerializerInterface $serializer): JsonResponse
+    {
+        if (null === $user) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+        }
+
+        $result = [];
+
+        /** @var CreatureUser $creatureUser */
+        foreach ($user->getCreatures() as $creatureUser) {
             if ($creatureUser->isForGame()) {
                 $result[] = $creatureUser;
             }

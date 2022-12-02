@@ -46,25 +46,26 @@ security:
       entry_point: App\Security\Authenticator\UserAuthenticator
 
   access_control:
-    - { path: ^/api/contract/docs,            role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/contract/user/card,       role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/contract/user/qr-code,    role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/game/docs,                role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/game/social-media,        role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/nft/docs,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/nft/referral/metadata,    role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/nft/metadata,             role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/portal/docs,              role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/portal/user/image,        role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/docs,                role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/token/refresh,       role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/login_check,         role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/registry,            role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/password/wallet,     role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/password/email,      role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api,                          role: IS_AUTHENTICATED_FULLY }
-    - { path: ^/,                             role: ROLE_USER }
-      
+    - { path: ^/api/contract/docs,                role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/contract/user/card,           role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/contract/user/qr-code,        role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/game/docs,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/game/social-media,            role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/game/wallet,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/nft/docs,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/nft/referral/metadata,        role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/nft/metadata,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/portal/docs,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/portal/user/image,            role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/user/docs,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/user/token/refresh,           role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/user/login_check,             role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/user/registry,                role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/user/password/wallet,         role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api/user/password/email,          role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/api,                              role: IS_AUTHENTICATED_FULLY }
+    - { path: ^/,                                 role: ROLE_USER }
+
   role_hierarchy:
     ROLE_SUPER_ADMIN:
       - ROLE_ADMIN
