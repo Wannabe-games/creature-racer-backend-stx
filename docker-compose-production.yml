@@ -77,14 +77,6 @@ services:
     tty: true
     networks:
       - services
-#
-#  openethereum:
-#    build:
-#      context: ./docker/redis
-#    image: openethereum/openethereum:v3.0.0
-#    container_name: service-creature-racer-openethereum
-#    networks:
-#      - services
 
   mailer:
     image: schickling/mailcatcher

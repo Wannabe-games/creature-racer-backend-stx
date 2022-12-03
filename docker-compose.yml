@@ -107,12 +107,6 @@ services:
     networks:
       - services
 
-  openethereum:
-    image: openethereum/openethereum:v3.3.2
-    container_name: service-creature-racer-openethereum
-    networks:
-      - services
-
   mongo:
     image: mongo:4.4.12
     volumes:
