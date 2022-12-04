@@ -1,6 +1,7 @@
 parameters:
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
+    app_env: '%env(string:APP_ENV)%'
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
@@ -44,12 +45,16 @@ services:
         resource: '%kernel.project_dir%/../common/src/Exception'
         tags: [ 'app.common.exception' ]
 
-    App\Common\Enum\:
-        resource: '%kernel.project_dir%/../common/src/Enum'
-        tags: [ 'app.common.enum' ]
-
     App\Doctrine\:
         resource: '%kernel.project_dir%/../common/src/Doctrine'
+        tags: [ 'app.common.doctrine' ]
+
+    App\Common\Enum\:
+        resource: '%kernel.project_dir%/../common/src/Enum'
+        tags: [ 'app.common.doctrine' ]
+
+    App\Common\Utils\:
+        resource: '%kernel.project_dir%/../common/src/Utils'
         tags: [ 'app.common.doctrine' ]
 
     App\Document\:

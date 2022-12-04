@@ -77,10 +77,11 @@
             "App\\Security\\": "../common/src/Security/",
             "App\\Doctrine\\": "../common/src/Doctrine/",
             "App\\Document\\": "../common/src/Document/",
+            "App\\Common\\Enum\\": "../common/src/Enum/",
             "App\\Common\\Service\\": "../common/src/Service/",
             "App\\Common\\Repository\\": "../common/src/Repository/",
             "App\\Common\\Exception\\": "../common/src/Exception/",
-            "App\\Common\\Enum\\": "../common/src/Enum/"
+            "App\\Common\\Utils\\": "../common/src/Utils/"
         }
     },
     "replace": {

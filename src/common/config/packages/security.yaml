@@ -46,6 +46,7 @@ security:
       entry_point: App\Security\Authenticator\UserAuthenticator
 
   access_control:
+    - { path: ^/admin,                            role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/api/contract/docs,                role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/api/contract/user/card,           role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/api/contract/user/qr-code,        role: IS_AUTHENTICATED_ANONYMOUSLY }

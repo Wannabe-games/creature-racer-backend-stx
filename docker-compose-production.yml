@@ -78,6 +78,17 @@ services:
     networks:
       - services
 
+  admin:
+    build:
+      context: ./docker/microservices/admin
+    image: creature-racer-admin:latest
+    container_name: service-creature-racer-admin
+    volumes:
+      - ./src:/app:cached
+    tty: true
+    networks:
+      - services
+
   mailer:
     image: schickling/mailcatcher
     container_name: service-creature-racer-mailer

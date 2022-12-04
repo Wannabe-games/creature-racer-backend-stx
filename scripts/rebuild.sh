@@ -11,3 +11,7 @@ docker compose build
 ./scripts/composer-install.sh
 
 ./scripts/migrations.sh
+
+./scripts/post-commands.sh
+
+./scripts/chmod-on-var.sh

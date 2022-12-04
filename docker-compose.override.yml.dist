@@ -208,6 +208,39 @@ services:
       - "traefik.http.routers.wannabe-api-portal-secret.entrypoints=websecure"
       - "traefik.http.routers.wannabe-api-portal-secret.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/api/portal`)"
 
+  admin:
+    build:
+      context: ./docker/microservices/admin
+    restart: unless-stopped
+    volumes:
+      - ./src:/app:cached
+    networks:
+      - traefik
+    ports:
+      - target: 80
+        published: 8006
+        mode: host
+    labels:
+      # Docker
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      # Routers
+      - "traefik.http.routers.wannabe-admin.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-admin.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/admin`)"
+      - "traefik.http.routers.wannabe-admin.tls=true"
+      - "traefik.http.routers.wannabe-admin.tls.certresolver=default"
+      # Cors
+      - "traefik.http.middlewares.wannabe-admin-cors.headers.accesscontrolmaxage=3600"
+      - "traefik.http.middlewares.wannabe-admin-cors.headers.addvaryheader=true"
+      - "traefik.http.middlewares.wannabe-admin-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,PATCH,POST,DELETE"
+      - "traefik.http.middlewares.wannabe-admin-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.wannabe-admin-cors.headers.accesscontrolallowheaders=Accept,Authorization,X-Requested-With,If-Modified-Since,Content-Type,Cache-Control,Range"
+      # Auth
+      - "traefik.http.middlewares.wannabe-admin-secret.basicauth.users=wannabe:$$apr1$$fk0i5a8o$$sdV0PRiNnaNycF8OOMwG41"
+      - "traefik.http.routers.wannabe-admin-secret.middlewares=wannabe-admin-cors,wannabe-admin-secret"
+      - "traefik.http.routers.wannabe-admin-secret.entrypoints=websecure"
+      - "traefik.http.routers.wannabe-admin-secret.rule=Host(`api.stage.wannabe.games`) && PathPrefix(`/admin`)"
+
   postgres:
     restart: unless-stopped
     ports:

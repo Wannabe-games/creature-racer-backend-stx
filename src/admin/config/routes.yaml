@@ -5,16 +5,3 @@ controllers:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
-
-swagger_ui:
-    path: /api/portal/docs
-    controller: api_platform.swagger.action.ui
-
-dashboard:
-    path: /api/admin
-    controller: App\Controller\Admin\DashboardController::index
-
-users:
-    path: /users
-    controller: App\Controller\Admin\UsersController::index
-

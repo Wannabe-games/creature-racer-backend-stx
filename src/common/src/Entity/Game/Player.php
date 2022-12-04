@@ -64,7 +64,7 @@ class Player
     /**
      * @var User
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="palyer")
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="player")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      *
      * @Assert\NotNull()

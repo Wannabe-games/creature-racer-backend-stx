@@ -53,7 +53,7 @@ final class CurrentDecorator implements OpenApiFactoryInterface
                     'type' => 'string',
                     'example' => 'test@test.com',
                 ],
-                "palyer" => [
+                "player" => [
                     'type' => 'object',
                     'example' => [
                         'softCurrency' => [
