@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Common\Service\Game;
 
 use App\Common\Enum\CreatureTypes;
@@ -13,7 +14,12 @@ use App\Entity\Creature\CreatureLevel;
 use App\Entity\Creature\CreatureUpgrade;
 use App\Entity\Creature\CreatureUser;
 use App\Entity\User;
+use DateInterval;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use Exception;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -34,7 +40,8 @@ class CreatureManager
         private CreatureRepository $creatureRepository,
         private CreatureUserRepository $creatureUserRepository,
         private CreatureLevelRepository $creatureLevelRepository
-    ) { }
+    ) {
+    }
 
     /**
      * @param User    $user
@@ -42,8 +49,8 @@ class CreatureManager
      *
      * @return null|string
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function buyCreature(User $user, string $creatureType): ?string
     {
@@ -74,8 +81,8 @@ class CreatureManager
         }
         $creatureUser = $this->createCreatureOnLevel($user, $creature, $creatureLevel);
 
-        $date = new \DateTime();
-        $date->add(new \DateInterval('PT' . $creatureLevel->getWaitingTime() . 'S'));
+        $date = new DateTime();
+        $date->add(new DateInterval('PT' . $creatureLevel->getWaitingTime() . 'S'));
         $creatureUser->setCreatedAt($date);
 
         return $creatureUser->getUuid();
@@ -89,9 +96,9 @@ class CreatureManager
      *
      * @return string|null
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Exception
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     * @throws Exception
      */
     public function upgradeCreature(User $user, string $uuid, string $upgradeType, int $level): ?string
     {
@@ -182,8 +189,8 @@ class CreatureManager
      *
      * @return CreatureUser
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     protected function createCreatureOnLevel(
         User $user,
@@ -191,7 +198,6 @@ class CreatureManager
         CreatureLevel $creatureLevel,
         ?CreatureUser $creatureCurrentUser = null
     ): CreatureUser {
-
         if (
             is_null($creatureCurrentUser) ||
             (
@@ -242,18 +248,20 @@ class CreatureManager
     }
 
     /**
-     * @param User          $user
+     * @param User $user
      * @param CreatureLevel $creatureLevel
      *
      * @return void
      */
     protected function paymentForLevel(User $user, CreatureLevel $creatureLevel): void
     {
-        if ($user->getPlayer()->getSoftCurrency() > 0) {
-            $user->getPlayer()->setSoftCurrency($user->getPlayer()->getSoftCurrency() - $creatureLevel->getPriceSoftCurrency());
-        } else {
+        $goldAfterPurchase = $user->getPlayer()->getSoftCurrency() - $creatureLevel->getPriceSoftCurrency();
+
+        if (0 < $goldAfterPurchase) {
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::NOT_ENOUGH_GOLD));
         }
+
+        $user->getPlayer()->setSoftCurrency($goldAfterPurchase);
     }
 
     /**
@@ -261,10 +269,11 @@ class CreatureManager
      *
      * @return void
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
-    protected function deactivateCreatureOfType(CreatureUser $creatureUser): void {
+    protected function deactivateCreatureOfType(CreatureUser $creatureUser): void
+    {
         $ActiveUserCreatures = $this->creatureUserRepository->findByCreatureType($creatureUser->getCreature()->getType(), $creatureUser->getUser());
 
         if (!empty($ActiveUserCreatures)) {
@@ -304,14 +313,14 @@ class CreatureManager
     }
 
     /**
-     * @param User   $user
+     * @param User $user
      * @param string $uuid
-     * @param bool   $isActive
+     * @param bool $isActive
      *
      * @return string|null
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function activeCreatureInGame(User $user, string $uuid, bool $isActive): ?string
     {
@@ -337,14 +346,14 @@ class CreatureManager
     }
 
     /**
-     * @param User   $user
+     * @param User $user
      * @param string $uuid
-     * @param bool   $stake
+     * @param bool $stake
      *
      * @return string|null
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function stakeCreature(User $user, string $uuid, bool $stake): ?string
     {
@@ -369,23 +378,22 @@ class CreatureManager
     }
 
     /**
-     * @param string             $upgradeType
-     * @param CreatureUser       $creatureUser
+     * @param string $upgradeType
+     * @param CreatureUser $creatureUser
      * @param CreatureLevel|null $creatureLevel
      *
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function setUpgradeTime(
         string $upgradeType,
         CreatureUser $creatureUser,
         CreatureLevel $creatureLevel = null
     ): void {
-
         if (!empty($creatureLevel)) {
-            $date = new \DateTime();
-            $date->add(new \DateInterval('PT' . $creatureLevel->getWaitingTime() . 'S'));
+            $date = new DateTime();
+            $date->add(new DateInterval('PT' . $creatureLevel->getWaitingTime() . 'S'));
         } else {
             $date = null;
         }
@@ -410,7 +418,7 @@ class CreatureManager
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function skipUpgradeTime(User $user, string $uuid, bool $upgradeType): ?string
     {
@@ -498,20 +506,19 @@ class CreatureManager
         if ($value <= $reduce) {
             return $min;
         } else {
-            return $value-$reduce;
+            return $value - $reduce;
         }
-
     }
 
     /**
-     * @param string       $upgradeType
+     * @param string $upgradeType
      * @param CreatureUser $creature
      *
      * @return void
      */
     protected function verifyCooldown(string $upgradeType, CreatureUser $creature): void
     {
-        $date = new \DateTime();
+        $date = new DateTime();
         $levelUpgradeTime = null;
 
         switch ($upgradeType) {
@@ -542,8 +549,8 @@ class CreatureManager
 
     /**
      * @param CreatureUser|null $creatureCurrentUser
-     * @param CreatureUser      $creatureUser
-     * @param CreatureLevel     $creatureLevel
+     * @param CreatureUser $creatureUser
+     * @param CreatureLevel $creatureLevel
      *
      * @return void
      */
@@ -580,6 +587,5 @@ class CreatureManager
                 $creatureUser->setButtocks($creatureUser->getButtocks() + 1);
                 break;
         }
-
     }
 }

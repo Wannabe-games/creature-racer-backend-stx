@@ -5,7 +5,7 @@ COPY php/conf/php-prod.ini $PHP_INI_DIR/php.ini
 
 # Define system locale settings and apt update
 RUN apt-get update --fix-missing \
-    && apt-get install -y --no-install-recommends locales cron netcat gosu htop unzip net-tools curl \
+    && apt-get install -y --no-install-recommends locales cron netcat gosu htop unzip net-tools curl libicu-dev \
     && sed -i -e 's/# pl_PL.UTF-8 UTF-8/pl_PL.UTF-8 UTF-8/' /etc/locale.gen \
     && dpkg-reconfigure --frontend=noninteractive locales
 
@@ -40,6 +40,9 @@ RUN apt-get install -y graphviz
 
 # Speed improvements
 RUN docker-php-ext-install opcache
+
+RUN docker-php-ext-configure intl \
+    && docker-php-ext-install intl
 
 RUN pecl install -o -f redis \
     &&  rm -rf /tmp/pear \

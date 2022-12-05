@@ -12,3 +12,4 @@ docker exec -it service-creature-racer-cron startup
 docker exec -it service-creature-racer-portal startup
 docker exec -it service-creature-racer-contract startup
 docker exec -it service-creature-racer-nft startup
+docker exec -it service-creature-racer-admin startup

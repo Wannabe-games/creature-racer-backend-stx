@@ -17,14 +17,13 @@ framework:
     php_errors:
         log: true
     assets:
-        #        version: 'v5'
-        #        version_format: '%%s?version=%%s'
+#        version: 'v5'
+#        version_format: '%%s?version=%%s'
         base_path: '%env(ADMIN_BASE_URI)%'
 #        base_urls: ['http://cdn.example.com', 'https://secure.example.com']
 #        packages:
 #            reports:
-#                base_path: %env(ADMIN_BASE_URI)/bundles
-
+#                base_path: '%env(ADMIN_BASE_URI)%/bundles'
 
 when@test:
     framework:
