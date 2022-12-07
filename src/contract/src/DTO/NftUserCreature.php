@@ -54,7 +54,7 @@ class NftUserCreature
         $serializedData['part4'] = $creatureUser->getBelly()+1;
         $serializedData['part5'] = $creatureUser->getButtocks()+1;
         $serializedData['expiryTime'] = $creatureUser->getNftExpiryDateFormat('U');
-        $serializedData['price'] = $this->container->getParameter('mint_matic_price');
+        $serializedData['price'] = $this->container->getParameter('mint_price');
 
         return $serializedData;
     }

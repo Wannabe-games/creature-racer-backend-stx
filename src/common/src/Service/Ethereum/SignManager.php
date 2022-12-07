@@ -46,7 +46,7 @@ class SignManager
     {
         $privateKey = $this->container->getParameter('private_wallet_key');
 
-        exec('sign-mint-message '.$privateKey.' '.$message, $result);
+        exec('sign-mint-message-stx '.$privateKey.' '.$message, $result);
 
         if ($verbose) {
             var_dump('message: '.$message);

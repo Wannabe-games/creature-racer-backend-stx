@@ -8,7 +8,7 @@ parameters:
     public_wallet_key: '%env(string:PUBLIC_WALLET_KEY)%'
     private_wallet_key: '%env(string:PRIVATE_WALLET_KEY)%'
     base_url: '%env(string:BASE_URL)%'
-    mint_matic_price: '%env(string:MINT_MATIC_PRICE)%'
+    mint_price: '%env(string:MINT_PRICE)%'
     app_env: '%env(string:APP_ENV)%'
     chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
     staking_contract_address: '%env(string:STAGING_CONTRACT_ADDRESS)%'
