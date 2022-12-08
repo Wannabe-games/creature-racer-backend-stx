@@ -28,10 +28,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class CreatureManager
 {
     /**
-     * @param EntityManagerInterface  $entityManager
-     * @param TranslatorInterface     $translator
-     * @param CreatureRepository      $creatureRepository
-     * @param CreatureUserRepository  $creatureUserRepository
+     * @param EntityManagerInterface $entityManager
+     * @param TranslatorInterface $translator
+     * @param CreatureRepository $creatureRepository
+     * @param CreatureUserRepository $creatureUserRepository
      * @param CreatureLevelRepository $creatureLevelRepository
      */
     public function __construct(
@@ -44,8 +44,8 @@ class CreatureManager
     }
 
     /**
-     * @param User    $user
-     * @param string  $creatureType
+     * @param User $user
+     * @param string $creatureType
      *
      * @return null|string
      *
@@ -59,13 +59,13 @@ class CreatureManager
         }
         /** @var Creature $creature */
         $creature = $this->creatureRepository->findOneBy([
-            'type' => $creatureType
-        ]);
+                                                             'type' => $creatureType
+                                                         ]);
         /** @var CreatureLevel $creatureLevel */
         $creatureLevel = $this->creatureLevelRepository->findOneBy([
-            'creatureType' => $creature->getType(),
-            'upgradeType' => CreatureUpgradeTypes::BASE_UPGRADE_TYPE
-        ]);
+                                                                       'creatureType' => $creature->getType(),
+                                                                       'upgradeType' => CreatureUpgradeTypes::BASE_UPGRADE_TYPE
+                                                                   ]);
 
         if (!($creatureLevel instanceof CreatureLevel)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));
@@ -110,8 +110,8 @@ class CreatureManager
         }
         /** @var CreatureUser $creature */
         $creature = $this->creatureUserRepository->findOneBy([
-            'uuid' => $uuid
-        ]);
+                                                                 'uuid' => $uuid
+                                                             ]);
 
         $this->verifyCooldown($upgradeType, $creature);
 
@@ -126,10 +126,10 @@ class CreatureManager
 
         /** @var CreatureLevel $creatureLevel */
         $creatureLevel = $this->creatureLevelRepository->findOneBy([
-            'creatureType' => $creature->getCreature()->getType(),
-            'upgradeType' => $upgradeType,
-            'level' => $level
-        ]);
+                                                                       'creatureType' => $creature->getCreature()->getType(),
+                                                                       'upgradeType' => $upgradeType,
+                                                                       'level' => $level
+                                                                   ]);
 
         if (!($creatureLevel instanceof CreatureLevel)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));
@@ -145,9 +145,9 @@ class CreatureManager
     }
 
     /**
-     * @param string       $upgradeType
+     * @param string $upgradeType
      * @param CreatureUser $creature
-     * @param int          $level
+     * @param int $level
      *
      * @return void
      */
@@ -182,9 +182,9 @@ class CreatureManager
     }
 
     /**
-     * @param User              $user
-     * @param Creature          $creature
-     * @param CreatureLevel     $creatureLevel
+     * @param User $user
+     * @param Creature $creature
+     * @param CreatureLevel $creatureLevel
      * @param CreatureUser|null $creatureCurrentUser
      *
      * @return CreatureUser
@@ -257,7 +257,7 @@ class CreatureManager
     {
         $goldAfterPurchase = $user->getPlayer()->getSoftCurrency() - $creatureLevel->getPriceSoftCurrency();
 
-        if (0 < $goldAfterPurchase) {
+        if (0 > $goldAfterPurchase) {
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::NOT_ENOUGH_GOLD));
         }
 
@@ -326,8 +326,8 @@ class CreatureManager
     {
         /** @var CreatureUser $creature */
         $creature = $this->creatureUserRepository->findOneBy([
-            'uuid' => $uuid
-        ]);
+                                                                 'uuid' => $uuid
+                                                             ]);
 
         /** @var CreatureUser $creatureUser */
         if ($creature->isStacked()) {
@@ -359,8 +359,8 @@ class CreatureManager
     {
         /** @var CreatureUser $creature */
         $creature = $this->creatureUserRepository->findOneBy([
-            'uuid' => $uuid
-        ]);
+                                                                 'uuid' => $uuid
+                                                             ]);
 
         // Verification
         $this->isUserCreatureBelongToUser($creature, $user);
@@ -430,8 +430,8 @@ class CreatureManager
         }
         /** @var CreatureUser $creature */
         $creature = $this->creatureUserRepository->findOneBy([
-            'uuid' => $uuid
-        ]);
+                                                                 'uuid' => $uuid
+                                                             ]);
 
         /** @var CreatureUser $creatureUser */
         if ($creature->isStacked()) {
@@ -457,8 +457,8 @@ class CreatureManager
         }
         /** @var CreatureUser $creature */
         $creature = $this->creatureUserRepository->findOneBy([
-            'uuid' => $uuid
-        ]);
+                                                                 'uuid' => $uuid
+                                                             ]);
 
         /** @var CreatureUser $creatureUser */
         if ($creature->isStacked()) {
