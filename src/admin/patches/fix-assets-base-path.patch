@@ -1,0 +1,17 @@
+Index: vendor/easycorp/easyadmin-bundle/src/Asset/AssetPackage.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/easycorp/easyadmin-bundle/src/Asset/AssetPackage.php b/vendor/easycorp/easyadmin-bundle/src/Asset/AssetPackage.php
+--- a/vendor/easycorp/easyadmin-bundle/src/Asset/AssetPackage.php
++++ b/vendor/easycorp/easyadmin-bundle/src/Asset/AssetPackage.php	(date 1670513219705)
+@@ -26,7 +26,7 @@
+     public function __construct(RequestStack $requestStack)
+     {
+         $this->package = new PathPackage(
+-            '/bundles/easyadmin',
++            '/admin/bundles/easyadmin',
+             new JsonManifestVersionStrategy(__DIR__.'/../Resources/public/manifest.json'),
+             new RequestStackContext($requestStack)
+         );

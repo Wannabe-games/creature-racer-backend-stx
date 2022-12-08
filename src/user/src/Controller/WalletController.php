@@ -72,7 +72,7 @@ class WalletController extends SymfonyAbstractController
 
         $user->setEnabled(true);
         $user->setWallet($data['wallet']);
-        $user->setWallet($data['publicKey']);
+        $user->setPublicKey($data['publicKey']);
 
         $entityManager->flush();
 

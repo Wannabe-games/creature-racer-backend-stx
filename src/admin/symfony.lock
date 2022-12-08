@@ -1,4 +1,7 @@
 {
+    "cweagans/composer-patches": {
+        "version": "1.7.2"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {

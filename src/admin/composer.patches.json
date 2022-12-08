@@ -1,0 +1,7 @@
+{
+    "patches": {
+        "easycorp/easyadmin-bundle": {
+            "Fix assets base path": "patches/fix-assets-base-path.patch"
+        }
+    }
+}

@@ -17,6 +17,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "ext-pdo": "*",
+        "cweagans/composer-patches": "^1.7",
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/mongodb-odm-bundle": "^4.4",
@@ -57,7 +58,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "cweagans/composer-patches": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -114,6 +116,9 @@
         },
         "runtime": {
             "dotenv_path": "../common/.env"
-        }
+        },
+        "patches-file": "composer.patches.json",
+        "composer-exit-on-patch-failure": true,
+        "enable-patching": true
     }
 }
