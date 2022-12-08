@@ -170,6 +170,13 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @ORM\Column(length=130, nullable=true)
+     */
+    private $publicKey;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(length=150, nullable=true)
      */
     private $signature;
@@ -536,6 +543,22 @@ class User implements UserInterface
     public function setPlayer(Player $player): void
     {
         $this->player = $player;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPublicKey(): string
+    {
+        return $this->publicKey;
+    }
+
+    /**
+     * @param string $publicKey
+     */
+    public function setPublicKey(string $publicKey): void
+    {
+        $this->publicKey = $publicKey;
     }
 
     /**

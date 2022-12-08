@@ -26,9 +26,9 @@ final class WalletAddDecorator implements OpenApiFactoryInterface
                     'type' => 'string',
                     'example' => '0xb60e8dd61c5d32be8058bb8eb970870f07233155',
                 ],
-                'signature' => [
+                'publicKey' => [
                     'type' => 'string',
-                    'example' => 'R#&TCNr9273gmxr927m4gtx9274mxg9',
+                    'example' => '02f08d5541bf611ded745cc15db08f4447bfa55a55a2dd555648a1de9759aea5f9',
                 ],
             ],
         ]);

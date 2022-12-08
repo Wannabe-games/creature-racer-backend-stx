@@ -109,9 +109,7 @@ class CreatureManager
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::TYPE_VALIDATION_ERROR));
         }
         /** @var CreatureUser $creature */
-        $creature = $this->creatureUserRepository->findOneBy([
-                                                                 'uuid' => $uuid
-                                                             ]);
+        $creature = $this->creatureUserRepository->findOneBy(['uuid' => $uuid]);
 
         $this->verifyCooldown($upgradeType, $creature);
 
@@ -125,11 +123,13 @@ class CreatureManager
         $this->verifyLevelUpgrade($upgradeType, $creature, $level);
 
         /** @var CreatureLevel $creatureLevel */
-        $creatureLevel = $this->creatureLevelRepository->findOneBy([
-                                                                       'creatureType' => $creature->getCreature()->getType(),
-                                                                       'upgradeType' => $upgradeType,
-                                                                       'level' => $level
-                                                                   ]);
+        $creatureLevel = $this->creatureLevelRepository->findOneBy(
+            [
+                'creatureType' => $creature->getCreature()->getType(),
+                'upgradeType' => $upgradeType,
+                'level' => $level
+            ]
+        );
 
         if (!($creatureLevel instanceof CreatureLevel)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));
@@ -229,10 +229,7 @@ class CreatureManager
             }
         }
 
-        if (
-            !empty($creatureCurrentUser) &&
-            !empty($creatureCurrentUser->getHash())
-        ) {
+        if (!empty($creatureCurrentUser) && !empty($creatureCurrentUser->getHash())) {
             $creatureUser->setAcceleration($creatureCurrentUser->getAcceleration() + $creatureUser->getAcceleration());
             $creatureUser->setBoostAcceleration($creatureCurrentUser->getBoostAcceleration() + $creatureUser->getBoostAcceleration());
             $creatureUser->setBoostTime($creatureCurrentUser->getBoostTime() + $creatureUser->getBoostTime());
@@ -282,6 +279,7 @@ class CreatureManager
                 $ActiveUserCreature->setIsForGame(false);
             }
         }
+
         $creatureUser->setIsForGame(true);
     }
 
@@ -306,8 +304,7 @@ class CreatureManager
      */
     protected function isUserCreatureBelongToUser(CreatureUser $creatureUser, User $user): void
     {
-        /** @var CreatureUser $creatureUser */
-        if ($creatureUser->getUser()->getId() != $user->getId()) {
+        if ($creatureUser->getUser()->getId() !== $user->getId()) {
             throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }
     }
@@ -325,9 +322,7 @@ class CreatureManager
     public function activeCreatureInGame(User $user, string $uuid, bool $isActive): ?string
     {
         /** @var CreatureUser $creature */
-        $creature = $this->creatureUserRepository->findOneBy([
-                                                                 'uuid' => $uuid
-                                                             ]);
+        $creature = $this->creatureUserRepository->findOneBy(['uuid' => $uuid]);
 
         /** @var CreatureUser $creatureUser */
         if ($creature->isStacked()) {
@@ -358,9 +353,7 @@ class CreatureManager
     public function stakeCreature(User $user, string $uuid, bool $stake): ?string
     {
         /** @var CreatureUser $creature */
-        $creature = $this->creatureUserRepository->findOneBy([
-                                                                 'uuid' => $uuid
-                                                             ]);
+        $creature = $this->creatureUserRepository->findOneBy(['uuid' => $uuid]);
 
         // Verification
         $this->isUserCreatureBelongToUser($creature, $user);
@@ -503,11 +496,7 @@ class CreatureManager
      */
     public static function getReducedPerformanceValue(float $value, float $reduce, float $min = 0.1): float
     {
-        if ($value <= $reduce) {
-            return $min;
-        } else {
-            return $value - $reduce;
-        }
+        return $value > $reduce ? $value - $reduce : $min;
     }
 
     /**
@@ -539,10 +528,7 @@ class CreatureManager
                 break;
         }
 
-        if (
-            !empty($levelUpgradeTime) &&
-            $levelUpgradeTime >= $date
-        ) {
+        if (!empty($levelUpgradeTime) && $levelUpgradeTime >= $date) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::UPGRADE_IN_PROGRESS));
         }
     }
@@ -559,10 +545,7 @@ class CreatureManager
         CreatureUser $creatureUser,
         CreatureLevel $creatureLevel
     ): void {
-        if (
-            !empty($creatureCurrentUser) &&
-            !empty($creatureCurrentUser->getHash())
-        ) {
+        if (!empty($creatureCurrentUser) && !empty($creatureCurrentUser->getHash())) {
             $creatureUser->setBelly($creatureCurrentUser->getBelly());
             $creatureUser->setButtocks($creatureCurrentUser->getButtocks());
             $creatureUser->setHeart($creatureCurrentUser->getHeart());

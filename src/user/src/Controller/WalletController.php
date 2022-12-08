@@ -5,14 +5,12 @@ namespace App\Controller;
 use App\Common\Exception\Api\ApiException;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use Doctrine\ORM\EntityManagerInterface;
+use JsonException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use App\Common\Service\User\UserManager;
 use App\Common\Repository\UserRepository;
 use App\Entity\User;
 
@@ -41,58 +39,43 @@ class WalletController extends SymfonyAbstractController
     }
 
     /**
-     * @param Request        $request
+     * @param Request $request
      * @param UserRepository $userRepository
      * @param EntityManagerInterface $entityManager
      *
      * @return JsonResponse
+     * @throws JsonException
      *
      * @Route("/wallet/add", name="wallet_add", methods={"POST"})
-     *
-     * @return JsonResponse
      */
     public function addWallet(
         Request $request,
         UserRepository $userRepository,
         EntityManagerInterface $entityManager
-    ): JsonResponse
-    {
-        $data = json_decode($request->getContent(), true);
+    ): JsonResponse {
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-        if (
-//            !key_exists('signature', $data) ||
-            !key_exists('wallet', $data)
-        ) {
+        if (!array_key_exists('publicKey', $data) || !array_key_exists('wallet', $data)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
-        } else {
-            $user = $userRepository->findOneBy(
-                [
-                    'wallet' => $data['wallet'],
-//                    'signature' => $data['signature']
-                ]
-            );
+        }
 
-            if (!empty($user)) {
-                throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::WALLET_EXIST));
-            }
+        if ($userRepository->findOneBy(['wallet' => $data['wallet']]) instanceof User) {
+            throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::WALLET_EXIST));
         }
 
         /** @var User $user */
         $user = $this->getUser();
 
-        if (empty($user->getWallet())) {
-            $user->setEnabled(true);
-            $user->setWallet($data['wallet']);
-
-            if (key_exists('signature', $data)) {
-                $user->setWallet($data['signature']);
-            }
-
-            $entityManager->flush();
-
-            return new JsonResponse(['status' => 'success'], 200);
-        } else {
+        if (!empty($user->getWallet())) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
+
+        $user->setEnabled(true);
+        $user->setWallet($data['wallet']);
+        $user->setWallet($data['publicKey']);
+
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'success'], 200);
     }
 }
