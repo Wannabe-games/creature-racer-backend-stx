@@ -1,1 +1,15 @@
-a:13:{s:16:"PrivacyPolicyUrl";s:44:"https://app.creatureracer.com/privacy-policy";s:13:"TermsOfUseUrl";s:50:"https://app.creatureracer.com/terms-and-conditions";s:6:"FaqUrl";s:27:"https://discord.gg/G89fxErk";s:10:"DiscordUrl";s:27:"https://discord.gg/G89fxErk";s:11:"RegisterUrl";s:38:"https://app.creatureracer.com/register";s:13:"EndpointLogin";s:50:"https://app.creatureracer.com/api/user/login_check";s:16:"EndpointUserInfo";s:46:"https://app.creatureracer.com/api/user/current";s:16:"EndpointSettings";s:47:"https://app.creatureracer.com/api/game/settings";s:14:"EndpointPlayer";s:45:"https://app.creatureracer.com/api/game/player";s:17:"EndpointRaceStart";s:49:"https://app.creatureracer.com/api/game/race/start";s:18:"EndpointRaceFinish";s:50:"https://app.creatureracer.com/api/game/race/finish";s:20:"EndpointRefreshToken";s:52:"https://app.creatureracer.com/api/user/token/refresh";s:18:"EndpointExperience";s:49:"https://app.creatureracer.com/api/game/experience";}
+{
+    "FaqUrl": "https:\/\/discord.gg\/G89fxErk",
+    "DiscordUrl": "https:\/\/discord.gg\/tbKgNnJD",
+    "PrivacyPolicyUrl": "https:\/\/app-dev.creatureracer.com\/privacy-policy",
+    "TermsOfUseUrl": "https:\/\/app-dev.creatureracer.com\/terms-and-conditions",
+    "RegisterUrl": "https:\/\/app-dev.creatureracer.com\/register",
+    "EndpointLogin": "https:\/\/app-dev.creatureracer.com\/api\/user\/login_check",
+    "EndpointUserInfo": "https:\/\/app-dev.creatureracer.com\/api\/user\/current",
+    "EndpointSettings": "https:\/\/app-dev.creatureracer.com\/api\/game\/settings",
+    "EndpointPlayer": "https:\/\/app-dev.creatureracer.com\/api\/game\/player",
+    "EndpointRaceStart": "https:\/\/app-dev.creatureracer.com\/api\/game\/race\/start",
+    "EndpointRaceFinish": "https:\/\/app-dev.creatureracer.com\/api\/game\/race\/finish",
+    "EndpointRefreshToken": "https:\/\/app-dev.creatureracer.com\/api\/user\/token\/refresh",
+    "EndpointExperience": "https:\/\/app-dev.creatureracer.com\/api\/game\/experience"
+}

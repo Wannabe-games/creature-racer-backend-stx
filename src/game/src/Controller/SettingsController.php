@@ -8,16 +8,14 @@ use App\Common\Repository\SettingsRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Entity\Settings;
 use App\Enum\DefaultSettings;
+use JsonException;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use App\Common\Service\User\UserManager;
-use App\Common\Repository\UserRepository;
-use App\Entity\User;
 
 /**
  * Class SettingsController
@@ -92,21 +90,22 @@ class SettingsController extends SymfonyAbstractController
      *
      * @return JsonResponse
      *
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws JsonException
+     * @throws NotFoundExceptionInterface
      *
      * @Route("/social-media", name="social_media", methods={"GET","POST"})
      */
     public function socialMediaAction(Request $request): JsonResponse
     {
-        if ($request->getMethod() == 'POST' && $this->getParameter('app_env') == 'dev') {
-            $data = json_decode($request->getContent(), true);
+        if ($request->getMethod() === 'POST' && $this->getParameter('app_env') === 'dev') {
+            $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-            file_put_contents('social-media.data', serialize($data));
+            file_put_contents('social-media.data', json_encode($data, JSON_THROW_ON_ERROR));
 
             return new JsonResponse(['status' => 'saved']);
-        } elseif ($request->getMethod() == 'GET') {
-            $data = unserialize(file_get_contents('social-media.data'));
+        } elseif ($request->getMethod() === 'GET') {
+            $data = json_decode(file_get_contents('social-media.data'), false, 512, JSON_THROW_ON_ERROR);
 
             if (empty($data)) {
                 throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
