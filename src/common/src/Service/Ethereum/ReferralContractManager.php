@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Common\Service\Ethereum;
@@ -16,7 +17,8 @@ class ReferralContractManager
      */
     public function __construct(
         protected ContainerInterface $container
-    ) {}
+    ) {
+    }
 
     /**
      * @param User $user
@@ -40,16 +42,16 @@ class ReferralContractManager
             $contractAddress,
         ];
 
-        exec('referral-increment-invitations '.implode(' ', $variable), $result);
+        exec('referral-increment-invitations ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('result: ' . $result[0]);
         }
 
-        return is_array($result) ? $result[0] : null;
+        return $result[0] ?? null;
     }
 
     public function setUri(bool $verbose = false): string
@@ -58,7 +60,7 @@ class ReferralContractManager
         $providedUrl = $this->container->getParameter('chain_provider_url');
         $contractAddress = $this->container->getParameter('referral_contract_address');
         $privateOperatorKey = $this->container->getParameter('private_wallet_key');
-        $uri = $this->container->getParameter('base_url').'api/nft/referral/metadata/';
+        $uri = $this->container->getParameter('base_url') . 'api/nft/referral/metadata/';
 
         $variable = [
             $env,
@@ -68,13 +70,13 @@ class ReferralContractManager
             $contractAddress,
         ];
 
-        exec('referral-set-uri '.implode(' ', $variable), $result);
+        exec('referral-set-uri ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
