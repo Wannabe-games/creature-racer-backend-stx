@@ -1,7 +1,7 @@
 parameters:
+    app_env: '%env(string:APP_ENV)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
-    app_env: '%env(string:APP_ENV)%'
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.

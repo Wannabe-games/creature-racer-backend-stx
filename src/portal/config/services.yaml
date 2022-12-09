@@ -1,4 +1,5 @@
 parameters:
+    app_env: '%env(string:APP_ENV)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
 

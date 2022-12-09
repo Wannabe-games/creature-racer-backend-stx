@@ -7,12 +7,12 @@ use App\Common\Repository\ReferralNftRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Common\Service\Ethereum\ReferralContractManager;
 use Doctrine\ORM\EntityManagerInterface;
+use JsonException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use App\Common\Service\User\UserManager;
 use App\Common\Repository\UserRepository;
@@ -28,27 +28,12 @@ use App\Entity\User;
 class UserController extends SymfonyAbstractController
 {
     /**
-     * @var TranslatorInterface
-     */
-    private TranslatorInterface $translator;
-
-    /**
-     * SecurityController constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
-
-    /**
-     * @param Request                  $request
+     * @param Request $request
      * @param JWTTokenManagerInterface $JWTManager
-     * @param UserManager              $userManager
-     * @param UserRepository           $userRepository
-     *
+     * @param UserManager $userManager
+     * @param UserRepository $userRepository
      * @return JsonResponse
+     * @throws JsonException
      *
      * @Route("/registry", name="registry", methods={"POST"})
      */
@@ -57,13 +42,12 @@ class UserController extends SymfonyAbstractController
         JWTTokenManagerInterface $JWTManager,
         UserManager $userManager,
         UserRepository $userRepository
-    ): JsonResponse
-    {
-        $data = json_decode($request->getContent(), true);
+    ): JsonResponse {
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
         $userId = $userManager->createUser($data);
         $user = $userId ? $userRepository->find($userId) : null;
-        
+
         if ($user instanceof User) {
             $user->setEnabled(false);
         }
@@ -72,15 +56,15 @@ class UserController extends SymfonyAbstractController
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::ACCOUNT_EXIST));
         }
 
-        return new JsonResponse(['token' => $JWTManager->create($user) ], 201);
+        return new JsonResponse(['token' => $JWTManager->create($user)], 201);
     }
 
     /**
-     * @param Request             $request
+     * @param Request $request
      * @param SerializerInterface $serializer
-     * @param \App\DTO\User       $userDTO
-     *
+     * @param \App\DTO\User $userDTO
      * @return JsonResponse
+     * @throws JsonException
      *
      * @Route("/current", name="current", methods={"POST","GET"})
      */
@@ -89,30 +73,30 @@ class UserController extends SymfonyAbstractController
         SerializerInterface $serializer,
         \App\DTO\User $userDTO
     ): JsonResponse {
-        if ($request->getMethod() == 'POST') {
-            $data = json_decode($request->getContent(), true);
+        if ('POST' === $request->getMethod()) {
+            $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
             $user = $userDTO->unserialize($data, $this->getUser());
 
             return new JsonResponse($serializer->serialize($user, 'json', ['groups' => 'api']), 200, [], true);
+        }
 
-        } elseif ($request->getMethod() == 'GET') {
-
+        if ('GET' === $request->getMethod()) {
             return new JsonResponse($serializer->serialize($this->getUser(), 'json', ['groups' => 'apiGet']), 200, [], true);
         }
+
+        throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::BAD_REQUEST));
     }
 
     /**
-     * @param Request                 $request
-     * @param ReferralNftRepository   $referralNftRepository
-     * @param EntityManagerInterface  $entityManager
+     * @param Request $request
+     * @param ReferralNftRepository $referralNftRepository
+     * @param EntityManagerInterface $entityManager
      * @param ReferralContractManager $referralContractManager
-     *
      * @return JsonResponse
+     * @throws JsonException
      *
      * @Route("/referral/add", name="referral_add", methods={"POST"})
-     *
-     * @return JsonResponse
      */
     public function addReferralCode(
         Request $request,
@@ -120,35 +104,31 @@ class UserController extends SymfonyAbstractController
         EntityManagerInterface $entityManager,
         ReferralContractManager $referralContractManager
     ): JsonResponse {
-        $data = json_decode($request->getContent(), true);
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-        if (!key_exists('refCode', $data)) {
+        if (!array_key_exists('refCode', $data)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
-        } else {
-            $referralNft = $referralNftRepository->findOneBy(
-                [
-                    'refCode' => $data['refCode'],
-                ]
-            );
+        }
 
-            if (!empty($user)) {
-                throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::WALLET_EXIST));
-            }
+        $referralNft = $referralNftRepository->findOneBy(['refCode' => $data['refCode']]);
+
+        if (empty($referralNft)) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
 
         /** @var User $user */
         $user = $this->getUser();
 
-        if (empty($user->getFromReferralNft())) {
-            $user->setFromReferralNft($referralNft);
-
-            $referralContractManager->incrementInvitations($this->getUser());
-
-            $entityManager->flush();
-
-            return new JsonResponse(['status' => 'success'], 200);
-        } else {
+        if ($user->getFromReferralNft() !== null) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
+
+        $user->setFromReferralNft($referralNft);
+
+        $referralContractManager->incrementInvitations($this->getUser());
+
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'success'], 200);
     }
 }

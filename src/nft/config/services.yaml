@@ -1,10 +1,10 @@
 parameters:
-    base_url: '%env(string:BASE_URL)%'
     app_env: '%env(string:APP_ENV)%'
-    chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
-    reward_pool_contract_address: '%env(string:REWARD_POOL_CONTRACT_ADDRESS)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
+    base_url: '%env(string:BASE_URL)%'
+    chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
+    reward_pool_contract_address: '%env(string:REWARD_POOL_CONTRACT_ADDRESS)%'
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
