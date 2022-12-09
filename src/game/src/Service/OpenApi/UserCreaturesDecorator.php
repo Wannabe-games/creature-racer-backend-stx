@@ -211,7 +211,7 @@ final class UserCreaturesDecorator implements OpenApiFactoryInterface
         $pathItemByWallet = new Model\PathItem(
             ref: 'User Creature',
             get: new Model\Operation(
-                     operationId: 'wallet',
+                     operationId: 'userCreaturesGetByWallet',
                      tags:        ['Creature User'],
                      responses:   [
                                       '200' => [

@@ -7,24 +7,27 @@ namespace App\Service\OpenApi;
 use ApiPlatform\Core\OpenApi\Factory\OpenApiFactoryInterface;
 use ApiPlatform\Core\OpenApi\OpenApi;
 use ApiPlatform\Core\OpenApi\Model;
+use ArrayObject;
 
 final class PlayerDecorator implements OpenApiFactoryInterface
 {
     public function __construct(
         private OpenApiFactoryInterface $decorated
-    ) {}
+    ) {
+    }
 
     public function __invoke(array $context = []): OpenApi
     {
         $openApi = ($this->decorated)($context);
         $schemas = $openApi->getComponents()->getSchemas();
 
-        $schemas['Player'] = new \ArrayObject([
-            'type' => 'object',
-            'properties' => [
-                'player' => [
-                    'type' => 'array',
-                    'example' => '{
+        $schemas['Player'] = new \ArrayObject(
+            [
+                'type' => 'object',
+                'properties' => [
+                    'player' => [
+                        'type' => 'array',
+                        'example' => '{
                       "IsFirstRaceCompleted": true,
                       "SoftCurrency": 3090,
                       "HardCurrency": 10,
@@ -184,68 +187,127 @@ final class PlayerDecorator implements OpenApiFactoryInterface
                         }
                       ]
                     }',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
 
-        $schemas['PlayerPostStatus'] = new \ArrayObject([
-            'type' => 'object',
-            'properties' => [
-                'status' => [
-                    'type' => 'string',
-                    'example' => 'success',
+        $schemas['PlayerPostStatus'] = new \ArrayObject(
+            [
+                'type' => 'object',
+                'properties' => [
+                    'status' => [
+                        'type' => 'string',
+                        'example' => 'success',
+                    ],
                 ],
-            ],
-        ]);
+            ]
+        );
 
         $pathItem = new Model\PathItem(
-            ref: 'Player',
-            get: new Model\Operation(
-                operationId: 'playerGet',
-                tags: ['Player'],
-                responses: [
-                    '200' => [
-                        'description' => 'Player',
-                        'content' => [
-                            'application/json' => [
-                                'schema' => [
-                                    '$ref' => '#/components/schemas/Player',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                summary: 'Player',
-            ),
+            ref:  'Player',
+            get:  new Model\Operation(
+                      operationId: 'playerGet',
+                      tags:        ['Player'],
+                      responses:   [
+                                       '200' => [
+                                           'description' => 'Player',
+                                           'content' => [
+                                               'application/json' => [
+                                                   'schema' => [
+                                                       '$ref' => '#/components/schemas/Player',
+                                                   ],
+                                               ],
+                                           ],
+                                       ],
+                                   ],
+                      summary:     'Player',
+                  ),
             post: new Model\Operation(
-                operationId: 'playerUpdate',
-                tags: ['Player'],
-                responses: [
-                    '200' => [
-                        'description' => 'Status',
-                        'content' => [
-                            'application/json' => [
-                                'schema' => [
-                                    '$ref' => '#/components/schemas/PlayerPostStatus',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                summary: 'Player',
-                requestBody: new Model\RequestBody(
-                    description: 'Player',
-                    content: new \ArrayObject([
-                        'application/json' => [
-                            'schema' => [
-                                '$ref' => '#/components/schemas/Player',
-                            ],
-                        ],
-                    ]),
-                ),
-            ),
+                      operationId: 'playerUpdate',
+                      tags:        ['Player'],
+                      responses:   [
+                                       '200' => [
+                                           'description' => 'Status',
+                                           'content' => [
+                                               'application/json' => [
+                                                   'schema' => [
+                                                       '$ref' => '#/components/schemas/PlayerPostStatus',
+                                                   ],
+                                               ],
+                                           ],
+                                       ],
+                                   ],
+                      summary:     'Player',
+                      requestBody: new Model\RequestBody(
+                                       description: 'Player',
+                                       content:     new \ArrayObject([
+                                                                         'application/json' => [
+                                                                             'schema' => [
+                                                                                 '$ref' => '#/components/schemas/Player',
+                                                                             ],
+                                                                         ],
+                                                                     ]
+                                                    ),
+                                   ),
+                  ),
         );
         $openApi->getPaths()->addPath('/api/game/player', $pathItem);
+
+        $pathItemByWallet = new Model\PathItem(
+            ref:  'Player',
+            get:  new Model\Operation(
+                      operationId: 'playerGetByWallet',
+                      tags:        ['Player'],
+                      responses:   [
+                                       '200' => [
+                                           'description' => 'Player',
+                                           'content' => [
+                                               'application/json' => [
+                                                   'schema' => [
+                                                       '$ref' => '#/components/schemas/Player',
+                                                   ],
+                                               ],
+                                           ],
+                                       ],
+                                   ],
+                      summary:     'Player',
+                      parameters:  [
+                                       new Model\Parameter('id', 'path'),
+                                   ],
+                  ),
+            post: new Model\Operation(
+                      operationId: 'playerUpdate',
+                      tags:        ['Player'],
+                      responses:   [
+                                       '200' => [
+                                           'description' => 'Status',
+                                           'content' => [
+                                               'application/json' => [
+                                                   'schema' => [
+                                                       '$ref' => '#/components/schemas/PlayerPostStatus',
+                                                   ],
+                                               ],
+                                           ],
+                                       ],
+                                   ],
+                      summary:     'Player',
+                      parameters:  [
+                                       new Model\Parameter('id', 'path'),
+                                   ],
+                      requestBody: new Model\RequestBody(
+                                       description: 'Player',
+                                       content:     new ArrayObject([
+                                                                        'application/json' => [
+                                                                            'schema' => [
+                                                                                '$ref' => '#/components/schemas/Player',
+                                                                            ],
+                                                                        ],
+                                                                    ]),
+                                   ),
+                  ),
+        );
+        $openApi->getPaths()->addPath('/api/game/wallet/{id}/player', $pathItemByWallet);
 
         return $openApi;
     }
