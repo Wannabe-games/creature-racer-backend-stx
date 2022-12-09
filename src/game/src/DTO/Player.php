@@ -95,6 +95,7 @@ class Player
 
         $data['SoftCurrency'] = $player->getSoftCurrency();
         $data['HardCurrency'] = $player->getHardCurrency();
+        $data['FlappyPetsMaxScore'] = $player->getMaxScore();
         $data['ActiveAnimalType'] = $player->getActiveAnimalCreatureType();
         $data['Experience'] = $player->getExperience();
         $data['Energy_']['Value'] = $player->getEnergy();

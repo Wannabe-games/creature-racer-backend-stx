@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity\Game;
 
 use App\Entity\User;
@@ -17,83 +18,60 @@ class Player
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private ?int $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default" : 0})
      */
-    private $softCurrency;
+    private int $softCurrency = 0;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default" : 0})
      */
-    private $hardCurrency;
+    private int $hardCurrency = 0;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default" : 10})
      */
-    private $energy;
+    private int $energy = 10;
 
     /**
-     * @var DateTime|null
-     *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $restoreStartTime;
+    private ?DateTime $restoreStartTime;
 
     /**
-     * @var array
-     *
      * @ORM\Column(type="array")
      */
-    private $additionalData;
+    private array $additionalData = [];
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default" : 0})
      */
-    private $experience;
+    private int $experience = 0;
 
     /**
-     * @var User
-     *
      * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="player")
      * @ORM\JoinColumn(name="user_id", nullable=false)
      *
      * @Assert\NotNull()
      */
-    private $user;
+    private User $user;
 
     /**
-     * @var string
-     *
      * @ORM\Column(length=20, nullable=true)
      */
-    private $activeAnimalCreatureType;
+    private ?string $activeAnimalCreatureType;
 
     /**
-     * User constructor.
+     * @ORM\Column(type="integer", options={"default" : 0})
      */
-    public function __construct()
-    {
-        $this->softCurrency = 0;
-        $this->hardCurrency = 0;
-        $this->energy = 10;
-        $this->experience = 0;
-        $this->additionalData = [];
-    }
+    private int $maxScore = 0;
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -232,5 +210,23 @@ class Player
     public function setActiveAnimalCreatureType(string $activeAnimalCreatureType): void
     {
         $this->activeAnimalCreatureType = $activeAnimalCreatureType;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMaxScore(): ?int
+    {
+        return $this->maxScore;
+    }
+
+    /**
+     * @param int $maxScore
+     */
+    public function setMaxScore(int $maxScore): void
+    {
+        if ($this->maxScore < $maxScore) {
+            $this->maxScore = $maxScore;
+        }
     }
 }
