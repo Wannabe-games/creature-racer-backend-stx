@@ -46,7 +46,7 @@ final class RegistryDecorator implements OpenApiFactoryInterface
             ref: 'Registry',
             post: new Model\Operation(
                 operationId: 'postRegistryCredentialsItem',
-                tags: ['User'],
+                tags: ['Registration'],
                 responses: [
                     '200' => [
                         'description' => 'Registry & get JWT token',

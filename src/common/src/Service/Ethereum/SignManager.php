@@ -46,7 +46,7 @@ class SignManager
     {
         $privateKey = $this->container->getParameter('private_wallet_key');
 
-        exec('sign-mint-message-stx '.$privateKey.' '.$message, $result);
+        exec('sign-mint-message '.$privateKey.' '.$message, $result);
 
         if ($verbose) {
             var_dump('message: '.$message);
@@ -105,9 +105,9 @@ class SignManager
         $msgLen = strlen($message);
         $hash   = Keccak::hash("\x19Ethereum Signed Message:\n{$msgLen}{$message}", 256);
         $sign   =  [
-                "r" => substr($signature, 2, 64),
-                "s" => substr($signature, 66, 64)
-            ];
+            "r" => substr($signature, 2, 64),
+            "s" => substr($signature, 66, 64)
+        ];
         $recId  = ord(hex2bin(substr($signature, 130, 2))) - 27;
         if ($recId != ($recId & 1))
             return false;

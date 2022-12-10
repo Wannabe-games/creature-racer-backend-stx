@@ -53,7 +53,7 @@ final class LoginDecorator implements OpenApiFactoryInterface
             ref: 'Login',
             post: new Model\Operation(
                 operationId: 'postCredentialsItem',
-                tags: ['User'],
+                tags: ['Token'],
                 responses: [
                     '200' => [
                         'description' => 'Get JWT token',

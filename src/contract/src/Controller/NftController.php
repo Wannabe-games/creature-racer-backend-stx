@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\Common\Service\Ethereum\SignManager;
+use App\Common\Service\Stacks\SignManager;
 use App\Common\Service\Game\CreatureManager;
 use App\DTO\NftUserCreature;
 use App\Entity\Creature\CreatureUser;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use JsonException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,12 +35,12 @@ class NftController extends SymfonyAbstractController
     public function __construct(private TranslatorInterface $translator) {}
 
     /**
-     * @param Request                $request
+     * @param Request $request
      * @param CreatureUserRepository $creatureUserRepository
-     * @param SignManager            $signManager
-     * @param NftUserCreature        $nftUserCreature
-     *
+     * @param SignManager $signManager
+     * @param NftUserCreature $nftUserCreature
      * @return JsonResponse
+     * @throws JsonException
      *
      * @Route("/sign/creature", name="sign_creature", methods={"POST"})
      */
@@ -48,18 +50,19 @@ class NftController extends SymfonyAbstractController
         SignManager $signManager,
         NftUserCreature $nftUserCreature
     ): JsonResponse {
-        $data = json_decode($request->getContent(), true);
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-        if (!key_exists('creatureId', $data)) {
+        if (!array_key_exists('creatureId', $data)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::BAD_REQUEST));
-        } else {
-            if (empty($creatureUser = $creatureUserRepository->findOneBy(['uuid' => $data['creatureId']]))) {
-                throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::CREATURE_NOT_EXIST));
-            }
-            /** @var CreatureUser $creatureUser */
-            if ($creatureUser->getUser()->getId() != $this->getUser()->getId()) {
-                throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
-            }
+        }
+
+        if (empty($creatureUser = $creatureUserRepository->findOneBy(['uuid' => $data['creatureId']]))) {
+            throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::CREATURE_NOT_EXIST));
+        }
+
+        /** @var CreatureUser $creatureUser */
+        if ($creatureUser->getUser()->getId() !== $this->getUser()->getId()) {
+            throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }
 
         $message = $nftUserCreature->toStringMessage($creatureUser);
@@ -83,8 +86,8 @@ class NftController extends SymfonyAbstractController
      *
      * @Route("/creature/nft/name", name="creature_nft_name", methods={"POST"})
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function nftNameAction(
         Request $request,
@@ -128,8 +131,8 @@ class NftController extends SymfonyAbstractController
      *
      * @Route("/creature/stake", name="stake", methods={"POST"})
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function stakeAction(Request $request, CreatureManager $creatureManager): JsonResponse
     {

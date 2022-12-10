@@ -11,6 +11,7 @@
   "bin": {
     "js-menu": "./bin/index.js",
     "sign-mint-message": "./bin/sign-mint-message.js",
+    "stx-sign-mint-message": "./bin/stx-sign-mint-message.js",
     "sign-withdraw-message": "./bin/sign-withdraw-message.js",
     "staking-get-user-share": "./bin/staking/staking-get-user-share.js",
     "staking-get-total-share": "./bin/staking/staking-get-total-share.js",
@@ -30,7 +31,9 @@
   },
   "dependencies": {
     "@stacks/connect": "^7.0.0",
+    "dotenv": "^16.0.3",
     "ethers": "^5.6.1",
+    "sha256": "^0.2.0",
     "web3": "^1.7.1"
   }
 }
