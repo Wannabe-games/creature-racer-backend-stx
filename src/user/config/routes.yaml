@@ -1,11 +1,17 @@
 authentication_token:
+    path: /api/user/token
+    methods:
+        - 'POST'
+        - 'OPTIONS'
+
+login_check:
     path: /api/user/login_check
     methods:
-      - 'POST'
-      - 'OPTIONS'
+        - 'POST'
+        - 'OPTIONS'
 
 gesdinet_jwt_refresh_token:
-    path:     /api/user/token/refresh
+    path: /api/user/token/refresh
     defaults: { _controller: gesdinet.jwtrefreshtoken:refresh }
 
 controllers:

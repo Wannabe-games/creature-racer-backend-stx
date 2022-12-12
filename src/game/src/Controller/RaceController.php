@@ -6,7 +6,10 @@ use App\Common\Exception\Api\ApiException;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Entity\Game\Player;
 use App\Entity\Creature\CreatureUser;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use JsonException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +54,7 @@ class RaceController extends SymfonyAbstractController
     }
 
     /**
-     * @param Request                $request
+     * @param Request $request
      * @param EntityManagerInterface $entityManager
      *
      * @return JsonResponse
@@ -90,6 +93,33 @@ class RaceController extends SymfonyAbstractController
         } else {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::BAD_REQUEST));
         }
+    }
+
+    /**
+     * @param User|null $user
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return JsonResponse
+     * @throws JsonException
+     *
+     * @Route("C", name="race_finish_by_wallet_id", methods={"GET", "POST"})
+     * @ParamConverter("user", options={"mapping": {"id": "wallet"}})
+     */
+    public function actionRaceFinishByWalletAction(?User $user, Request $request, EntityManagerInterface $entityManager): JsonResponse
+    {
+        if (null === $user) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+        }
+
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        /** @var Player $player */
+        $player = $this->getUser()->getPlayer();
+        $player->setMaxScore($data['maxScore']);
+
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'ok']);
     }
 
     /**

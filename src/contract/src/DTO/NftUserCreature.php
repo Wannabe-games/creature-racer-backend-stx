@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class NftUserCreature
 {
     public function __construct(
-        private readonly ContainerInterface $container
+        private ContainerInterface $container
     ) {
     }
 
@@ -42,9 +42,8 @@ class NftUserCreature
         $serializedData['part5'] = $creatureUser->getButtocks() + 1;
         $serializedData['expiryTimestamp'] = $creatureUser->getNftExpiryDateFormat('U');
         $serializedData['price'] = $this->container->getParameter('mint_price');
-        $serializedData['ownerKey'] = $creatureUser->getUser()->getPublicKey();
-        $serializedData['ownerPubKey'] = $creatureUser->getUser()->getPublicKey();
-        $serializedData['ownerAddr'] = $creatureUser->getUser()->getWallet();
+        $serializedData['userWallet'] = $creatureUser->getUser()->getWallet();
+        $serializedData['userPubKey'] = $creatureUser->getUser()->getPublicKey();
 
         return $serializedData;
     }

@@ -50,7 +50,7 @@ final class LoginDecorator implements OpenApiFactoryInterface
         ]);
 
         $pathItem = new Model\PathItem(
-            ref: 'Login',
+            ref: 'Token',
             post: new Model\Operation(
                 operationId: 'postCredentialsItem',
                 tags: ['Token'],
@@ -66,9 +66,9 @@ final class LoginDecorator implements OpenApiFactoryInterface
                         ],
                     ],
                 ],
-                summary: 'Login',
+                summary: 'Token',
                 requestBody: new Model\RequestBody(
-                    description: 'Login',
+                    description: 'Get token',
                     content: new \ArrayObject([
                         'application/json' => [
                             'schema' => [
@@ -79,7 +79,7 @@ final class LoginDecorator implements OpenApiFactoryInterface
                 ),
             ),
         );
-        $openApi->getPaths()->addPath('/api/user/login_check', $pathItem);
+        $openApi->getPaths()->addPath('/api/user/token', $pathItem);
 
         return $openApi;
     }
