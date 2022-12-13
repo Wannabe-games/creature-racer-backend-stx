@@ -42,8 +42,8 @@ class NftUserCreature
         $serializedData['part5'] = $creatureUser->getButtocks() + 1;
         $serializedData['expiryTimestamp'] = $creatureUser->getNftExpiryDateFormat('U');
         $serializedData['price'] = $this->container->getParameter('mint_price');
-        $serializedData['userWallet'] = $creatureUser->getUser()->getWallet();
-        $serializedData['userPubKey'] = $creatureUser->getUser()->getPublicKey();
+        $serializedData['address'] = $creatureUser->getUser()->getWallet();
+        $serializedData['key'] = $creatureUser->getUser()->getPublicKey();
 
         return $serializedData;
     }
