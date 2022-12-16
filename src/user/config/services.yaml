@@ -3,8 +3,8 @@ parameters:
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
     chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
-    public_wallet_key: '%env(string:PUBLIC_WALLET_KEY)%'
-    private_wallet_key: '%env(string:PRIVATE_WALLET_KEY)%'
+    public_wallet_key: '%env(string:OPERATOR_WALLET_PUBLIC_KEY)%'
+    private_wallet_key: '%env(string:OPERATOR_WALLET_PRIVATE_KEY)%'
     referral_contract_address: '%env(string:REFERRAL_CONTRACT_ADDRESS)%'
 
 # This file is the entry point to configure your own services.

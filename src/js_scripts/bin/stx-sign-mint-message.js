@@ -57,7 +57,7 @@ async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, ex
         .concat(uint128toBytes(expiryTimestamp))
         .concat(uint128toBytes(price));
 
-    return sign(payload, process.env.PRIVATE_WALLET_KEY).data;
+    return sign(payload, process.env.OPERATOR_WALLET_PRIVATE_KEY).data;
 }
 
 async function main() {
