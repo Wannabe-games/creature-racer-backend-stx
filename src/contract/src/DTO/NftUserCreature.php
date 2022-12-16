@@ -2,6 +2,8 @@
 
 namespace App\DTO;
 
+use App\Common\Repository\Creature\CreatureLevelRepository;
+use App\Entity\Creature\CreatureLevel;
 use App\Entity\Creature\CreatureUser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -12,7 +14,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class NftUserCreature
 {
     public function __construct(
-        private ContainerInterface $container
+        private ContainerInterface $container,
+        private CreatureLevelRepository $creatureLevelRepository
     ) {
     }
 
@@ -33,6 +36,14 @@ class NftUserCreature
      */
     public function serialize(CreatureUser $creatureUser): array
     {
+        /** @var CreatureLevel $creatureBuy */
+        $creatureBuy = $this->creatureLevelRepository->findOneBy(
+            [
+                'upgradeType' => 'base',
+                'creatureType' => $creatureUser->getCreature()->getType(),
+            ]
+        );
+
         $serializedData['nftId'] = $creatureUser->getContract();
         $serializedData['typeId'] = $creatureUser->getCreature()->getId();
         $serializedData['part1'] = $creatureUser->getMuscles() + 1;
@@ -40,8 +51,8 @@ class NftUserCreature
         $serializedData['part3'] = $creatureUser->getHeart() + 1;
         $serializedData['part4'] = $creatureUser->getBelly() + 1;
         $serializedData['part5'] = $creatureUser->getButtocks() + 1;
-        $serializedData['expiryTimestamp'] = $creatureUser->getNftExpiryDateFormat('U');
-        $serializedData['price'] = $this->container->getParameter('mint_price');
+        $serializedData['expiryTimestamp'] = (int)$creatureUser->getNftExpiryDateFormat('U');
+        $serializedData['price'] = $creatureBuy->getPriceHardCurrency() * 1000000;
         $serializedData['address'] = $creatureUser->getUser()->getWallet();
         $serializedData['key'] = $creatureUser->getUser()->getPublicKey();
 
