@@ -101,11 +101,11 @@ class SettingsController extends SymfonyAbstractController
         if ($request->getMethod() === 'POST' && $this->getParameter('app_env') === 'dev') {
             $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-            file_put_contents('social-media.data', json_encode($data, JSON_THROW_ON_ERROR));
+            file_put_contents('social-media.json', json_encode($data, JSON_THROW_ON_ERROR));
 
             return new JsonResponse(['status' => 'saved']);
         } elseif ($request->getMethod() === 'GET') {
-            $data = json_decode(file_get_contents('social-media.data'), false, 512, JSON_THROW_ON_ERROR);
+            $data = json_decode(file_get_contents('social-media.json'), false, 512, JSON_THROW_ON_ERROR);
 
             if (empty($data)) {
                 throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
