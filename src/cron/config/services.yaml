@@ -2,7 +2,6 @@ parameters:
     app_env: '%env(string:APP_ENV)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
-    public_wallet_key: '%env(string:OPERATOR_WALLET_PUBLIC_KEY)%'
     private_wallet_key: '%env(string:OPERATOR_WALLET_PRIVATE_KEY)%'
     chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
     payment_contract_address: '%env(string:PAYMENT_CONTRACT_ADDRESS)%'

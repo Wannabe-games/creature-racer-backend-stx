@@ -8,7 +8,6 @@ parameters:
     app_env: '%env(string:APP_ENV)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
-    public_wallet_key: '%env(string:OPERATOR_WALLET_PUBLIC_KEY)%'
     private_wallet_key: '%env(string:OPERATOR_WALLET_PRIVATE_KEY)%'
     base_url: '%env(string:BASE_URL)%'
     mint_price: '%env(string:MINT_PRICE)%'
