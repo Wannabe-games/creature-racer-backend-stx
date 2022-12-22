@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DTO;
 
 use App\Common\Repository\Creature\CreatureLevelRepository;
@@ -13,16 +14,17 @@ use App\Entity\Creature\CreatureUser;
  */
 class UserCreature
 {
-    const UPGRADE_TYPE_BELLY = 'boost';
-    const UPGRADE_TYPE_BUTTOCKS = 'boost2';
-    const UPGRADE_TYPE_HEART = 'reflex';
-    const UPGRADE_TYPE_LUNGS = 'lung';
-    const UPGRADE_TYPE_MUSCLES = 'muscles';
+    public const UPGRADE_TYPE_BELLY = 'boost';
+    public const UPGRADE_TYPE_BUTTOCKS = 'boost2';
+    public const UPGRADE_TYPE_HEART = 'reflex';
+    public const UPGRADE_TYPE_LUNGS = 'lung';
+    public const UPGRADE_TYPE_MUSCLES = 'muscles';
 
     public function __construct(
         private CreatureLevelRepository $creatureLevelRepository,
         private CreatureManager $creatureManager
-    ) {}
+    ) {
+    }
 
     /**
      * @param CreatureUser $creatureUser
@@ -93,6 +95,8 @@ class UserCreature
         $serializedData['type'] = $creatureUser->getCreature()->getType();
         $serializedData['tier'] = $creatureUser->getCreature()->getTier();
         $serializedData['cohort'] = $creatureUser->getCreature()->getCohort();
+        $serializedData['priceHardCurrency'] = $creatureUser->getCreature()->getPriceHardCurrency();
+        $serializedData['priceSoftCurrency'] = $creatureUser->getCreature()->getPriceSoftCurrency();
 
         $serializedData['fuel'] = [
             'level' => $creatureUser->getBelly(),
@@ -157,7 +161,7 @@ class UserCreature
     }
 
     /**
-     * @param int    $level
+     * @param int $level
      * @param string $creatureType
      * @param string $upgradeType
      *
@@ -166,11 +170,13 @@ class UserCreature
     private function getSerializedNextLevelData(int $level, string $creatureType, string $upgradeType): array
     {
         /** @var CreatureLevel|null $nextLevel */
-        $nextLevel = $this->creatureLevelRepository->findOneBy([
-            'level' => ++$level,
-            'creatureType' => $creatureType,
-            'upgradeType' => $upgradeType,
-        ]);
+        $nextLevel = $this->creatureLevelRepository->findOneBy(
+            [
+                'level' => ++$level,
+                'creatureType' => $creatureType,
+                'upgradeType' => $upgradeType,
+            ]
+        );
 
         $nestLevelResult = [];
         if ($nextLevel instanceof CreatureLevel) {
