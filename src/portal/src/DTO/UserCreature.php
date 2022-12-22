@@ -89,14 +89,23 @@ class UserCreature
      */
     public function serializeDetails(CreatureUser $creatureUser): array
     {
+        /** @var CreatureLevel $levelEntity */
+        $levelEntity = $this->creatureLevelRepository->findOneBy(
+            [
+                'level' => 0,
+                'creatureType' => $creatureUser->getCreature()->getType(),
+                'upgradeType' => 'base',
+            ]
+        );
+
         $serializedData['id'] = $creatureUser->getUuid();
         $serializedData['creatureId'] = $creatureUser->getCreature()->getId();
         $serializedData['name'] = $creatureUser->getName();
         $serializedData['type'] = $creatureUser->getCreature()->getType();
         $serializedData['tier'] = $creatureUser->getCreature()->getTier();
         $serializedData['cohort'] = $creatureUser->getCreature()->getCohort();
-        $serializedData['priceHardCurrency'] = $creatureUser->getCreature()->getPriceHardCurrency();
-        $serializedData['priceSoftCurrency'] = $creatureUser->getCreature()->getPriceSoftCurrency();
+        $serializedData['priceHardCurrency'] = $levelEntity->getPriceHardCurrency();
+        $serializedData['priceSoftCurrency'] = $levelEntity->getPriceSoftCurrency();
 
         $serializedData['fuel'] = [
             'level' => $creatureUser->getBelly(),
