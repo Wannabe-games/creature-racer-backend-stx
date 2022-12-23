@@ -5,11 +5,14 @@
     "TermsOfUseUrl":"https:\/\/creatureracer.com\/terms-conditions",
     "RegisterUrl":"https:\/\/app.creatureracer.com\/register",
     "EndpointLogin":"https:\/\/app.creatureracer.com\/api\/user\/login_check",
+    "EndpointRefreshToken":"https:\/\/app.creatureracer.com\/api\/user\/token\/refresh",
     "EndpointUserInfo":"https:\/\/app.creatureracer.com\/api\/user\/current",
     "EndpointSettings":"https:\/\/app.creatureracer.com\/api\/game\/settings",
     "EndpointPlayer":"https:\/\/app.creatureracer.com\/api\/game\/player",
+    "EndpointPlayerByWallet":"https:\/\/app.creatureracer.com\/api\/game\/wallet\/{id}\/player",
     "EndpointRaceStart":"https:\/\/app.creatureracer.com\/api\/game\/race\/start",
     "EndpointRaceFinish":"https:\/\/app.creatureracer.com\/api\/game\/race\/finish",
-    "EndpointRefreshToken":"https:\/\/app.creatureracer.com\/api\/user\/token\/refresh",
-    "EndpointExperience":"https:\/\/app.creatureracer.com\/api\/game\/experience"
+    "EndpointRaceFinishByWallet":"https:\/\/app.creatureracer.com\/api\/game\/wallet\/{id}\/race\/finish",
+    "EndpointExperience":"https:\/\/app.creatureracer.com\/api\/game\/experience",
+    "EndpointCreaturesByWallet":"https:\/\/app.creatureracer.com\/api\/game\/wallet\/{id}\/user-creatures"
 }
