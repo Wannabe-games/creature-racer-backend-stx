@@ -1,21 +1,7 @@
 #!/usr/bin/env node
-require('dotenv').config({path: '/app/common/.env'})
-const {
-    makeContractCall,
-    broadcastTransaction,
-    standardPrincipalCV,
-    uintCV,
-    bufferCV,
-    pubKeyfromPrivKey,
-    privateKeyToString,
-    TransactionVersion,
-    signMessageHashRsv,
-    createStacksPrivateKey,
-    FungibleConditionCode,
-    makeContractSTXPostCondition,
-    makeStandardSTXPostCondition,
-    AnchorMode
-} = require("@stacks/transactions");
+require('dotenv').config({path: '/app/common/.env'});
+require('dotenv').config({path: '/app/common/.env.local', override: true});
+const {signMessageHashRsv, createStacksPrivateKey} = require("@stacks/transactions");
 const sha256 = require("sha256");
 const inputArgs = process.argv.slice(2);
 
