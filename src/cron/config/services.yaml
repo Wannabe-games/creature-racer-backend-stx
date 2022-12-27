@@ -2,12 +2,12 @@ parameters:
     app_env: '%env(string:APP_ENV)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
-    private_wallet_key: '%env(string:OPERATOR_WALLET_PRIVATE_KEY)%'
+    private_wallet_key: '%env(string:OPERATOR_CONTRACT_PRIVATE_KEY)%'
     chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
-    payment_contract_address: '%env(string:PAYMENT_CONTRACT_ADDRESS)%'
-    reward_pool_contract_address: '%env(string:REWARD_POOL_CONTRACT_ADDRESS)%'
-    staking_contract_address: '%env(string:STAGING_CONTRACT_ADDRESS)%'
-    referral_pool_contract_address: '%env(string:REFERRAL_CONTRACT_ADDRESS)%'
+    payment_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
+    reward_pool_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
+    staking_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
+    referral_pool_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.

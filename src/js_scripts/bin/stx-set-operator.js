@@ -30,7 +30,7 @@ async function main() {
 }
 
 main().then(function (txid) {
-    console.log("OPERATOR_WALLET_ADDRESS: ", operatorAddress);
-    console.log("OPERATOR_WALLET_PRIVATE_KEY: ", privateKeyToString(privKey));
-    console.log('submitted transaction: ', '0x' + txid);
+    console.log("OPERATOR_CONTRACT_ADDRESS: ", operatorAddress);
+    console.log("OPERATOR_CONTRACT_PRIVATE_KEY: ", privateKeyToString(privKey));
+    console.log('Submitted transaction: ', '0x' + txid);
 });

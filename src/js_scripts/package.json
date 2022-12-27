@@ -16,6 +16,7 @@
     "staking-get-user-share": "./bin/staking/staking-get-user-share.js",
     "staking-get-total-share": "./bin/staking/staking-get-total-share.js",
     "staking-open-new-cycle": "./bin/staking/staking-open-new-cycle.js",
+    "stx-staking-open-new-cycle": "./bin/stx-staking-open-new-cycle.js",
     "reward-pool-get-balance": "./bin/reward_pool/reward-pool-get-balance.js",
     "reward-pool-collected-balance-in-cycle": "./bin/reward_pool/reward-pool-collected-balance-in-cycle.js",
     "reward-pool-get-cycle-balance": "./bin/reward_pool/reward-pool-get-cycle-balance.js",

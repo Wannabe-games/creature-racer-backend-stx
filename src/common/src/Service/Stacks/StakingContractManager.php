@@ -6,7 +6,7 @@ namespace App\Common\Service\Stacks;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class SignManager
+class StakingContractManager
 {
     /**
      * @param ContainerInterface $container
@@ -17,13 +17,12 @@ class SignManager
     }
 
     /**
-     * @param string $message
      * @param bool $verbose
      * @return string|null
      */
-    public function signMintMessage(string $message, bool $verbose = false): ?string
+    public function openNewCycle(bool $verbose = false): ?string
     {
-        $command = 'stx-sign-mint-message ' . $message;
+        $command = 'stx-staking-open-new-cycle';
         exec($command, $result);
 
         if ($verbose) {
@@ -38,5 +37,5 @@ class SignManager
 }
 
 // test:
-// bin/stx-sign-mint-message.js 314159 7 1 1 1 1 1 1673445045 30000 ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP 029fb154a570a1645af3dd43c3c668a979b59d21a46dd717fd799b13be3b2a0dc7
-// php -r 'exec("stx-sign-mint-message 314159 7 1 1 1 1 1 1673445045 30000 ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP 029fb154a570a1645af3dd43c3c668a979b59d21a46dd717fd799b13be3b2a0dc7", $output); var_dump($output);'
+// bin/stx-staking-open-new-cycle.js
+// php -r 'exec("bin/stx-staking-open-new-cycle.js", $output); var_dump($output);'
