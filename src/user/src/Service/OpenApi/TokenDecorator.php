@@ -9,7 +9,7 @@ use ApiPlatform\Core\OpenApi\Factory\OpenApiFactoryInterface;
 use ApiPlatform\Core\OpenApi\OpenApi;
 use ApiPlatform\Core\OpenApi\Model;
 
-final class LoginDecorator implements OpenApiFactoryInterface
+final class TokenDecorator implements OpenApiFactoryInterface
 {
     public function __construct(
         private OpenApiFactoryInterface $decorated
@@ -52,7 +52,7 @@ final class LoginDecorator implements OpenApiFactoryInterface
         $pathItem = new Model\PathItem(
             ref: 'Token',
             post: new Model\Operation(
-                operationId: 'postCredentialsItem',
+                operationId: 'token',
                 tags: ['Token'],
                 responses: [
                     '200' => [

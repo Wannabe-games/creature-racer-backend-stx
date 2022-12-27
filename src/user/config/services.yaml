@@ -75,7 +75,10 @@ services:
             # and the expiration time for any given entry (in seconds), defaults are 'sf_s' and null:
             # - { 'prefix': 'my_prefix', 'ttl': 600 }
 
-    App\Service\OpenApi\LoginDecorator:
+    App\Service\OpenApi\TokenDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+    App\Service\OpenApi\TokenRefreshDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
     App\Service\OpenApi\RegistryDecorator:
@@ -85,9 +88,6 @@ services:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
     App\Service\OpenApi\WalletAddDecorator:
-        decorates: 'api_platform.openapi.factory'
-        arguments: [ '@.inner' ]
-    App\Service\OpenApi\TokenRefreshDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
     App\Service\OpenApi\PasswordResetWalletDecorator:

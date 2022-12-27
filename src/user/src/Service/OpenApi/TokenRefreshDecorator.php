@@ -48,7 +48,7 @@ final class TokenRefreshDecorator implements OpenApiFactoryInterface
         $pathItem = new Model\PathItem(
             ref: 'Token Refresh',
             post: new Model\Operation(
-                operationId: 'postCredentialsItem',
+                operationId: 'tokenRefrsh',
                 tags: ['Token'],
                 responses: [
                     '200' => [

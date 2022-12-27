@@ -4,7 +4,7 @@
     "PrivacyPolicyUrl":"https:\/\/creatureracer.com\/privacy-policy",
     "TermsOfUseUrl":"https:\/\/creatureracer.com\/terms-conditions",
     "RegisterUrl":"https:\/\/app.creatureracer.com\/register",
-    "EndpointLogin":"https:\/\/app.creatureracer.com\/api\/user\/login_check",
+    "EndpointLogin":"https:\/\/app.creatureracer.com\/api\/user\/token",
     "EndpointRefreshToken":"https:\/\/app.creatureracer.com\/api\/user\/token\/refresh",
     "EndpointUserInfo":"https:\/\/app.creatureracer.com\/api\/user\/current",
     "EndpointSettings":"https:\/\/app.creatureracer.com\/api\/game\/settings",

@@ -1,74 +1,76 @@
 security:
-  enable_authenticator_manager: true
-  password_hashers:
-    App\Entity\User: 'auto'
-#  encoders:
-#    App\Entity\User:
-#      algorithm: auto
+    enable_authenticator_manager: true
+    password_hashers:
+        App\Entity\User: 'auto'
 
-#  providers:
-#    app_users:
-#      id: App\Security\Provider\UserProvider
-  providers:
-    # used to reload user from session & other features (e.g. switch_user)
-    app_user_provider:
-      entity:
-        class: App\Entity\User
-        property: email
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
 
-  firewalls:
-    dev:
-      pattern: ^/(_(profiler|wdt)|css|images|js)/
-      security: false
-    api_login:
-      pattern: ^/api/user/login
-      json_login:
-        check_path: /api/user/login_check
-        username_path: email
-        password_path: password
-        success_handler: lexik_jwt_authentication.handler.authentication_success
-        failure_handler: lexik_jwt_authentication.handler.authentication_failure
-    api:
-      pattern: ^/api/
-      stateless: true
-      guard:
-        authenticators:
-          - lexik_jwt_authentication.jwt_token_authenticator
-    main:
-      pattern: ^/
-      logout:
-        path: app_logout
-        handlers:
-          - App\Security\Handler\LogoutHandler
-      guard:
-        authenticators:
-          - App\Security\Authenticator\UserAuthenticator
-      entry_point: App\Security\Authenticator\UserAuthenticator
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        token:
+            pattern: ^/api/user/token
+            json_login:
+                check_path: /api/user/token
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api_login:
+            pattern: ^/api/user/login
+            json_login:
+                check_path: /api/user/login_check
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api:
+            pattern: ^/api/
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+        main:
+            pattern: ^/
+            logout:
+                path: app_logout
+                handlers:
+                    - App\Security\Handler\LogoutHandler
+            guard:
+                authenticators:
+                    - App\Security\Authenticator\UserAuthenticator
+            entry_point: App\Security\Authenticator\UserAuthenticator
 
-  access_control:
-    - { path: ^/admin,                            role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/contract/docs,                role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/contract/user/card,           role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/contract/user/qr-code,        role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/game/docs,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/game/social-media,            role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/game/wallet,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/nft/docs,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/nft/referral/metadata,        role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/nft/metadata,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/portal/docs,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/portal/user/image,            role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/docs,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/token/refresh,           role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/login_check,             role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/registry,                role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/password/wallet,         role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api/user/password/email,          role: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api,                              role: IS_AUTHENTICATED_FULLY }
-    - { path: ^/,                                 role: ROLE_USER }
+    access_control:
+        - { path: ^/admin,                            role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/docs,                role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/user/card,           role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/user/qr-code,        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/game/docs,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/game/social-media,            role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/game/wallet,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/nft/docs,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/nft/referral/metadata,        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/nft/metadata,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/portal/docs,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/portal/user/image,            role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/docs,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/token,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/login_check,             role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/registry,                role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/password/wallet,         role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/password/email,          role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api,                              role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/,                                 role: ROLE_USER }
 
-  role_hierarchy:
-    ROLE_SUPER_ADMIN:
-      - ROLE_ADMIN
-    ROLE_ADMIN:
-      - ROLE_USER
+    role_hierarchy:
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
+        ROLE_ADMIN:
+            - ROLE_USER
