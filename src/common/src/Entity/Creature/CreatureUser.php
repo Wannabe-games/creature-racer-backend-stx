@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity\Creature;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -272,6 +273,11 @@ class CreatureUser
         $this->boostAcceleration = 0;
         $this->boostVelocity = 0;
         $this->boostTime = 0;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getCreature()->getType();
     }
 
     /**

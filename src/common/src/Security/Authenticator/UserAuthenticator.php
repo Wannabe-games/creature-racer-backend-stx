@@ -179,11 +179,11 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
     /**
      * @param Request $request
      * @param TokenInterface $token
-     * @param string $providerKey
-     * @return RedirectResponse|Response|null
+     * @param $providerKey
+     * @return RedirectResponse
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-    {
+    {var_dump($token);exit;
         /** @var User $user */
         $user = $token->getUser();
         $user->setLastLogin(new \DateTime());

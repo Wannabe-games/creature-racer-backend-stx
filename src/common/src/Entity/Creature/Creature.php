@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Entity\Creature;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -177,7 +179,7 @@ class Creature
     private $changeLevels;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
@@ -189,7 +191,12 @@ class Creature
     public function __construct()
     {
         $this->changeLevels = new ArrayCollection();
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new DateTime();
+    }
+
+    public function __toString(): string
+    {
+        return $this->getType();
     }
 
     /**
@@ -445,17 +452,17 @@ class Creature
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param DateTime $createdAt
      */
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
