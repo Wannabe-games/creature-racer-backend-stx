@@ -22,6 +22,7 @@
     "reward-pool-get-cycle-balance": "./bin/reward_pool/reward-pool-get-cycle-balance.js",
     "reward-pool-get-current-cycle": "./bin/reward_pool/reward-pool-get-current-cycle.js",
     "reward-pool-open-new-cycle": "./bin/reward_pool/reward-pool-open-new-cycle.js",
+    "stx-reward-pool-open-new-cycle": "./bin/stx-reward-pool-open-new-cycle.js",
     "reward-pool-get-withdrawal-count": "./bin/reward_pool/reward-pool-get-withdrawal-count.js",
     "referral-pool-get-balance": "./bin/referral_pool/referral-pool-get-balance.js",
     "referral-increment-invitations": "./bin/referral_pool/referral-increment-invitations.js",

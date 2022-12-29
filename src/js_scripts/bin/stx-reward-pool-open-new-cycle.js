@@ -9,7 +9,7 @@ async function main() {
 
     const callArgs = {
         contractAddress: process.env.DEPLOYER_CONTRACT_ADDRESS,
-        contractName: 'creature-racer-staking-v1',
+        contractName: 'creature-racer-reward-pool-v1',
         functionName: 'open-new-cycle',
         fee: 500,
         functionArgs: [],

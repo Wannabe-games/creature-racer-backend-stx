@@ -7,7 +7,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class StakingOpenCycleCommand extends Command
+class StakingOpenNewCycleCommand extends Command
 {
     public function __construct(
         private StakingContractManager $stakingContractManager
@@ -19,7 +19,7 @@ class StakingOpenCycleCommand extends Command
 
     protected function configure(): void
     {
-        $this->setDescription('Open Staking cycle.');
+        $this->setDescription('Open staking cycle.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
