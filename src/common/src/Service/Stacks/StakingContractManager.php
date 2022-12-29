@@ -4,35 +4,21 @@ declare(strict_types=1);
 
 namespace App\Common\Service\Stacks;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
-class StakingContractManager
+class StakingContractManager extends Manager
 {
-    /**
-     * @param ContainerInterface $container
-     */
-    public function __construct(
-        protected ContainerInterface $container
-    ) {
-    }
-
-    /**
-     * @param bool $verbose
-     * @return string|null
-     */
     public function openNewCycle(bool $verbose = false): ?string
     {
-        $command = 'stx-staking-open-new-cycle';
-        exec($command, $result);
+        return $this->exec('stx-staking-open-new-cycle', $verbose);
+    }
 
-        if ($verbose) {
-            echo('command: ' . $command);
-            echo("\n");
-            echo('response:');
-            var_dump($result);
-        }
+    public function getTotalShare(bool $verbose = false): ?string
+    {
+        return $this->exec('stx-staking-get-total-share', $verbose);
+    }
 
-        return $result[0] ?? null;
+    public function getUserShare(string $wallet, bool $verbose = false): ?string
+    {
+        return $this->exec('stx-staking-get-user-share ' . $wallet, $verbose);
     }
 }
 

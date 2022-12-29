@@ -18,7 +18,6 @@ use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
 use Endroid\QrCode\QrCode;
-use Endroid\QrCode\Label\Label;
 use Endroid\QrCode\Logo\Logo;
 use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
 use Endroid\QrCode\Writer\PngWriter;
@@ -34,18 +33,19 @@ class UserController extends SymfonyAbstractController
 {
     /**
      * @param CreatureFileNameManager $creatureFileNameManager
-     * @param TranslatorInterface     $translator
+     * @param TranslatorInterface $translator
      */
     public function __construct(
         private CreatureFileNameManager $creatureFileNameManager,
         private TranslatorInterface $translator
-    ) {}
+    ) {
+    }
 
     /**
-     * @param User                      $user
-     * @param StakingContractManager    $stakingContractManager
+     * @param User $user
+     * @param StakingContractManager $stakingContractManager
      * @param RewardPoolContractManager $poolContractManager
-     * @param ContainerInterface        $container
+     * @param ContainerInterface $container
      *
      * @return JsonResponse
      *
@@ -59,7 +59,6 @@ class UserController extends SymfonyAbstractController
         RewardPoolContractManager $poolContractManager,
         ContainerInterface $container
     ): JsonResponse {
-
         $resultQR = $this->getResultQR($container, $user);
 
         $result['poolShare'] = $stakingContractManager->getTotalShare();
@@ -74,8 +73,8 @@ class UserController extends SymfonyAbstractController
     }
 
     /**
-     * @param CreatureUserRepository    $creatureUserRepository
-     * @param StakingContractManager    $stakingContractManager
+     * @param CreatureUserRepository $creatureUserRepository
+     * @param StakingContractManager $stakingContractManager
      * @param RewardPoolContractManager $RewardPoolContractManager
      *
      * @return JsonResponse
@@ -87,13 +86,12 @@ class UserController extends SymfonyAbstractController
      */
     public function activeInGameAction(
         CreatureUserRepository $creatureUserRepository,
-        StakingContractManager $stakingContractManager,
-        RewardPoolContractManager $poolContractManager
+        \App\Common\Service\Stacks\StakingContractManager $stakingContractManager,
+        \App\Common\Service\Stacks\RewardPoolContractManager $poolContractManager
     ): JsonResponse {
-
-        $result['totalPoolShare'] = round($stakingContractManager->getTotalShare()/1000000000000000000, 2);
-        $result['myPoolShare'] = round($stakingContractManager->getUserShare($this->getUser()->getWallet())/$stakingContractManager->getTotalShare()*100, 2);
-        $result['rewardPool'] = round($poolContractManager->getCollectedCycleBalanceInMatic($poolContractManager->getCurrentCycle()), 2);
+        $result['totalPoolShare'] = round($stakingContractManager->getTotalShare() / 1000000000000000000, 2);
+        $result['myPoolShare'] = round($stakingContractManager->getUserShare($this->getUser()->getWallet()) / $stakingContractManager->getTotalShare() * 100, 2);
+        $result['rewardPool'] = round($poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle()), 2);
         $result['referralLevel'] = $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null;
         $result['readyToUpgrade'] = $creatureUserRepository->readyToUpgradeCount($this->getUser());
         $result['totalStaked'] = $creatureUserRepository->isStackedCount($this->getUser());
@@ -104,10 +102,10 @@ class UserController extends SymfonyAbstractController
     }
 
     /**
-     * @param User                      $user
-     * @param StakingContractManager    $stakingContractManager
+     * @param User $user
+     * @param StakingContractManager $stakingContractManager
      * @param RewardPoolContractManager $poolContractManager
-     * @param ContainerInterface        $container
+     * @param ContainerInterface $container
      *
      * @return JsonResponse
      *
@@ -119,13 +117,12 @@ class UserController extends SymfonyAbstractController
         User $user,
         ContainerInterface $container
     ): Response {
-
         return new Response(base64_decode(str_replace('data:image/png;base64,', '', $this->getResultQR($container, $user)->getDataUri())), 200, ['Content-Type' => 'image/png']);
     }
 
     /**
      * @param ContainerInterface $container
-     * @param User               $user
+     * @param User $user
      *
      * @return \Endroid\QrCode\Writer\Result\ResultInterface
      *

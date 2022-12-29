@@ -4,35 +4,21 @@ declare(strict_types=1);
 
 namespace App\Common\Service\Stacks;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
-class RewardPoolContractManager
+class RewardPoolContractManager extends Manager
 {
-    /**
-     * @param ContainerInterface $container
-     */
-    public function __construct(
-        protected ContainerInterface $container
-    ) {
-    }
-
-    /**
-     * @param bool $verbose
-     * @return string|null
-     */
     public function openNewCycle(bool $verbose = false): ?string
     {
-        $command = 'stx-reward-pool-open-new-cycle';
-        exec($command, $result);
+        return $this->exec('stx-reward-pool-open-new-cycle', $verbose);
+    }
 
-        if ($verbose) {
-            echo('command: ' . $command);
-            echo("\n");
-            echo('response:');
-            var_dump($result);
-        }
+    public function getCurrentCycle(bool $verbose = false): string
+    {
+        return $this->exec('stx-reward-pool-get-current-cycle', $verbose);
+    }
 
-        return $result[0] ?? null;
+    public function getCollectedCycleBalance(int $cycle, bool $verbose = false): ?string
+    {
+        return $this->exec('stx-reward-pool-collected-balance-in-cycle ' . $cycle, $verbose);
     }
 }
 
