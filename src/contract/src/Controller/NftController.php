@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\Common\Service\Stacks\SignManager;
 use App\Common\Service\Game\CreatureManager;
+use App\Common\Service\Stacks\SignManager;
 use App\DTO\NftUserCreature;
 use App\Entity\Creature\CreatureUser;
 use Doctrine\ORM\NonUniqueResultException;
@@ -37,7 +37,7 @@ class NftController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureUserRepository $creatureUserRepository
-     * @param SignManager $signManager
+     * @param SignManager $mintManager
      * @param NftUserCreature $nftUserCreature
      * @return JsonResponse
      * @throws JsonException
@@ -47,7 +47,7 @@ class NftController extends SymfonyAbstractController
     public function creatures(
         Request $request,
         CreatureUserRepository $creatureUserRepository,
-        SignManager $signManager,
+        SignManager $mintManager,
         NftUserCreature $nftUserCreature
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
@@ -66,7 +66,7 @@ class NftController extends SymfonyAbstractController
         }
 
         $message = $nftUserCreature->toStringMessage($creatureUser);
-        $signature = $signManager->signMintMessage($message);
+        $signature = $mintManager->signMint($message);
 
         $result = array_merge(
             [

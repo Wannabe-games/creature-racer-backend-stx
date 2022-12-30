@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Common\Service\Ethereum;
@@ -15,11 +16,12 @@ class StakingContractManager
      */
     public function __construct(
         protected ContainerInterface $container
-    ) {}
+    ) {
+    }
 
     /**
      * @param string $userAddress
-     * @param bool   $verbose
+     * @param bool $verbose
      *
      * @return string
      */
@@ -36,14 +38,14 @@ class StakingContractManager
             $contractAddress
         ];
 
-        exec('staking-get-user-share '.implode(' ', $variable), $result);
+        exec('staking-get-user-share ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('user_address: '.$userAddress);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('user_address: ' . $userAddress);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
@@ -66,13 +68,13 @@ class StakingContractManager
             $contractAddress
         ];
 
-        exec('staking-get-total-share '.implode(' ', $variable), $result);
+        exec('staking-get-total-share ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
@@ -83,11 +85,10 @@ class StakingContractManager
      *
      * @return float
      */
-    public function UserReward(string $userAddress): float
+    public function getUserReward(string $userAddress): float
     {
-        return (int)$this->getUserShare($userAddress)/(int)$this->getTotalShare();
+        return (int)$this->getUserShare($userAddress) / (int)$this->getTotalShare();
     }
-
 
     /**
      * @param bool $verbose
@@ -108,13 +109,13 @@ class StakingContractManager
             $contractAddress,
         ];
 
-        exec('staking-open-new-cycle '.implode(' ', $variable), $result);
+        exec('staking-open-new-cycle ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            is_array($result) && key_exists(0, $result) ? var_dump('result: '.$result[0]) : var_dump($result);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            is_array($result) && key_exists(0, $result) ? var_dump('result: ' . $result[0]) : var_dump($result);
         }
 
         return is_array($result) && key_exists(0, $result) ? $result[0] : null;

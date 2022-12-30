@@ -3,17 +3,19 @@
 namespace App\Controller;
 
 use App\Common\Repository\Creature\CreatureUserRepository;
-use App\Common\Service\Ethereum\RewardPoolContractManager;
-use App\Common\Service\Ethereum\StakingContractManager;
+use App\Common\Service\Stacks\RewardPoolContractManager;
+use App\Common\Service\Stacks\StakingContractManager;
 use App\Entity\User;
 use App\Common\Service\CreatureFileNameManager;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Endroid\QrCode\Writer\Result\ResultInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
@@ -31,13 +33,8 @@ use Endroid\QrCode\Writer\PngWriter;
  */
 class UserController extends SymfonyAbstractController
 {
-    /**
-     * @param CreatureFileNameManager $creatureFileNameManager
-     * @param TranslatorInterface $translator
-     */
     public function __construct(
-        private CreatureFileNameManager $creatureFileNameManager,
-        private TranslatorInterface $translator
+        private CreatureFileNameManager $creatureFileNameManager
     ) {
     }
 
@@ -49,7 +46,7 @@ class UserController extends SymfonyAbstractController
      *
      * @return JsonResponse
      *
-     * @throws \Exception
+     * @throws Exception
      *
      * @Route("/user/card/{user}", name="user_card", methods={"GET"})
      */
@@ -62,7 +59,7 @@ class UserController extends SymfonyAbstractController
         $resultQR = $this->getResultQR($container, $user);
 
         $result['poolShare'] = $stakingContractManager->getTotalShare();
-        $result['rewardPool'] = $poolContractManager->getCollectedCycleBalanceInMatic($poolContractManager->getCurrentCycle());
+        $result['rewardPool'] = $poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle());
         $result['nick'] = $user->getNick();
         $result['referralCode'] = $user->getMyReferralNft() ? $user->getMyReferralNft()->getRefCode() : null;
         $result['referralLevel'] = $user->getMyReferralNft() ? $user->getMyReferralNft()->getUsers()->count() : null;
@@ -75,19 +72,18 @@ class UserController extends SymfonyAbstractController
     /**
      * @param CreatureUserRepository $creatureUserRepository
      * @param StakingContractManager $stakingContractManager
-     * @param RewardPoolContractManager $RewardPoolContractManager
-     *
+     * @param RewardPoolContractManager $poolContractManager
      * @return JsonResponse
      *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      * @Route("/user/statistic", name="user_statistic", methods={"GET"})
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function activeInGameAction(
         CreatureUserRepository $creatureUserRepository,
-        \App\Common\Service\Stacks\StakingContractManager $stakingContractManager,
-        \App\Common\Service\Stacks\RewardPoolContractManager $poolContractManager
+        StakingContractManager $stakingContractManager,
+        RewardPoolContractManager $poolContractManager
     ): JsonResponse {
         $result['totalPoolShare'] = round($stakingContractManager->getTotalShare() / 1000000000000000000, 2);
         $result['myPoolShare'] = round($stakingContractManager->getUserShare($this->getUser()->getWallet()) / $stakingContractManager->getTotalShare() * 100, 2);
@@ -109,7 +105,7 @@ class UserController extends SymfonyAbstractController
      *
      * @return JsonResponse
      *
-     * @throws \Exception
+     * @throws Exception
      *
      * @Route("/user/qr-code/{user}", name="user_qr_code_card", methods={"GET"})
      */
@@ -124,9 +120,9 @@ class UserController extends SymfonyAbstractController
      * @param ContainerInterface $container
      * @param User $user
      *
-     * @return \Endroid\QrCode\Writer\Result\ResultInterface
+     * @return ResultInterface
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function getResultQR(
         ContainerInterface $container,

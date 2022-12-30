@@ -6,11 +6,10 @@ use App\Common\Enum\UserRewardPoolStatus;
 use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\Common\Service\Ethereum\RewardPoolContractManager;
-use App\Common\Service\Ethereum\StakingContractManager;
+use App\Common\Service\Stacks\RewardPoolContractManager;
+use App\Common\Service\Stacks\StakingContractManager;
 use App\Service\RewardPoolManager;
 use App\Document\UserRewardPool;
-use App\DTO\NftUserCreature;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -39,8 +38,7 @@ class RewardPoolController extends SymfonyAbstractController
     /**
      * @param CreatureUserRepository $creatureUserRepository
      * @param StakingContractManager $stakingContractManager
-     * @param RewardPoolContractManager    $RewardPoolContractManager
-     *
+     * @param RewardPoolContractManager $rewardPoolContractManager
      * @return JsonResponse
      *
      * @Route("/calculator", name="calculator", methods={"GET"})
@@ -52,8 +50,8 @@ class RewardPoolController extends SymfonyAbstractController
     ): JsonResponse
     {
         return new JsonResponse([
-            'rewardPool' => $rewardPoolContractManager->getCollectedCycleBalanceInMatic($rewardPoolContractManager->getCurrentCycle()),
-            'userReward' => round(($stakingContractManager->UserReward($this->getUser()->getWallet())*100),2).'%',
+            'rewardPool' => $rewardPoolContractManager->getCollectedCycleBalance($rewardPoolContractManager->getCurrentCycle()),
+            'userReward' => round(($stakingContractManager->getUserReward($this->getUser()->getWallet())*100), 2).'%',
             'activeReferral' => $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null,
             'usersDailyAmount' => rand(10,1000000)
         ]);
@@ -120,7 +118,7 @@ class RewardPoolController extends SymfonyAbstractController
         }
 
         $cycle = (int)$withdrawDocument->getCycle();
-        $signature = $rewardPoolContractManager->getSignWithdraw($this->getUser()->getWallet(), $withdrawDocument->getMyReward(), $count, $cycle);
+        $signature = $rewardPoolContractManager->signWithdraw($this->getUser()->getWallet(), $withdrawDocument->getMyReward(), $count, $cycle);
 
         $withdrawDocument->setStatus(UserRewardPoolStatus::PENDING);
         $documentManager->flush();

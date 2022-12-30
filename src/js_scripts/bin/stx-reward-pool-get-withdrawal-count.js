@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 require('dotenv').config({path: '/app/common/.env'});
 require('dotenv').config({path: '/app/common/.env.local', override: true});
-const {makeContractCall, broadcastTransaction} = require("@stacks/transactions");
+const {callReadOnlyFunction, standardPrincipalCV} = require("@stacks/transactions");
 const {StacksTestnet} = require("@stacks/network");
+const wallet = process.argv.slice(2, 3).join('');
 
 async function main() {
     const network = new StacksTestnet({url: process.env.CHAIN_PROVIDER_URL});
@@ -10,19 +11,15 @@ async function main() {
     const callArgs = {
         contractAddress: process.env.DEPLOYER_CONTRACT_ADDRESS,
         contractName: 'creature-racer-reward-pool-v' + process.env.CONTRACT_VERSION,
-        functionName: 'open-new-cycle',
-        fee: 500,
-        functionArgs: [],
-        senderKey: process.env.OPERATOR_CONTRACT_PRIVATE_KEY,
-        validateWithAbi: true,
+        functionName: 'get-withdrawal-count',
+        functionArgs: [standardPrincipalCV(wallet)],
         network,
+        senderAddress: process.env.OPERATOR_CONTRACT_ADDRESS,
     };
 
-    const tx = await makeContractCall(callArgs);
-
-    return await broadcastTransaction(tx, network);
+    return await callReadOnlyFunction(callArgs);
 }
 
 main().then(function (result) {
-    console.log('submitted transaction:', '0x' + result.txid);
+    console.log(Number(result.value.value));
 });

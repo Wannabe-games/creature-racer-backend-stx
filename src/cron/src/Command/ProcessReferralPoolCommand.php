@@ -1,16 +1,11 @@
 <?php
 namespace App\Command;
 
-use App\Common\Enum\SystemTypes;
 use App\Common\Enum\UserReferralPoolStatus;
 use App\Common\Repository\Document\UserReferralPoolRepository;
-use App\Common\Repository\SettingsRepository;
 use App\Common\Repository\UserRepository;
-use App\Common\Service\Ethereum\ReferralPoolContractManager;
-use App\Common\Service\Ethereum\StakingContractManager;
 use App\Document\Log\PaymentLog;
 use App\Document\UserReferralPool;
-use App\Entity\Settings;
 use App\Entity\User;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Console\Command\Command;

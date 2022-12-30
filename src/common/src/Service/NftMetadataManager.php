@@ -1,11 +1,11 @@
 <?php
+
 namespace App\Common\Service;
 
 use App\Common\Enum\CreatureUpgradeTypes;
-use App\Common\Service\Ethereum\RewardPoolContractManager;
+use App\Common\Service\Stacks\RewardPoolContractManager;
 use App\Common\Service\Game\CreatureManager;
 use App\Entity\Creature\CreatureUser;
-use App\Common\Service\CreatureFileNameManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -18,7 +18,8 @@ class NftMetadataManager
         private RewardPoolContractManager $rewardPoolContractManager,
         private MintCapManager $capManager,
         private ContainerInterface $container
-    ){}
+    ) {
+    }
 
     /**
      * @param CreatureUser $creatureUser
@@ -72,28 +73,28 @@ Learn more: [www.creatureracer.com](https://www.creatureracer.com)",
                 ],
                 [
                     'trait_type' => 'Speed',
-                    'value' => (int)((CreatureManager::getReducedPerformanceValue($creatureUser->getSpeed(), $creatureUser->getCreature()->getSpeedMin()) / CreatureManager::getReducedPerformanceValue($creatureUser->getCreature()->getSpeedMax(), $creatureUser->getCreature()->getSpeedMin())) * 100) ? : 1,
+                    'value' => (int)((CreatureManager::getReducedPerformanceValue($creatureUser->getSpeed(), $creatureUser->getCreature()->getSpeedMin()) / CreatureManager::getReducedPerformanceValue($creatureUser->getCreature()->getSpeedMax(), $creatureUser->getCreature()->getSpeedMin())) * 100) ?: 1,
                     'max_value' => 100
                 ],
                 [
                     'trait_type' => 'Acceleration',
-                    'value' => (int)((CreatureManager::getReducedPerformanceValue($creatureUser->getAcceleration(), $creatureUser->getCreature()->getAccelerationMin(), 0.001) / CreatureManager::getReducedPerformanceValue($creatureUser->getCreature()->getAccelerationMax(), $creatureUser->getCreature()->getAccelerationMin())) * 100) ? : 1,
+                    'value' => (int)((CreatureManager::getReducedPerformanceValue($creatureUser->getAcceleration(), $creatureUser->getCreature()->getAccelerationMin(), 0.001) / CreatureManager::getReducedPerformanceValue($creatureUser->getCreature()->getAccelerationMax(), $creatureUser->getCreature()->getAccelerationMin())) * 100) ?: 1,
                     'max_value' => 100
                 ],
                 [
                     'trait_type' => 'Boost power',
-                    'value' => (int)((CreatureManager::getReducedPerformanceValue($creatureUser->getBoostAcceleration(), $creatureUser->getCreature()->getBoostAccelerationMin()) / CreatureManager::getReducedPerformanceValue($creatureUser->getCreature()->getBoostAccelerationMax(), $creatureUser->getCreature()->getBoostAccelerationMin())) * 100) ? : 1,
+                    'value' => (int)((CreatureManager::getReducedPerformanceValue($creatureUser->getBoostAcceleration(), $creatureUser->getCreature()->getBoostAccelerationMin()) / CreatureManager::getReducedPerformanceValue($creatureUser->getCreature()->getBoostAccelerationMax(), $creatureUser->getCreature()->getBoostAccelerationMin())) * 100) ?: 1,
                     'max_value' => 100
                 ],
                 [
                     'trait_type' => 'Fuel volume',
-                    'value' => (int)((CreatureManager::getReducedPerformanceValue($creatureUser->getBoostTime(), $creatureUser->getCreature()->getBoostTimeMin()) / CreatureManager::getReducedPerformanceValue($creatureUser->getCreature()->getBoostTimeMax(), $creatureUser->getCreature()->getBoostTimeMin())) * 100) ? : 1,
+                    'value' => (int)((CreatureManager::getReducedPerformanceValue($creatureUser->getBoostTime(), $creatureUser->getCreature()->getBoostTimeMin()) / CreatureManager::getReducedPerformanceValue($creatureUser->getCreature()->getBoostTimeMax(), $creatureUser->getCreature()->getBoostTimeMin())) * 100) ?: 1,
                     'max_value' => 100
                 ],
                 [
                     'display_type' => 'number',
                     'trait_type' => 'Reward Pool (MATIC)',
-                    'value' => $this->rewardPoolContractManager->getCollectedCycleBalanceInMatic(),
+                    'value' => $this->rewardPoolContractManager->getCollectedCycleBalance(),
                 ],
                 [
                     'display_type' => 'number',

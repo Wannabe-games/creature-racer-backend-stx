@@ -6,9 +6,14 @@ namespace App\Common\Service\Stacks;
 
 class SignManager extends Manager
 {
-    public function signMintMessage(string $message, bool $verbose = false): ?string
+    public function signMint(string $message, bool $verbose = false): ?string
     {
         return $this->exec('stx-sign-mint-message ' . $message, $verbose);
+    }
+
+    public function signWithdraw(string $message, bool $verbose = false): string
+    {
+        return $this->exec('stx-sign-withdraw-message ' . $message, $verbose);
     }
 }
 
