@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity\Creature;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -16,7 +17,7 @@ class CreatureLevel
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private mixed $id;
+    private ?int $id;
 
     /**
      * @var string
@@ -39,47 +40,47 @@ class CreatureLevel
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $level;
+    private int $level = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $priceSoftCurrency;
+    private int $priceGold = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $priceHardCurrency;
+    private int $priceStacks = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $waitingTime;
+    private int $waitingTime = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $deliveryDiamonds;
+    private int $deliveryDiamonds = 0;
 
     /**
      * @var ArrayCollection
@@ -107,9 +108,9 @@ class CreatureLevel
     }
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -165,33 +166,33 @@ class CreatureLevel
     /**
      * @return int
      */
-    public function getPriceSoftCurrency(): int
+    public function getPriceGold(): int
     {
-        return $this->priceSoftCurrency;
+        return $this->priceGold;
     }
 
     /**
-     * @param int $priceSoftCurrency
+     * @param int $priceGold
      */
-    public function setPriceSoftCurrency(int $priceSoftCurrency): void
+    public function setPriceGold(int $priceGold): void
     {
-        $this->priceSoftCurrency = $priceSoftCurrency;
+        $this->priceGold = $priceGold;
     }
 
     /**
      * @return int
      */
-    public function getPriceHardCurrency(): int
+    public function getPriceStacks(): int
     {
-        return $this->priceHardCurrency;
+        return $this->priceStacks;
     }
 
     /**
-     * @param int $priceHardCurrency
+     * @param int $priceStacks
      */
-    public function setPriceHardCurrency(int $priceHardCurrency): void
+    public function setPriceStacks(int $priceStacks): void
     {
-        $this->priceHardCurrency = $priceHardCurrency;
+        $this->priceStacks = $priceStacks;
     }
 
     /**

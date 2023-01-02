@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service;
 
 /**
@@ -8,7 +9,7 @@ class RewardPoolManager
 {
     /**
      * @param array $userRewardPools
-     * @param int   $userId
+     * @param int $userId
      *
      * @return array
      */
@@ -21,12 +22,12 @@ class RewardPoolManager
             if (key_exists($i, $userRewardPools)) {
                 $result[] = [
                     'id' => $userRewardPools[$i]->getId(),
-                    'myReward' => round($userRewardPools[$i]->getMyReward()/1000000000000000000, 2),
+                    'myReward' => round($userRewardPools[$i]->getMyReward() / 1000000000000, 2),
                     'myStakingPower' => round($userRewardPools[$i]->getMyStakingPower(), 2),
-                    'totalRewardPool' => round($userRewardPools[$i]->getTotalRewardPool()/1000000000000000000, 2),
+                    'totalRewardPool' => round($userRewardPools[$i]->getTotalRewardPool() / 1000000000000, 2),
                     'user' => $userId,
-                    'isReceived' =>  $userRewardPools[$i]->isReceived(),
-                    'withdrawId' =>  $userRewardPools[$i]->getWithdrawId(),
+                    'isReceived' => $userRewardPools[$i]->isReceived(),
+                    'withdrawId' => $userRewardPools[$i]->getWithdrawId(),
                     'date' => $userRewardPools[$i]->getTimestamp()->format('Y-m-d'),
                 ];
 
@@ -38,11 +39,10 @@ class RewardPoolManager
                     'myStakingPower' => null,
                     'totalRewardPool' => null,
                     'user' => $userId,
-                    'isReceived' =>  null,
-                    'withdrawId' =>  null,
+                    'isReceived' => null,
+                    'withdrawId' => null,
                     'date' => $date->format('Y-m-d'),
                 ];
-
             }
             $date->sub(new \DateInterval('P1D'));
         }

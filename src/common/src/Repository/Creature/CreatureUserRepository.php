@@ -1,12 +1,18 @@
 <?php
+
 namespace App\Common\Repository\Creature;
 
 use App\Entity\Creature\CreatureUser;
 use App\Entity\User;
+use DateInterval;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Exception\ORMException;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
+
 use function Doctrine\ORM\QueryBuilder;
 
 /**
@@ -44,8 +50,7 @@ class CreatureUserRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @return void
      */
     public function flush(): void
     {
@@ -61,21 +66,24 @@ class CreatureUserRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('cu');
 
-        $qb->where($qb->expr()->eq('cu.user',':user'))
-            ->andWhere($qb->expr()->eq('cu.isForGame',':isForGame'))
-            ->setParameters([
-                'user' => $user->getId(),
-                'isForGame' => true
-            ]);
-
-        return $qb->getQuery()->getResult();
+        return $qb
+            ->where($qb->expr()->eq('cu.user', ':user'))
+            ->andWhere($qb->expr()->eq('cu.forGame', ':forGame'))
+            ->setParameters(
+                [
+                    'user' => $user->getId(),
+                    'forGame' => true
+                ]
+            )
+            ->getQuery()
+            ->getResult();
     }
 
     /**
      * @return int
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function findNextContractId(): int
     {
@@ -84,17 +92,14 @@ class CreatureUserRepository extends ServiceEntityRepository
         $qb->select('max(cu.contract)')
             ->setMaxResults(1);
 
-        return $qb->getQuery()->getSingleScalarResult()+1;
+        return $qb->getQuery()->getSingleScalarResult() + 1;
     }
 
     /**
      * @param string $type
-     * @param User   $user
+     * @param User $user
      *
      * @return array
-     *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findByCreatureType(string $type, User $user): array
     {
@@ -104,27 +109,29 @@ class CreatureUserRepository extends ServiceEntityRepository
             ->leftJoin('cu.user', 'u')
             ->where($qb->expr()->like('cr.type', ':type'))
             ->andWhere($qb->expr()->eq('u.id', ':userId'))
-            ->setParameters([
-                'type' => $type,
-                'userId' => $user->getId()
-            ]);
+            ->setParameters(
+                [
+                    'type' => $type,
+                    'userId' => $user->getId()
+                ]
+            );
 
         return $qb->getQuery()->getResult();
     }
 
     /**
-     * @param User|null    $user
-     * @param int|null     $tier
-     * @param int|null     $cohort
-     * @param string|null  $type
-     * @param int|null     $muscles
-     * @param int|null     $lungs
-     * @param int|null     $heart
-     * @param int|null     $belly
-     * @param int|null     $buttocks
-     * @param bool|null    $expiredDate
-     * @param int          $offset
-     * @param int          $limit
+     * @param User|null $user
+     * @param int|null $tier
+     * @param int|null $cohort
+     * @param string|null $type
+     * @param int|null $muscles
+     * @param int|null $lungs
+     * @param int|null $heart
+     * @param int|null $belly
+     * @param int|null $buttocks
+     * @param bool|null $expiredDate
+     * @param int $offset
+     * @param int $limit
      *
      * @return array
      */
@@ -185,8 +192,8 @@ class CreatureUserRepository extends ServiceEntityRepository
                 ->setParameter('buttocks', $buttocks);
         }
         if (!empty($expiredDate) && $expiredDate) {
-            $date = new \DateTime();
-            $date->add(new \DateInterval("P7D"));
+            $date = new DateTime();
+            $date->add(new DateInterval("P7D"));
             $qb->andWhere($qb->expr()->lte('cu.nftExpiryDate', ':expiredDate'))
                 ->setParameter('expiredDate', $date->format('Y-m-d H:i:s'));
         }
@@ -199,8 +206,8 @@ class CreatureUserRepository extends ServiceEntityRepository
 
     /**
      * @param User $user
-     * @param int  $offset
-     * @param int  $limit
+     * @param int $offset
+     * @param int $limit
      *
      * @return array
      */
@@ -227,8 +234,8 @@ class CreatureUserRepository extends ServiceEntityRepository
      *
      * @return int
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function readyToUpgradeCount(User $user): int
     {
@@ -237,7 +244,7 @@ class CreatureUserRepository extends ServiceEntityRepository
         $qb->select('count(cu.id)')
             ->leftJoin('cu.user', 'u')
             ->where($qb->expr()->eq('u.id', ':userId'))
-            ->andWhere($qb->expr()->eq('cu.isStacked', 'true'))
+            ->andWhere($qb->expr()->eq('cu.staked', 'true'))
             ->setParameter('userId', $user->getId());
 
         return $qb->getQuery()
@@ -249,16 +256,16 @@ class CreatureUserRepository extends ServiceEntityRepository
      *
      * @return int
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
-    public function isStackedCount(User $user): int
+    public function stakedCount(User $user): int
     {
         $qb = $this->createQueryBuilder('cu');
 
         $qb->select('count(cu.id)')
             ->leftJoin('cu.user', 'u')
-            ->where($qb->expr()->eq('cu.isStacked', 'true'))
+            ->where($qb->expr()->eq('cu.staked', 'true'))
             ->andWhere($qb->expr()->eq('u.id', ':userId'))
             ->setParameter('userId', $user->getId());
 
@@ -271,8 +278,8 @@ class CreatureUserRepository extends ServiceEntityRepository
      *
      * @return int
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function mintedCount(User $user): int
     {
@@ -293,15 +300,15 @@ class CreatureUserRepository extends ServiceEntityRepository
      *
      * @return int
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function expiredSoonCount(User $user): int
     {
         $qb = $this->createQueryBuilder('cu');
 
-        $date = new \DateTime();
-        $date->add(new \DateInterval("P7D"));
+        $date = new DateTime();
+        $date->add(new DateInterval("P7D"));
 
         $qb->select('count(cu.id)')
             ->leftJoin('cu.user', 'u')

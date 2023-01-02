@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use App\Entity\Game\Player;
@@ -26,7 +27,7 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @var string
@@ -88,9 +89,9 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
-    private $createdAt;
+    private ?DateTime $createdAt;
 
     /**
      * @var null|string
@@ -132,9 +133,9 @@ class User implements UserInterface
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default": false})
      */
-    private $enabled;
+    private bool $enabled;
 
     /**
      * The salt to use for hashing.
@@ -150,7 +151,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $lastLogin;
+    private ?DateTime $lastLogin;
 
     /**
      * @var array
@@ -236,13 +237,13 @@ class User implements UserInterface
             $supervisor = $this->username;
         }
 
-        return (string) $supervisor;
+        return (string)$supervisor;
     }
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -352,17 +353,18 @@ class User implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @return DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
     /**
-     * @param mixed $createdAt
+     * @param DateTime $createdAt
+     * @return void
      */
-    public function setCreatedAt($createdAt): void
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }

@@ -132,7 +132,7 @@ class CreaturesController extends SymfonyAbstractController
         /** @var CreatureUser $creatureUser */
         if (
             $creatureUser->getUser()->getId() != $this->getUser()->getId() ||
-            $creatureUser->isStacked()
+            $creatureUser->isStaked()
         ) {
             throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }

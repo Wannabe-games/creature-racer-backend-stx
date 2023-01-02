@@ -50,8 +50,8 @@ class RewriteLevelsPreferencesCommand extends Command
                 'upgradeType' => 'base',
             ]);
 
-            $creature['PriceSoftCurrency'] = $levelEntity->getPriceSoftCurrency();
-            $creature['PriceHardCurrency'] = $levelEntity->getPriceHardCurrency();
+            $creature['PriceGold'] = $levelEntity->getPriceGold();
+            $creature['PriceStacks'] = $levelEntity->getPriceStacks();
             $creature['DeliveryWaitingTime'] = $levelEntity->getWaitingTime();
             $creature['DeliveryDiamonds'] = $levelEntity->getDeliveryDiamonds();
 
@@ -84,8 +84,8 @@ class RewriteLevelsPreferencesCommand extends Command
                         'upgradeType' => $upgrade['Type'],
                     ]);
 
-                    $level['PriceSoftCurrency'] = $levelEntity->getPriceSoftCurrency();
-                    $level['PriceHardCurrency'] = $levelEntity->getPriceHardCurrency();
+                    $level['PriceGold'] = $levelEntity->getPriceGold();
+                    $level['PriceStacks'] = $levelEntity->getPriceStacks();
                     $level['WaitingTime'] = $levelEntity->getWaitingTime();
                     $level['DeliveryDiamonds'] = $levelEntity->getDeliveryDiamonds();
 

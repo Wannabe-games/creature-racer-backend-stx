@@ -29,8 +29,8 @@ final class PlayerDecorator implements OpenApiFactoryInterface
                         'type' => 'array',
                         'example' => '{
                       "IsFirstRaceCompleted": true,
-                      "SoftCurrency": 3090,
-                      "HardCurrency": 10,
+                      "Gold": 3090,
+                      "Stacks": 10,
                       "Energy_": {
                         "Value": 10,
                         "RestoreStartTime": 0

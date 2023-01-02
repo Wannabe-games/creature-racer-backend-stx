@@ -10,8 +10,8 @@ class PlayerDefault
     public static array $defaultAdditionalData =
         array (
             'IsFirstRaceCompleted' => false,
-            'SoftCurrency' => 0,
-            'HardCurrency' => 0,
+            'Gold' => 0,
+            'Stacks' => 0,
             'Energy_' =>
                 array (
                     'Value' => 10,

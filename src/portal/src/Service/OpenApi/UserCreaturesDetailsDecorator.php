@@ -33,8 +33,8 @@ final class UserCreaturesDetailsDecorator implements OpenApiFactoryInterface
                                 "level": 3,
                                 "next": {
                                     "level": 4,
-                                    "priceHardCurrency": 90,
-                                    "priceSoftCurrency": 10035,
+                                    "priceStacks": 90,
+                                    "priceGold": 10035,
                                     "deliveryDiamonds": 28,
                                     "waitingTime": 3020,
                                     "upgradeChanges": {
@@ -52,8 +52,8 @@ final class UserCreaturesDetailsDecorator implements OpenApiFactoryInterface
                                 "level": 2,
                                 "next": {
                                     "level": 3,
-                                    "priceHardCurrency": 92,
-                                    "priceSoftCurrency": 10344,
+                                    "priceStacks": 92,
+                                    "priceGold": 10344,
                                     "deliveryDiamonds": 28,
                                     "waitingTime": 3210,
                                     "upgradeChanges": {
@@ -67,8 +67,8 @@ final class UserCreaturesDetailsDecorator implements OpenApiFactoryInterface
                                 "level": 2,
                                 "next": {
                                     "level": 3,
-                                    "priceHardCurrency": 115,
-                                    "priceSoftCurrency": 12844,
+                                    "priceStacks": 115,
+                                    "priceGold": 12844,
                                     "deliveryDiamonds": 44,
                                     "waitingTime": 4950,
                                     "upgradeChanges": {
@@ -101,7 +101,7 @@ final class UserCreaturesDetailsDecorator implements OpenApiFactoryInterface
                             "contract": null,
                             "isForGame": true,
                             "bonus": false,
-                            "isStacked": false,
+                            "isStaked": false,
                             "nftExpiryDate": "2022-12-21 16:38:42",
                             "rewardPool": null,
                             "skinColor": 0,

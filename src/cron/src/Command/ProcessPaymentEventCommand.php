@@ -82,9 +82,9 @@ class ProcessPaymentEventCommand extends Command
 
             foreach ($jsonLogs as $log) {
                 $rawData = $log->parsedLogs->args;
-                $amount = hexdec($rawData[1]->hex) / 1000000000000000000;
+                $amount = hexdec($rawData[1]->hex) / 1000000000000;
                 $referralAmount = hexdec($rawData[4]->hex);
-                $referralPool = $referralAmount == 0 ? $referralAmount : $referralAmount / 1000000000000000000;
+                $referralPool = $referralAmount == 0 ? $referralAmount : $referralAmount / 1000000000000;
 
                 $paymentLog = new PaymentLog();
                 $paymentLog->setUserWallet(strtolower($rawData[0]));

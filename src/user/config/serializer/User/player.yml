@@ -1,6 +1,6 @@
 App\Entity\Game\Player:
     attributes:
-        softCurrency:
+        gold:
             groups: ['apiGet']
         activeAnimalCreatureType:
             groups: ['apiGet']

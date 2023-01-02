@@ -18,7 +18,7 @@ class Creature
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private mixed $id;
+    private ?int $id;
 
     /**
      * @var string
@@ -41,135 +41,135 @@ class Creature
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $tier;
+    private int $tier = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false, options={"default"=0})
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $cohort;
+    private int $cohort = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $musclesMax;
+    private int $musclesMax = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $lungsMax;
+    private int $lungsMax = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $heartMax;
+    private int $heartMax = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $bellyMax;
+    private int $bellyMax = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $buttocksMax;
+    private int $buttocksMax = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $speedMax;
+    private float $speedMax = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $accelerationMax;
+    private float $accelerationMax = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $boostTimeMax;
+    private float $boostTimeMax = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $boostVelocityMax;
+    private float $boostVelocityMax = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $boostAccelerationMax;
+    private float $boostAccelerationMax = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $speedMin;
+    private float $speedMin = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $accelerationMin;
+    private float $accelerationMin = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $boostTimeMin;
+    private float $boostTimeMin = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $boostVelocityMin;
+    private float $boostVelocityMin = 0;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
      */
-    private float $boostAccelerationMin;
+    private float $boostAccelerationMin = 0;
 
     /**
      * @var ArrayCollection
@@ -179,11 +179,11 @@ class Creature
     private $changeLevels;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      *
-     * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
-    protected $createdAt;
+    protected ?DateTime $createdAt;
 
     /**
      * CreatureLevel constructor.
@@ -200,9 +200,9 @@ class Creature
     }
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -468,9 +468,9 @@ class Creature
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getCohort(): ?int
+    public function getCohort(): int
     {
         return $this->cohort;
     }

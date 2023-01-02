@@ -70,7 +70,7 @@ class UserCreature
 
         $serializedData['contract'] = $creatureUser->getContract();
         $serializedData['isForGame'] = $creatureUser->isForGame();
-        $serializedData['isStacked'] = $creatureUser->isStacked();
+        $serializedData['isStaked'] = $creatureUser->isStaked();
         $serializedData['nftExpiryDate'] = $creatureUser->getNftExpiryDateFormat('Y-m-d H:i:s');
         $serializedData['rewardPool'] = $creatureUser->getRewardPool();
         $serializedData['bonus'] = $creatureUser->hasBonus();
@@ -104,8 +104,8 @@ class UserCreature
         $serializedData['type'] = $creatureUser->getCreature()->getType();
         $serializedData['tier'] = $creatureUser->getCreature()->getTier();
         $serializedData['cohort'] = $creatureUser->getCreature()->getCohort();
-        $serializedData['priceHardCurrency'] = $levelEntity->getPriceHardCurrency();
-        $serializedData['priceSoftCurrency'] = $levelEntity->getPriceSoftCurrency();
+        $serializedData['priceStacks'] = $levelEntity->getPriceStacks();
+        $serializedData['priceGold'] = $levelEntity->getPriceGold();
 
         $serializedData['fuel'] = [
             'level' => $creatureUser->getBelly(),
@@ -158,7 +158,7 @@ class UserCreature
         $serializedData['contract'] = $creatureUser->getContract();
         $serializedData['isForGame'] = $creatureUser->isForGame();
         $serializedData['bonus'] = $creatureUser->hasBonus();
-        $serializedData['isStacked'] = $creatureUser->isStacked();
+        $serializedData['isStaked'] = $creatureUser->isStaked();
         $serializedData['nftExpiryDate'] = $creatureUser->getNftExpiryDateFormat('Y-m-d H:i:s');
         $serializedData['rewardPool'] = $creatureUser->getRewardPool();
         $serializedData['skinColor'] = $creatureUser->getSkinColor();
@@ -191,8 +191,8 @@ class UserCreature
         if ($nextLevel instanceof CreatureLevel) {
             $nestLevelResult = [
                 'level' => $nextLevel->getLevel(),
-                'priceHardCurrency' => $nextLevel->getPriceHardCurrency(),
-                'priceSoftCurrency' => $nextLevel->getPriceSoftCurrency(),
+                'priceStacks' => $nextLevel->getPriceStacks(),
+                'priceGold' => $nextLevel->getPriceGold(),
                 'deliveryDiamonds' => $nextLevel->getDeliveryDiamonds(),
                 'waitingTime' => $nextLevel->getWaitingTime(),
             ];

@@ -44,7 +44,7 @@ class ExperienceManager
              * {
              *  "Level": 1,
              *  "ExperienceThreshold": 10,
-             *  "RewardSoftCurrency": 500
+             *  "RewardGold": 500
              * }
              */
             foreach ($levelSettings as $levelSetting) {
@@ -67,7 +67,7 @@ class ExperienceManager
                     ) &&
                     $nextLevel == 0
                 ) {
-                    $levelReward += $levelSetting['RewardSoftCurrency'];
+                    $levelReward += $levelSetting['RewardGold'];
                 } elseif (
                     $currentLevel != 0 &&
                     $nextLevel != 0
@@ -76,7 +76,7 @@ class ExperienceManager
                 }
             }
 
-            $player->addSoftCurrency($levelReward);
+            $player->addGold($levelReward);
             $player->setExperience($experience);
             $this->entityManager->flush();
         }

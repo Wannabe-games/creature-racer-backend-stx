@@ -37,8 +37,8 @@ class Player
     public function validate(array $data): array
     {
         if (
-            !key_exists('SoftCurrency', $data) ||
-            !key_exists('HardCurrency', $data) ||
+            !key_exists('Gold', $data) ||
+            !key_exists('Stacks', $data) ||
             !key_exists('Energy_', $data) ||
             !key_exists('Value', $data['Energy_']) ||
             !key_exists('RestoreStartTime', $data['Energy_'])
@@ -61,8 +61,8 @@ class Player
     {
         $this->validate($data);
 
-        unset($data['SoftCurrency']);
-        unset($data['HardCurrency']);
+        unset($data['Gold']);
+        unset($data['Stacks']);
         unset($data['Experience']);
 
         if (!empty($data['ActiveAnimalType'])) {
@@ -93,8 +93,8 @@ class Player
         $data = [];
         $userCreature = new UserCreature($this->creatureLevelRepository);
 
-        $data['SoftCurrency'] = $player->getSoftCurrency();
-        $data['HardCurrency'] = $player->getHardCurrency();
+        $data['Gold'] = $player->getGold();
+        $data['Stacks'] = $player->getStacks();
         $data['FlappyPetsMaxScore'] = $player->getMaxScore();
         $data['ActiveAnimalType'] = $player->getActiveAnimalCreatureType();
         $data['Experience'] = $player->getExperience();

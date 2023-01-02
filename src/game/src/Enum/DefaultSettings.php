@@ -12,8 +12,8 @@ class DefaultSettings
     public const SETTINGS = '{
                       "SettingsFormat" : 1,
                       "Version": 585,
-                      "InitialSoftCurrency": 0,
-                      "InitialHardCurrency": 0,
+                      "InitialGold": 0,
+                      "InitialStacks": 0,
                       "InitialEnergy": 10,
                       "EnergyRestoreCooldown": 600.0,
                       "EnergyUnitCost": 100,
@@ -146,8 +146,8 @@ class DefaultSettings
                           "Type": "boar",
                           "Name": "Boar",
                           "TierIndex": 1,
-                          "PriceSoftCurrency": 9500,
-                          "PriceHardCurrency": 0,
+                          "PriceGold": 9500,
+                          "PriceStacks": 0,
                           "DeliveryWaitingTime": 120.0,
                           "DeliveryDiamonds": 20.0,
                           "FartPreset": "orange",
@@ -188,8 +188,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3606,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3606,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 390.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -205,8 +205,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4514,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4514,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 610.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -222,8 +222,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5355,
-                                  "PriceHardCurrency": 24,
+                                  "PriceGold": 5355,
+                                  "PriceStacks": 24,
                                   "WaitingTime": 860.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -239,8 +239,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 8508,
-                                  "PriceHardCurrency": 38,
+                                  "PriceGold": 8508,
+                                  "PriceStacks": 38,
                                   "WaitingTime": 2170.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -262,8 +262,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4277,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4277,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 550.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -275,8 +275,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5316,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5316,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 850.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -288,8 +288,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6070,
-                                  "PriceHardCurrency": 27,
+                                  "PriceGold": 6070,
+                                  "PriceStacks": 27,
                                   "WaitingTime": 1110.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -301,8 +301,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9091,
-                                  "PriceHardCurrency": 41,
+                                  "PriceGold": 9091,
+                                  "PriceStacks": 41,
                                   "WaitingTime": 2480.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -320,8 +320,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3148,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3148,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 300.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -337,8 +337,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3955,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3955,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 470.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -354,8 +354,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4696,
-                                  "PriceHardCurrency": 21,
+                                  "PriceGold": 4696,
+                                  "PriceStacks": 21,
                                   "WaitingTime": 660.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -371,8 +371,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 7249,
-                                  "PriceHardCurrency": 32,
+                                  "PriceGold": 7249,
+                                  "PriceStacks": 32,
                                   "WaitingTime": 1580.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -394,8 +394,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1162,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1162,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 40.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -407,8 +407,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 1728,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1728,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 90.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -420,8 +420,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2384,
-                                  "PriceHardCurrency": 11,
+                                  "PriceGold": 2384,
+                                  "PriceStacks": 11,
                                   "WaitingTime": 170.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -433,8 +433,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5093,
-                                  "PriceHardCurrency": 23,
+                                  "PriceGold": 5093,
+                                  "PriceStacks": 23,
                                   "WaitingTime": 780.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -452,8 +452,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1860,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1860,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 100.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -465,8 +465,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2414,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2414,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 170.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -478,8 +478,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 3129,
-                                  "PriceHardCurrency": 14,
+                                  "PriceGold": 3129,
+                                  "PriceStacks": 14,
                                   "WaitingTime": 290.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -491,8 +491,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5749,
-                                  "PriceHardCurrency": 26,
+                                  "PriceGold": 5749,
+                                  "PriceStacks": 26,
                                   "WaitingTime": 990.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -543,15 +543,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Pirate",
-                              "PriceSoftCurrency": 6000,
-                              "PriceHardCurrency": 240,
+                              "PriceGold": 6000,
+                              "PriceStacks": 240,
                               "Bonus": 125
                             }
                           ]
@@ -560,8 +560,8 @@ class DefaultSettings
                           "Type": "bird",
                           "Name": "Bird",
                           "TierIndex": 1,
-                          "PriceSoftCurrency": 10000,
-                          "PriceHardCurrency": 0,
+                          "PriceGold": 10000,
+                          "PriceStacks": 0,
                           "DeliveryWaitingTime": 120.0,
                           "DeliveryDiamonds": 20.0,
                           "FartPreset": "blue",
@@ -602,8 +602,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3436,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3436,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 350.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -619,8 +619,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4362,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4362,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 570.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -636,8 +636,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5385,
-                                  "PriceHardCurrency": 24,
+                                  "PriceGold": 5385,
+                                  "PriceStacks": 24,
                                   "WaitingTime": 870.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -653,8 +653,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 8864,
-                                  "PriceHardCurrency": 40,
+                                  "PriceGold": 8864,
+                                  "PriceStacks": 40,
                                   "WaitingTime": 2360.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -676,8 +676,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4054,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4054,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 490.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -689,8 +689,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5117,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5117,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 790.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -702,8 +702,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6113,
-                                  "PriceHardCurrency": 27,
+                                  "PriceGold": 6113,
+                                  "PriceStacks": 27,
                                   "WaitingTime": 1120.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -715,8 +715,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9563,
-                                  "PriceHardCurrency": 43,
+                                  "PriceGold": 9563,
+                                  "PriceStacks": 43,
                                   "WaitingTime": 2740.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -734,8 +734,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 2979,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2979,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 270.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -751,8 +751,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3804,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3804,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 430.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -768,8 +768,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4727,
-                                  "PriceHardCurrency": 21,
+                                  "PriceGold": 4727,
+                                  "PriceStacks": 21,
                                   "WaitingTime": 670.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -785,8 +785,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 7605,
-                                  "PriceHardCurrency": 34,
+                                  "PriceGold": 7605,
+                                  "PriceStacks": 34,
                                   "WaitingTime": 1740.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -808,8 +808,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1829,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1829,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 100.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -825,8 +825,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2521,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2521,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 190.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -842,8 +842,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2350,
-                                  "PriceHardCurrency": 10,
+                                  "PriceGold": 2350,
+                                  "PriceStacks": 10,
                                   "WaitingTime": 170.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -859,8 +859,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 4957,
-                                  "PriceHardCurrency": 22,
+                                  "PriceGold": 4957,
+                                  "PriceStacks": 22,
                                   "WaitingTime": 740.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -878,8 +878,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1481,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1481,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 70.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -891,8 +891,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 1985,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1985,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 120.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -904,8 +904,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2739,
-                                  "PriceHardCurrency": 12,
+                                  "PriceGold": 2739,
+                                  "PriceStacks": 12,
                                   "WaitingTime": 230.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -917,8 +917,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5432,
-                                  "PriceHardCurrency": 24,
+                                  "PriceGold": 5432,
+                                  "PriceStacks": 24,
                                   "WaitingTime": 890.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -969,15 +969,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Zeppelin Pilot",
-                              "PriceSoftCurrency": -1,
-                              "PriceHardCurrency": 480,
+                              "PriceGold": -1,
+                              "PriceStacks": 480,
                               "Bonus": 250
                             }
                           ]
@@ -986,8 +986,8 @@ class DefaultSettings
                           "Type": "lizard",
                           "Name": "Frog",
                           "TierIndex": 1,
-                          "PriceSoftCurrency": 11000,
-                          "PriceHardCurrency": 0,
+                          "PriceGold": 11000,
+                          "PriceStacks": 0,
                           "DeliveryWaitingTime": 120.0,
                           "DeliveryDiamonds": 20.0,
                           "FartPreset": "green",
@@ -1028,8 +1028,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3799,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3799,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 430.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -1045,8 +1045,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4736,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4736,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 670.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -1062,8 +1062,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5479,
-                                  "PriceHardCurrency": 24,
+                                  "PriceGold": 5479,
+                                  "PriceStacks": 24,
                                   "WaitingTime": 900.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -1079,8 +1079,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 8890,
-                                  "PriceHardCurrency": 40,
+                                  "PriceGold": 8890,
+                                  "PriceStacks": 40,
                                   "WaitingTime": 2370.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -1102,8 +1102,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4464,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4464,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 600.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -1115,8 +1115,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5592,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5592,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 940.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -1128,8 +1128,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6266,
-                                  "PriceHardCurrency": 28,
+                                  "PriceGold": 6266,
+                                  "PriceStacks": 28,
                                   "WaitingTime": 1180.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -1141,8 +1141,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9478,
-                                  "PriceHardCurrency": 42,
+                                  "PriceGold": 9478,
+                                  "PriceStacks": 42,
                                   "WaitingTime": 2690.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -1160,8 +1160,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3290,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3290,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 320.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1177,8 +1177,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4126,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4126,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 510.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -1194,8 +1194,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4819,
-                                  "PriceHardCurrency": 22,
+                                  "PriceGold": 4819,
+                                  "PriceStacks": 22,
                                   "WaitingTime": 700.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -1211,8 +1211,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 7579,
-                                  "PriceHardCurrency": 34,
+                                  "PriceGold": 7579,
+                                  "PriceStacks": 34,
                                   "WaitingTime": 1720.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -1234,8 +1234,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1805,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1805,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 100.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1251,8 +1251,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2476,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2476,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 180.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1268,8 +1268,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 3203,
-                                  "PriceHardCurrency": 14,
+                                  "PriceGold": 3203,
+                                  "PriceStacks": 14,
                                   "WaitingTime": 310.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1285,8 +1285,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5118,
-                                  "PriceHardCurrency": 23,
+                                  "PriceGold": 5118,
+                                  "PriceStacks": 23,
                                   "WaitingTime": 790.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -1308,8 +1308,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1352,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1352,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 50.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1321,8 +1321,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 1875,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1875,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 110.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1334,8 +1334,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2616,
-                                  "PriceHardCurrency": 12,
+                                  "PriceGold": 2616,
+                                  "PriceStacks": 12,
                                   "WaitingTime": 210.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1347,8 +1347,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5343,
-                                  "PriceHardCurrency": 24,
+                                  "PriceGold": 5343,
+                                  "PriceStacks": 24,
                                   "WaitingTime": 860.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -1399,15 +1399,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Aviator Cap",
-                              "PriceSoftCurrency": 6000,
-                              "PriceHardCurrency": 240,
+                              "PriceGold": 6000,
+                              "PriceStacks": 240,
                               "Bonus": 125
                             }
                           ]
@@ -1416,8 +1416,8 @@ class DefaultSettings
                           "Type": "cow",
                           "Name": "Cow",
                           "TierIndex": 1,
-                          "PriceSoftCurrency": 10500,
-                          "PriceHardCurrency": 0,
+                          "PriceGold": 10500,
+                          "PriceStacks": 0,
                           "DeliveryWaitingTime": 120.0,
                           "DeliveryDiamonds": 20.0,
                           "FartPreset": "default",
@@ -1458,8 +1458,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3455,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3455,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 360.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -1475,8 +1475,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4384,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4384,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 580.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -1492,8 +1492,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5409,
-                                  "PriceHardCurrency": 24,
+                                  "PriceGold": 5409,
+                                  "PriceStacks": 24,
                                   "WaitingTime": 880.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -1509,8 +1509,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 8941,
-                                  "PriceHardCurrency": 40,
+                                  "PriceGold": 8941,
+                                  "PriceStacks": 40,
                                   "WaitingTime": 2400.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -1532,8 +1532,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4079,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4079,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 500.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -1545,8 +1545,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5147,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5147,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 790.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -1558,8 +1558,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6194,
-                                  "PriceHardCurrency": 28,
+                                  "PriceGold": 6194,
+                                  "PriceStacks": 28,
                                   "WaitingTime": 1150.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -1571,8 +1571,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9598,
-                                  "PriceHardCurrency": 43,
+                                  "PriceGold": 9598,
+                                  "PriceStacks": 43,
                                   "WaitingTime": 2760.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -1590,8 +1590,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 2998,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2998,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 270.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1607,8 +1607,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3826,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3826,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 440.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -1624,8 +1624,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4751,
-                                  "PriceHardCurrency": 21,
+                                  "PriceGold": 4751,
+                                  "PriceStacks": 21,
                                   "WaitingTime": 680.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -1641,8 +1641,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 7681,
-                                  "PriceHardCurrency": 34,
+                                  "PriceGold": 7681,
+                                  "PriceStacks": 34,
                                   "WaitingTime": 1770.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -1664,8 +1664,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1838,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1838,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 100.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1681,8 +1681,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2531,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2531,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 190.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1698,8 +1698,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2403,
-                                  "PriceHardCurrency": 11,
+                                  "PriceGold": 2403,
+                                  "PriceStacks": 11,
                                   "WaitingTime": 170.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1715,8 +1715,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5009,
-                                  "PriceHardCurrency": 22,
+                                  "PriceGold": 5009,
+                                  "PriceStacks": 22,
                                   "WaitingTime": 750.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -1734,8 +1734,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1486,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1486,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 70.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1747,8 +1747,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 1990,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1990,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 120.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1760,8 +1760,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2795,
-                                  "PriceHardCurrency": 12,
+                                  "PriceGold": 2795,
+                                  "PriceStacks": 12,
                                   "WaitingTime": 230.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -1773,8 +1773,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5488,
-                                  "PriceHardCurrency": 25,
+                                  "PriceGold": 5488,
+                                  "PriceStacks": 25,
                                   "WaitingTime": 900.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -1825,15 +1825,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Winged Helmet",
-                              "PriceSoftCurrency": 6000,
-                              "PriceHardCurrency": 240,
+                              "PriceGold": 6000,
+                              "PriceStacks": 240,
                               "Bonus": 125
                             }
                           ]
@@ -1842,8 +1842,8 @@ class DefaultSettings
                           "Type": "dog",
                           "Name": "Dog",
                           "TierIndex": 1,
-                          "PriceSoftCurrency": 30000,
-                          "PriceHardCurrency": 0,
+                          "PriceGold": 30000,
+                          "PriceStacks": 0,
                           "DeliveryWaitingTime": 150.0,
                           "DeliveryDiamonds": 20.0,
                           "FartPreset": "yellow",
@@ -1884,8 +1884,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3617,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3617,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 390.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -1901,8 +1901,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4617,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4617,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 640.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -1918,8 +1918,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5652,
-                                  "PriceHardCurrency": 25,
+                                  "PriceGold": 5652,
+                                  "PriceStacks": 25,
                                   "WaitingTime": 960.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -1935,8 +1935,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9352,
-                                  "PriceHardCurrency": 42,
+                                  "PriceGold": 9352,
+                                  "PriceStacks": 42,
                                   "WaitingTime": 2620.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -1958,8 +1958,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4277,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4277,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 550.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -1971,8 +1971,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5371,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5371,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 870.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -1984,8 +1984,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6483,
-                                  "PriceHardCurrency": 29,
+                                  "PriceGold": 6483,
+                                  "PriceStacks": 29,
                                   "WaitingTime": 1260.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -1997,8 +1997,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 10060,
-                                  "PriceHardCurrency": 45,
+                                  "PriceGold": 10060,
+                                  "PriceStacks": 45,
                                   "WaitingTime": 3040.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -2016,8 +2016,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3160,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3160,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 300.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2033,8 +2033,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4008,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4008,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 480.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -2050,8 +2050,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4993,
-                                  "PriceHardCurrency": 22,
+                                  "PriceGold": 4993,
+                                  "PriceStacks": 22,
                                   "WaitingTime": 750.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -2067,8 +2067,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 7991,
-                                  "PriceHardCurrency": 36,
+                                  "PriceGold": 7991,
+                                  "PriceStacks": 36,
                                   "WaitingTime": 1920.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -2090,8 +2090,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1938,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1938,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 110.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2107,8 +2107,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2641,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2641,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 210.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2124,8 +2124,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2474,
-                                  "PriceHardCurrency": 11,
+                                  "PriceGold": 2474,
+                                  "PriceStacks": 11,
                                   "WaitingTime": 180.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2141,8 +2141,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5226,
-                                  "PriceHardCurrency": 23,
+                                  "PriceGold": 5226,
+                                  "PriceStacks": 23,
                                   "WaitingTime": 820.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -2160,8 +2160,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1563,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1563,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 70.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2173,8 +2173,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2122,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2122,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 140.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2186,8 +2186,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2930,
-                                  "PriceHardCurrency": 13,
+                                  "PriceGold": 2930,
+                                  "PriceStacks": 13,
                                   "WaitingTime": 260.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2199,8 +2199,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5727,
-                                  "PriceHardCurrency": 26,
+                                  "PriceGold": 5727,
+                                  "PriceStacks": 26,
                                   "WaitingTime": 980.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -2251,15 +2251,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Kamikaze",
-                              "PriceSoftCurrency": 6000,
-                              "PriceHardCurrency": 240,
+                              "PriceGold": 6000,
+                              "PriceStacks": 240,
                               "Bonus": 125
                             }
                           ]
@@ -2268,8 +2268,8 @@ class DefaultSettings
                           "Type": "squirrel",
                           "Name": "Squirrel",
                           "TierIndex": 1,
-                          "PriceSoftCurrency": 0,
-                          "PriceHardCurrency": 800,
+                          "PriceGold": 0,
+                          "PriceStacks": 800,
                           "DeliveryWaitingTime": 150.0,
                           "DeliveryDiamonds": 20.0,
                           "FartPreset": "purple",
@@ -2310,8 +2310,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4015,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4015,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 480.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -2327,8 +2327,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5030,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5030,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 760.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -2344,8 +2344,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5819,
-                                  "PriceHardCurrency": 26,
+                                  "PriceGold": 5819,
+                                  "PriceStacks": 26,
                                   "WaitingTime": 1020.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -2361,8 +2361,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9440,
-                                  "PriceHardCurrency": 42,
+                                  "PriceGold": 9440,
+                                  "PriceStacks": 42,
                                   "WaitingTime": 2670.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -2384,8 +2384,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4784,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4784,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 690.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -2397,8 +2397,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5947,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5947,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1060.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -2410,8 +2410,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6667,
-                                  "PriceHardCurrency": 30,
+                                  "PriceGold": 6667,
+                                  "PriceStacks": 30,
                                   "WaitingTime": 1330.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -2423,8 +2423,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 10042,
-                                  "PriceHardCurrency": 45,
+                                  "PriceGold": 10042,
+                                  "PriceStacks": 45,
                                   "WaitingTime": 3030.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -2442,8 +2442,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3506,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3506,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 370.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -2459,8 +2459,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4419,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4419,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 590.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -2476,8 +2476,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5108,
-                                  "PriceHardCurrency": 23,
+                                  "PriceGold": 5108,
+                                  "PriceStacks": 23,
                                   "WaitingTime": 780.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -2493,8 +2493,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 8029,
-                                  "PriceHardCurrency": 36,
+                                  "PriceGold": 8029,
+                                  "PriceStacks": 36,
                                   "WaitingTime": 1930.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -2516,8 +2516,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1920,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1920,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 110.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2533,8 +2533,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2651,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2651,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 210.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2550,8 +2550,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 3377,
-                                  "PriceHardCurrency": 15,
+                                  "PriceGold": 3377,
+                                  "PriceStacks": 15,
                                   "WaitingTime": 340.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2567,8 +2567,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5388,
-                                  "PriceHardCurrency": 24,
+                                  "PriceGold": 5388,
+                                  "PriceStacks": 24,
                                   "WaitingTime": 870.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -2590,8 +2590,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1480,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1480,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 70.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2603,8 +2603,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2008,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2008,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 120.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2616,8 +2616,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2747,
-                                  "PriceHardCurrency": 12,
+                                  "PriceGold": 2747,
+                                  "PriceStacks": 12,
                                   "WaitingTime": 230.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2629,8 +2629,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5627,
-                                  "PriceHardCurrency": 25,
+                                  "PriceGold": 5627,
+                                  "PriceStacks": 25,
                                   "WaitingTime": 950.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -2681,15 +2681,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Bold Hairstyle",
-                              "PriceSoftCurrency": 20000,
-                              "PriceHardCurrency": 480,
+                              "PriceGold": 20000,
+                              "PriceStacks": 480,
                               "Bonus": 125
                             }
                           ]
@@ -2698,8 +2698,8 @@ class DefaultSettings
                           "Type": "rhino",
                           "Name": "Rhino",
                           "TierIndex": 1,
-                          "PriceSoftCurrency": 40000,
-                          "PriceHardCurrency": 1000,
+                          "PriceGold": 40000,
+                          "PriceStacks": 1000,
                           "DeliveryWaitingTime": 180.0,
                           "DeliveryDiamonds": 20.0,
                           "FartPreset": "default",
@@ -2740,8 +2740,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4156,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4156,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 520.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -2757,8 +2757,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5229,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5229,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 820.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -2774,8 +2774,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6176,
-                                  "PriceHardCurrency": 28,
+                                  "PriceGold": 6176,
+                                  "PriceStacks": 28,
                                   "WaitingTime": 1140.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -2791,8 +2791,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9837,
-                                  "PriceHardCurrency": 44,
+                                  "PriceGold": 9837,
+                                  "PriceStacks": 44,
                                   "WaitingTime": 2900.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -2814,8 +2814,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4956,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4956,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 740.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -2827,8 +2827,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 6130,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6130,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1130.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -2840,8 +2840,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 7043,
-                                  "PriceHardCurrency": 31,
+                                  "PriceGold": 7043,
+                                  "PriceStacks": 31,
                                   "WaitingTime": 1490.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -2853,8 +2853,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 10524,
-                                  "PriceHardCurrency": 47,
+                                  "PriceGold": 10524,
+                                  "PriceStacks": 47,
                                   "WaitingTime": 3320.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -2872,8 +2872,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3648,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3648,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 400.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -2889,8 +2889,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4569,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4569,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 630.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -2906,8 +2906,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5416,
-                                  "PriceHardCurrency": 24,
+                                  "PriceGold": 5416,
+                                  "PriceStacks": 24,
                                   "WaitingTime": 880.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -2923,8 +2923,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 8377,
-                                  "PriceHardCurrency": 37,
+                                  "PriceGold": 8377,
+                                  "PriceStacks": 37,
                                   "WaitingTime": 2110.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -2946,8 +2946,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 1326,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1326,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 50.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2959,8 +2959,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 1952,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 1952,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 110.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2972,8 +2972,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 2760,
-                                  "PriceHardCurrency": 12,
+                                  "PriceGold": 2760,
+                                  "PriceStacks": 12,
                                   "WaitingTime": 230.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -2985,8 +2985,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 5920,
-                                  "PriceHardCurrency": 26,
+                                  "PriceGold": 5920,
+                                  "PriceStacks": 26,
                                   "WaitingTime": 1050.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -3004,8 +3004,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 2161,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2161,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 140.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -3017,8 +3017,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 2789,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2789,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 230.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -3030,8 +3030,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 3656,
-                                  "PriceHardCurrency": 16,
+                                  "PriceGold": 3656,
+                                  "PriceStacks": 16,
                                   "WaitingTime": 400.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -3043,8 +3043,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 6679,
-                                  "PriceHardCurrency": 30,
+                                  "PriceGold": 6679,
+                                  "PriceStacks": 30,
                                   "WaitingTime": 1340.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -3095,15 +3095,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "El Bandido",
-                              "PriceSoftCurrency": 6000,
-                              "PriceHardCurrency": 240,
+                              "PriceGold": 6000,
+                              "PriceStacks": 240,
                               "Bonus": 125
                             }
                           ]
@@ -3112,8 +3112,8 @@ class DefaultSettings
                           "Type": "gorilla",
                           "Name": "Gorilla",
                           "TierIndex": 2,
-                          "PriceSoftCurrency": 70000,
-                          "PriceHardCurrency": 2800,
+                          "PriceGold": 70000,
+                          "PriceStacks": 2800,
                           "DeliveryWaitingTime": 2880.0,
                           "DeliveryDiamonds": 61.0,
                           "FartPreset": "orange",
@@ -3154,8 +3154,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 7770,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 7770,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1810.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -3171,8 +3171,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 9707,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 9707,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2830.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -3188,8 +3188,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10531,
-                                  "PriceHardCurrency": 94,
+                                  "PriceGold": 10531,
+                                  "PriceStacks": 94,
                                   "WaitingTime": 3330.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -3205,8 +3205,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 16860,
-                                  "PriceHardCurrency": 151,
+                                  "PriceGold": 16860,
+                                  "PriceStacks": 151,
                                   "WaitingTime": 8530.0,
                                   "DeliveryDiamonds": 74,
                                   "UpgradeChanges": [
@@ -3228,8 +3228,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 9293,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 9293,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2590.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -3241,8 +3241,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 11641,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11641,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4070.0,
                                   "DeliveryDiamonds": 36,
                                   "UpgradeChanges": [
@@ -3254,8 +3254,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 12412,
-                                  "PriceHardCurrency": 111,
+                                  "PriceGold": 12412,
+                                  "PriceStacks": 111,
                                   "WaitingTime": 4620.0,
                                   "DeliveryDiamonds": 40,
                                   "UpgradeChanges": [
@@ -3267,8 +3267,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 18772,
-                                  "PriceHardCurrency": 168,
+                                  "PriceGold": 18772,
+                                  "PriceStacks": 168,
                                   "WaitingTime": 10570.0,
                                   "DeliveryDiamonds": 90,
                                   "UpgradeChanges": [
@@ -3286,8 +3286,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 7303,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 7303,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1600.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -3303,8 +3303,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 9236,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 9236,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2560.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -3320,8 +3320,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 9961,
-                                  "PriceHardCurrency": 89,
+                                  "PriceGold": 9961,
+                                  "PriceStacks": 89,
                                   "WaitingTime": 2980.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -3337,8 +3337,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 15787,
-                                  "PriceHardCurrency": 141,
+                                  "PriceGold": 15787,
+                                  "PriceStacks": 141,
                                   "WaitingTime": 7480.0,
                                   "DeliveryDiamonds": 64,
                                   "UpgradeChanges": [
@@ -3360,8 +3360,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 2762,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2762,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 230.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -3377,8 +3377,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3278,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3278,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 320.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -3390,8 +3390,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4494,
-                                  "PriceHardCurrency": 40,
+                                  "PriceGold": 4494,
+                                  "PriceStacks": 40,
                                   "WaitingTime": 610.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -3403,8 +3403,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9318,
-                                  "PriceHardCurrency": 83,
+                                  "PriceGold": 9318,
+                                  "PriceStacks": 83,
                                   "WaitingTime": 2600.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -3422,8 +3422,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3025,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3025,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 270.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -3435,8 +3435,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3714,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3714,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 410.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -3448,8 +3448,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4735,
-                                  "PriceHardCurrency": 42,
+                                  "PriceGold": 4735,
+                                  "PriceStacks": 42,
                                   "WaitingTime": 670.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -3461,8 +3461,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9407,
-                                  "PriceHardCurrency": 84,
+                                  "PriceGold": 9407,
+                                  "PriceStacks": 84,
                                   "WaitingTime": 2650.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -3513,15 +3513,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Aztec Idol",
-                              "PriceSoftCurrency": -1,
-                              "PriceHardCurrency": 960,
+                              "PriceGold": -1,
+                              "PriceStacks": 960,
                               "Bonus": 300
                             }
                           ]
@@ -3530,8 +3530,8 @@ class DefaultSettings
                           "Type": "turtle",
                           "Name": "Turtle",
                           "TierIndex": 2,
-                          "PriceSoftCurrency": 100000,
-                          "PriceHardCurrency": 3750,
+                          "PriceGold": 100000,
+                          "PriceStacks": 3750,
                           "DeliveryWaitingTime": 4320.0,
                           "DeliveryDiamonds": 91.0,
                           "FartPreset": "green",
@@ -3572,8 +3572,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 8496,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8496,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2170.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -3589,8 +3589,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 9907,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 9907,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2940.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -3606,8 +3606,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 12401,
-                                  "PriceHardCurrency": 111,
+                                  "PriceGold": 12401,
+                                  "PriceStacks": 111,
                                   "WaitingTime": 4610.0,
                                   "DeliveryDiamonds": 40,
                                   "UpgradeChanges": [
@@ -3623,8 +3623,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 18876,
-                                  "PriceHardCurrency": 169,
+                                  "PriceGold": 18876,
+                                  "PriceStacks": 169,
                                   "WaitingTime": 10690.0,
                                   "DeliveryDiamonds": 92,
                                   "UpgradeChanges": [
@@ -3646,8 +3646,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 10079,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 10079,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3050.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -3659,8 +3659,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 11765,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11765,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4150.0,
                                   "DeliveryDiamonds": 36,
                                   "UpgradeChanges": [
@@ -3672,8 +3672,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 14614,
-                                  "PriceHardCurrency": 130,
+                                  "PriceGold": 14614,
+                                  "PriceStacks": 130,
                                   "WaitingTime": 6410.0,
                                   "DeliveryDiamonds": 56,
                                   "UpgradeChanges": [
@@ -3685,8 +3685,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 20908,
-                                  "PriceHardCurrency": 187,
+                                  "PriceGold": 20908,
+                                  "PriceStacks": 187,
                                   "WaitingTime": 13110.0,
                                   "DeliveryDiamonds": 112,
                                   "UpgradeChanges": [
@@ -3704,8 +3704,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 7930,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 7930,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1890.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -3721,8 +3721,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 9438,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 9438,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2670.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -3738,8 +3738,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 11779,
-                                  "PriceHardCurrency": 105,
+                                  "PriceGold": 11779,
+                                  "PriceStacks": 105,
                                   "WaitingTime": 4160.0,
                                   "DeliveryDiamonds": 36,
                                   "UpgradeChanges": [
@@ -3755,8 +3755,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 17653,
-                                  "PriceHardCurrency": 158,
+                                  "PriceGold": 17653,
+                                  "PriceStacks": 158,
                                   "WaitingTime": 9350.0,
                                   "DeliveryDiamonds": 80,
                                   "UpgradeChanges": [
@@ -3778,8 +3778,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3493,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3493,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 370.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -3791,8 +3791,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4282,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4282,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 550.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -3804,8 +3804,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5884,
-                                  "PriceHardCurrency": 53,
+                                  "PriceGold": 5884,
+                                  "PriceStacks": 53,
                                   "WaitingTime": 1040.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -3817,8 +3817,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 11444,
-                                  "PriceHardCurrency": 102,
+                                  "PriceGold": 11444,
+                                  "PriceStacks": 102,
                                   "WaitingTime": 3930.0,
                                   "DeliveryDiamonds": 34,
                                   "UpgradeChanges": [
@@ -3836,8 +3836,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4584,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4584,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 630.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -3849,8 +3849,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5458,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5458,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 890.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -3862,8 +3862,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 7063,
-                                  "PriceHardCurrency": 63,
+                                  "PriceGold": 7063,
+                                  "PriceStacks": 63,
                                   "WaitingTime": 1500.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -3875,8 +3875,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 12352,
-                                  "PriceHardCurrency": 110,
+                                  "PriceGold": 12352,
+                                  "PriceStacks": 110,
                                   "WaitingTime": 4580.0,
                                   "DeliveryDiamonds": 40,
                                   "UpgradeChanges": [
@@ -3927,15 +3927,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Fancy House",
-                              "PriceSoftCurrency": 24000,
-                              "PriceHardCurrency": 960,
+                              "PriceGold": 24000,
+                              "PriceStacks": 960,
                               "Bonus": 250
                             }
                           ]
@@ -3944,8 +3944,8 @@ class DefaultSettings
                           "Type": "hippo",
                           "Name": "Hippo",
                           "TierIndex": 2,
-                          "PriceSoftCurrency": 50000,
-                          "PriceHardCurrency": 2600,
+                          "PriceGold": 50000,
+                          "PriceStacks": 2600,
                           "DeliveryWaitingTime": 2880.0,
                           "DeliveryDiamonds": 61.0,
                           "FartPreset": "purple",
@@ -3986,8 +3986,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 7340,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 7340,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1620.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -4003,8 +4003,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 8584,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8584,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2210.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -4020,8 +4020,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10700,
-                                  "PriceHardCurrency": 96,
+                                  "PriceGold": 10700,
+                                  "PriceStacks": 96,
                                   "WaitingTime": 3430.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -4037,8 +4037,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 16323,
-                                  "PriceHardCurrency": 146,
+                                  "PriceGold": 16323,
+                                  "PriceStacks": 146,
                                   "WaitingTime": 7990.0,
                                   "DeliveryDiamonds": 68,
                                   "UpgradeChanges": [
@@ -4060,8 +4060,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 8730,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8730,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2290.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -4073,8 +4073,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 10161,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 10161,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3100.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -4086,8 +4086,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 12640,
-                                  "PriceHardCurrency": 113,
+                                  "PriceGold": 12640,
+                                  "PriceStacks": 113,
                                   "WaitingTime": 4790.0,
                                   "DeliveryDiamonds": 42,
                                   "UpgradeChanges": [
@@ -4099,8 +4099,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 18067,
-                                  "PriceHardCurrency": 161,
+                                  "PriceGold": 18067,
+                                  "PriceStacks": 161,
                                   "WaitingTime": 9790.0,
                                   "DeliveryDiamonds": 84,
                                   "UpgradeChanges": [
@@ -4118,8 +4118,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 6876,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6876,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1420.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -4135,8 +4135,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 8117,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8117,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1980.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -4152,8 +4152,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10131,
-                                  "PriceHardCurrency": 90,
+                                  "PriceGold": 10131,
+                                  "PriceStacks": 90,
                                   "WaitingTime": 3080.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -4169,8 +4169,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 15253,
-                                  "PriceHardCurrency": 136,
+                                  "PriceGold": 15253,
+                                  "PriceStacks": 136,
                                   "WaitingTime": 6980.0,
                                   "DeliveryDiamonds": 60,
                                   "UpgradeChanges": [
@@ -4192,8 +4192,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3021,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3021,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 270.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -4205,8 +4205,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3691,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3691,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 410.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -4218,8 +4218,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5073,
-                                  "PriceHardCurrency": 45,
+                                  "PriceGold": 5073,
+                                  "PriceStacks": 45,
                                   "WaitingTime": 770.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -4231,8 +4231,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9875,
-                                  "PriceHardCurrency": 88,
+                                  "PriceGold": 9875,
+                                  "PriceStacks": 88,
                                   "WaitingTime": 2930.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -4250,8 +4250,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3950,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3950,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 470.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -4263,8 +4263,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4680,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4680,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 660.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -4276,8 +4276,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6087,
-                                  "PriceHardCurrency": 54,
+                                  "PriceGold": 6087,
+                                  "PriceStacks": 54,
                                   "WaitingTime": 1110.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -4289,8 +4289,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 10707,
-                                  "PriceHardCurrency": 96,
+                                  "PriceGold": 10707,
+                                  "PriceStacks": 96,
                                   "WaitingTime": 3440.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -4341,15 +4341,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Holy-but-Horny",
-                              "PriceSoftCurrency": 12000,
-                              "PriceHardCurrency": 480,
+                              "PriceGold": 12000,
+                              "PriceStacks": 480,
                               "Bonus": 250
                             }
                           ]
@@ -4358,8 +4358,8 @@ class DefaultSettings
                           "Type": "croko",
                           "Name": "Croko",
                           "TierIndex": 2,
-                          "PriceSoftCurrency": 80000,
-                          "PriceHardCurrency": 3000,
+                          "PriceGold": 80000,
+                          "PriceStacks": 3000,
                           "DeliveryWaitingTime": 2880.0,
                           "DeliveryDiamonds": 61.0,
                           "FartPreset": "yellow",
@@ -4400,8 +4400,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 8254,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8254,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2040.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -4417,8 +4417,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 8961,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8961,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2410.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -4434,8 +4434,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10545,
-                                  "PriceHardCurrency": 94,
+                                  "PriceGold": 10545,
+                                  "PriceStacks": 94,
                                   "WaitingTime": 3340.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -4451,8 +4451,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 17067,
-                                  "PriceHardCurrency": 152,
+                                  "PriceGold": 17067,
+                                  "PriceStacks": 152,
                                   "WaitingTime": 8740.0,
                                   "DeliveryDiamonds": 74,
                                   "UpgradeChanges": [
@@ -4474,8 +4474,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 9939,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 9939,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2960.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -4487,8 +4487,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 10647,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 10647,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3400.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -4500,8 +4500,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 12357,
-                                  "PriceHardCurrency": 110,
+                                  "PriceGold": 12357,
+                                  "PriceStacks": 110,
                                   "WaitingTime": 4580.0,
                                   "DeliveryDiamonds": 40,
                                   "UpgradeChanges": [
@@ -4513,8 +4513,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 19006,
-                                  "PriceHardCurrency": 170,
+                                  "PriceGold": 19006,
+                                  "PriceStacks": 170,
                                   "WaitingTime": 10840.0,
                                   "DeliveryDiamonds": 92,
                                   "UpgradeChanges": [
@@ -4532,8 +4532,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 7787,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 7787,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1820.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -4549,8 +4549,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 8494,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8494,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2160.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -4566,8 +4566,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 9978,
-                                  "PriceHardCurrency": 89,
+                                  "PriceGold": 9978,
+                                  "PriceStacks": 89,
                                   "WaitingTime": 2990.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -4583,8 +4583,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 15996,
-                                  "PriceHardCurrency": 143,
+                                  "PriceGold": 15996,
+                                  "PriceStacks": 143,
                                   "WaitingTime": 7680.0,
                                   "DeliveryDiamonds": 66,
                                   "UpgradeChanges": [
@@ -4606,8 +4606,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 2846,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2846,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 240.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -4619,8 +4619,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3462,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3462,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 360.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -4632,8 +4632,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4736,
-                                  "PriceHardCurrency": 42,
+                                  "PriceGold": 4736,
+                                  "PriceStacks": 42,
                                   "WaitingTime": 670.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -4645,8 +4645,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9709,
-                                  "PriceHardCurrency": 87,
+                                  "PriceGold": 9709,
+                                  "PriceStacks": 87,
                                   "WaitingTime": 2830.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -4664,8 +4664,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3589,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3589,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 390.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -4677,8 +4677,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4077,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4077,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 500.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -4690,8 +4690,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5285,
-                                  "PriceHardCurrency": 47,
+                                  "PriceGold": 5285,
+                                  "PriceStacks": 47,
                                   "WaitingTime": 840.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -4703,8 +4703,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 10070,
-                                  "PriceHardCurrency": 90,
+                                  "PriceGold": 10070,
+                                  "PriceStacks": 90,
                                   "WaitingTime": 3040.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -4755,15 +4755,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Iron Panties",
-                              "PriceSoftCurrency": 18000,
-                              "PriceHardCurrency": 720,
+                              "PriceGold": 18000,
+                              "PriceStacks": 720,
                               "Bonus": 250
                             }
                           ]
@@ -4772,8 +4772,8 @@ class DefaultSettings
                           "Type": "elephant",
                           "Name": "Elephant",
                           "TierIndex": 2,
-                          "PriceSoftCurrency": 60000,
-                          "PriceHardCurrency": 2700,
+                          "PriceGold": 60000,
+                          "PriceStacks": 2700,
                           "DeliveryWaitingTime": 2880.0,
                           "DeliveryDiamonds": 61.0,
                           "FartPreset": "default",
@@ -4814,8 +4814,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 7343,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 7343,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1620.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -4831,8 +4831,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 8587,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8587,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2210.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -4848,8 +4848,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10703,
-                                  "PriceHardCurrency": 96,
+                                  "PriceGold": 10703,
+                                  "PriceStacks": 96,
                                   "WaitingTime": 3440.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -4865,8 +4865,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 16327,
-                                  "PriceHardCurrency": 146,
+                                  "PriceGold": 16327,
+                                  "PriceStacks": 146,
                                   "WaitingTime": 8000.0,
                                   "DeliveryDiamonds": 68,
                                   "UpgradeChanges": [
@@ -4888,8 +4888,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 8733,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8733,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2290.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -4901,8 +4901,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 10165,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 10165,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3100.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -4914,8 +4914,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 12645,
-                                  "PriceHardCurrency": 113,
+                                  "PriceGold": 12645,
+                                  "PriceStacks": 113,
                                   "WaitingTime": 4800.0,
                                   "DeliveryDiamonds": 42,
                                   "UpgradeChanges": [
@@ -4927,8 +4927,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 18072,
-                                  "PriceHardCurrency": 161,
+                                  "PriceGold": 18072,
+                                  "PriceStacks": 161,
                                   "WaitingTime": 9800.0,
                                   "DeliveryDiamonds": 84,
                                   "UpgradeChanges": [
@@ -4946,8 +4946,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 6879,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6879,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1420.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -4963,8 +4963,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 8120,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8120,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1980.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -4980,8 +4980,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10184,
-                                  "PriceHardCurrency": 91,
+                                  "PriceGold": 10184,
+                                  "PriceStacks": 91,
                                   "WaitingTime": 3110.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -4997,8 +4997,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 15257,
-                                  "PriceHardCurrency": 136,
+                                  "PriceGold": 15257,
+                                  "PriceStacks": 136,
                                   "WaitingTime": 6980.0,
                                   "DeliveryDiamonds": 60,
                                   "UpgradeChanges": [
@@ -5020,8 +5020,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3022,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3022,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 270.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -5033,8 +5033,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3692,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3692,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 410.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -5046,8 +5046,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5074,
-                                  "PriceHardCurrency": 45,
+                                  "PriceGold": 5074,
+                                  "PriceStacks": 45,
                                   "WaitingTime": 770.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -5059,8 +5059,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 9875,
-                                  "PriceHardCurrency": 88,
+                                  "PriceGold": 9875,
+                                  "PriceStacks": 88,
                                   "WaitingTime": 2930.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -5078,8 +5078,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3951,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3951,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 470.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -5091,8 +5091,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4681,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4681,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 660.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -5104,8 +5104,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6088,
-                                  "PriceHardCurrency": 54,
+                                  "PriceGold": 6088,
+                                  "PriceStacks": 54,
                                   "WaitingTime": 1110.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -5117,8 +5117,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 10708,
-                                  "PriceHardCurrency": 96,
+                                  "PriceGold": 10708,
+                                  "PriceStacks": 96,
                                   "WaitingTime": 3440.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -5169,15 +5169,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Grenadier",
-                              "PriceSoftCurrency": 12000,
-                              "PriceHardCurrency": 480,
+                              "PriceGold": 12000,
+                              "PriceStacks": 480,
                               "Bonus": 250
                             }
                           ]
@@ -5186,8 +5186,8 @@ class DefaultSettings
                           "Type": "unicorn",
                           "Name": "Unicorn",
                           "TierIndex": 2,
-                          "PriceSoftCurrency": 0,
-                          "PriceHardCurrency": 5000,
+                          "PriceGold": 0,
+                          "PriceStacks": 5000,
                           "DeliveryWaitingTime": 4320.0,
                           "DeliveryDiamonds": 91.0,
                           "FartPreset": "default",
@@ -5228,8 +5228,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 9162,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 9162,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2520.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -5245,8 +5245,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 11459,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11459,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3940.0,
                                   "DeliveryDiamonds": 34,
                                   "UpgradeChanges": [
@@ -5262,8 +5262,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 12447,
-                                  "PriceHardCurrency": 111,
+                                  "PriceGold": 12447,
+                                  "PriceStacks": 111,
                                   "WaitingTime": 4650.0,
                                   "DeliveryDiamonds": 40,
                                   "UpgradeChanges": [
@@ -5279,8 +5279,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 19912,
-                                  "PriceHardCurrency": 178,
+                                  "PriceGold": 19912,
+                                  "PriceStacks": 178,
                                   "WaitingTime": 11890.0,
                                   "DeliveryDiamonds": 102,
                                   "UpgradeChanges": [
@@ -5302,8 +5302,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 10937,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 10937,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3590.0,
                                   "DeliveryDiamonds": 32,
                                   "UpgradeChanges": [
@@ -5315,8 +5315,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 13778,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 13778,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5690.0,
                                   "DeliveryDiamonds": 50,
                                   "UpgradeChanges": [
@@ -5328,8 +5328,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 14636,
-                                  "PriceHardCurrency": 131,
+                                  "PriceGold": 14636,
+                                  "PriceStacks": 131,
                                   "WaitingTime": 6430.0,
                                   "DeliveryDiamonds": 56,
                                   "UpgradeChanges": [
@@ -5341,8 +5341,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 22141,
-                                  "PriceHardCurrency": 198,
+                                  "PriceGold": 22141,
+                                  "PriceStacks": 198,
                                   "WaitingTime": 14710.0,
                                   "DeliveryDiamonds": 124,
                                   "UpgradeChanges": [
@@ -5360,8 +5360,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 8592,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8592,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2210.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -5377,8 +5377,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 10934,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 10934,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3590.0,
                                   "DeliveryDiamonds": 32,
                                   "UpgradeChanges": [
@@ -5394,8 +5394,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 11774,
-                                  "PriceHardCurrency": 105,
+                                  "PriceGold": 11774,
+                                  "PriceStacks": 105,
                                   "WaitingTime": 4160.0,
                                   "DeliveryDiamonds": 36,
                                   "UpgradeChanges": [
@@ -5411,8 +5411,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 18635,
-                                  "PriceHardCurrency": 166,
+                                  "PriceGold": 18635,
+                                  "PriceStacks": 166,
                                   "WaitingTime": 10420.0,
                                   "DeliveryDiamonds": 88,
                                   "UpgradeChanges": [
@@ -5434,8 +5434,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3255,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3255,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 320.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -5451,8 +5451,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3864,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3864,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 450.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -5464,8 +5464,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5274,
-                                  "PriceHardCurrency": 47,
+                                  "PriceGold": 5274,
+                                  "PriceStacks": 47,
                                   "WaitingTime": 830.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -5477,8 +5477,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 11011,
-                                  "PriceHardCurrency": 98,
+                                  "PriceGold": 11011,
+                                  "PriceStacks": 98,
                                   "WaitingTime": 3640.0,
                                   "DeliveryDiamonds": 32,
                                   "UpgradeChanges": [
@@ -5496,8 +5496,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3583,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3583,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 390.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -5509,8 +5509,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4416,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4416,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 590.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -5522,8 +5522,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5622,
-                                  "PriceHardCurrency": 50,
+                                  "PriceGold": 5622,
+                                  "PriceStacks": 50,
                                   "WaitingTime": 950.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -5535,8 +5535,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 11075,
-                                  "PriceHardCurrency": 99,
+                                  "PriceGold": 11075,
+                                  "PriceStacks": 99,
                                   "WaitingTime": 3680.0,
                                   "DeliveryDiamonds": 32,
                                   "UpgradeChanges": [
@@ -5587,15 +5587,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Swordfish Helmet",
-                              "PriceSoftCurrency": 12000,
-                              "PriceHardCurrency": 480,
+                              "PriceGold": 12000,
+                              "PriceStacks": 480,
                               "Bonus": 250
                             }
                           ]
@@ -5604,8 +5604,8 @@ class DefaultSettings
                           "Type": "giraffe",
                           "Name": "Giraffe",
                           "TierIndex": 2,
-                          "PriceSoftCurrency": 90000,
-                          "PriceHardCurrency": 3500,
+                          "PriceGold": 90000,
+                          "PriceStacks": 3500,
                           "DeliveryWaitingTime": 3600.0,
                           "DeliveryDiamonds": 76.0,
                           "FartPreset": "orange",
@@ -5646,8 +5646,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 8557,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8557,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2200.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -5663,8 +5663,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 9269,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 9269,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2580.0,
                                   "DeliveryDiamonds": 24,
                                   "UpgradeChanges": [
@@ -5680,8 +5680,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10912,
-                                  "PriceHardCurrency": 97,
+                                  "PriceGold": 10912,
+                                  "PriceStacks": 97,
                                   "WaitingTime": 3570.0,
                                   "DeliveryDiamonds": 32,
                                   "UpgradeChanges": [
@@ -5697,8 +5697,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 17676,
-                                  "PriceHardCurrency": 158,
+                                  "PriceGold": 17676,
+                                  "PriceStacks": 158,
                                   "WaitingTime": 9370.0,
                                   "DeliveryDiamonds": 80,
                                   "UpgradeChanges": [
@@ -5720,8 +5720,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 10307,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 10307,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3190.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -5733,8 +5733,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 11023,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11023,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3650.0,
                                   "DeliveryDiamonds": 32,
                                   "UpgradeChanges": [
@@ -5746,8 +5746,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 12844,
-                                  "PriceHardCurrency": 115,
+                                  "PriceGold": 12844,
+                                  "PriceStacks": 115,
                                   "WaitingTime": 4950.0,
                                   "DeliveryDiamonds": 44,
                                   "UpgradeChanges": [
@@ -5759,8 +5759,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 19648,
-                                  "PriceHardCurrency": 175,
+                                  "PriceGold": 19648,
+                                  "PriceStacks": 175,
                                   "WaitingTime": 11580.0,
                                   "DeliveryDiamonds": 98,
                                   "UpgradeChanges": [
@@ -5778,8 +5778,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 8090,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8090,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1960.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -5795,8 +5795,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 8802,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8802,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 2320.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -5812,8 +5812,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10344,
-                                  "PriceHardCurrency": 92,
+                                  "PriceGold": 10344,
+                                  "PriceStacks": 92,
                                   "WaitingTime": 3210.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -5829,8 +5829,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 16554,
-                                  "PriceHardCurrency": 148,
+                                  "PriceGold": 16554,
+                                  "PriceStacks": 148,
                                   "WaitingTime": 8220.0,
                                   "DeliveryDiamonds": 70,
                                   "UpgradeChanges": [
@@ -5852,8 +5852,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 2967,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 2967,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 260.0,
                                   "DeliveryDiamonds": 5,
                                   "UpgradeChanges": [
@@ -5865,8 +5865,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 3583,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3583,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 390.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -5878,8 +5878,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 4909,
-                                  "PriceHardCurrency": 44,
+                                  "PriceGold": 4909,
+                                  "PriceStacks": 44,
                                   "WaitingTime": 720.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -5891,8 +5891,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 10035,
-                                  "PriceHardCurrency": 90,
+                                  "PriceGold": 10035,
+                                  "PriceStacks": 90,
                                   "WaitingTime": 3020.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -5910,8 +5910,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 3689,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 3689,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 410.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -5923,8 +5923,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 4227,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4227,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 540.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -5936,8 +5936,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 5437,
-                                  "PriceHardCurrency": 49,
+                                  "PriceGold": 5437,
+                                  "PriceStacks": 49,
                                   "WaitingTime": 890.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -5949,8 +5949,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 10432,
-                                  "PriceHardCurrency": 93,
+                                  "PriceGold": 10432,
+                                  "PriceStacks": 93,
                                   "WaitingTime": 3260.0,
                                   "DeliveryDiamonds": 30,
                                   "UpgradeChanges": [
@@ -6001,15 +6001,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Zebraffe",
-                              "PriceSoftCurrency": 11000,
-                              "PriceHardCurrency": 480,
+                              "PriceGold": 11000,
+                              "PriceStacks": 480,
                               "Bonus": 250
                             }
                           ]
@@ -6018,8 +6018,8 @@ class DefaultSettings
                           "Type": "wolf",
                           "Name": "Wolf",
                           "TierIndex": 3,
-                          "PriceSoftCurrency": 150000,
-                          "PriceHardCurrency": 4500,
+                          "PriceGold": 150000,
+                          "PriceStacks": 4500,
                           "DeliveryWaitingTime": 18000.0,
                           "DeliveryDiamonds": 151.0,
                           "FartPreset": "crimson",
@@ -6060,8 +6060,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 11735,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11735,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4130.0,
                                   "DeliveryDiamonds": 36,
                                   "UpgradeChanges": [
@@ -6077,8 +6077,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 13514,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 13514,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5480.0,
                                   "DeliveryDiamonds": 48,
                                   "UpgradeChanges": [
@@ -6094,8 +6094,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 16101,
-                                  "PriceHardCurrency": 216,
+                                  "PriceGold": 16101,
+                                  "PriceStacks": 216,
                                   "WaitingTime": 7780.0,
                                   "DeliveryDiamonds": 66,
                                   "UpgradeChanges": [
@@ -6111,8 +6111,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 23880,
-                                  "PriceHardCurrency": 320,
+                                  "PriceGold": 23880,
+                                  "PriceStacks": 320,
                                   "WaitingTime": 17110.0,
                                   "DeliveryDiamonds": 144,
                                   "UpgradeChanges": [
@@ -6134,8 +6134,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 14075,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14075,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5940.0,
                                   "DeliveryDiamonds": 52,
                                   "UpgradeChanges": [
@@ -6147,8 +6147,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 16217,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 16217,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 7890.0,
                                   "DeliveryDiamonds": 68,
                                   "UpgradeChanges": [
@@ -6160,8 +6160,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 19041,
-                                  "PriceHardCurrency": 255,
+                                  "PriceGold": 19041,
+                                  "PriceStacks": 255,
                                   "WaitingTime": 10880.0,
                                   "DeliveryDiamonds": 92,
                                   "UpgradeChanges": [
@@ -6173,8 +6173,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 27053,
-                                  "PriceHardCurrency": 362,
+                                  "PriceGold": 27053,
+                                  "PriceStacks": 362,
                                   "WaitingTime": 21960.0,
                                   "DeliveryDiamonds": 186,
                                   "UpgradeChanges": [
@@ -6192,8 +6192,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 11113,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11113,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3700.0,
                                   "DeliveryDiamonds": 32,
                                   "UpgradeChanges": [
@@ -6209,8 +6209,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 12789,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 12789,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4910.0,
                                   "DeliveryDiamonds": 42,
                                   "UpgradeChanges": [
@@ -6226,8 +6226,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 15073,
-                                  "PriceHardCurrency": 202,
+                                  "PriceGold": 15073,
+                                  "PriceStacks": 202,
                                   "WaitingTime": 6820.0,
                                   "DeliveryDiamonds": 58,
                                   "UpgradeChanges": [
@@ -6243,8 +6243,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 22000,
-                                  "PriceHardCurrency": 295,
+                                  "PriceGold": 22000,
+                                  "PriceStacks": 295,
                                   "WaitingTime": 14520.0,
                                   "DeliveryDiamonds": 124,
                                   "UpgradeChanges": [
@@ -6266,8 +6266,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4507,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4507,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 610.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -6279,8 +6279,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5376,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5376,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 870.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -6292,8 +6292,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 7152,
-                                  "PriceHardCurrency": 96,
+                                  "PriceGold": 7152,
+                                  "PriceStacks": 96,
                                   "WaitingTime": 1530.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -6305,8 +6305,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 13894,
-                                  "PriceHardCurrency": 186,
+                                  "PriceGold": 13894,
+                                  "PriceStacks": 186,
                                   "WaitingTime": 5790.0,
                                   "DeliveryDiamonds": 50,
                                   "UpgradeChanges": [
@@ -6324,8 +6324,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 5534,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5534,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 920.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -6337,8 +6337,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 6410,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6410,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1230.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -6350,8 +6350,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 8387,
-                                  "PriceHardCurrency": 112,
+                                  "PriceGold": 8387,
+                                  "PriceStacks": 112,
                                   "WaitingTime": 2110.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -6363,8 +6363,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 15153,
-                                  "PriceHardCurrency": 203,
+                                  "PriceGold": 15153,
+                                  "PriceStacks": 203,
                                   "WaitingTime": 6890.0,
                                   "DeliveryDiamonds": 60,
                                   "UpgradeChanges": [
@@ -6415,15 +6415,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Space Glasses",
-                              "PriceSoftCurrency": 40000,
-                              "PriceHardCurrency": 1100,
+                              "PriceGold": 40000,
+                              "PriceStacks": 1100,
                               "Bonus": 375
                             }
                           ]
@@ -6432,8 +6432,8 @@ class DefaultSettings
                           "Type": "raccoon",
                           "Name": "Raccoon",
                           "TierIndex": 3,
-                          "PriceSoftCurrency": 250000,
-                          "PriceHardCurrency": 6500,
+                          "PriceGold": 250000,
+                          "PriceStacks": 6500,
                           "DeliveryWaitingTime": 18000.0,
                           "DeliveryDiamonds": 151.0,
                           "FartPreset": "yellow",
@@ -6474,8 +6474,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 12144,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 12144,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4420.0,
                                   "DeliveryDiamonds": 38,
                                   "UpgradeChanges": [
@@ -6491,8 +6491,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 14204,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14204,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 6050.0,
                                   "DeliveryDiamonds": 52,
                                   "UpgradeChanges": [
@@ -6508,8 +6508,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 16654,
-                                  "PriceHardCurrency": 223,
+                                  "PriceGold": 16654,
+                                  "PriceStacks": 223,
                                   "WaitingTime": 8320.0,
                                   "DeliveryDiamonds": 72,
                                   "UpgradeChanges": [
@@ -6525,8 +6525,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 23684,
-                                  "PriceHardCurrency": 317,
+                                  "PriceGold": 23684,
+                                  "PriceStacks": 317,
                                   "WaitingTime": 16830.0,
                                   "DeliveryDiamonds": 142,
                                   "UpgradeChanges": [
@@ -6548,8 +6548,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 14540,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14540,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 6340.0,
                                   "DeliveryDiamonds": 54,
                                   "UpgradeChanges": [
@@ -6561,8 +6561,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 17050,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 17050,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 8720.0,
                                   "DeliveryDiamonds": 74,
                                   "UpgradeChanges": [
@@ -6574,8 +6574,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 19810,
-                                  "PriceHardCurrency": 265,
+                                  "PriceGold": 19810,
+                                  "PriceStacks": 265,
                                   "WaitingTime": 11770.0,
                                   "DeliveryDiamonds": 100,
                                   "UpgradeChanges": [
@@ -6587,8 +6587,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 26764,
-                                  "PriceHardCurrency": 358,
+                                  "PriceGold": 26764,
+                                  "PriceStacks": 358,
                                   "WaitingTime": 21490.0,
                                   "DeliveryDiamonds": 182,
                                   "UpgradeChanges": [
@@ -6606,8 +6606,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 11519,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11519,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3980.0,
                                   "DeliveryDiamonds": 36,
                                   "UpgradeChanges": [
@@ -6623,8 +6623,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 13424,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 13424,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5410.0,
                                   "DeliveryDiamonds": 48,
                                   "UpgradeChanges": [
@@ -6640,8 +6640,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 15672,
-                                  "PriceHardCurrency": 210,
+                                  "PriceGold": 15672,
+                                  "PriceStacks": 210,
                                   "WaitingTime": 7370.0,
                                   "DeliveryDiamonds": 64,
                                   "UpgradeChanges": [
@@ -6657,8 +6657,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 21751,
-                                  "PriceHardCurrency": 291,
+                                  "PriceGold": 21751,
+                                  "PriceStacks": 291,
                                   "WaitingTime": 14190.0,
                                   "DeliveryDiamonds": 120,
                                   "UpgradeChanges": [
@@ -6680,8 +6680,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4331,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4331,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 560.0,
                                   "DeliveryDiamonds": 6,
                                   "UpgradeChanges": [
@@ -6693,8 +6693,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5132,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5132,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 790.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -6706,8 +6706,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 6929,
-                                  "PriceHardCurrency": 93,
+                                  "PriceGold": 6929,
+                                  "PriceStacks": 93,
                                   "WaitingTime": 1440.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -6719,8 +6719,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 13584,
-                                  "PriceHardCurrency": 182,
+                                  "PriceGold": 13584,
+                                  "PriceStacks": 182,
                                   "WaitingTime": 5540.0,
                                   "DeliveryDiamonds": 48,
                                   "UpgradeChanges": [
@@ -6738,8 +6738,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 5006,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5006,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 750.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -6751,8 +6751,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5892,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5892,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1040.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -6764,8 +6764,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 7801,
-                                  "PriceHardCurrency": 104,
+                                  "PriceGold": 7801,
+                                  "PriceStacks": 104,
                                   "WaitingTime": 1830.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -6777,8 +6777,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 14313,
-                                  "PriceHardCurrency": 192,
+                                  "PriceGold": 14313,
+                                  "PriceStacks": 192,
                                   "WaitingTime": 6150.0,
                                   "DeliveryDiamonds": 54,
                                   "UpgradeChanges": [
@@ -6829,15 +6829,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Megazorder",
-                              "PriceSoftCurrency": -1,
-                              "PriceHardCurrency": 1056,
+                              "PriceGold": -1,
+                              "PriceStacks": 1056,
                               "Bonus": 450
                             }
                           ]
@@ -6846,8 +6846,8 @@ class DefaultSettings
                           "Type": "panda",
                           "Name": "Panda",
                           "TierIndex": 3,
-                          "PriceSoftCurrency": 200000,
-                          "PriceHardCurrency": 6000,
+                          "PriceGold": 200000,
+                          "PriceStacks": 6000,
                           "DeliveryWaitingTime": 18000.0,
                           "DeliveryDiamonds": 151.0,
                           "FartPreset": "default",
@@ -6888,8 +6888,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 11438,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11438,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3920.0,
                                   "DeliveryDiamonds": 34,
                                   "UpgradeChanges": [
@@ -6905,8 +6905,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 13557,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 13557,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5510.0,
                                   "DeliveryDiamonds": 48,
                                   "UpgradeChanges": [
@@ -6922,8 +6922,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 15964,
-                                  "PriceHardCurrency": 214,
+                                  "PriceGold": 15964,
+                                  "PriceStacks": 214,
                                   "WaitingTime": 7650.0,
                                   "DeliveryDiamonds": 66,
                                   "UpgradeChanges": [
@@ -6939,8 +6939,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 23335,
-                                  "PriceHardCurrency": 313,
+                                  "PriceGold": 23335,
+                                  "PriceStacks": 313,
                                   "WaitingTime": 16340.0,
                                   "DeliveryDiamonds": 138,
                                   "UpgradeChanges": [
@@ -6962,8 +6962,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 13661,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 13661,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5600.0,
                                   "DeliveryDiamonds": 48,
                                   "UpgradeChanges": [
@@ -6975,8 +6975,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 16188,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 16188,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 7860.0,
                                   "DeliveryDiamonds": 68,
                                   "UpgradeChanges": [
@@ -6988,8 +6988,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 18889,
-                                  "PriceHardCurrency": 253,
+                                  "PriceGold": 18889,
+                                  "PriceStacks": 253,
                                   "WaitingTime": 10700.0,
                                   "DeliveryDiamonds": 92,
                                   "UpgradeChanges": [
@@ -7001,8 +7001,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 26213,
-                                  "PriceHardCurrency": 351,
+                                  "PriceGold": 26213,
+                                  "PriceStacks": 351,
                                   "WaitingTime": 20610.0,
                                   "DeliveryDiamonds": 174,
                                   "UpgradeChanges": [
@@ -7020,8 +7020,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 10815,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 10815,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3510.0,
                                   "DeliveryDiamonds": 32,
                                   "UpgradeChanges": [
@@ -7037,8 +7037,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 12781,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 12781,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4900.0,
                                   "DeliveryDiamonds": 42,
                                   "UpgradeChanges": [
@@ -7054,8 +7054,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 14986,
-                                  "PriceHardCurrency": 201,
+                                  "PriceGold": 14986,
+                                  "PriceStacks": 201,
                                   "WaitingTime": 6740.0,
                                   "DeliveryDiamonds": 58,
                                   "UpgradeChanges": [
@@ -7071,8 +7071,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 21356,
-                                  "PriceHardCurrency": 286,
+                                  "PriceGold": 21356,
+                                  "PriceStacks": 286,
                                   "WaitingTime": 13680.0,
                                   "DeliveryDiamonds": 116,
                                   "UpgradeChanges": [
@@ -7094,8 +7094,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4940,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4940,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 730.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -7107,8 +7107,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5918,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5918,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1050.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -7120,8 +7120,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 7766,
-                                  "PriceHardCurrency": 104,
+                                  "PriceGold": 7766,
+                                  "PriceStacks": 104,
                                   "WaitingTime": 1810.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -7133,8 +7133,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 14518,
-                                  "PriceHardCurrency": 194,
+                                  "PriceGold": 14518,
+                                  "PriceStacks": 194,
                                   "WaitingTime": 6320.0,
                                   "DeliveryDiamonds": 54,
                                   "UpgradeChanges": [
@@ -7152,8 +7152,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 6475,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6475,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1260.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -7165,8 +7165,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 7609,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 7609,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1740.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -7178,8 +7178,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 9688,
-                                  "PriceHardCurrency": 130,
+                                  "PriceGold": 9688,
+                                  "PriceStacks": 130,
                                   "WaitingTime": 2820.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -7191,8 +7191,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 16409,
-                                  "PriceHardCurrency": 220,
+                                  "PriceGold": 16409,
+                                  "PriceStacks": 220,
                                   "WaitingTime": 8080.0,
                                   "DeliveryDiamonds": 70,
                                   "UpgradeChanges": [
@@ -7243,15 +7243,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Psycho",
-                              "PriceSoftCurrency": 80000,
-                              "PriceHardCurrency": 2200,
+                              "PriceGold": 80000,
+                              "PriceStacks": 2200,
                               "Bonus": 375
                             }
                           ]
@@ -7260,8 +7260,8 @@ class DefaultSettings
                           "Type": "bunny",
                           "Name": "Bunny",
                           "TierIndex": 3,
-                          "PriceSoftCurrency": 400000,
-                          "PriceHardCurrency": 8000,
+                          "PriceGold": 400000,
+                          "PriceStacks": 8000,
                           "DeliveryWaitingTime": 22500.0,
                           "DeliveryDiamonds": 189.0,
                           "FartPreset": "crimson",
@@ -7302,8 +7302,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 12782,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 12782,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4900.0,
                                   "DeliveryDiamonds": 42,
                                   "UpgradeChanges": [
@@ -7319,8 +7319,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 14968,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14968,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 6720.0,
                                   "DeliveryDiamonds": 58,
                                   "UpgradeChanges": [
@@ -7336,8 +7336,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 17553,
-                                  "PriceHardCurrency": 235,
+                                  "PriceGold": 17553,
+                                  "PriceStacks": 235,
                                   "WaitingTime": 9240.0,
                                   "DeliveryDiamonds": 80,
                                   "UpgradeChanges": [
@@ -7353,8 +7353,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 24987,
-                                  "PriceHardCurrency": 335,
+                                  "PriceGold": 24987,
+                                  "PriceStacks": 335,
                                   "WaitingTime": 18730.0,
                                   "DeliveryDiamonds": 158,
                                   "UpgradeChanges": [
@@ -7376,8 +7376,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 15367,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 15367,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 7080.0,
                                   "DeliveryDiamonds": 62,
                                   "UpgradeChanges": [
@@ -7389,8 +7389,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 17978,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 17978,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 9700.0,
                                   "DeliveryDiamonds": 82,
                                   "UpgradeChanges": [
@@ -7402,8 +7402,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 20884,
-                                  "PriceHardCurrency": 280,
+                                  "PriceGold": 20884,
+                                  "PriceStacks": 280,
                                   "WaitingTime": 13080.0,
                                   "DeliveryDiamonds": 112,
                                   "UpgradeChanges": [
@@ -7415,8 +7415,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 28245,
-                                  "PriceHardCurrency": 378,
+                                  "PriceGold": 28245,
+                                  "PriceStacks": 378,
                                   "WaitingTime": 23930.0,
                                   "DeliveryDiamonds": 202,
                                   "UpgradeChanges": [
@@ -7434,8 +7434,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 12105,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 12105,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4400.0,
                                   "DeliveryDiamonds": 38,
                                   "UpgradeChanges": [
@@ -7451,8 +7451,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 14135,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14135,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5990.0,
                                   "DeliveryDiamonds": 52,
                                   "UpgradeChanges": [
@@ -7468,8 +7468,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 16519,
-                                  "PriceHardCurrency": 221,
+                                  "PriceGold": 16519,
+                                  "PriceStacks": 221,
                                   "WaitingTime": 8190.0,
                                   "DeliveryDiamonds": 70,
                                   "UpgradeChanges": [
@@ -7485,8 +7485,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 22952,
-                                  "PriceHardCurrency": 307,
+                                  "PriceGold": 22952,
+                                  "PriceStacks": 307,
                                   "WaitingTime": 15800.0,
                                   "DeliveryDiamonds": 134,
                                   "UpgradeChanges": [
@@ -7508,8 +7508,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4562,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4562,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 620.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -7521,8 +7521,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5419,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5419,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 880.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -7534,8 +7534,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 7269,
-                                  "PriceHardCurrency": 97,
+                                  "PriceGold": 7269,
+                                  "PriceStacks": 97,
                                   "WaitingTime": 1590.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -7547,8 +7547,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 14324,
-                                  "PriceHardCurrency": 192,
+                                  "PriceGold": 14324,
+                                  "PriceStacks": 192,
                                   "WaitingTime": 6160.0,
                                   "DeliveryDiamonds": 54,
                                   "UpgradeChanges": [
@@ -7566,8 +7566,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 5279,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5279,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 840.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -7579,8 +7579,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 6178,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6178,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1150.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -7592,8 +7592,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 8193,
-                                  "PriceHardCurrency": 110,
+                                  "PriceGold": 8193,
+                                  "PriceStacks": 110,
                                   "WaitingTime": 2010.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -7605,8 +7605,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 15106,
-                                  "PriceHardCurrency": 202,
+                                  "PriceGold": 15106,
+                                  "PriceStacks": 202,
                                   "WaitingTime": 6850.0,
                                   "DeliveryDiamonds": 60,
                                   "UpgradeChanges": [
@@ -7657,15 +7657,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 10,
+                              "PriceGold": 0,
+                              "PriceStacks": 10,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Carrot",
-                              "PriceSoftCurrency": 66000,
-                              "PriceHardCurrency": 2200,
+                              "PriceGold": 66000,
+                              "PriceStacks": 2200,
                               "Bonus": 375
                             }
                           ]
@@ -7674,8 +7674,8 @@ class DefaultSettings
                           "Type": "tiger",
                           "Name": "Tiger",
                           "TierIndex": 3,
-                          "PriceSoftCurrency": 900000,
-                          "PriceHardCurrency": 20000,
+                          "PriceGold": 900000,
+                          "PriceStacks": 20000,
                           "DeliveryWaitingTime": 27000.0,
                           "DeliveryDiamonds": 226.0,
                           "FartPreset": "orange",
@@ -7716,8 +7716,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 13610,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 13610,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5560.0,
                                   "DeliveryDiamonds": 48,
                                   "UpgradeChanges": [
@@ -7733,8 +7733,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 15668,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 15668,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 7360.0,
                                   "DeliveryDiamonds": 64,
                                   "UpgradeChanges": [
@@ -7750,8 +7750,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 18621,
-                                  "PriceHardCurrency": 249,
+                                  "PriceGold": 18621,
+                                  "PriceStacks": 249,
                                   "WaitingTime": 10400.0,
                                   "DeliveryDiamonds": 88,
                                   "UpgradeChanges": [
@@ -7767,8 +7767,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 27689,
-                                  "PriceHardCurrency": 371,
+                                  "PriceGold": 27689,
+                                  "PriceStacks": 371,
                                   "WaitingTime": 23000.0,
                                   "DeliveryDiamonds": 194,
                                   "UpgradeChanges": [
@@ -7790,8 +7790,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 16294,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 16294,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 7960.0,
                                   "DeliveryDiamonds": 68,
                                   "UpgradeChanges": [
@@ -7803,8 +7803,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 18773,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 18773,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 10570.0,
                                   "DeliveryDiamonds": 90,
                                   "UpgradeChanges": [
@@ -7816,8 +7816,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 22101,
-                                  "PriceHardCurrency": 296,
+                                  "PriceGold": 22101,
+                                  "PriceStacks": 296,
                                   "WaitingTime": 14650.0,
                                   "DeliveryDiamonds": 124,
                                   "UpgradeChanges": [
@@ -7829,8 +7829,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 31347,
-                                  "PriceHardCurrency": 420,
+                                  "PriceGold": 31347,
+                                  "PriceStacks": 420,
                                   "WaitingTime": 29480.0,
                                   "DeliveryDiamonds": 248,
                                   "UpgradeChanges": [
@@ -7848,8 +7848,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 12885,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 12885,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4980.0,
                                   "DeliveryDiamonds": 44,
                                   "UpgradeChanges": [
@@ -7865,8 +7865,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 14789,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14789,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 6560.0,
                                   "DeliveryDiamonds": 56,
                                   "UpgradeChanges": [
@@ -7882,8 +7882,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 17490,
-                                  "PriceHardCurrency": 234,
+                                  "PriceGold": 17490,
+                                  "PriceStacks": 234,
                                   "WaitingTime": 9180.0,
                                   "DeliveryDiamonds": 78,
                                   "UpgradeChanges": [
@@ -7899,8 +7899,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 25455,
-                                  "PriceHardCurrency": 341,
+                                  "PriceGold": 25455,
+                                  "PriceStacks": 341,
                                   "WaitingTime": 19440.0,
                                   "DeliveryDiamonds": 164,
                                   "UpgradeChanges": [
@@ -7922,8 +7922,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 5235,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5235,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 820.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -7935,8 +7935,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 6222,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6222,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1160.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -7948,8 +7948,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 8310,
-                                  "PriceHardCurrency": 111,
+                                  "PriceGold": 8310,
+                                  "PriceStacks": 111,
                                   "WaitingTime": 2070.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -7961,8 +7961,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 16067,
-                                  "PriceHardCurrency": 215,
+                                  "PriceGold": 16067,
+                                  "PriceStacks": 215,
                                   "WaitingTime": 7740.0,
                                   "DeliveryDiamonds": 66,
                                   "UpgradeChanges": [
@@ -7980,8 +7980,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 6382,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6382,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1220.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -7993,8 +7993,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 7452,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 7452,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1670.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -8006,8 +8006,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 9707,
-                                  "PriceHardCurrency": 130,
+                                  "PriceGold": 9707,
+                                  "PriceStacks": 130,
                                   "WaitingTime": 2830.0,
                                   "DeliveryDiamonds": 26,
                                   "UpgradeChanges": [
@@ -8019,8 +8019,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 17507,
-                                  "PriceHardCurrency": 234,
+                                  "PriceGold": 17507,
+                                  "PriceStacks": 234,
                                   "WaitingTime": 9190.0,
                                   "DeliveryDiamonds": 78,
                                   "UpgradeChanges": [
@@ -8071,15 +8071,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Pirate Bandana",
-                              "PriceSoftCurrency": 20000,
-                              "PriceHardCurrency": 720,
+                              "PriceGold": 20000,
+                              "PriceStacks": 720,
                               "Bonus": 375
                             }
                           ]
@@ -8088,8 +8088,8 @@ class DefaultSettings
                           "Type": "dragon",
                           "Name": "Dragon",
                           "TierIndex": 3,
-                          "PriceSoftCurrency": 0,
-                          "PriceHardCurrency": 9000,
+                          "PriceGold": 0,
+                          "PriceStacks": 9000,
                           "DeliveryWaitingTime": 22500.0,
                           "DeliveryDiamonds": 189.0,
                           "FartPreset": "blue",
@@ -8130,8 +8130,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 12157,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 12157,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4430.0,
                                   "DeliveryDiamonds": 38,
                                   "UpgradeChanges": [
@@ -8147,8 +8147,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 14416,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14416,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 6230.0,
                                   "DeliveryDiamonds": 54,
                                   "UpgradeChanges": [
@@ -8164,8 +8164,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 17012,
-                                  "PriceHardCurrency": 228,
+                                  "PriceGold": 17012,
+                                  "PriceStacks": 228,
                                   "WaitingTime": 8680.0,
                                   "DeliveryDiamonds": 74,
                                   "UpgradeChanges": [
@@ -8181,8 +8181,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 24803,
-                                  "PriceHardCurrency": 332,
+                                  "PriceGold": 24803,
+                                  "PriceStacks": 332,
                                   "WaitingTime": 18460.0,
                                   "DeliveryDiamonds": 156,
                                   "UpgradeChanges": [
@@ -8204,8 +8204,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 14531,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14531,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 6330.0,
                                   "DeliveryDiamonds": 54,
                                   "UpgradeChanges": [
@@ -8217,8 +8217,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 17226,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 17226,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 8900.0,
                                   "DeliveryDiamonds": 76,
                                   "UpgradeChanges": [
@@ -8230,8 +8230,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 20078,
-                                  "PriceHardCurrency": 269,
+                                  "PriceGold": 20078,
+                                  "PriceStacks": 269,
                                   "WaitingTime": 12090.0,
                                   "DeliveryDiamonds": 102,
                                   "UpgradeChanges": [
@@ -8243,8 +8243,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 27929,
-                                  "PriceHardCurrency": 374,
+                                  "PriceGold": 27929,
+                                  "PriceStacks": 374,
                                   "WaitingTime": 23400.0,
                                   "DeliveryDiamonds": 198,
                                   "UpgradeChanges": [
@@ -8262,8 +8262,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 11533,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11533,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 3990.0,
                                   "DeliveryDiamonds": 36,
                                   "UpgradeChanges": [
@@ -8279,8 +8279,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 13588,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 13588,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5540.0,
                                   "DeliveryDiamonds": 48,
                                   "UpgradeChanges": [
@@ -8296,8 +8296,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 15932,
-                                  "PriceHardCurrency": 213,
+                                  "PriceGold": 15932,
+                                  "PriceStacks": 213,
                                   "WaitingTime": 7610.0,
                                   "DeliveryDiamonds": 66,
                                   "UpgradeChanges": [
@@ -8313,8 +8313,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 22722,
-                                  "PriceHardCurrency": 304,
+                                  "PriceGold": 22722,
+                                  "PriceStacks": 304,
                                   "WaitingTime": 15490.0,
                                   "DeliveryDiamonds": 132,
                                   "UpgradeChanges": [
@@ -8336,8 +8336,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 5265,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5265,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 830.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -8349,8 +8349,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 6258,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6258,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1170.0,
                                   "DeliveryDiamonds": 12,
                                   "UpgradeChanges": [
@@ -8362,8 +8362,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 8262,
-                                  "PriceHardCurrency": 111,
+                                  "PriceGold": 8262,
+                                  "PriceStacks": 111,
                                   "WaitingTime": 2050.0,
                                   "DeliveryDiamonds": 20,
                                   "UpgradeChanges": [
@@ -8375,8 +8375,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 15418,
-                                  "PriceHardCurrency": 206,
+                                  "PriceGold": 15418,
+                                  "PriceStacks": 206,
                                   "WaitingTime": 7130.0,
                                   "DeliveryDiamonds": 62,
                                   "UpgradeChanges": [
@@ -8394,8 +8394,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 6851,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6851,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1410.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -8407,8 +8407,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 8119,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 8119,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1980.0,
                                   "DeliveryDiamonds": 18,
                                   "UpgradeChanges": [
@@ -8420,8 +8420,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 10262,
-                                  "PriceHardCurrency": 137,
+                                  "PriceGold": 10262,
+                                  "PriceStacks": 137,
                                   "WaitingTime": 3160.0,
                                   "DeliveryDiamonds": 28,
                                   "UpgradeChanges": [
@@ -8433,8 +8433,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 17441,
-                                  "PriceHardCurrency": 234,
+                                  "PriceGold": 17441,
+                                  "PriceStacks": 234,
                                   "WaitingTime": 9130.0,
                                   "DeliveryDiamonds": 78,
                                   "UpgradeChanges": [
@@ -8485,15 +8485,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Samurai",
-                              "PriceSoftCurrency": -1,
-                              "PriceHardCurrency": 1100,
+                              "PriceGold": -1,
+                              "PriceStacks": 1100,
                               "Bonus": 500
                             }
                           ]
@@ -8502,8 +8502,8 @@ class DefaultSettings
                           "Type": "reindeer",
                           "Name": "Reindeer",
                           "TierIndex": 3,
-                          "PriceSoftCurrency": 300000,
-                          "PriceHardCurrency": 7000,
+                          "PriceGold": 300000,
+                          "PriceStacks": 7000,
                           "DeliveryWaitingTime": 22500.0,
                           "DeliveryDiamonds": 189.0,
                           "FartPreset": "purple",
@@ -8544,8 +8544,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 12399,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 12399,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4610.0,
                                   "DeliveryDiamonds": 40,
                                   "UpgradeChanges": [
@@ -8561,8 +8561,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 14239,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14239,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 6080.0,
                                   "DeliveryDiamonds": 52,
                                   "UpgradeChanges": [
@@ -8578,8 +8578,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 16915,
-                                  "PriceHardCurrency": 227,
+                                  "PriceGold": 16915,
+                                  "PriceStacks": 227,
                                   "WaitingTime": 8580.0,
                                   "DeliveryDiamonds": 74,
                                   "UpgradeChanges": [
@@ -8595,8 +8595,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 25191,
-                                  "PriceHardCurrency": 337,
+                                  "PriceGold": 25191,
+                                  "PriceStacks": 337,
                                   "WaitingTime": 19040.0,
                                   "DeliveryDiamonds": 160,
                                   "UpgradeChanges": [
@@ -8618,8 +8618,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 14823,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 14823,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 6590.0,
                                   "DeliveryDiamonds": 56,
                                   "UpgradeChanges": [
@@ -8631,8 +8631,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 17094,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 17094,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 8770.0,
                                   "DeliveryDiamonds": 76,
                                   "UpgradeChanges": [
@@ -8644,8 +8644,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 20071,
-                                  "PriceHardCurrency": 269,
+                                  "PriceGold": 20071,
+                                  "PriceStacks": 269,
                                   "WaitingTime": 12090.0,
                                   "DeliveryDiamonds": 102,
                                   "UpgradeChanges": [
@@ -8657,8 +8657,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 28495,
-                                  "PriceHardCurrency": 382,
+                                  "PriceGold": 28495,
+                                  "PriceStacks": 382,
                                   "WaitingTime": 24360.0,
                                   "DeliveryDiamonds": 206,
                                   "UpgradeChanges": [
@@ -8676,8 +8676,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 11726,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 11726,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 4120.0,
                                   "DeliveryDiamonds": 36,
                                   "UpgradeChanges": [
@@ -8693,8 +8693,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 13462,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 13462,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 5440.0,
                                   "DeliveryDiamonds": 48,
                                   "UpgradeChanges": [
@@ -8710,8 +8710,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 15886,
-                                  "PriceHardCurrency": 213,
+                                  "PriceGold": 15886,
+                                  "PriceStacks": 213,
                                   "WaitingTime": 7570.0,
                                   "DeliveryDiamonds": 66,
                                   "UpgradeChanges": [
@@ -8727,8 +8727,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 23159,
-                                  "PriceHardCurrency": 310,
+                                  "PriceGold": 23159,
+                                  "PriceStacks": 310,
                                   "WaitingTime": 16090.0,
                                   "DeliveryDiamonds": 136,
                                   "UpgradeChanges": [
@@ -8750,8 +8750,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 4751,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 4751,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 680.0,
                                   "DeliveryDiamonds": 8,
                                   "UpgradeChanges": [
@@ -8763,8 +8763,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 5625,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5625,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 950.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -8776,8 +8776,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 7555,
-                                  "PriceHardCurrency": 101,
+                                  "PriceGold": 7555,
+                                  "PriceStacks": 101,
                                   "WaitingTime": 1710.0,
                                   "DeliveryDiamonds": 16,
                                   "UpgradeChanges": [
@@ -8789,8 +8789,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 14603,
-                                  "PriceHardCurrency": 196,
+                                  "PriceGold": 14603,
+                                  "PriceStacks": 196,
                                   "WaitingTime": 6400.0,
                                   "DeliveryDiamonds": 56,
                                   "UpgradeChanges": [
@@ -8808,8 +8808,8 @@ class DefaultSettings
                               "UpgradeLevels": [
                                 {
                                   "Level": 1,
-                                  "PriceSoftCurrency": 5834,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 5834,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1020.0,
                                   "DeliveryDiamonds": 10,
                                   "UpgradeChanges": [
@@ -8821,8 +8821,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 2,
-                                  "PriceSoftCurrency": 6775,
-                                  "PriceHardCurrency": 0,
+                                  "PriceGold": 6775,
+                                  "PriceStacks": 0,
                                   "WaitingTime": 1380.0,
                                   "DeliveryDiamonds": 14,
                                   "UpgradeChanges": [
@@ -8834,8 +8834,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 3,
-                                  "PriceSoftCurrency": 8862,
-                                  "PriceHardCurrency": 119,
+                                  "PriceGold": 8862,
+                                  "PriceStacks": 119,
                                   "WaitingTime": 2360.0,
                                   "DeliveryDiamonds": 22,
                                   "UpgradeChanges": [
@@ -8847,8 +8847,8 @@ class DefaultSettings
                                 },
                                 {
                                   "Level": 4,
-                                  "PriceSoftCurrency": 15939,
-                                  "PriceHardCurrency": 213,
+                                  "PriceGold": 15939,
+                                  "PriceStacks": 213,
                                   "WaitingTime": 7620.0,
                                   "DeliveryDiamonds": 66,
                                   "UpgradeChanges": [
@@ -8899,15 +8899,15 @@ class DefaultSettings
                             {
                               "Name": "v1",
                               "FriendlyName": "Default",
-                              "PriceSoftCurrency": 0,
-                              "PriceHardCurrency": 0,
+                              "PriceGold": 0,
+                              "PriceStacks": 0,
                               "Bonus": 0
                             },
                             {
                               "Name": "v2",
                               "FriendlyName": "Magic Cap",
-                              "PriceSoftCurrency": -1,
-                              "PriceHardCurrency": 2200,
+                              "PriceGold": -1,
+                              "PriceStacks": 2200,
                               "Bonus": 375
                             }
                           ]
@@ -13367,202 +13367,202 @@ class DefaultSettings
                         {
                           "Level": 1,
                           "ExperienceThreshold": 10,
-                          "RewardSoftCurrency": 500
+                          "RewardGold": 500
                         },
                         {
                           "Level": 2,
                           "ExperienceThreshold": 17,
-                          "RewardSoftCurrency": 600
+                          "RewardGold": 600
                         },
                         {
                           "Level": 3,
                           "ExperienceThreshold": 29,
-                          "RewardSoftCurrency": 700
+                          "RewardGold": 700
                         },
                         {
                           "Level": 4,
                           "ExperienceThreshold": 41,
-                          "RewardSoftCurrency": 700
+                          "RewardGold": 700
                         },
                         {
                           "Level": 5,
                           "ExperienceThreshold": 54,
-                          "RewardSoftCurrency": 700
+                          "RewardGold": 700
                         },
                         {
                           "Level": 6,
                           "ExperienceThreshold": 67,
-                          "RewardSoftCurrency": 700
+                          "RewardGold": 700
                         },
                         {
                           "Level": 7,
                           "ExperienceThreshold": 80,
-                          "RewardSoftCurrency": 700
+                          "RewardGold": 700
                         },
                         {
                           "Level": 8,
                           "ExperienceThreshold": 93,
-                          "RewardSoftCurrency": 700
+                          "RewardGold": 700
                         },
                         {
                           "Level": 9,
                           "ExperienceThreshold": 106,
-                          "RewardSoftCurrency": 700
+                          "RewardGold": 700
                         },
                         {
                           "Level": 10,
                           "ExperienceThreshold": 120,
-                          "RewardSoftCurrency": 800
+                          "RewardGold": 800
                         },
                         {
                           "Level": 11,
                           "ExperienceThreshold": 134,
-                          "RewardSoftCurrency": 800
+                          "RewardGold": 800
                         },
                         {
                           "Level": 12,
                           "ExperienceThreshold": 148,
-                          "RewardSoftCurrency": 800
+                          "RewardGold": 800
                         },
                         {
                           "Level": 13,
                           "ExperienceThreshold": 162,
-                          "RewardSoftCurrency": 800
+                          "RewardGold": 800
                         },
                         {
                           "Level": 14,
                           "ExperienceThreshold": 176,
-                          "RewardSoftCurrency": 800
+                          "RewardGold": 800
                         },
                         {
                           "Level": 15,
                           "ExperienceThreshold": 190,
-                          "RewardSoftCurrency": 800
+                          "RewardGold": 800
                         },
                         {
                           "Level": 16,
                           "ExperienceThreshold": 205,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 17,
                           "ExperienceThreshold": 220,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 18,
                           "ExperienceThreshold": 235,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 19,
                           "ExperienceThreshold": 250,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 20,
                           "ExperienceThreshold": 265,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 21,
                           "ExperienceThreshold": 280,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 22,
                           "ExperienceThreshold": 295,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 23,
                           "ExperienceThreshold": 310,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 24,
                           "ExperienceThreshold": 325,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 25,
                           "ExperienceThreshold": 340,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 26,
                           "ExperienceThreshold": 356,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 27,
                           "ExperienceThreshold": 372,
-                          "RewardSoftCurrency": 900
+                          "RewardGold": 900
                         },
                         {
                           "Level": 28,
                           "ExperienceThreshold": 389,
-                          "RewardSoftCurrency": 1000
+                          "RewardGold": 1000
                         },
                         {
                           "Level": 29,
                           "ExperienceThreshold": 407,
-                          "RewardSoftCurrency": 1000
+                          "RewardGold": 1000
                         },
                         {
                           "Level": 30,
                           "ExperienceThreshold": 426,
-                          "RewardSoftCurrency": 1100
+                          "RewardGold": 1100
                         },
                         {
                           "Level": 31,
                           "ExperienceThreshold": 446,
-                          "RewardSoftCurrency": 1100
+                          "RewardGold": 1100
                         },
                         {
                           "Level": 32,
                           "ExperienceThreshold": 468,
-                          "RewardSoftCurrency": 1300
+                          "RewardGold": 1300
                         },
                         {
                           "Level": 33,
                           "ExperienceThreshold": 494,
-                          "RewardSoftCurrency": 1500
+                          "RewardGold": 1500
                         },
                         {
                           "Level": 34,
                           "ExperienceThreshold": 530,
-                          "RewardSoftCurrency": 2100
+                          "RewardGold": 2100
                         },
                         {
                           "Level": 35,
                           "ExperienceThreshold": 581,
-                          "RewardSoftCurrency": 2900
+                          "RewardGold": 2900
                         },
                         {
                           "Level": 36,
                           "ExperienceThreshold": 652,
-                          "RewardSoftCurrency": 4000
+                          "RewardGold": 4000
                         },
                         {
                           "Level": 37,
                           "ExperienceThreshold": 793,
-                          "RewardSoftCurrency": 6000
+                          "RewardGold": 6000
                         },
                         {
                           "Level": 38,
                           "ExperienceThreshold": 1194,
-                          "RewardSoftCurrency": 7500
+                          "RewardGold": 7500
                         },
                         {
                           "Level": 39,
                           "ExperienceThreshold": 2795,
-                          "RewardSoftCurrency": 9000
+                          "RewardGold": 9000
                         },
                         {
                           "Level": 40,
                           "ExperienceThreshold": 12796,
-                          "RewardSoftCurrency": 10000
+                          "RewardGold": 10000
                         }
                       ],
                       "SlowMoSettings": {

@@ -68,24 +68,24 @@ class RaceController extends SymfonyAbstractController
         // perfectJumps
         // perfectStart - bool
         // victory - bool
-        $data = json_decode($request->getContent(), true);
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
         if (is_array($data)) {
-            $softCurrency = 0;
+            $gold = 0;
             if (key_exists('racePrize', $data)) {
-                $softCurrency += (int)$data['racePrize'];
+                $gold += (int)$data['racePrize'];
             }
 //            if (key_exists('goodJumps', $data)) {
-//                $softCurrency += (int)$data['goodJumps'];
+//                $gold += (int)$data['goodJumps'];
 //            }
 //            if (key_exists('perfectJumps', $data)) {
-//                $softCurrency += (int)$data['perfectJumps'];
+//                $gold += (int)$data['perfectJumps'];
 //            }
 
             /** @var Player $player */
             $player = $this->getUser()->getPlayer();
 
-            $player->addSoftCurrency($softCurrency);
+            $player->addGold($gold);
 
             $entityManager->flush();
 

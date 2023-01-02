@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use DateTime;
@@ -16,7 +17,7 @@ class ReferralNft
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @var string
@@ -54,11 +55,11 @@ class ReferralNft
     private $users;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    protected ?\DateTime $nftExpiryDate;
+    protected ?DateTime $nftExpiryDate;
 
     /**
      *
@@ -71,7 +72,7 @@ class ReferralNft
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }

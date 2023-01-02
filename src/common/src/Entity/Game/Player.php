@@ -21,17 +21,17 @@ class Player
     private ?int $id;
 
     /**
-     * @ORM\Column(type="integer", options={"default" : 0})
+     * @ORM\Column(type="integer", options={"default": 0})
      */
-    private int $softCurrency = 0;
+    private int $gold = 0;
 
     /**
-     * @ORM\Column(type="integer", options={"default" : 0})
+     * @ORM\Column(type="integer", options={"default": 0})
      */
-    private int $hardCurrency = 0;
+    private int $stacks = 0;
 
     /**
-     * @ORM\Column(type="integer", options={"default" : 10})
+     * @ORM\Column(type="integer", options={"default": 10})
      */
     private int $energy = 10;
 
@@ -46,7 +46,7 @@ class Player
     private array $additionalData = [];
 
     /**
-     * @ORM\Column(type="integer", options={"default" : 0})
+     * @ORM\Column(type="integer", options={"default": 0})
      */
     private int $experience = 0;
 
@@ -64,7 +64,7 @@ class Player
     private ?string $activeAnimalCreatureType;
 
     /**
-     * @ORM\Column(type="integer", options={"default" : 0})
+     * @ORM\Column(type="integer", options={"default": 0})
      */
     private int $maxScore = 0;
 
@@ -79,41 +79,41 @@ class Player
     /**
      * @return int
      */
-    public function getSoftCurrency(): int
+    public function getGold(): int
     {
-        return $this->softCurrency;
+        return $this->gold;
     }
 
     /**
-     * @param int $softCurrency
+     * @param int $gold
      */
-    public function setSoftCurrency(int $softCurrency): void
+    public function setGold(int $gold): void
     {
-        $this->softCurrency = $softCurrency;
+        $this->gold = $gold;
     }
 
     /**
-     * @param int $softCurrency
+     * @param int $gold
      */
-    public function addSoftCurrency(int $softCurrency): void
+    public function addGold(int $gold): void
     {
-        $this->softCurrency += $softCurrency;
+        $this->gold += $gold;
     }
 
     /**
      * @return int
      */
-    public function getHardCurrency(): int
+    public function getStacks(): int
     {
-        return $this->hardCurrency;
+        return $this->stacks;
     }
 
     /**
-     * @param int $hardCurrency
+     * @param int $stacks
      */
-    public function setHardCurrency(int $hardCurrency): void
+    public function setStacks(int $stacks): void
     {
-        $this->hardCurrency = $hardCurrency;
+        $this->stacks = $stacks;
     }
 
     /**

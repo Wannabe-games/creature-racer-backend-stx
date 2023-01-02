@@ -65,8 +65,8 @@ class Creature
         $nestLevelResult = [];
         if ($nextLevel instanceof CreatureLevel) {
             $nestLevelResult = [
-                'priceHardCurrency' => $nextLevel->getPriceHardCurrency(),
-                'priceSoftCurrency' => $nextLevel->getPriceSoftCurrency(),
+                'priceStacks' => $nextLevel->getPriceStacks(),
+                'priceGold' => $nextLevel->getPriceGold(),
                 'deliveryDiamonds' => $nextLevel->getDeliveryDiamonds(),
                 'waitingTime' => $nextLevel->getWaitingTime(),
             ];

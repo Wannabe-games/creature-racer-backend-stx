@@ -76,7 +76,7 @@ class CreateCreatureForUserFixturesCommand extends Command
                     $creatureUser->setBoostAcceleration(mt_rand( 0, 2000 ) / 1000);
                     $creatureUser->setBoostVelocity(mt_rand( 0, 2000 ) / 1000);
                     $creatureUser->setSpeed(mt_rand( 0, 2000 ) / 1000);
-                    $creatureUser->setIsForGame(true);
+                    $creatureUser->setForGame(true);
                     $creatureUser->setBonus(true);
                     $creatureUser->setUpgradeMusclesEnd(new \DateTime());
                     $creatureUser->setUpgradeBellyEnd(new \DateTime());

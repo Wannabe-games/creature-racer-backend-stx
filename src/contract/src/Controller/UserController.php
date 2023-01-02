@@ -90,7 +90,7 @@ class UserController extends SymfonyAbstractController
         $result['rewardPool'] = round($poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle()), 2);
         $result['referralLevel'] = $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null;
         $result['readyToUpgrade'] = $creatureUserRepository->readyToUpgradeCount($this->getUser());
-        $result['totalStaked'] = $creatureUserRepository->isStackedCount($this->getUser());
+        $result['totalStaked'] = $creatureUserRepository->stakedCount($this->getUser());
         $result['mintedInTotal'] = $creatureUserRepository->mintedCount($this->getUser());
         $result['expiresSoon'] = $creatureUserRepository->expiredSoonCount($this->getUser());
 

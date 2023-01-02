@@ -14,18 +14,18 @@ class Group
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(length=180)
      */
     private $name;
 
     /**
      * @var array
-     * 
+     *
      * @ORM\Column(type="array")
      */
     private $roles;
@@ -60,9 +60,9 @@ class Group
     }
 
     /**
-     * {@inheritdoc}
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Entity\Creature;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV6;
 use Symfony\Component\Uid\Uuid;
@@ -18,7 +19,7 @@ class CreatureUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected ?int $id;
 
     /**
      * @var UuidV6
@@ -73,47 +74,47 @@ class CreatureUser
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $muscles;
+    private int $muscles = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $lungs;
+    private int $lungs = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $heart;
+    private int $heart = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $belly;
+    private int $belly = 0;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $buttocks;
+    private int $buttocks = 0;
 
     /**
      * @var float|null
@@ -151,83 +152,83 @@ class CreatureUser
     private ?float $boostAcceleration;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTime $upgradeMusclesEnd;
+    private ?DateTime $upgradeMusclesEnd;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTime $upgradeLungsEnd;
+    private ?DateTime $upgradeLungsEnd;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTime $upgradeHeartEnd;
+    private ?DateTime $upgradeHeartEnd;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTime $upgradeBellyEnd;
+    private ?DateTime $upgradeBellyEnd;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTime $upgradeButtocksEnd;
+    private ?DateTime $upgradeButtocksEnd;
 
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default": false})
      */
-    private bool $isForGame;
+    private bool $forGame;
 
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default": false})
      */
-    private bool $isStacked;
+    private bool $staked;
 
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default": false})
      */
     private bool $bonus;
 
     /**
      * @var int
      *
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
      *
      * @Assert\NotNull()
      */
-    private int $skinColor;
+    private int $skinColor = 0;
 
     /**
-     * @var \DateTime
+     * @var DateTime|null
      *
-     * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
-    protected $createdAt;
+    protected ?DateTime $createdAt;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    protected ?\DateTime $nftExpiryDate;
+    protected ?DateTime $nftExpiryDate;
 
     /**
      * @var float|null
@@ -256,11 +257,11 @@ class CreatureUser
     public function __construct()
     {
         $this->uuid = uuid::v6();
-        $this->isForGame = false;
-        $this->isStacked = false;
+        $this->forGame = false;
+        $this->staked = false;
         $this->bonus = false;
         $this->skinColor = 0;
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new DateTime();
         // levels
         $this->muscles = 0;
         $this->lungs = 0;
@@ -517,15 +518,15 @@ class CreatureUser
      */
     public function isForGame(): bool
     {
-        return $this->isForGame;
+        return $this->forGame;
     }
 
     /**
-     * @param bool $isForGame
+     * @param bool $forGame
      */
-    public function setIsForGame(bool $isForGame): void
+    public function setForGame(bool $forGame): void
     {
-        $this->isForGame = $isForGame;
+        $this->forGame = $forGame;
     }
 
     /**
@@ -561,9 +562,9 @@ class CreatureUser
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getUpgradeMusclesEnd(): ?\DateTime
+    public function getUpgradeMusclesEnd(): ?DateTime
     {
         return $this->upgradeMusclesEnd;
     }
@@ -583,17 +584,17 @@ class CreatureUser
     }
 
     /**
-     * @param \DateTime|null $upgradeMusclesEnd
+     * @param DateTime|null $upgradeMusclesEnd
      */
-    public function setUpgradeMusclesEnd(?\DateTime $upgradeMusclesEnd): void
+    public function setUpgradeMusclesEnd(?DateTime $upgradeMusclesEnd): void
     {
         $this->upgradeMusclesEnd = $upgradeMusclesEnd;
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getUpgradeLungsEnd(): ?\DateTime
+    public function getUpgradeLungsEnd(): ?DateTime
     {
         return $this->upgradeLungsEnd;
     }
@@ -613,17 +614,17 @@ class CreatureUser
     }
 
     /**
-     * @param \DateTime|null $upgradeLungsEnd
+     * @param DateTime|null $upgradeLungsEnd
      */
-    public function setUpgradeLungsEnd(?\DateTime $upgradeLungsEnd): void
+    public function setUpgradeLungsEnd(?DateTime $upgradeLungsEnd): void
     {
         $this->upgradeLungsEnd = $upgradeLungsEnd;
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getUpgradeHeartEnd(): ?\DateTime
+    public function getUpgradeHeartEnd(): ?DateTime
     {
         return $this->upgradeHeartEnd;
     }
@@ -643,17 +644,17 @@ class CreatureUser
     }
 
     /**
-     * @param \DateTime|null $upgradeHeartEnd
+     * @param DateTime|null $upgradeHeartEnd
      */
-    public function setUpgradeHeartEnd(?\DateTime $upgradeHeartEnd): void
+    public function setUpgradeHeartEnd(?DateTime $upgradeHeartEnd): void
     {
         $this->upgradeHeartEnd = $upgradeHeartEnd;
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getUpgradeBellyEnd(): ?\DateTime
+    public function getUpgradeBellyEnd(): ?DateTime
     {
         return $this->upgradeBellyEnd;
     }
@@ -673,17 +674,17 @@ class CreatureUser
     }
 
     /**
-     * @param \DateTime|null $upgradeBellyEnd
+     * @param DateTime|null $upgradeBellyEnd
      */
-    public function setUpgradeBellyEnd(?\DateTime $upgradeBellyEnd): void
+    public function setUpgradeBellyEnd(?DateTime $upgradeBellyEnd): void
     {
         $this->upgradeBellyEnd = $upgradeBellyEnd;
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getUpgradeButtocksEnd(): ?\DateTime
+    public function getUpgradeButtocksEnd(): ?DateTime
     {
         return $this->upgradeButtocksEnd;
     }
@@ -703,9 +704,9 @@ class CreatureUser
     }
 
     /**
-     * @param \DateTime|null $upgradeButtocksEnd
+     * @param DateTime|null $upgradeButtocksEnd
      */
-    public function setUpgradeButtocksEnd(?\DateTime $upgradeButtocksEnd): void
+    public function setUpgradeButtocksEnd(?DateTime $upgradeButtocksEnd): void
     {
         $this->upgradeButtocksEnd = $upgradeButtocksEnd;
     }
@@ -727,17 +728,17 @@ class CreatureUser
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param DateTime $createdAt
      */
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -745,31 +746,31 @@ class CreatureUser
     /**
      * @return bool
      */
-    public function isStacked(): bool
+    public function isStaked(): bool
     {
-        return $this->isStacked;
+        return $this->staked;
     }
 
     /**
-     * @param bool $isStacked
+     * @param bool $staked
      */
-    public function setIsStacked(bool $isStacked): void
+    public function setStaked(bool $staked): void
     {
-        $this->isStacked = $isStacked;
+        $this->staked = $staked;
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getNftExpiryDate(): ?\DateTime
+    public function getNftExpiryDate(): ?DateTime
     {
         return $this->nftExpiryDate;
     }
 
     /**
-     * @param \DateTime|null $nftExpiryDate
+     * @param DateTime|null $nftExpiryDate
      */
-    public function setNftExpiryDate(?\DateTime $nftExpiryDate): void
+    public function setNftExpiryDate(?DateTime $nftExpiryDate): void
     {
         $this->nftExpiryDate = $nftExpiryDate;
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity\Creature;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -15,7 +16,7 @@ class CreatureUpgrade
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private mixed $id;
+    private ?int $id;
 
     /**
      * @var string
@@ -36,11 +37,11 @@ class CreatureUpgrade
     private string $type;
 
     /**
-     * @var float
+     * @var float|null
      *
      * @ORM\Column(type="float", nullable=true)
      */
-    private float $value;
+    private ?float $value;
 
     /**
      * User
@@ -53,9 +54,9 @@ class CreatureUpgrade
     private $creatureLevel;
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }

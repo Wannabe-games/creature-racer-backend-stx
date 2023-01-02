@@ -52,12 +52,12 @@ class ImportDataLevelsCommand extends Command
             ]);
 
             if (!empty($creatureLevels)) {
-                $creatureLevels->setPriceSoftCurrency($row[6]);
-                $creatureLevels->setPriceHardCurrency($row[7]);
+                $creatureLevels->setPriceGold($row[6]);
+                $creatureLevels->setPriceStacks($row[7]);
 
                 /** @var CreatureUpgrade $performance */
                 foreach ($creatureLevels->getUpgradeChanges() as $performance) {
-                    if ($performance->getName() == $row[4]) {
+                    if ($performance->getName() === $row[4]) {
                         $performance->setValue($row[5]);
                     }
                 }

@@ -56,7 +56,7 @@ final class CurrentDecorator implements OpenApiFactoryInterface
                 "player" => [
                     'type' => 'object',
                     'example' => [
-                        'softCurrency' => [
+                        'gold' => [
                             'type' => 'int',
                             'example' =>  12334123
                         ],

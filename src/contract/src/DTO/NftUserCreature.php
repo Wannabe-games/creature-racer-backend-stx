@@ -52,7 +52,7 @@ class NftUserCreature
         $serializedData['part4'] = $creatureUser->getBelly() + 1;
         $serializedData['part5'] = $creatureUser->getButtocks() + 1;
         $serializedData['expiryTimestamp'] = (int)$creatureUser->getNftExpiryDateFormat('U');
-        $serializedData['price'] = $creatureBuy->getPriceHardCurrency() * 1000000;
+        $serializedData['price'] = $creatureBuy->getPriceStacks();
         $serializedData['address'] = $creatureUser->getUser()->getWallet();
         $serializedData['key'] = $creatureUser->getUser()->getPublicKey();
 

@@ -114,7 +114,7 @@ class CreatureManager
         $this->verifyCooldown($upgradeType, $creature);
 
         /** @var CreatureUser $creatureUser */
-        if ($creature->isStacked()) {
+        if ($creature->isStaked()) {
             throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }
 
@@ -234,7 +234,7 @@ class CreatureManager
             $creatureUser->setBoostAcceleration($creatureCurrentUser->getBoostAcceleration() + $creatureUser->getBoostAcceleration());
             $creatureUser->setBoostTime($creatureCurrentUser->getBoostTime() + $creatureUser->getBoostTime());
             $creatureUser->setSpeed($creatureCurrentUser->getSpeed() + $creatureUser->getSpeed());
-            $creatureCurrentUser->setIsForGame(false);
+            $creatureCurrentUser->setForGame(false);
         }
         $this->deactivateCreatureOfType($creatureUser);
 
@@ -252,13 +252,13 @@ class CreatureManager
      */
     protected function paymentForLevel(User $user, CreatureLevel $creatureLevel): void
     {
-        $goldAfterPurchase = $user->getPlayer()->getSoftCurrency() - $creatureLevel->getPriceSoftCurrency();
+        $goldAfterPurchase = $user->getPlayer()->getGold() - $creatureLevel->getPriceGold();
 
         if (0 > $goldAfterPurchase) {
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::NOT_ENOUGH_GOLD));
         }
 
-        $user->getPlayer()->setSoftCurrency($goldAfterPurchase);
+        $user->getPlayer()->setGold($goldAfterPurchase);
     }
 
     /**
@@ -276,11 +276,11 @@ class CreatureManager
         if (!empty($ActiveUserCreatures)) {
             /** @var CreatureUser $ActiveUserCreature */
             foreach ($ActiveUserCreatures as $ActiveUserCreature) {
-                $ActiveUserCreature->setIsForGame(false);
+                $ActiveUserCreature->setForGame(false);
             }
         }
 
-        $creatureUser->setIsForGame(true);
+        $creatureUser->setForGame(true);
     }
 
     /**
@@ -325,7 +325,7 @@ class CreatureManager
         $creature = $this->creatureUserRepository->findOneBy(['uuid' => $uuid]);
 
         /** @var CreatureUser $creatureUser */
-        if ($creature->isStacked()) {
+        if ($creature->isStaked()) {
             throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }
 
@@ -333,7 +333,7 @@ class CreatureManager
         $this->isUserCreatureBelongToUser($creature, $user);
 
         $this->deactivateCreatureOfType($creature);
-        $creature->setIsForGame($isActive);
+        $creature->setForGame($isActive);
 
         $this->entityManager->flush();
 
@@ -358,11 +358,11 @@ class CreatureManager
         // Verification
         $this->isUserCreatureBelongToUser($creature, $user);
 
-        $creature->setIsStacked($stake);
+        $creature->setStaked($stake);
 
         // deactivate creature in game if is staked
         if ($stake) {
-            $creature->setIsForGame(false);
+            $creature->setForGame(false);
         }
 
         $this->entityManager->flush();
@@ -427,7 +427,7 @@ class CreatureManager
                                                              ]);
 
         /** @var CreatureUser $creatureUser */
-        if ($creature->isStacked()) {
+        if ($creature->isStaked()) {
             throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }
 
@@ -454,7 +454,7 @@ class CreatureManager
                                                              ]);
 
         /** @var CreatureUser $creatureUser */
-        if ($creature->isStacked()) {
+        if ($creature->isStaked()) {
             throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }
 
