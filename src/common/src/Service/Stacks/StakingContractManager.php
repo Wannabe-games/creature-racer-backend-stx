@@ -8,7 +8,7 @@ class StakingContractManager extends Manager
 {
     public function getCurrentCycle(bool $verbose = false): int
     {
-        return (int)$this->exec('stx-reward-pool-get-current-cycle', $verbose);
+        return (int)$this->exec('stx-staking-get-current-cycle', $verbose);
     }
 
     public function getTotalShare(bool $verbose = false): int
@@ -26,12 +26,8 @@ class StakingContractManager extends Manager
         return $this->exec('stx-staking-open-new-cycle', $verbose);
     }
 
-    public function getUserReward(string $wallet): float
+    public function getUserReward(string $wallet, bool $verbose = false): float
     {
-        return $this->getTotalShare() ? $this->getUserShare($wallet) / $this->getTotalShare() : 0;
+        return ($totalShare = $this->getTotalShare($verbose)) ? $this->getUserShare($wallet, $verbose) / $totalShare : 0;
     }
 }
-
-// test:
-// bin/stx-staking-open-new-cycle.js
-// php -r 'exec("bin/stx-staking-open-new-cycle.js", $output); var_dump($output);'

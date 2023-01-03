@@ -193,8 +193,8 @@ class UserCreature
                 'level' => $nextLevel->getLevel(),
                 'priceStacks' => $nextLevel->getPriceStacks(),
                 'priceGold' => $nextLevel->getPriceGold(),
-                'deliveryDiamonds' => $nextLevel->getDeliveryDiamonds(),
-                'waitingTime' => $nextLevel->getWaitingTime(),
+                'deliveryPriceStacks' => $nextLevel->getDeliveryPriceStacks(),
+                'deliveryWaitingTime' => $nextLevel->getDeliveryWaitingTime(),
             ];
 
             /** @var CreatureUpgrade $upgradeChange */

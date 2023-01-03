@@ -76,7 +76,7 @@ class UserCreature
         ]);
 
         if (isset($creatureBuy)) {
-            $serializedData['DeliveryTime'] = TimeTickerConverter::TimeToTicks((int)$creatureUser->getCreature()->getCreatedAt()->format('U') + $creatureBuy->getWaitingTime());
+            $serializedData['DeliveryWaitingTime'] = TimeTickerConverter::TimeToTicks((int)$creatureUser->getCreature()->getCreatedAt()->format('U') + $creatureBuy->getDeliveryWaitingTime());
         }
         $serializedData['TimeStamp'] = TimeTickerConverter::TimeToTicks((int)$creatureUser->getCreature()->getCreatedAt()->format('U'));
 

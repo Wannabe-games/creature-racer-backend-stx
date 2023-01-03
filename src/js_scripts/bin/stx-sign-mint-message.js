@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-require('dotenv').config({path: '/app/common/.env'});
-require('dotenv').config({path: '/app/common/.env.local', override: true});
+require('dotenv').config({path: __dirname + '/../../common/.env'});
+require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
 const {signMessageHashRsv, createStacksPrivateKey} = require("@stacks/transactions");
 const sha256 = require("sha256");
 const inputArgs = process.argv.slice(2);

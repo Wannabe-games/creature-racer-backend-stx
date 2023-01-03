@@ -35,8 +35,8 @@ final class UserCreaturesDetailsDecorator implements OpenApiFactoryInterface
                                     "level": 4,
                                     "priceStacks": 90,
                                     "priceGold": 10035,
-                                    "deliveryDiamonds": 28,
-                                    "waitingTime": 3020,
+                                    "deliveryPriceStacks": 28,
+                                    "deliveryWaitingTime": 3020,
                                     "upgradeChanges": {
                                         "boost_power": 0.054
                                     }
@@ -54,8 +54,8 @@ final class UserCreaturesDetailsDecorator implements OpenApiFactoryInterface
                                     "level": 3,
                                     "priceStacks": 92,
                                     "priceGold": 10344,
-                                    "deliveryDiamonds": 28,
-                                    "waitingTime": 3210,
+                                    "deliveryPriceStacks": 28,
+                                    "deliveryWaitingTime": 3210,
                                     "upgradeChanges": {
                                         "acceleration": 0.0025,
                                         "speed": 0.4306
@@ -69,8 +69,8 @@ final class UserCreaturesDetailsDecorator implements OpenApiFactoryInterface
                                     "level": 3,
                                     "priceStacks": 115,
                                     "priceGold": 12844,
-                                    "deliveryDiamonds": 44,
-                                    "waitingTime": 4950,
+                                    "deliveryPriceStacks": 44,
+                                    "deliveryWaitingTime": 4950,
                                     "upgradeChanges": {
                                         "speed": 0.5741
                                     }

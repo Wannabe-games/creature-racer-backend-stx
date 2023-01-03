@@ -149,7 +149,7 @@ class DefaultSettings
                           "PriceGold": 9500,
                           "PriceStacks": 0,
                           "DeliveryWaitingTime": 120.0,
-                          "DeliveryDiamonds": 20.0,
+                          "DeliveryPriceStacks": 20.0,
                           "FartPreset": "orange",
                           "FartColor": [
                             {
@@ -190,8 +190,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3606,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 390.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 390.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -207,8 +207,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4514,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 610.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 610.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -224,8 +224,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5355,
                                   "PriceStacks": 24,
-                                  "WaitingTime": 860.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 860.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -241,8 +241,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 8508,
                                   "PriceStacks": 38,
-                                  "WaitingTime": 2170.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2170.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -264,8 +264,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4277,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 550.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 550.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -277,8 +277,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5316,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 850.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 850.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -290,8 +290,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6070,
                                   "PriceStacks": 27,
-                                  "WaitingTime": 1110.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1110.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -303,8 +303,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9091,
                                   "PriceStacks": 41,
-                                  "WaitingTime": 2480.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2480.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -322,8 +322,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3148,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 300.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 300.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -339,8 +339,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3955,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 470.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 470.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -356,8 +356,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4696,
                                   "PriceStacks": 21,
-                                  "WaitingTime": 660.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 660.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -373,8 +373,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 7249,
                                   "PriceStacks": 32,
-                                  "WaitingTime": 1580.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1580.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -396,8 +396,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1162,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 40.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 40.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -409,8 +409,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 1728,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 90.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 90.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -422,8 +422,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2384,
                                   "PriceStacks": 11,
-                                  "WaitingTime": 170.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 170.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -435,8 +435,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5093,
                                   "PriceStacks": 23,
-                                  "WaitingTime": 780.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 780.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -454,8 +454,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1860,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 100.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 100.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -467,8 +467,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2414,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 170.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 170.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -480,8 +480,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 3129,
                                   "PriceStacks": 14,
-                                  "WaitingTime": 290.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 290.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -493,8 +493,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5749,
                                   "PriceStacks": 26,
-                                  "WaitingTime": 990.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 990.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -563,7 +563,7 @@ class DefaultSettings
                           "PriceGold": 10000,
                           "PriceStacks": 0,
                           "DeliveryWaitingTime": 120.0,
-                          "DeliveryDiamonds": 20.0,
+                          "DeliveryPriceStacks": 20.0,
                           "FartPreset": "blue",
                           "FartColor": [
                             {
@@ -604,8 +604,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3436,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 350.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 350.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -621,8 +621,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4362,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 570.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 570.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -638,8 +638,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5385,
                                   "PriceStacks": 24,
-                                  "WaitingTime": 870.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 870.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -655,8 +655,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 8864,
                                   "PriceStacks": 40,
-                                  "WaitingTime": 2360.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2360.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -678,8 +678,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4054,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 490.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 490.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -691,8 +691,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5117,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 790.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 790.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -704,8 +704,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6113,
                                   "PriceStacks": 27,
-                                  "WaitingTime": 1120.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1120.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -717,8 +717,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9563,
                                   "PriceStacks": 43,
-                                  "WaitingTime": 2740.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2740.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -736,8 +736,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 2979,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 270.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 270.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -753,8 +753,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3804,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 430.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 430.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -770,8 +770,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4727,
                                   "PriceStacks": 21,
-                                  "WaitingTime": 670.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 670.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -787,8 +787,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 7605,
                                   "PriceStacks": 34,
-                                  "WaitingTime": 1740.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1740.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -810,8 +810,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1829,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 100.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 100.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -827,8 +827,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2521,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 190.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 190.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -844,8 +844,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2350,
                                   "PriceStacks": 10,
-                                  "WaitingTime": 170.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 170.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -861,8 +861,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 4957,
                                   "PriceStacks": 22,
-                                  "WaitingTime": 740.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 740.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -880,8 +880,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1481,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 70.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 70.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -893,8 +893,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 1985,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 120.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 120.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -906,8 +906,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2739,
                                   "PriceStacks": 12,
-                                  "WaitingTime": 230.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 230.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -919,8 +919,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5432,
                                   "PriceStacks": 24,
-                                  "WaitingTime": 890.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 890.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -989,7 +989,7 @@ class DefaultSettings
                           "PriceGold": 11000,
                           "PriceStacks": 0,
                           "DeliveryWaitingTime": 120.0,
-                          "DeliveryDiamonds": 20.0,
+                          "DeliveryPriceStacks": 20.0,
                           "FartPreset": "green",
                           "FartColor": [
                             {
@@ -1030,8 +1030,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3799,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 430.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 430.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1047,8 +1047,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4736,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 670.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 670.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1064,8 +1064,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5479,
                                   "PriceStacks": 24,
-                                  "WaitingTime": 900.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 900.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1081,8 +1081,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 8890,
                                   "PriceStacks": 40,
-                                  "WaitingTime": 2370.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2370.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1104,8 +1104,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4464,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 600.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 600.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1117,8 +1117,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5592,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 940.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 940.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1130,8 +1130,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6266,
                                   "PriceStacks": 28,
-                                  "WaitingTime": 1180.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1180.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1143,8 +1143,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9478,
                                   "PriceStacks": 42,
-                                  "WaitingTime": 2690.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2690.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1162,8 +1162,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3290,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 320.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 320.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1179,8 +1179,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4126,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 510.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 510.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1196,8 +1196,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4819,
                                   "PriceStacks": 22,
-                                  "WaitingTime": 700.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 700.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1213,8 +1213,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 7579,
                                   "PriceStacks": 34,
-                                  "WaitingTime": 1720.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1720.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1236,8 +1236,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1805,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 100.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 100.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -1253,8 +1253,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2476,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 180.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 180.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -1270,8 +1270,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 3203,
                                   "PriceStacks": 14,
-                                  "WaitingTime": 310.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 310.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -1287,8 +1287,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5118,
                                   "PriceStacks": 23,
-                                  "WaitingTime": 790.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 790.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -1310,8 +1310,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1352,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 50.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 50.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1323,8 +1323,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 1875,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 110.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 110.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1336,8 +1336,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2616,
                                   "PriceStacks": 12,
-                                  "WaitingTime": 210.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 210.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1349,8 +1349,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5343,
                                   "PriceStacks": 24,
-                                  "WaitingTime": 860.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 860.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1419,7 +1419,7 @@ class DefaultSettings
                           "PriceGold": 10500,
                           "PriceStacks": 0,
                           "DeliveryWaitingTime": 120.0,
-                          "DeliveryDiamonds": 20.0,
+                          "DeliveryPriceStacks": 20.0,
                           "FartPreset": "default",
                           "FartColor": [
                             {
@@ -1460,8 +1460,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3455,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 360.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 360.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1477,8 +1477,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4384,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 580.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 580.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1494,8 +1494,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5409,
                                   "PriceStacks": 24,
-                                  "WaitingTime": 880.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 880.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1511,8 +1511,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 8941,
                                   "PriceStacks": 40,
-                                  "WaitingTime": 2400.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2400.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1534,8 +1534,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4079,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 500.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 500.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1547,8 +1547,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5147,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 790.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 790.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1560,8 +1560,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6194,
                                   "PriceStacks": 28,
-                                  "WaitingTime": 1150.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1150.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1573,8 +1573,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9598,
                                   "PriceStacks": 43,
-                                  "WaitingTime": 2760.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2760.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1592,8 +1592,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 2998,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 270.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 270.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1609,8 +1609,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3826,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 440.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 440.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1626,8 +1626,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4751,
                                   "PriceStacks": 21,
-                                  "WaitingTime": 680.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 680.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1643,8 +1643,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 7681,
                                   "PriceStacks": 34,
-                                  "WaitingTime": 1770.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1770.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1666,8 +1666,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1838,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 100.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 100.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -1683,8 +1683,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2531,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 190.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 190.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -1700,8 +1700,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2403,
                                   "PriceStacks": 11,
-                                  "WaitingTime": 170.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 170.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -1717,8 +1717,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5009,
                                   "PriceStacks": 22,
-                                  "WaitingTime": 750.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 750.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1736,8 +1736,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1486,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 70.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 70.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1749,8 +1749,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 1990,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 120.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 120.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1762,8 +1762,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2795,
                                   "PriceStacks": 12,
-                                  "WaitingTime": 230.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 230.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1775,8 +1775,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5488,
                                   "PriceStacks": 25,
-                                  "WaitingTime": 900.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 900.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -1845,7 +1845,7 @@ class DefaultSettings
                           "PriceGold": 30000,
                           "PriceStacks": 0,
                           "DeliveryWaitingTime": 150.0,
-                          "DeliveryDiamonds": 20.0,
+                          "DeliveryPriceStacks": 20.0,
                           "FartPreset": "yellow",
                           "FartColor": [
                             {
@@ -1886,8 +1886,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3617,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 390.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 390.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1903,8 +1903,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4617,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 640.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 640.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1920,8 +1920,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5652,
                                   "PriceStacks": 25,
-                                  "WaitingTime": 960.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 960.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1937,8 +1937,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9352,
                                   "PriceStacks": 42,
-                                  "WaitingTime": 2620.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2620.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -1960,8 +1960,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4277,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 550.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 550.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1973,8 +1973,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5371,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 870.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 870.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1986,8 +1986,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6483,
                                   "PriceStacks": 29,
-                                  "WaitingTime": 1260.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1260.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -1999,8 +1999,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 10060,
                                   "PriceStacks": 45,
-                                  "WaitingTime": 3040.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3040.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2018,8 +2018,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3160,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 300.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 300.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2035,8 +2035,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4008,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 480.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 480.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2052,8 +2052,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4993,
                                   "PriceStacks": 22,
-                                  "WaitingTime": 750.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 750.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2069,8 +2069,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 7991,
                                   "PriceStacks": 36,
-                                  "WaitingTime": 1920.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1920.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2092,8 +2092,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1938,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 110.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 110.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -2109,8 +2109,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2641,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 210.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 210.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -2126,8 +2126,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2474,
                                   "PriceStacks": 11,
-                                  "WaitingTime": 180.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 180.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -2143,8 +2143,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5226,
                                   "PriceStacks": 23,
-                                  "WaitingTime": 820.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 820.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2162,8 +2162,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1563,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 70.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 70.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2175,8 +2175,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2122,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 140.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 140.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2188,8 +2188,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2930,
                                   "PriceStacks": 13,
-                                  "WaitingTime": 260.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 260.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2201,8 +2201,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5727,
                                   "PriceStacks": 26,
-                                  "WaitingTime": 980.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 980.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2271,7 +2271,7 @@ class DefaultSettings
                           "PriceGold": 0,
                           "PriceStacks": 800,
                           "DeliveryWaitingTime": 150.0,
-                          "DeliveryDiamonds": 20.0,
+                          "DeliveryPriceStacks": 20.0,
                           "FartPreset": "purple",
                           "FartColor": [
                             {
@@ -2312,8 +2312,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4015,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 480.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 480.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2329,8 +2329,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5030,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 760.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 760.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2346,8 +2346,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5819,
                                   "PriceStacks": 26,
-                                  "WaitingTime": 1020.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 1020.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2363,8 +2363,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9440,
                                   "PriceStacks": 42,
-                                  "WaitingTime": 2670.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2670.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2386,8 +2386,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4784,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 690.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 690.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2399,8 +2399,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5947,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1060.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 1060.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2412,8 +2412,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6667,
                                   "PriceStacks": 30,
-                                  "WaitingTime": 1330.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1330.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2425,8 +2425,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 10042,
                                   "PriceStacks": 45,
-                                  "WaitingTime": 3030.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3030.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2444,8 +2444,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3506,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 370.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 370.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2461,8 +2461,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4419,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 590.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 590.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2478,8 +2478,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5108,
                                   "PriceStacks": 23,
-                                  "WaitingTime": 780.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 780.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2495,8 +2495,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 8029,
                                   "PriceStacks": 36,
-                                  "WaitingTime": 1930.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1930.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2518,8 +2518,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1920,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 110.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 110.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -2535,8 +2535,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2651,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 210.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 210.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -2552,8 +2552,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 3377,
                                   "PriceStacks": 15,
-                                  "WaitingTime": 340.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 340.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -2569,8 +2569,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5388,
                                   "PriceStacks": 24,
-                                  "WaitingTime": 870.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 870.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -2592,8 +2592,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1480,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 70.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 70.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2605,8 +2605,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2008,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 120.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 120.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2618,8 +2618,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2747,
                                   "PriceStacks": 12,
-                                  "WaitingTime": 230.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 230.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2631,8 +2631,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5627,
                                   "PriceStacks": 25,
-                                  "WaitingTime": 950.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 950.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2701,7 +2701,7 @@ class DefaultSettings
                           "PriceGold": 40000,
                           "PriceStacks": 1000,
                           "DeliveryWaitingTime": 180.0,
-                          "DeliveryDiamonds": 20.0,
+                          "DeliveryPriceStacks": 20.0,
                           "FartPreset": "default",
                           "FartColor": [
                             {
@@ -2742,8 +2742,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4156,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 520.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 520.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2759,8 +2759,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5229,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 820.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 820.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2776,8 +2776,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6176,
                                   "PriceStacks": 28,
-                                  "WaitingTime": 1140.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1140.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2793,8 +2793,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9837,
                                   "PriceStacks": 44,
-                                  "WaitingTime": 2900.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2900.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2816,8 +2816,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4956,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 740.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 740.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2829,8 +2829,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 6130,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1130.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1130.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2842,8 +2842,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 7043,
                                   "PriceStacks": 31,
-                                  "WaitingTime": 1490.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1490.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2855,8 +2855,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 10524,
                                   "PriceStacks": 47,
-                                  "WaitingTime": 3320.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3320.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -2874,8 +2874,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3648,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 400.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 400.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2891,8 +2891,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4569,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 630.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 630.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2908,8 +2908,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5416,
                                   "PriceStacks": 24,
-                                  "WaitingTime": 880.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 880.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2925,8 +2925,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 8377,
                                   "PriceStacks": 37,
-                                  "WaitingTime": 2110.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2110.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -2948,8 +2948,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 1326,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 50.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 50.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2961,8 +2961,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 1952,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 110.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 110.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2974,8 +2974,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 2760,
                                   "PriceStacks": 12,
-                                  "WaitingTime": 230.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 230.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -2987,8 +2987,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 5920,
                                   "PriceStacks": 26,
-                                  "WaitingTime": 1050.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 1050.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3006,8 +3006,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 2161,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 140.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 140.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3019,8 +3019,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 2789,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 230.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 230.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3032,8 +3032,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 3656,
                                   "PriceStacks": 16,
-                                  "WaitingTime": 400.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 400.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3045,8 +3045,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 6679,
                                   "PriceStacks": 30,
-                                  "WaitingTime": 1340.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1340.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3115,7 +3115,7 @@ class DefaultSettings
                           "PriceGold": 70000,
                           "PriceStacks": 2800,
                           "DeliveryWaitingTime": 2880.0,
-                          "DeliveryDiamonds": 61.0,
+                          "DeliveryPriceStacks": 61.0,
                           "FartPreset": "orange",
                           "FartColor": [
                             {
@@ -3156,8 +3156,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 7770,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1810.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1810.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3173,8 +3173,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 9707,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2830.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2830.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3190,8 +3190,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10531,
                                   "PriceStacks": 94,
-                                  "WaitingTime": 3330.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3330.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3207,8 +3207,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 16860,
                                   "PriceStacks": 151,
-                                  "WaitingTime": 8530.0,
-                                  "DeliveryDiamonds": 74,
+                                  "DeliveryWaitingTime": 8530.0,
+                                  "DeliveryPriceStacks": 74,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3230,8 +3230,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 9293,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2590.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2590.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -3243,8 +3243,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 11641,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4070.0,
-                                  "DeliveryDiamonds": 36,
+                                  "DeliveryWaitingTime": 4070.0,
+                                  "DeliveryPriceStacks": 36,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -3256,8 +3256,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 12412,
                                   "PriceStacks": 111,
-                                  "WaitingTime": 4620.0,
-                                  "DeliveryDiamonds": 40,
+                                  "DeliveryWaitingTime": 4620.0,
+                                  "DeliveryPriceStacks": 40,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -3269,8 +3269,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 18772,
                                   "PriceStacks": 168,
-                                  "WaitingTime": 10570.0,
-                                  "DeliveryDiamonds": 90,
+                                  "DeliveryWaitingTime": 10570.0,
+                                  "DeliveryPriceStacks": 90,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -3288,8 +3288,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 7303,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1600.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1600.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3305,8 +3305,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 9236,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2560.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2560.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3322,8 +3322,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 9961,
                                   "PriceStacks": 89,
-                                  "WaitingTime": 2980.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2980.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3339,8 +3339,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 15787,
                                   "PriceStacks": 141,
-                                  "WaitingTime": 7480.0,
-                                  "DeliveryDiamonds": 64,
+                                  "DeliveryWaitingTime": 7480.0,
+                                  "DeliveryPriceStacks": 64,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3362,8 +3362,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 2762,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 230.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 230.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -3379,8 +3379,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3278,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 320.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 320.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3392,8 +3392,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4494,
                                   "PriceStacks": 40,
-                                  "WaitingTime": 610.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 610.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3405,8 +3405,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9318,
                                   "PriceStacks": 83,
-                                  "WaitingTime": 2600.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2600.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3424,8 +3424,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3025,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 270.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 270.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3437,8 +3437,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3714,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 410.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 410.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3450,8 +3450,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4735,
                                   "PriceStacks": 42,
-                                  "WaitingTime": 670.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 670.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3463,8 +3463,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9407,
                                   "PriceStacks": 84,
-                                  "WaitingTime": 2650.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2650.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3533,7 +3533,7 @@ class DefaultSettings
                           "PriceGold": 100000,
                           "PriceStacks": 3750,
                           "DeliveryWaitingTime": 4320.0,
-                          "DeliveryDiamonds": 91.0,
+                          "DeliveryPriceStacks": 91.0,
                           "FartPreset": "green",
                           "FartColor": [
                             {
@@ -3574,8 +3574,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 8496,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2170.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2170.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3591,8 +3591,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 9907,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2940.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2940.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3608,8 +3608,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 12401,
                                   "PriceStacks": 111,
-                                  "WaitingTime": 4610.0,
-                                  "DeliveryDiamonds": 40,
+                                  "DeliveryWaitingTime": 4610.0,
+                                  "DeliveryPriceStacks": 40,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3625,8 +3625,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 18876,
                                   "PriceStacks": 169,
-                                  "WaitingTime": 10690.0,
-                                  "DeliveryDiamonds": 92,
+                                  "DeliveryWaitingTime": 10690.0,
+                                  "DeliveryPriceStacks": 92,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3648,8 +3648,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 10079,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3050.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3050.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -3661,8 +3661,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 11765,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4150.0,
-                                  "DeliveryDiamonds": 36,
+                                  "DeliveryWaitingTime": 4150.0,
+                                  "DeliveryPriceStacks": 36,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -3674,8 +3674,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 14614,
                                   "PriceStacks": 130,
-                                  "WaitingTime": 6410.0,
-                                  "DeliveryDiamonds": 56,
+                                  "DeliveryWaitingTime": 6410.0,
+                                  "DeliveryPriceStacks": 56,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -3687,8 +3687,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 20908,
                                   "PriceStacks": 187,
-                                  "WaitingTime": 13110.0,
-                                  "DeliveryDiamonds": 112,
+                                  "DeliveryWaitingTime": 13110.0,
+                                  "DeliveryPriceStacks": 112,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -3706,8 +3706,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 7930,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1890.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1890.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3723,8 +3723,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 9438,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2670.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2670.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3740,8 +3740,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 11779,
                                   "PriceStacks": 105,
-                                  "WaitingTime": 4160.0,
-                                  "DeliveryDiamonds": 36,
+                                  "DeliveryWaitingTime": 4160.0,
+                                  "DeliveryPriceStacks": 36,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3757,8 +3757,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 17653,
                                   "PriceStacks": 158,
-                                  "WaitingTime": 9350.0,
-                                  "DeliveryDiamonds": 80,
+                                  "DeliveryWaitingTime": 9350.0,
+                                  "DeliveryPriceStacks": 80,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -3780,8 +3780,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3493,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 370.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 370.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3793,8 +3793,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4282,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 550.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 550.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3806,8 +3806,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5884,
                                   "PriceStacks": 53,
-                                  "WaitingTime": 1040.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 1040.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3819,8 +3819,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 11444,
                                   "PriceStacks": 102,
-                                  "WaitingTime": 3930.0,
-                                  "DeliveryDiamonds": 34,
+                                  "DeliveryWaitingTime": 3930.0,
+                                  "DeliveryPriceStacks": 34,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3838,8 +3838,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4584,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 630.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 630.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3851,8 +3851,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5458,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 890.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 890.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3864,8 +3864,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 7063,
                                   "PriceStacks": 63,
-                                  "WaitingTime": 1500.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1500.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3877,8 +3877,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 12352,
                                   "PriceStacks": 110,
-                                  "WaitingTime": 4580.0,
-                                  "DeliveryDiamonds": 40,
+                                  "DeliveryWaitingTime": 4580.0,
+                                  "DeliveryPriceStacks": 40,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -3947,7 +3947,7 @@ class DefaultSettings
                           "PriceGold": 50000,
                           "PriceStacks": 2600,
                           "DeliveryWaitingTime": 2880.0,
-                          "DeliveryDiamonds": 61.0,
+                          "DeliveryPriceStacks": 61.0,
                           "FartPreset": "purple",
                           "FartColor": [
                             {
@@ -3988,8 +3988,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 7340,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1620.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1620.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4005,8 +4005,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 8584,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2210.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2210.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4022,8 +4022,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10700,
                                   "PriceStacks": 96,
-                                  "WaitingTime": 3430.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3430.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4039,8 +4039,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 16323,
                                   "PriceStacks": 146,
-                                  "WaitingTime": 7990.0,
-                                  "DeliveryDiamonds": 68,
+                                  "DeliveryWaitingTime": 7990.0,
+                                  "DeliveryPriceStacks": 68,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4062,8 +4062,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 8730,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2290.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2290.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4075,8 +4075,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 10161,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3100.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3100.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4088,8 +4088,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 12640,
                                   "PriceStacks": 113,
-                                  "WaitingTime": 4790.0,
-                                  "DeliveryDiamonds": 42,
+                                  "DeliveryWaitingTime": 4790.0,
+                                  "DeliveryPriceStacks": 42,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4101,8 +4101,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 18067,
                                   "PriceStacks": 161,
-                                  "WaitingTime": 9790.0,
-                                  "DeliveryDiamonds": 84,
+                                  "DeliveryWaitingTime": 9790.0,
+                                  "DeliveryPriceStacks": 84,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4120,8 +4120,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 6876,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1420.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1420.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4137,8 +4137,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 8117,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1980.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1980.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4154,8 +4154,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10131,
                                   "PriceStacks": 90,
-                                  "WaitingTime": 3080.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3080.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4171,8 +4171,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 15253,
                                   "PriceStacks": 136,
-                                  "WaitingTime": 6980.0,
-                                  "DeliveryDiamonds": 60,
+                                  "DeliveryWaitingTime": 6980.0,
+                                  "DeliveryPriceStacks": 60,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4194,8 +4194,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3021,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 270.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 270.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4207,8 +4207,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3691,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 410.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 410.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4220,8 +4220,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5073,
                                   "PriceStacks": 45,
-                                  "WaitingTime": 770.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 770.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4233,8 +4233,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9875,
                                   "PriceStacks": 88,
-                                  "WaitingTime": 2930.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2930.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4252,8 +4252,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3950,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 470.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 470.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4265,8 +4265,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4680,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 660.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 660.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4278,8 +4278,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6087,
                                   "PriceStacks": 54,
-                                  "WaitingTime": 1110.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1110.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4291,8 +4291,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 10707,
                                   "PriceStacks": 96,
-                                  "WaitingTime": 3440.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3440.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4361,7 +4361,7 @@ class DefaultSettings
                           "PriceGold": 80000,
                           "PriceStacks": 3000,
                           "DeliveryWaitingTime": 2880.0,
-                          "DeliveryDiamonds": 61.0,
+                          "DeliveryPriceStacks": 61.0,
                           "FartPreset": "yellow",
                           "FartColor": [
                             {
@@ -4402,8 +4402,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 8254,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2040.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2040.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4419,8 +4419,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 8961,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2410.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2410.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4436,8 +4436,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10545,
                                   "PriceStacks": 94,
-                                  "WaitingTime": 3340.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3340.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4453,8 +4453,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 17067,
                                   "PriceStacks": 152,
-                                  "WaitingTime": 8740.0,
-                                  "DeliveryDiamonds": 74,
+                                  "DeliveryWaitingTime": 8740.0,
+                                  "DeliveryPriceStacks": 74,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4476,8 +4476,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 9939,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2960.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2960.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4489,8 +4489,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 10647,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3400.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3400.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4502,8 +4502,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 12357,
                                   "PriceStacks": 110,
-                                  "WaitingTime": 4580.0,
-                                  "DeliveryDiamonds": 40,
+                                  "DeliveryWaitingTime": 4580.0,
+                                  "DeliveryPriceStacks": 40,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4515,8 +4515,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 19006,
                                   "PriceStacks": 170,
-                                  "WaitingTime": 10840.0,
-                                  "DeliveryDiamonds": 92,
+                                  "DeliveryWaitingTime": 10840.0,
+                                  "DeliveryPriceStacks": 92,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4534,8 +4534,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 7787,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1820.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1820.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4551,8 +4551,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 8494,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2160.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2160.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4568,8 +4568,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 9978,
                                   "PriceStacks": 89,
-                                  "WaitingTime": 2990.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2990.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4585,8 +4585,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 15996,
                                   "PriceStacks": 143,
-                                  "WaitingTime": 7680.0,
-                                  "DeliveryDiamonds": 66,
+                                  "DeliveryWaitingTime": 7680.0,
+                                  "DeliveryPriceStacks": 66,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4608,8 +4608,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 2846,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 240.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 240.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4621,8 +4621,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3462,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 360.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 360.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4634,8 +4634,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4736,
                                   "PriceStacks": 42,
-                                  "WaitingTime": 670.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 670.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4647,8 +4647,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9709,
                                   "PriceStacks": 87,
-                                  "WaitingTime": 2830.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2830.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4666,8 +4666,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3589,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 390.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 390.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4679,8 +4679,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4077,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 500.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 500.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4692,8 +4692,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5285,
                                   "PriceStacks": 47,
-                                  "WaitingTime": 840.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 840.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4705,8 +4705,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 10070,
                                   "PriceStacks": 90,
-                                  "WaitingTime": 3040.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3040.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -4775,7 +4775,7 @@ class DefaultSettings
                           "PriceGold": 60000,
                           "PriceStacks": 2700,
                           "DeliveryWaitingTime": 2880.0,
-                          "DeliveryDiamonds": 61.0,
+                          "DeliveryPriceStacks": 61.0,
                           "FartPreset": "default",
                           "FartColor": [
                             {
@@ -4816,8 +4816,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 7343,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1620.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1620.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4833,8 +4833,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 8587,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2210.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2210.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4850,8 +4850,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10703,
                                   "PriceStacks": 96,
-                                  "WaitingTime": 3440.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3440.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4867,8 +4867,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 16327,
                                   "PriceStacks": 146,
-                                  "WaitingTime": 8000.0,
-                                  "DeliveryDiamonds": 68,
+                                  "DeliveryWaitingTime": 8000.0,
+                                  "DeliveryPriceStacks": 68,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4890,8 +4890,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 8733,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2290.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2290.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4903,8 +4903,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 10165,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3100.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3100.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4916,8 +4916,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 12645,
                                   "PriceStacks": 113,
-                                  "WaitingTime": 4800.0,
-                                  "DeliveryDiamonds": 42,
+                                  "DeliveryWaitingTime": 4800.0,
+                                  "DeliveryPriceStacks": 42,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4929,8 +4929,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 18072,
                                   "PriceStacks": 161,
-                                  "WaitingTime": 9800.0,
-                                  "DeliveryDiamonds": 84,
+                                  "DeliveryWaitingTime": 9800.0,
+                                  "DeliveryPriceStacks": 84,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -4948,8 +4948,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 6879,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1420.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1420.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4965,8 +4965,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 8120,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1980.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1980.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4982,8 +4982,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10184,
                                   "PriceStacks": 91,
-                                  "WaitingTime": 3110.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3110.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -4999,8 +4999,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 15257,
                                   "PriceStacks": 136,
-                                  "WaitingTime": 6980.0,
-                                  "DeliveryDiamonds": 60,
+                                  "DeliveryWaitingTime": 6980.0,
+                                  "DeliveryPriceStacks": 60,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5022,8 +5022,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3022,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 270.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 270.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5035,8 +5035,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3692,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 410.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 410.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5048,8 +5048,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5074,
                                   "PriceStacks": 45,
-                                  "WaitingTime": 770.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 770.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5061,8 +5061,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 9875,
                                   "PriceStacks": 88,
-                                  "WaitingTime": 2930.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2930.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5080,8 +5080,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3951,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 470.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 470.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5093,8 +5093,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4681,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 660.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 660.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5106,8 +5106,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6088,
                                   "PriceStacks": 54,
-                                  "WaitingTime": 1110.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1110.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5119,8 +5119,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 10708,
                                   "PriceStacks": 96,
-                                  "WaitingTime": 3440.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3440.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5189,7 +5189,7 @@ class DefaultSettings
                           "PriceGold": 0,
                           "PriceStacks": 5000,
                           "DeliveryWaitingTime": 4320.0,
-                          "DeliveryDiamonds": 91.0,
+                          "DeliveryPriceStacks": 91.0,
                           "FartPreset": "default",
                           "FartColor": [
                             {
@@ -5230,8 +5230,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 9162,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2520.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2520.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5247,8 +5247,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 11459,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3940.0,
-                                  "DeliveryDiamonds": 34,
+                                  "DeliveryWaitingTime": 3940.0,
+                                  "DeliveryPriceStacks": 34,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5264,8 +5264,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 12447,
                                   "PriceStacks": 111,
-                                  "WaitingTime": 4650.0,
-                                  "DeliveryDiamonds": 40,
+                                  "DeliveryWaitingTime": 4650.0,
+                                  "DeliveryPriceStacks": 40,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5281,8 +5281,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 19912,
                                   "PriceStacks": 178,
-                                  "WaitingTime": 11890.0,
-                                  "DeliveryDiamonds": 102,
+                                  "DeliveryWaitingTime": 11890.0,
+                                  "DeliveryPriceStacks": 102,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5304,8 +5304,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 10937,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3590.0,
-                                  "DeliveryDiamonds": 32,
+                                  "DeliveryWaitingTime": 3590.0,
+                                  "DeliveryPriceStacks": 32,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -5317,8 +5317,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 13778,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5690.0,
-                                  "DeliveryDiamonds": 50,
+                                  "DeliveryWaitingTime": 5690.0,
+                                  "DeliveryPriceStacks": 50,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -5330,8 +5330,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 14636,
                                   "PriceStacks": 131,
-                                  "WaitingTime": 6430.0,
-                                  "DeliveryDiamonds": 56,
+                                  "DeliveryWaitingTime": 6430.0,
+                                  "DeliveryPriceStacks": 56,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -5343,8 +5343,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 22141,
                                   "PriceStacks": 198,
-                                  "WaitingTime": 14710.0,
-                                  "DeliveryDiamonds": 124,
+                                  "DeliveryWaitingTime": 14710.0,
+                                  "DeliveryPriceStacks": 124,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -5362,8 +5362,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 8592,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2210.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2210.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5379,8 +5379,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 10934,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3590.0,
-                                  "DeliveryDiamonds": 32,
+                                  "DeliveryWaitingTime": 3590.0,
+                                  "DeliveryPriceStacks": 32,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5396,8 +5396,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 11774,
                                   "PriceStacks": 105,
-                                  "WaitingTime": 4160.0,
-                                  "DeliveryDiamonds": 36,
+                                  "DeliveryWaitingTime": 4160.0,
+                                  "DeliveryPriceStacks": 36,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5413,8 +5413,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 18635,
                                   "PriceStacks": 166,
-                                  "WaitingTime": 10420.0,
-                                  "DeliveryDiamonds": 88,
+                                  "DeliveryWaitingTime": 10420.0,
+                                  "DeliveryPriceStacks": 88,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5436,8 +5436,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3255,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 320.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 320.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 4,
@@ -5453,8 +5453,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3864,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 450.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 450.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5466,8 +5466,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5274,
                                   "PriceStacks": 47,
-                                  "WaitingTime": 830.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 830.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5479,8 +5479,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 11011,
                                   "PriceStacks": 98,
-                                  "WaitingTime": 3640.0,
-                                  "DeliveryDiamonds": 32,
+                                  "DeliveryWaitingTime": 3640.0,
+                                  "DeliveryPriceStacks": 32,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5498,8 +5498,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3583,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 390.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 390.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5511,8 +5511,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4416,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 590.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 590.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5524,8 +5524,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5622,
                                   "PriceStacks": 50,
-                                  "WaitingTime": 950.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 950.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5537,8 +5537,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 11075,
                                   "PriceStacks": 99,
-                                  "WaitingTime": 3680.0,
-                                  "DeliveryDiamonds": 32,
+                                  "DeliveryWaitingTime": 3680.0,
+                                  "DeliveryPriceStacks": 32,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5607,7 +5607,7 @@ class DefaultSettings
                           "PriceGold": 90000,
                           "PriceStacks": 3500,
                           "DeliveryWaitingTime": 3600.0,
-                          "DeliveryDiamonds": 76.0,
+                          "DeliveryPriceStacks": 76.0,
                           "FartPreset": "orange",
                           "FartColor": [
                             {
@@ -5648,8 +5648,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 8557,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2200.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2200.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5665,8 +5665,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 9269,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2580.0,
-                                  "DeliveryDiamonds": 24,
+                                  "DeliveryWaitingTime": 2580.0,
+                                  "DeliveryPriceStacks": 24,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5682,8 +5682,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10912,
                                   "PriceStacks": 97,
-                                  "WaitingTime": 3570.0,
-                                  "DeliveryDiamonds": 32,
+                                  "DeliveryWaitingTime": 3570.0,
+                                  "DeliveryPriceStacks": 32,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5699,8 +5699,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 17676,
                                   "PriceStacks": 158,
-                                  "WaitingTime": 9370.0,
-                                  "DeliveryDiamonds": 80,
+                                  "DeliveryWaitingTime": 9370.0,
+                                  "DeliveryPriceStacks": 80,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5722,8 +5722,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 10307,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3190.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3190.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -5735,8 +5735,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 11023,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3650.0,
-                                  "DeliveryDiamonds": 32,
+                                  "DeliveryWaitingTime": 3650.0,
+                                  "DeliveryPriceStacks": 32,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -5748,8 +5748,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 12844,
                                   "PriceStacks": 115,
-                                  "WaitingTime": 4950.0,
-                                  "DeliveryDiamonds": 44,
+                                  "DeliveryWaitingTime": 4950.0,
+                                  "DeliveryPriceStacks": 44,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -5761,8 +5761,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 19648,
                                   "PriceStacks": 175,
-                                  "WaitingTime": 11580.0,
-                                  "DeliveryDiamonds": 98,
+                                  "DeliveryWaitingTime": 11580.0,
+                                  "DeliveryPriceStacks": 98,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -5780,8 +5780,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 8090,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1960.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1960.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5797,8 +5797,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 8802,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 2320.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2320.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5814,8 +5814,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10344,
                                   "PriceStacks": 92,
-                                  "WaitingTime": 3210.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3210.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5831,8 +5831,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 16554,
                                   "PriceStacks": 148,
-                                  "WaitingTime": 8220.0,
-                                  "DeliveryDiamonds": 70,
+                                  "DeliveryWaitingTime": 8220.0,
+                                  "DeliveryPriceStacks": 70,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -5854,8 +5854,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 2967,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 260.0,
-                                  "DeliveryDiamonds": 5,
+                                  "DeliveryWaitingTime": 260.0,
+                                  "DeliveryPriceStacks": 5,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5867,8 +5867,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 3583,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 390.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 390.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5880,8 +5880,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 4909,
                                   "PriceStacks": 44,
-                                  "WaitingTime": 720.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 720.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5893,8 +5893,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 10035,
                                   "PriceStacks": 90,
-                                  "WaitingTime": 3020.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3020.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5912,8 +5912,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 3689,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 410.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 410.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5925,8 +5925,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 4227,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 540.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 540.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5938,8 +5938,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 5437,
                                   "PriceStacks": 49,
-                                  "WaitingTime": 890.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 890.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -5951,8 +5951,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 10432,
                                   "PriceStacks": 93,
-                                  "WaitingTime": 3260.0,
-                                  "DeliveryDiamonds": 30,
+                                  "DeliveryWaitingTime": 3260.0,
+                                  "DeliveryPriceStacks": 30,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6021,7 +6021,7 @@ class DefaultSettings
                           "PriceGold": 150000,
                           "PriceStacks": 4500,
                           "DeliveryWaitingTime": 18000.0,
-                          "DeliveryDiamonds": 151.0,
+                          "DeliveryPriceStacks": 151.0,
                           "FartPreset": "crimson",
                           "FartColor": [
                             {
@@ -6062,8 +6062,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 11735,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4130.0,
-                                  "DeliveryDiamonds": 36,
+                                  "DeliveryWaitingTime": 4130.0,
+                                  "DeliveryPriceStacks": 36,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6079,8 +6079,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 13514,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5480.0,
-                                  "DeliveryDiamonds": 48,
+                                  "DeliveryWaitingTime": 5480.0,
+                                  "DeliveryPriceStacks": 48,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6096,8 +6096,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 16101,
                                   "PriceStacks": 216,
-                                  "WaitingTime": 7780.0,
-                                  "DeliveryDiamonds": 66,
+                                  "DeliveryWaitingTime": 7780.0,
+                                  "DeliveryPriceStacks": 66,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6113,8 +6113,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 23880,
                                   "PriceStacks": 320,
-                                  "WaitingTime": 17110.0,
-                                  "DeliveryDiamonds": 144,
+                                  "DeliveryWaitingTime": 17110.0,
+                                  "DeliveryPriceStacks": 144,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6136,8 +6136,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 14075,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5940.0,
-                                  "DeliveryDiamonds": 52,
+                                  "DeliveryWaitingTime": 5940.0,
+                                  "DeliveryPriceStacks": 52,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6149,8 +6149,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 16217,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 7890.0,
-                                  "DeliveryDiamonds": 68,
+                                  "DeliveryWaitingTime": 7890.0,
+                                  "DeliveryPriceStacks": 68,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6162,8 +6162,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 19041,
                                   "PriceStacks": 255,
-                                  "WaitingTime": 10880.0,
-                                  "DeliveryDiamonds": 92,
+                                  "DeliveryWaitingTime": 10880.0,
+                                  "DeliveryPriceStacks": 92,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6175,8 +6175,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 27053,
                                   "PriceStacks": 362,
-                                  "WaitingTime": 21960.0,
-                                  "DeliveryDiamonds": 186,
+                                  "DeliveryWaitingTime": 21960.0,
+                                  "DeliveryPriceStacks": 186,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6194,8 +6194,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 11113,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3700.0,
-                                  "DeliveryDiamonds": 32,
+                                  "DeliveryWaitingTime": 3700.0,
+                                  "DeliveryPriceStacks": 32,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6211,8 +6211,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 12789,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4910.0,
-                                  "DeliveryDiamonds": 42,
+                                  "DeliveryWaitingTime": 4910.0,
+                                  "DeliveryPriceStacks": 42,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6228,8 +6228,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 15073,
                                   "PriceStacks": 202,
-                                  "WaitingTime": 6820.0,
-                                  "DeliveryDiamonds": 58,
+                                  "DeliveryWaitingTime": 6820.0,
+                                  "DeliveryPriceStacks": 58,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6245,8 +6245,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 22000,
                                   "PriceStacks": 295,
-                                  "WaitingTime": 14520.0,
-                                  "DeliveryDiamonds": 124,
+                                  "DeliveryWaitingTime": 14520.0,
+                                  "DeliveryPriceStacks": 124,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6268,8 +6268,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4507,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 610.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 610.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6281,8 +6281,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5376,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 870.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 870.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6294,8 +6294,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 7152,
                                   "PriceStacks": 96,
-                                  "WaitingTime": 1530.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1530.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6307,8 +6307,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 13894,
                                   "PriceStacks": 186,
-                                  "WaitingTime": 5790.0,
-                                  "DeliveryDiamonds": 50,
+                                  "DeliveryWaitingTime": 5790.0,
+                                  "DeliveryPriceStacks": 50,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6326,8 +6326,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 5534,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 920.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 920.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6339,8 +6339,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 6410,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1230.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1230.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6352,8 +6352,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 8387,
                                   "PriceStacks": 112,
-                                  "WaitingTime": 2110.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2110.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6365,8 +6365,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 15153,
                                   "PriceStacks": 203,
-                                  "WaitingTime": 6890.0,
-                                  "DeliveryDiamonds": 60,
+                                  "DeliveryWaitingTime": 6890.0,
+                                  "DeliveryPriceStacks": 60,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6435,7 +6435,7 @@ class DefaultSettings
                           "PriceGold": 250000,
                           "PriceStacks": 6500,
                           "DeliveryWaitingTime": 18000.0,
-                          "DeliveryDiamonds": 151.0,
+                          "DeliveryPriceStacks": 151.0,
                           "FartPreset": "yellow",
                           "FartColor": [
                             {
@@ -6476,8 +6476,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 12144,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4420.0,
-                                  "DeliveryDiamonds": 38,
+                                  "DeliveryWaitingTime": 4420.0,
+                                  "DeliveryPriceStacks": 38,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6493,8 +6493,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 14204,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 6050.0,
-                                  "DeliveryDiamonds": 52,
+                                  "DeliveryWaitingTime": 6050.0,
+                                  "DeliveryPriceStacks": 52,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6510,8 +6510,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 16654,
                                   "PriceStacks": 223,
-                                  "WaitingTime": 8320.0,
-                                  "DeliveryDiamonds": 72,
+                                  "DeliveryWaitingTime": 8320.0,
+                                  "DeliveryPriceStacks": 72,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6527,8 +6527,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 23684,
                                   "PriceStacks": 317,
-                                  "WaitingTime": 16830.0,
-                                  "DeliveryDiamonds": 142,
+                                  "DeliveryWaitingTime": 16830.0,
+                                  "DeliveryPriceStacks": 142,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6550,8 +6550,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 14540,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 6340.0,
-                                  "DeliveryDiamonds": 54,
+                                  "DeliveryWaitingTime": 6340.0,
+                                  "DeliveryPriceStacks": 54,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6563,8 +6563,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 17050,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 8720.0,
-                                  "DeliveryDiamonds": 74,
+                                  "DeliveryWaitingTime": 8720.0,
+                                  "DeliveryPriceStacks": 74,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6576,8 +6576,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 19810,
                                   "PriceStacks": 265,
-                                  "WaitingTime": 11770.0,
-                                  "DeliveryDiamonds": 100,
+                                  "DeliveryWaitingTime": 11770.0,
+                                  "DeliveryPriceStacks": 100,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6589,8 +6589,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 26764,
                                   "PriceStacks": 358,
-                                  "WaitingTime": 21490.0,
-                                  "DeliveryDiamonds": 182,
+                                  "DeliveryWaitingTime": 21490.0,
+                                  "DeliveryPriceStacks": 182,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6608,8 +6608,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 11519,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3980.0,
-                                  "DeliveryDiamonds": 36,
+                                  "DeliveryWaitingTime": 3980.0,
+                                  "DeliveryPriceStacks": 36,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6625,8 +6625,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 13424,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5410.0,
-                                  "DeliveryDiamonds": 48,
+                                  "DeliveryWaitingTime": 5410.0,
+                                  "DeliveryPriceStacks": 48,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6642,8 +6642,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 15672,
                                   "PriceStacks": 210,
-                                  "WaitingTime": 7370.0,
-                                  "DeliveryDiamonds": 64,
+                                  "DeliveryWaitingTime": 7370.0,
+                                  "DeliveryPriceStacks": 64,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6659,8 +6659,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 21751,
                                   "PriceStacks": 291,
-                                  "WaitingTime": 14190.0,
-                                  "DeliveryDiamonds": 120,
+                                  "DeliveryWaitingTime": 14190.0,
+                                  "DeliveryPriceStacks": 120,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6682,8 +6682,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4331,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 560.0,
-                                  "DeliveryDiamonds": 6,
+                                  "DeliveryWaitingTime": 560.0,
+                                  "DeliveryPriceStacks": 6,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6695,8 +6695,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5132,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 790.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 790.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6708,8 +6708,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 6929,
                                   "PriceStacks": 93,
-                                  "WaitingTime": 1440.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1440.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6721,8 +6721,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 13584,
                                   "PriceStacks": 182,
-                                  "WaitingTime": 5540.0,
-                                  "DeliveryDiamonds": 48,
+                                  "DeliveryWaitingTime": 5540.0,
+                                  "DeliveryPriceStacks": 48,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6740,8 +6740,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 5006,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 750.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 750.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6753,8 +6753,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5892,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1040.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 1040.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6766,8 +6766,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 7801,
                                   "PriceStacks": 104,
-                                  "WaitingTime": 1830.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1830.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6779,8 +6779,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 14313,
                                   "PriceStacks": 192,
-                                  "WaitingTime": 6150.0,
-                                  "DeliveryDiamonds": 54,
+                                  "DeliveryWaitingTime": 6150.0,
+                                  "DeliveryPriceStacks": 54,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -6849,7 +6849,7 @@ class DefaultSettings
                           "PriceGold": 200000,
                           "PriceStacks": 6000,
                           "DeliveryWaitingTime": 18000.0,
-                          "DeliveryDiamonds": 151.0,
+                          "DeliveryPriceStacks": 151.0,
                           "FartPreset": "default",
                           "FartColor": [
                             {
@@ -6890,8 +6890,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 11438,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3920.0,
-                                  "DeliveryDiamonds": 34,
+                                  "DeliveryWaitingTime": 3920.0,
+                                  "DeliveryPriceStacks": 34,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6907,8 +6907,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 13557,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5510.0,
-                                  "DeliveryDiamonds": 48,
+                                  "DeliveryWaitingTime": 5510.0,
+                                  "DeliveryPriceStacks": 48,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6924,8 +6924,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 15964,
                                   "PriceStacks": 214,
-                                  "WaitingTime": 7650.0,
-                                  "DeliveryDiamonds": 66,
+                                  "DeliveryWaitingTime": 7650.0,
+                                  "DeliveryPriceStacks": 66,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6941,8 +6941,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 23335,
                                   "PriceStacks": 313,
-                                  "WaitingTime": 16340.0,
-                                  "DeliveryDiamonds": 138,
+                                  "DeliveryWaitingTime": 16340.0,
+                                  "DeliveryPriceStacks": 138,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -6964,8 +6964,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 13661,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5600.0,
-                                  "DeliveryDiamonds": 48,
+                                  "DeliveryWaitingTime": 5600.0,
+                                  "DeliveryPriceStacks": 48,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6977,8 +6977,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 16188,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 7860.0,
-                                  "DeliveryDiamonds": 68,
+                                  "DeliveryWaitingTime": 7860.0,
+                                  "DeliveryPriceStacks": 68,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -6990,8 +6990,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 18889,
                                   "PriceStacks": 253,
-                                  "WaitingTime": 10700.0,
-                                  "DeliveryDiamonds": 92,
+                                  "DeliveryWaitingTime": 10700.0,
+                                  "DeliveryPriceStacks": 92,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7003,8 +7003,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 26213,
                                   "PriceStacks": 351,
-                                  "WaitingTime": 20610.0,
-                                  "DeliveryDiamonds": 174,
+                                  "DeliveryWaitingTime": 20610.0,
+                                  "DeliveryPriceStacks": 174,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7022,8 +7022,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 10815,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3510.0,
-                                  "DeliveryDiamonds": 32,
+                                  "DeliveryWaitingTime": 3510.0,
+                                  "DeliveryPriceStacks": 32,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7039,8 +7039,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 12781,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4900.0,
-                                  "DeliveryDiamonds": 42,
+                                  "DeliveryWaitingTime": 4900.0,
+                                  "DeliveryPriceStacks": 42,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7056,8 +7056,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 14986,
                                   "PriceStacks": 201,
-                                  "WaitingTime": 6740.0,
-                                  "DeliveryDiamonds": 58,
+                                  "DeliveryWaitingTime": 6740.0,
+                                  "DeliveryPriceStacks": 58,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7073,8 +7073,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 21356,
                                   "PriceStacks": 286,
-                                  "WaitingTime": 13680.0,
-                                  "DeliveryDiamonds": 116,
+                                  "DeliveryWaitingTime": 13680.0,
+                                  "DeliveryPriceStacks": 116,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7096,8 +7096,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4940,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 730.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 730.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7109,8 +7109,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5918,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1050.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 1050.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7122,8 +7122,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 7766,
                                   "PriceStacks": 104,
-                                  "WaitingTime": 1810.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1810.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7135,8 +7135,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 14518,
                                   "PriceStacks": 194,
-                                  "WaitingTime": 6320.0,
-                                  "DeliveryDiamonds": 54,
+                                  "DeliveryWaitingTime": 6320.0,
+                                  "DeliveryPriceStacks": 54,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7154,8 +7154,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 6475,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1260.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1260.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7167,8 +7167,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 7609,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1740.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1740.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7180,8 +7180,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 9688,
                                   "PriceStacks": 130,
-                                  "WaitingTime": 2820.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2820.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7193,8 +7193,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 16409,
                                   "PriceStacks": 220,
-                                  "WaitingTime": 8080.0,
-                                  "DeliveryDiamonds": 70,
+                                  "DeliveryWaitingTime": 8080.0,
+                                  "DeliveryPriceStacks": 70,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7263,7 +7263,7 @@ class DefaultSettings
                           "PriceGold": 400000,
                           "PriceStacks": 8000,
                           "DeliveryWaitingTime": 22500.0,
-                          "DeliveryDiamonds": 189.0,
+                          "DeliveryPriceStacks": 189.0,
                           "FartPreset": "crimson",
                           "FartColor": [
                             {
@@ -7304,8 +7304,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 12782,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4900.0,
-                                  "DeliveryDiamonds": 42,
+                                  "DeliveryWaitingTime": 4900.0,
+                                  "DeliveryPriceStacks": 42,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7321,8 +7321,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 14968,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 6720.0,
-                                  "DeliveryDiamonds": 58,
+                                  "DeliveryWaitingTime": 6720.0,
+                                  "DeliveryPriceStacks": 58,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7338,8 +7338,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 17553,
                                   "PriceStacks": 235,
-                                  "WaitingTime": 9240.0,
-                                  "DeliveryDiamonds": 80,
+                                  "DeliveryWaitingTime": 9240.0,
+                                  "DeliveryPriceStacks": 80,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7355,8 +7355,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 24987,
                                   "PriceStacks": 335,
-                                  "WaitingTime": 18730.0,
-                                  "DeliveryDiamonds": 158,
+                                  "DeliveryWaitingTime": 18730.0,
+                                  "DeliveryPriceStacks": 158,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7378,8 +7378,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 15367,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 7080.0,
-                                  "DeliveryDiamonds": 62,
+                                  "DeliveryWaitingTime": 7080.0,
+                                  "DeliveryPriceStacks": 62,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7391,8 +7391,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 17978,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 9700.0,
-                                  "DeliveryDiamonds": 82,
+                                  "DeliveryWaitingTime": 9700.0,
+                                  "DeliveryPriceStacks": 82,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7404,8 +7404,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 20884,
                                   "PriceStacks": 280,
-                                  "WaitingTime": 13080.0,
-                                  "DeliveryDiamonds": 112,
+                                  "DeliveryWaitingTime": 13080.0,
+                                  "DeliveryPriceStacks": 112,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7417,8 +7417,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 28245,
                                   "PriceStacks": 378,
-                                  "WaitingTime": 23930.0,
-                                  "DeliveryDiamonds": 202,
+                                  "DeliveryWaitingTime": 23930.0,
+                                  "DeliveryPriceStacks": 202,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7436,8 +7436,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 12105,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4400.0,
-                                  "DeliveryDiamonds": 38,
+                                  "DeliveryWaitingTime": 4400.0,
+                                  "DeliveryPriceStacks": 38,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7453,8 +7453,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 14135,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5990.0,
-                                  "DeliveryDiamonds": 52,
+                                  "DeliveryWaitingTime": 5990.0,
+                                  "DeliveryPriceStacks": 52,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7470,8 +7470,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 16519,
                                   "PriceStacks": 221,
-                                  "WaitingTime": 8190.0,
-                                  "DeliveryDiamonds": 70,
+                                  "DeliveryWaitingTime": 8190.0,
+                                  "DeliveryPriceStacks": 70,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7487,8 +7487,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 22952,
                                   "PriceStacks": 307,
-                                  "WaitingTime": 15800.0,
-                                  "DeliveryDiamonds": 134,
+                                  "DeliveryWaitingTime": 15800.0,
+                                  "DeliveryPriceStacks": 134,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7510,8 +7510,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4562,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 620.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 620.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7523,8 +7523,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5419,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 880.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 880.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7536,8 +7536,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 7269,
                                   "PriceStacks": 97,
-                                  "WaitingTime": 1590.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1590.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7549,8 +7549,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 14324,
                                   "PriceStacks": 192,
-                                  "WaitingTime": 6160.0,
-                                  "DeliveryDiamonds": 54,
+                                  "DeliveryWaitingTime": 6160.0,
+                                  "DeliveryPriceStacks": 54,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7568,8 +7568,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 5279,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 840.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 840.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7581,8 +7581,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 6178,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1150.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1150.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7594,8 +7594,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 8193,
                                   "PriceStacks": 110,
-                                  "WaitingTime": 2010.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 2010.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7607,8 +7607,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 15106,
                                   "PriceStacks": 202,
-                                  "WaitingTime": 6850.0,
-                                  "DeliveryDiamonds": 60,
+                                  "DeliveryWaitingTime": 6850.0,
+                                  "DeliveryPriceStacks": 60,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7677,7 +7677,7 @@ class DefaultSettings
                           "PriceGold": 900000,
                           "PriceStacks": 20000,
                           "DeliveryWaitingTime": 27000.0,
-                          "DeliveryDiamonds": 226.0,
+                          "DeliveryPriceStacks": 226.0,
                           "FartPreset": "orange",
                           "FartColor": [
                             {
@@ -7718,8 +7718,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 13610,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5560.0,
-                                  "DeliveryDiamonds": 48,
+                                  "DeliveryWaitingTime": 5560.0,
+                                  "DeliveryPriceStacks": 48,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7735,8 +7735,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 15668,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 7360.0,
-                                  "DeliveryDiamonds": 64,
+                                  "DeliveryWaitingTime": 7360.0,
+                                  "DeliveryPriceStacks": 64,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7752,8 +7752,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 18621,
                                   "PriceStacks": 249,
-                                  "WaitingTime": 10400.0,
-                                  "DeliveryDiamonds": 88,
+                                  "DeliveryWaitingTime": 10400.0,
+                                  "DeliveryPriceStacks": 88,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7769,8 +7769,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 27689,
                                   "PriceStacks": 371,
-                                  "WaitingTime": 23000.0,
-                                  "DeliveryDiamonds": 194,
+                                  "DeliveryWaitingTime": 23000.0,
+                                  "DeliveryPriceStacks": 194,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7792,8 +7792,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 16294,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 7960.0,
-                                  "DeliveryDiamonds": 68,
+                                  "DeliveryWaitingTime": 7960.0,
+                                  "DeliveryPriceStacks": 68,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7805,8 +7805,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 18773,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 10570.0,
-                                  "DeliveryDiamonds": 90,
+                                  "DeliveryWaitingTime": 10570.0,
+                                  "DeliveryPriceStacks": 90,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7818,8 +7818,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 22101,
                                   "PriceStacks": 296,
-                                  "WaitingTime": 14650.0,
-                                  "DeliveryDiamonds": 124,
+                                  "DeliveryWaitingTime": 14650.0,
+                                  "DeliveryPriceStacks": 124,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7831,8 +7831,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 31347,
                                   "PriceStacks": 420,
-                                  "WaitingTime": 29480.0,
-                                  "DeliveryDiamonds": 248,
+                                  "DeliveryWaitingTime": 29480.0,
+                                  "DeliveryPriceStacks": 248,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -7850,8 +7850,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 12885,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4980.0,
-                                  "DeliveryDiamonds": 44,
+                                  "DeliveryWaitingTime": 4980.0,
+                                  "DeliveryPriceStacks": 44,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7867,8 +7867,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 14789,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 6560.0,
-                                  "DeliveryDiamonds": 56,
+                                  "DeliveryWaitingTime": 6560.0,
+                                  "DeliveryPriceStacks": 56,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7884,8 +7884,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 17490,
                                   "PriceStacks": 234,
-                                  "WaitingTime": 9180.0,
-                                  "DeliveryDiamonds": 78,
+                                  "DeliveryWaitingTime": 9180.0,
+                                  "DeliveryPriceStacks": 78,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7901,8 +7901,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 25455,
                                   "PriceStacks": 341,
-                                  "WaitingTime": 19440.0,
-                                  "DeliveryDiamonds": 164,
+                                  "DeliveryWaitingTime": 19440.0,
+                                  "DeliveryPriceStacks": 164,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -7924,8 +7924,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 5235,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 820.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 820.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7937,8 +7937,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 6222,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1160.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1160.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7950,8 +7950,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 8310,
                                   "PriceStacks": 111,
-                                  "WaitingTime": 2070.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2070.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7963,8 +7963,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 16067,
                                   "PriceStacks": 215,
-                                  "WaitingTime": 7740.0,
-                                  "DeliveryDiamonds": 66,
+                                  "DeliveryWaitingTime": 7740.0,
+                                  "DeliveryPriceStacks": 66,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7982,8 +7982,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 6382,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1220.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1220.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -7995,8 +7995,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 7452,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1670.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1670.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8008,8 +8008,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 9707,
                                   "PriceStacks": 130,
-                                  "WaitingTime": 2830.0,
-                                  "DeliveryDiamonds": 26,
+                                  "DeliveryWaitingTime": 2830.0,
+                                  "DeliveryPriceStacks": 26,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8021,8 +8021,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 17507,
                                   "PriceStacks": 234,
-                                  "WaitingTime": 9190.0,
-                                  "DeliveryDiamonds": 78,
+                                  "DeliveryWaitingTime": 9190.0,
+                                  "DeliveryPriceStacks": 78,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8091,7 +8091,7 @@ class DefaultSettings
                           "PriceGold": 0,
                           "PriceStacks": 9000,
                           "DeliveryWaitingTime": 22500.0,
-                          "DeliveryDiamonds": 189.0,
+                          "DeliveryPriceStacks": 189.0,
                           "FartPreset": "blue",
                           "FartColor": [
                             {
@@ -8132,8 +8132,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 12157,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4430.0,
-                                  "DeliveryDiamonds": 38,
+                                  "DeliveryWaitingTime": 4430.0,
+                                  "DeliveryPriceStacks": 38,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8149,8 +8149,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 14416,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 6230.0,
-                                  "DeliveryDiamonds": 54,
+                                  "DeliveryWaitingTime": 6230.0,
+                                  "DeliveryPriceStacks": 54,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8166,8 +8166,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 17012,
                                   "PriceStacks": 228,
-                                  "WaitingTime": 8680.0,
-                                  "DeliveryDiamonds": 74,
+                                  "DeliveryWaitingTime": 8680.0,
+                                  "DeliveryPriceStacks": 74,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8183,8 +8183,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 24803,
                                   "PriceStacks": 332,
-                                  "WaitingTime": 18460.0,
-                                  "DeliveryDiamonds": 156,
+                                  "DeliveryWaitingTime": 18460.0,
+                                  "DeliveryPriceStacks": 156,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8206,8 +8206,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 14531,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 6330.0,
-                                  "DeliveryDiamonds": 54,
+                                  "DeliveryWaitingTime": 6330.0,
+                                  "DeliveryPriceStacks": 54,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -8219,8 +8219,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 17226,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 8900.0,
-                                  "DeliveryDiamonds": 76,
+                                  "DeliveryWaitingTime": 8900.0,
+                                  "DeliveryPriceStacks": 76,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -8232,8 +8232,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 20078,
                                   "PriceStacks": 269,
-                                  "WaitingTime": 12090.0,
-                                  "DeliveryDiamonds": 102,
+                                  "DeliveryWaitingTime": 12090.0,
+                                  "DeliveryPriceStacks": 102,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -8245,8 +8245,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 27929,
                                   "PriceStacks": 374,
-                                  "WaitingTime": 23400.0,
-                                  "DeliveryDiamonds": 198,
+                                  "DeliveryWaitingTime": 23400.0,
+                                  "DeliveryPriceStacks": 198,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -8264,8 +8264,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 11533,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 3990.0,
-                                  "DeliveryDiamonds": 36,
+                                  "DeliveryWaitingTime": 3990.0,
+                                  "DeliveryPriceStacks": 36,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8281,8 +8281,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 13588,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5540.0,
-                                  "DeliveryDiamonds": 48,
+                                  "DeliveryWaitingTime": 5540.0,
+                                  "DeliveryPriceStacks": 48,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8298,8 +8298,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 15932,
                                   "PriceStacks": 213,
-                                  "WaitingTime": 7610.0,
-                                  "DeliveryDiamonds": 66,
+                                  "DeliveryWaitingTime": 7610.0,
+                                  "DeliveryPriceStacks": 66,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8315,8 +8315,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 22722,
                                   "PriceStacks": 304,
-                                  "WaitingTime": 15490.0,
-                                  "DeliveryDiamonds": 132,
+                                  "DeliveryWaitingTime": 15490.0,
+                                  "DeliveryPriceStacks": 132,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8338,8 +8338,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 5265,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 830.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 830.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8351,8 +8351,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 6258,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1170.0,
-                                  "DeliveryDiamonds": 12,
+                                  "DeliveryWaitingTime": 1170.0,
+                                  "DeliveryPriceStacks": 12,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8364,8 +8364,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 8262,
                                   "PriceStacks": 111,
-                                  "WaitingTime": 2050.0,
-                                  "DeliveryDiamonds": 20,
+                                  "DeliveryWaitingTime": 2050.0,
+                                  "DeliveryPriceStacks": 20,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8377,8 +8377,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 15418,
                                   "PriceStacks": 206,
-                                  "WaitingTime": 7130.0,
-                                  "DeliveryDiamonds": 62,
+                                  "DeliveryWaitingTime": 7130.0,
+                                  "DeliveryPriceStacks": 62,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8396,8 +8396,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 6851,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1410.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1410.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8409,8 +8409,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 8119,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1980.0,
-                                  "DeliveryDiamonds": 18,
+                                  "DeliveryWaitingTime": 1980.0,
+                                  "DeliveryPriceStacks": 18,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8422,8 +8422,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 10262,
                                   "PriceStacks": 137,
-                                  "WaitingTime": 3160.0,
-                                  "DeliveryDiamonds": 28,
+                                  "DeliveryWaitingTime": 3160.0,
+                                  "DeliveryPriceStacks": 28,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8435,8 +8435,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 17441,
                                   "PriceStacks": 234,
-                                  "WaitingTime": 9130.0,
-                                  "DeliveryDiamonds": 78,
+                                  "DeliveryWaitingTime": 9130.0,
+                                  "DeliveryPriceStacks": 78,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8505,7 +8505,7 @@ class DefaultSettings
                           "PriceGold": 300000,
                           "PriceStacks": 7000,
                           "DeliveryWaitingTime": 22500.0,
-                          "DeliveryDiamonds": 189.0,
+                          "DeliveryPriceStacks": 189.0,
                           "FartPreset": "purple",
                           "FartColor": [
                             {
@@ -8546,8 +8546,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 12399,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4610.0,
-                                  "DeliveryDiamonds": 40,
+                                  "DeliveryWaitingTime": 4610.0,
+                                  "DeliveryPriceStacks": 40,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8563,8 +8563,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 14239,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 6080.0,
-                                  "DeliveryDiamonds": 52,
+                                  "DeliveryWaitingTime": 6080.0,
+                                  "DeliveryPriceStacks": 52,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8580,8 +8580,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 16915,
                                   "PriceStacks": 227,
-                                  "WaitingTime": 8580.0,
-                                  "DeliveryDiamonds": 74,
+                                  "DeliveryWaitingTime": 8580.0,
+                                  "DeliveryPriceStacks": 74,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8597,8 +8597,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 25191,
                                   "PriceStacks": 337,
-                                  "WaitingTime": 19040.0,
-                                  "DeliveryDiamonds": 160,
+                                  "DeliveryWaitingTime": 19040.0,
+                                  "DeliveryPriceStacks": 160,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8620,8 +8620,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 14823,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 6590.0,
-                                  "DeliveryDiamonds": 56,
+                                  "DeliveryWaitingTime": 6590.0,
+                                  "DeliveryPriceStacks": 56,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -8633,8 +8633,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 17094,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 8770.0,
-                                  "DeliveryDiamonds": 76,
+                                  "DeliveryWaitingTime": 8770.0,
+                                  "DeliveryPriceStacks": 76,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -8646,8 +8646,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 20071,
                                   "PriceStacks": 269,
-                                  "WaitingTime": 12090.0,
-                                  "DeliveryDiamonds": 102,
+                                  "DeliveryWaitingTime": 12090.0,
+                                  "DeliveryPriceStacks": 102,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -8659,8 +8659,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 28495,
                                   "PriceStacks": 382,
-                                  "WaitingTime": 24360.0,
-                                  "DeliveryDiamonds": 206,
+                                  "DeliveryWaitingTime": 24360.0,
+                                  "DeliveryPriceStacks": 206,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 1,
@@ -8678,8 +8678,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 11726,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 4120.0,
-                                  "DeliveryDiamonds": 36,
+                                  "DeliveryWaitingTime": 4120.0,
+                                  "DeliveryPriceStacks": 36,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8695,8 +8695,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 13462,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 5440.0,
-                                  "DeliveryDiamonds": 48,
+                                  "DeliveryWaitingTime": 5440.0,
+                                  "DeliveryPriceStacks": 48,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8712,8 +8712,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 15886,
                                   "PriceStacks": 213,
-                                  "WaitingTime": 7570.0,
-                                  "DeliveryDiamonds": 66,
+                                  "DeliveryWaitingTime": 7570.0,
+                                  "DeliveryPriceStacks": 66,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8729,8 +8729,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 23159,
                                   "PriceStacks": 310,
-                                  "WaitingTime": 16090.0,
-                                  "DeliveryDiamonds": 136,
+                                  "DeliveryWaitingTime": 16090.0,
+                                  "DeliveryPriceStacks": 136,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 0,
@@ -8752,8 +8752,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 4751,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 680.0,
-                                  "DeliveryDiamonds": 8,
+                                  "DeliveryWaitingTime": 680.0,
+                                  "DeliveryPriceStacks": 8,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8765,8 +8765,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 5625,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 950.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 950.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8778,8 +8778,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 7555,
                                   "PriceStacks": 101,
-                                  "WaitingTime": 1710.0,
-                                  "DeliveryDiamonds": 16,
+                                  "DeliveryWaitingTime": 1710.0,
+                                  "DeliveryPriceStacks": 16,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8791,8 +8791,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 14603,
                                   "PriceStacks": 196,
-                                  "WaitingTime": 6400.0,
-                                  "DeliveryDiamonds": 56,
+                                  "DeliveryWaitingTime": 6400.0,
+                                  "DeliveryPriceStacks": 56,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8810,8 +8810,8 @@ class DefaultSettings
                                   "Level": 1,
                                   "PriceGold": 5834,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1020.0,
-                                  "DeliveryDiamonds": 10,
+                                  "DeliveryWaitingTime": 1020.0,
+                                  "DeliveryPriceStacks": 10,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8823,8 +8823,8 @@ class DefaultSettings
                                   "Level": 2,
                                   "PriceGold": 6775,
                                   "PriceStacks": 0,
-                                  "WaitingTime": 1380.0,
-                                  "DeliveryDiamonds": 14,
+                                  "DeliveryWaitingTime": 1380.0,
+                                  "DeliveryPriceStacks": 14,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8836,8 +8836,8 @@ class DefaultSettings
                                   "Level": 3,
                                   "PriceGold": 8862,
                                   "PriceStacks": 119,
-                                  "WaitingTime": 2360.0,
-                                  "DeliveryDiamonds": 22,
+                                  "DeliveryWaitingTime": 2360.0,
+                                  "DeliveryPriceStacks": 22,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,
@@ -8849,8 +8849,8 @@ class DefaultSettings
                                   "Level": 4,
                                   "PriceGold": 15939,
                                   "PriceStacks": 213,
-                                  "WaitingTime": 7620.0,
-                                  "DeliveryDiamonds": 66,
+                                  "DeliveryWaitingTime": 7620.0,
+                                  "DeliveryPriceStacks": 66,
                                   "UpgradeChanges": [
                                     {
                                       "Type": 5,

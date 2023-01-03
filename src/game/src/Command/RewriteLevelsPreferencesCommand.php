@@ -52,8 +52,8 @@ class RewriteLevelsPreferencesCommand extends Command
 
             $creature['PriceGold'] = $levelEntity->getPriceGold();
             $creature['PriceStacks'] = $levelEntity->getPriceStacks();
-            $creature['DeliveryWaitingTime'] = $levelEntity->getWaitingTime();
-            $creature['DeliveryDiamonds'] = $levelEntity->getDeliveryDiamonds();
+            $creature['DeliveryWaitingTime'] = $levelEntity->getDeliveryWaitingTime();
+            $creature['DeliveryPriceStacks'] = $levelEntity->getDeliveryPriceStacks();
 
             /** @var CreatureUpgrade $upgradeChange */
             foreach ($levelEntity->getUpgradeChanges() as $upgradeChange) {
@@ -86,8 +86,8 @@ class RewriteLevelsPreferencesCommand extends Command
 
                     $level['PriceGold'] = $levelEntity->getPriceGold();
                     $level['PriceStacks'] = $levelEntity->getPriceStacks();
-                    $level['WaitingTime'] = $levelEntity->getWaitingTime();
-                    $level['DeliveryDiamonds'] = $levelEntity->getDeliveryDiamonds();
+                    $level['DeliveryWaitingTime'] = $levelEntity->getDeliveryWaitingTime();
+                    $level['DeliveryPriceStacks'] = $levelEntity->getDeliveryPriceStacks();
 
                     foreach ($level['UpgradeChanges'] as &$change) {
                         /** @var CreatureUpgrade $upgradeChange */

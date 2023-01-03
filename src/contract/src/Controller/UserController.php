@@ -61,8 +61,8 @@ class UserController extends SymfonyAbstractController
         $result['poolShare'] = $stakingContractManager->getTotalShare();
         $result['rewardPool'] = $poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle());
         $result['nick'] = $user->getNick();
-        $result['referralCode'] = $user->getMyReferralNft() ? $user->getMyReferralNft()->getRefCode() : null;
-        $result['referralLevel'] = $user->getMyReferralNft() ? $user->getMyReferralNft()->getUsers()->count() : null;
+        $result['referralCode'] = $user->getMyReferralNft()?->getRefCode();
+        $result['referralLevel'] = $user->getMyReferralNft()?->getUsers()->count();
         $result['qrCode'] = $resultQR->getDataUri();
         $result['avatar'] = $this->creatureFileNameManager->getFileName($user->getPlayer()->getActiveAnimalCreatureType()) . '.png';
 
@@ -86,7 +86,7 @@ class UserController extends SymfonyAbstractController
         RewardPoolContractManager $poolContractManager
     ): JsonResponse {
         $result['totalPoolShare'] = round($stakingContractManager->getTotalShare() / 1000000000000000000, 2);
-        $result['myPoolShare'] = round($stakingContractManager->getUserShare($this->getUser()->getWallet()) / $stakingContractManager->getTotalShare() * 100, 2);
+        $result['myPoolShare'] = round($stakingContractManager->getTotalShare() ? ($stakingContractManager->getUserShare($this->getUser()->getWallet()) / $stakingContractManager->getTotalShare() * 100) : 0, 2);
         $result['rewardPool'] = round($poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle()), 2);
         $result['referralLevel'] = $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null;
         $result['readyToUpgrade'] = $creatureUserRepository->readyToUpgradeCount($this->getUser());

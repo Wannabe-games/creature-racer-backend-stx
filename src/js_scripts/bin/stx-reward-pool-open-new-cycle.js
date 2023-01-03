@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-require('dotenv').config({path: '/app/common/.env'});
-require('dotenv').config({path: '/app/common/.env.local', override: true});
+require('dotenv').config({path: __dirname + '/../../common/.env'});
+require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
 const {makeContractCall, broadcastTransaction} = require("@stacks/transactions");
 const {StacksTestnet} = require("@stacks/network");
 

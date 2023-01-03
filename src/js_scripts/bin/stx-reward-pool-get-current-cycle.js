@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-require('dotenv').config({path: '/app/common/.env'});
-require('dotenv').config({path: '/app/common/.env.local', override: true});
+require('dotenv').config({path: __dirname + '/../../common/.env'});
+require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
+const {cvToJSON} = require("@stacks/transactions/dist/clarity/clarityValue");
 const {callReadOnlyFunction} = require("@stacks/transactions");
 const {StacksTestnet} = require("@stacks/network");
 
@@ -19,6 +20,7 @@ async function main() {
     return await callReadOnlyFunction(callArgs);
 }
 
-main().then(function (result) {
-    console.log(Number(result.value.value));
+main().then(function (response) {
+    let result = cvToJSON(response);
+    console.log(result.success ? result.value.value : '0');
 });

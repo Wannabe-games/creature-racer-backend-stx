@@ -4,24 +4,17 @@ declare(strict_types=1);
 
 namespace App\Common\Service\Stacks;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 class Manager
 {
-    public function __construct(
-        protected ContainerInterface $container
-    ) {
-    }
-
     protected function exec(string $command, bool $verbose = false): ?string
     {
         exec($command, $result);
 
         if ($verbose) {
-            echo('command: ' . $command);
-            echo("\n");
-            echo('response:');
-            var_dump($result);
+            echo("command:\n");
+            echo("$command\n");
+            echo("result:\n");
+            echo(implode("\n", $result) . "\n");
         }
 
         return $result[0] ?? null;

@@ -71,7 +71,7 @@ class CreatureLevel
      *
      * @Assert\NotNull()
      */
-    private int $waitingTime = 0;
+    private int $deliveryWaitingTime = 0;
 
     /**
      * @var int
@@ -80,7 +80,7 @@ class CreatureLevel
      *
      * @Assert\NotNull()
      */
-    private int $deliveryDiamonds = 0;
+    private int $deliveryPriceStacks = 0;
 
     /**
      * @var ArrayCollection
@@ -198,33 +198,33 @@ class CreatureLevel
     /**
      * @return int
      */
-    public function getWaitingTime(): int
+    public function getDeliveryWaitingTime(): int
     {
-        return $this->waitingTime;
+        return $this->deliveryWaitingTime;
     }
 
     /**
-     * @param int $waitingTime
+     * @param int $deliveryWaitingTime
      */
-    public function setWaitingTime(int $waitingTime): void
+    public function setDeliveryWaitingTime(int $deliveryWaitingTime): void
     {
-        $this->waitingTime = $waitingTime;
+        $this->deliveryWaitingTime = $deliveryWaitingTime;
     }
 
     /**
      * @return int
      */
-    public function getDeliveryDiamonds(): int
+    public function getDeliveryPriceStacks(): int
     {
-        return $this->deliveryDiamonds;
+        return $this->deliveryPriceStacks;
     }
 
     /**
-     * @param int $deliveryDiamonds
+     * @param int $deliveryPriceStacks
      */
-    public function setDeliveryDiamonds(int $deliveryDiamonds): void
+    public function setDeliveryPriceStacks(int $deliveryPriceStacks): void
     {
-        $this->deliveryDiamonds = $deliveryDiamonds;
+        $this->deliveryPriceStacks = $deliveryPriceStacks;
     }
 
     /**

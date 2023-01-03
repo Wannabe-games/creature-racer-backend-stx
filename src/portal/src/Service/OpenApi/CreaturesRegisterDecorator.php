@@ -41,8 +41,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 0,
                             "priceGold": 9500,
-                            "deliveryDiamonds": 20,
-                            "waitingTime": 120,
+                            "deliveryPriceStacks": 20,
+                            "deliveryWaitingTime": 120,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -78,8 +78,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 0,
                             "priceGold": 10000,
-                            "deliveryDiamonds": 20,
-                            "waitingTime": 120,
+                            "deliveryPriceStacks": 20,
+                            "deliveryWaitingTime": 120,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -115,8 +115,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 0,
                             "priceGold": 11000,
-                            "deliveryDiamonds": 20,
-                            "waitingTime": 120,
+                            "deliveryPriceStacks": 20,
+                            "deliveryWaitingTime": 120,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -152,8 +152,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 0,
                             "priceGold": 10500,
-                            "deliveryDiamonds": 20,
-                            "waitingTime": 120,
+                            "deliveryPriceStacks": 20,
+                            "deliveryWaitingTime": 120,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -189,8 +189,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 0,
                             "priceGold": 30000,
-                            "deliveryDiamonds": 20,
-                            "waitingTime": 150,
+                            "deliveryPriceStacks": 20,
+                            "deliveryWaitingTime": 150,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -226,8 +226,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 800,
                             "priceGold": 0,
-                            "deliveryDiamonds": 20,
-                            "waitingTime": 150,
+                            "deliveryPriceStacks": 20,
+                            "deliveryWaitingTime": 150,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -263,8 +263,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 1000,
                             "priceGold": 40000,
-                            "deliveryDiamonds": 20,
-                            "waitingTime": 180,
+                            "deliveryPriceStacks": 20,
+                            "deliveryWaitingTime": 180,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -300,8 +300,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 2800,
                             "priceGold": 70000,
-                            "deliveryDiamonds": 61,
-                            "waitingTime": 2880,
+                            "deliveryPriceStacks": 61,
+                            "deliveryWaitingTime": 2880,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -337,8 +337,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 3750,
                             "priceGold": 100000,
-                            "deliveryDiamonds": 91,
-                            "waitingTime": 4320,
+                            "deliveryPriceStacks": 91,
+                            "deliveryWaitingTime": 4320,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -374,8 +374,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 2600,
                             "priceGold": 50000,
-                            "deliveryDiamonds": 61,
-                            "waitingTime": 2880,
+                            "deliveryPriceStacks": 61,
+                            "deliveryWaitingTime": 2880,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -411,8 +411,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 3000,
                             "priceGold": 80000,
-                            "deliveryDiamonds": 61,
-                            "waitingTime": 2880,
+                            "deliveryPriceStacks": 61,
+                            "deliveryWaitingTime": 2880,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -448,8 +448,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 2700,
                             "priceGold": 60000,
-                            "deliveryDiamonds": 61,
-                            "waitingTime": 2880,
+                            "deliveryPriceStacks": 61,
+                            "deliveryWaitingTime": 2880,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -485,8 +485,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 5000,
                             "priceGold": 0,
-                            "deliveryDiamonds": 91,
-                            "waitingTime": 4320,
+                            "deliveryPriceStacks": 91,
+                            "deliveryWaitingTime": 4320,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -522,8 +522,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 3500,
                             "priceGold": 90000,
-                            "deliveryDiamonds": 76,
-                            "waitingTime": 3600,
+                            "deliveryPriceStacks": 76,
+                            "deliveryWaitingTime": 3600,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -559,8 +559,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 4500,
                             "priceGold": 150000,
-                            "deliveryDiamonds": 151,
-                            "waitingTime": 18000,
+                            "deliveryPriceStacks": 151,
+                            "deliveryWaitingTime": 18000,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -596,8 +596,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 6500,
                             "priceGold": 250000,
-                            "deliveryDiamonds": 151,
-                            "waitingTime": 18000,
+                            "deliveryPriceStacks": 151,
+                            "deliveryWaitingTime": 18000,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -633,8 +633,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 6000,
                             "priceGold": 200000,
-                            "deliveryDiamonds": 151,
-                            "waitingTime": 18000,
+                            "deliveryPriceStacks": 151,
+                            "deliveryWaitingTime": 18000,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -670,8 +670,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 8000,
                             "priceGold": 400000,
-                            "deliveryDiamonds": 189,
-                            "waitingTime": 22500,
+                            "deliveryPriceStacks": 189,
+                            "deliveryWaitingTime": 22500,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -707,8 +707,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 20000,
                             "priceGold": 900000,
-                            "deliveryDiamonds": 226,
-                            "waitingTime": 27000,
+                            "deliveryPriceStacks": 226,
+                            "deliveryWaitingTime": 27000,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -744,8 +744,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 9000,
                             "priceGold": 0,
-                            "deliveryDiamonds": 189,
-                            "waitingTime": 22500,
+                            "deliveryPriceStacks": 189,
+                            "deliveryWaitingTime": 22500,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",
@@ -781,8 +781,8 @@ final class CreaturesRegisterDecorator implements OpenApiFactoryInterface
                             "boostAccelerationMax": 5.5854,
                             "priceStacks": 7000,
                             "priceGold": 300000,
-                            "deliveryDiamonds": 189,
-                            "waitingTime": 22500,
+                            "deliveryPriceStacks": 189,
+                            "deliveryWaitingTime": 22500,
                             "upgradeChanges": [
                                 {
                                     "name": "acceleration",

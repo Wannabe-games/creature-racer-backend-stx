@@ -41,7 +41,3 @@ class RewardPoolContractManager extends Manager
         return '';
     }
 }
-
-// test:
-// bin/stx-reward-pool-open-new-cycle.js
-// php -r 'exec("bin/stx-reward-pool-open-new-cycle.js", $output); var_dump($output);'

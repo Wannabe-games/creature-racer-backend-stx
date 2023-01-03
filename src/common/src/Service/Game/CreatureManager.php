@@ -82,7 +82,7 @@ class CreatureManager
         $creatureUser = $this->createCreatureOnLevel($user, $creature, $creatureLevel);
 
         $date = new DateTime();
-        $date->add(new DateInterval('PT' . $creatureLevel->getWaitingTime() . 'S'));
+        $date->add(new DateInterval('PT' . $creatureLevel->getDeliveryWaitingTime() . 'S'));
         $creatureUser->setCreatedAt($date);
 
         return $creatureUser->getUuid();
@@ -386,7 +386,7 @@ class CreatureManager
     ): void {
         if (!empty($creatureLevel)) {
             $date = new DateTime();
-            $date->add(new DateInterval('PT' . $creatureLevel->getWaitingTime() . 'S'));
+            $date->add(new DateInterval('PT' . $creatureLevel->getDeliveryWaitingTime() . 'S'));
         } else {
             $date = null;
         }

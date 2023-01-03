@@ -37,7 +37,7 @@ class NftController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureUserRepository $creatureUserRepository
-     * @param SignManager $mintManager
+     * @param SignManager $signManager
      * @param NftUserCreature $nftUserCreature
      * @return JsonResponse
      * @throws JsonException
@@ -47,7 +47,7 @@ class NftController extends SymfonyAbstractController
     public function creatures(
         Request $request,
         CreatureUserRepository $creatureUserRepository,
-        SignManager $mintManager,
+        SignManager $signManager,
         NftUserCreature $nftUserCreature
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
@@ -66,7 +66,7 @@ class NftController extends SymfonyAbstractController
         }
 
         $message = $nftUserCreature->toStringMessage($creatureUser);
-        $signature = $mintManager->signMint($message);
+        $signature = $signManager->signMint($message);
 
         $result = array_merge(
             [

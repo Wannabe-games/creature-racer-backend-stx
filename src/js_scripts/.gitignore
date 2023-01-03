@@ -1,3 +1,4 @@
 ###> node vendor ###
 /node_modules
+/npm-debug.log
 ###< node vendor ###
