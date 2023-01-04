@@ -132,7 +132,7 @@ class rNftController extends SymfonyAbstractController
                 $referralPoolLog = $userReferralPoolRepository->findOneBy([
                     'user' => $user->getFromReferralNft()->getOwner()->getId(),
                     'status' => UserReferralPoolStatus::CRON_VERIFICATION,
-                    'isReceived' => false
+                    'received' => false
                 ]);
                 $userResult['pool'] = 0;
 

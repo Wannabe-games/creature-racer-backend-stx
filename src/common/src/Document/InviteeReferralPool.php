@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Document;
 
 use DateTimeImmutable;
@@ -16,25 +17,25 @@ class InviteeReferralPool
     /**
      * @ODM\Id
      */
-    protected $id;
+    protected ?string $id = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $userWallet = null;
+    private ?string $userWallet = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $sumPool = null;
+    private ?string $sumPool = null;
 
     /**
      * @var DateTimeInterface
      * @ODM\Field(type="date")
      */
-    protected $timestamp;
+    protected DateTimeInterface $timestamp;
 
     /**
      * @throws Exception
@@ -45,9 +46,9 @@ class InviteeReferralPool
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -87,7 +88,7 @@ class InviteeReferralPool
     /**
      * @return DateTimeInterface
      */
-    public function getTimestamp(): DateTimeImmutable|DateTimeInterface
+    public function getTimestamp(): DateTimeInterface
     {
         return $this->timestamp;
     }
@@ -95,7 +96,7 @@ class InviteeReferralPool
     /**
      * @param DateTimeInterface $timestamp
      */
-    public function setTimestamp(DateTimeImmutable|DateTimeInterface $timestamp): void
+    public function setTimestamp(DateTimeInterface $timestamp): void
     {
         $this->timestamp = $timestamp;
     }

@@ -107,7 +107,7 @@ class ProcessPaymentEventCommand extends Command
                     $referralPoolLog = $this->userReferralPoolRepository->findOneBy([
                         'user' => $user->getFromReferralNft()->getOwner()->getId(),
                         'status' => UserReferralPoolStatus::CRON_VERIFICATION,
-                        'isReceived' => false
+                        'received' => false
                     ]);
 
                     $referralPoolLog->addPaymentLog($paymentLog);

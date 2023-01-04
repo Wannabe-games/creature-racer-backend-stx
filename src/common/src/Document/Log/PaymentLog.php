@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Document\Log;
 
 use App\Document\UserReferralPool;
@@ -26,37 +27,37 @@ class PaymentLog
     /**
      * @ODM\Id
      */
-    protected $id;
+    protected ?string $id = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $userWallet = null;
+    private ?string $userWallet = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $amountRewardPool = null;
+    private ?string $amountRewardPool = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $amountReferralPool = null;
+    private ?string $amountReferralPool = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $gasFee = null;
+    private ?string $gasFee = null;
 
     /**
      * @var DateTimeInterface
      * @ODM\Field(type="date")
      */
-    protected $timestamp;
+    protected DateTimeInterface $timestamp;
 
     /**
      * @var UserReferralPool
@@ -74,9 +75,9 @@ class PaymentLog
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -148,7 +149,7 @@ class PaymentLog
     /**
      * @return DateTimeInterface
      */
-    public function getTimestamp(): DateTimeImmutable|DateTimeInterface
+    public function getTimestamp(): DateTimeInterface
     {
         return $this->timestamp;
     }
@@ -156,7 +157,7 @@ class PaymentLog
     /**
      * @param DateTimeInterface $timestamp
      */
-    public function setTimestamp(DateTimeImmutable|DateTimeInterface $timestamp): void
+    public function setTimestamp(DateTimeInterface $timestamp): void
     {
         $this->timestamp = $timestamp;
     }

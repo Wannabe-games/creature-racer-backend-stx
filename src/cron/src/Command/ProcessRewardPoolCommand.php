@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Command;
 
 use App\Common\Enum\SystemTypes;
@@ -51,7 +52,7 @@ class ProcessRewardPoolCommand extends Command
         $balance = $this->rewardPoolContractManager->getCollectedCycleBalance($cycle);
         $totalShare = $this->stakingContractManager->getTotalShare();
 
-        $output->writeln('Importing reward pool data in cycle: '.$date->format('Y-m-d'));
+        $output->writeln('Importing reward pool data in cycle: ' . $date->format('Y-m-d'));
 
         $this->verifyCycle($cycle, $output);
 
@@ -78,7 +79,7 @@ class ProcessRewardPoolCommand extends Command
                 $rewardLog->setCycle($cycle);
                 $rewardLog->setTimestamp($dateToday);
                 $rewardLog->setUser($user->getId());
-                $rewardLog->setIsReceived(false);
+                $rewardLog->setReceived(false);
                 $rewardLog->setStatus(UserRewardPoolStatus::CRON_VERIFICATION);
 
                 $this->documentManager->persist($rewardLog);
@@ -90,16 +91,9 @@ class ProcessRewardPoolCommand extends Command
                 continue;
             }
 
-            if (
-                $userShare != 0 &&
-                $totalShare != 0
-            ) {
-                $rewardLog->setMyReward(number_format($balance*($userShare/$totalShare),0,'.',''));
-            } else {
-                $rewardLog->setMyReward('0');
-            }
             $rewardLog->setTotalRewardPool($balance);
-            $rewardLog->setMyStakingPower($userShare/$totalShare*100);
+            $rewardLog->setMyReward(number_format($totalShare ? $balance * ($userShare / $totalShare) : 0, 0, '.', ''));
+            $rewardLog->setMyStakingPower($totalShare ? $userShare / $totalShare * 100 : 0);
 
             $this->documentManager->flush();
 
@@ -113,7 +107,7 @@ class ProcessRewardPoolCommand extends Command
     }
 
     /**
-     * @param string          $cycle
+     * @param string $cycle
      * @param OutputInterface $output
      *
      * @return void
@@ -145,9 +139,9 @@ class ProcessRewardPoolCommand extends Command
             $LastCycle = new Settings();
             $LastCycle->setSystemType(SystemTypes::REWARD_POOL_CYCLE);
             $LastCycle->setValue([
-                'cycle' => $cycle,
-                'date' => date('Y-m-d')
-            ]);
+                                     'cycle' => $cycle,
+                                     'date' => date('Y-m-d')
+                                 ]);
 
             $this->settingsRepository->save($LastCycle);
         } elseif (
@@ -155,9 +149,9 @@ class ProcessRewardPoolCommand extends Command
             $rewardPoolLog->getTimestamp()->format('Y-m-d') < date('Y-m-d')
         ) {
             $LastCycle->setValue([
-                'cycle' => $cycle,
-                'date' => date('Y-m-d')
-            ]);
+                                     'cycle' => $cycle,
+                                     'date' => date('Y-m-d')
+                                 ]);
 
             $this->settingsRepository->save($LastCycle);
         }

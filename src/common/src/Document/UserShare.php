@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Document;
 
 use DateTimeImmutable;
@@ -16,32 +17,32 @@ class UserShare
     /**
      * @ODM\Id
      */
-    protected $id;
+    protected ?string $id = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $share = null;
+    private ?string $share = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $hash = null;
+    private ?string $hash = null;
 
     /**
-     * @var integer
+     * @var integer|null
      *
      * @ODM\Field(type="int")
      */
-    private $user;
+    private ?int $user = null;
 
     /**
      * @var DateTimeInterface
      * @ODM\Field(type="date")
      */
-    protected $timestamp;
+    protected DateTimeInterface $timestamp;
 
     /**
      * @throws Exception
@@ -52,9 +53,9 @@ class UserShare
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -78,7 +79,7 @@ class UserShare
     /**
      * @return DateTimeInterface
      */
-    public function getTimestamp(): DateTimeImmutable|DateTimeInterface
+    public function getTimestamp(): DateTimeInterface
     {
         return $this->timestamp;
     }
@@ -86,7 +87,7 @@ class UserShare
     /**
      * @param DateTimeInterface $timestamp
      */
-    public function setTimestamp(DateTimeImmutable|DateTimeInterface $timestamp): void
+    public function setTimestamp(DateTimeInterface $timestamp): void
     {
         $this->timestamp = $timestamp;
     }

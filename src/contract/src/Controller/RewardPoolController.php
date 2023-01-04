@@ -155,7 +155,7 @@ class RewardPoolController extends SymfonyAbstractController
         if ($withdrawDocument->getUser() != $this->getUser()->getId()) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
-        $withdrawDocument->setIsReceived(true);
+        $withdrawDocument->setReceived(true);
         $documentManager->flush();
 
         return new JsonResponse(['status' => 'done']);

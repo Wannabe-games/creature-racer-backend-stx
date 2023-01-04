@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Document;
 
 use DateTimeImmutable;
@@ -26,61 +27,61 @@ class UserRewardPool
     /**
      * @ODM\Id
      */
-    protected $id;
+    protected ?string $id = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $myReward = null;
+    private ?string $myReward = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $myStakingPower = null;
+    private ?string $myStakingPower = null;
 
     /**
-     * @var null|string
+     * @var string|null
      * @ODM\Field(type="string")
      */
-    private $totalRewardPool = null;
+    private ?string $totalRewardPool = null;
 
     /**
-     * @var integer
+     * @var integer|null
      * @ODM\Field(type="int")
      */
-    private $user;
+    private ?int $user = null;
 
     /**
      * @var bool
      * @ODM\Field(type="bool")
      */
-    private $isReceived;
+    private bool $received = false;
 
     /**
-     * @var integer
+     * @var integer|null
      * @ODM\Field(type="int")
      */
-    private $status;
+    private ?int $status = null;
 
     /**
-     * @var integer
+     * @var integer|null
      * @ODM\Field(type="int")
      */
-    private $withdrawId;
+    private ?int $withdrawId = null;
 
     /**
-     * @var integer
+     * @var integer|null
      * @ODM\Field(type="int")
      */
-    private $cycle;
+    private ?int $cycle = null;
 
     /**
      * @var DateTimeInterface
      * @ODM\Field(type="date")
      */
-    protected $timestamp;
+    protected DateTimeInterface $timestamp;
 
     /**
      * @throws Exception
@@ -91,9 +92,9 @@ class UserRewardPool
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -101,7 +102,7 @@ class UserRewardPool
     /**
      * @return DateTimeInterface
      */
-    public function getTimestamp(): DateTimeImmutable|DateTimeInterface
+    public function getTimestamp(): DateTimeInterface
     {
         return $this->timestamp;
     }
@@ -109,7 +110,7 @@ class UserRewardPool
     /**
      * @param DateTimeInterface $timestamp
      */
-    public function setTimestamp(DateTimeImmutable|DateTimeInterface $timestamp): void
+    public function setTimestamp(DateTimeInterface $timestamp): void
     {
         $this->timestamp = $timestamp;
     }
@@ -183,15 +184,15 @@ class UserRewardPool
      */
     public function isReceived(): bool
     {
-        return $this->isReceived;
+        return $this->received;
     }
 
     /**
-     * @param bool $isReceived
+     * @param bool $received
      */
-    public function setIsReceived(bool $isReceived): void
+    public function setReceived(bool $received): void
     {
-        $this->isReceived = $isReceived;
+        $this->received = $received;
     }
 
     /**
