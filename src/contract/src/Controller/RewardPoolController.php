@@ -11,6 +11,9 @@ use App\Common\Service\Stacks\StakingContractManager;
 use App\Service\RewardPoolManager;
 use App\Document\UserRewardPool;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\LockException;
+use Doctrine\ODM\MongoDB\Mapping\MappingException;
+use Doctrine\ODM\MongoDB\MongoDBException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +36,9 @@ class RewardPoolController extends SymfonyAbstractController
      *
      * @param TranslatorInterface $translator
      */
-    public function __construct(private TranslatorInterface $translator) {}
+    public function __construct(private TranslatorInterface $translator)
+    {
+    }
 
     /**
      * @param CreatureUserRepository $creatureUserRepository
@@ -47,21 +52,21 @@ class RewardPoolController extends SymfonyAbstractController
         CreatureUserRepository $creatureUserRepository,
         StakingContractManager $stakingContractManager,
         RewardPoolContractManager $rewardPoolContractManager
-    ): JsonResponse
-    {
-        return new JsonResponse([
-            'rewardPool' => $rewardPoolContractManager->getCollectedCycleBalance($rewardPoolContractManager->getCurrentCycle()),
-            'userReward' => round(($stakingContractManager->getUserReward($this->getUser()->getWallet())*100), 2).'%',
-            'activeReferral' => $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null,
-            'usersDailyAmount' => rand(10,1000000)
-        ]);
+    ): JsonResponse {
+        return new JsonResponse(
+            [
+                'rewardPool' => $rewardPoolContractManager->getCollectedCycleBalance($rewardPoolContractManager->getCurrentCycle()),
+                'userReward' => round(($stakingContractManager->getUserReward($this->getUser()->getWallet()) * 100), 2) . '%',
+                'activeReferral' => $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null,
+                'usersDailyAmount' => rand(10, 1000000)
+            ]
+        );
     }
 
     /**
-     * @param Request           $request
-     * @param DocumentManager   $documentManager
+     * @param Request $request
+     * @param DocumentManager $documentManager
      * @param RewardPoolManager $rewardPoolManager
-     *
      * @return JsonResponse
      *
      * @Route("/reward-pool/user/list", name="reward_pool_user_list", methods={"GET"})
@@ -84,14 +89,14 @@ class RewardPoolController extends SymfonyAbstractController
     }
 
     /**
-     * @param string                    $id
-     * @param DocumentManager           $documentManager
+     * @param string $id
+     * @param DocumentManager $documentManager
      * @param RewardPoolContractManager $rewardPoolContractManager
-     *
      * @return JsonResponse
      *
-     * @throws \Doctrine\ODM\MongoDB\LockException
-     * @throws \Doctrine\ODM\MongoDB\Mapping\MappingException
+     * @throws LockException
+     * @throws MappingException
+     * @throws MongoDBException
      *
      * @Route("/reward-pool/withdraw/{id}", name="reward_pool_withdraw", methods={"GET"})
      */
@@ -103,42 +108,44 @@ class RewardPoolController extends SymfonyAbstractController
         /** @var UserRewardPool $withdrawDocument */
         $withdrawDocument = $documentManager->getRepository(UserRewardPool::class)->find($id);
 
-        if (empty($withdrawDocument))  {
+        if (empty($withdrawDocument)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
         if ($withdrawDocument->getUser() != $this->getUser()->getId()) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
 
-        if (empty($withdrawDocument->getWithdrawId()))  {
-            $count = ((int)$rewardPoolContractManager->getWithdrawCount($this->getUser()->getWallet()))+1;
-            $withdrawDocument->setWithdrawId($count);
+        if (empty($withdrawDocument->getWithdrawId())) {
+            $withdrawId = ((int)$rewardPoolContractManager->getWithdrawCount($this->getUser()->getWallet())) + 1;
+            $withdrawDocument->setWithdrawId($withdrawId);
         } else {
-            $count = $withdrawDocument->getWithdrawId();
+            $withdrawId = $withdrawDocument->getWithdrawId();
         }
 
         $cycle = (int)$withdrawDocument->getCycle();
-        $signature = $rewardPoolContractManager->signWithdraw($this->getUser()->getWallet(), $withdrawDocument->getMyReward(), $count, $cycle);
+        $signature = $rewardPoolContractManager->signWithdraw($this->getUser()->getWallet() . ' ' . $withdrawDocument->getMyReward() . ' ' . $withdrawId . ' ' . $cycle);
 
         $withdrawDocument->setStatus(UserRewardPoolStatus::PENDING);
         $documentManager->flush();
 
-        return new JsonResponse([
-            'amount' => $withdrawDocument->getMyReward(),
-            'withdrawId' => $count,
-            'cycle' => $cycle,
-            'signature' => $signature
-        ]);
+        return new JsonResponse(
+            [
+                'amount' => $withdrawDocument->getMyReward(),
+                'withdrawId' => $withdrawId,
+                'cycle' => $cycle,
+                'signature' => $signature
+            ]
+        );
     }
 
     /**
-     * @param string          $id
+     * @param string $id
      * @param DocumentManager $documentManager
-     *
      * @return JsonResponse
      *
-     * @throws \Doctrine\ODM\MongoDB\LockException
-     * @throws \Doctrine\ODM\MongoDB\Mapping\MappingException
+     * @throws LockException
+     * @throws MappingException
+     * @throws MongoDBException
      *
      * @Route("/reward-pool/withdraw/received/{id}", name="reward_pool_withdraw_status_received", methods={"PUT"})
      */
@@ -149,7 +156,7 @@ class RewardPoolController extends SymfonyAbstractController
         /** @var UserRewardPool $withdrawDocument */
         $withdrawDocument = $documentManager->getRepository(UserRewardPool::class)->find($id);
 
-        if (empty($withdrawDocument))  {
+        if (empty($withdrawDocument)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
         if ($withdrawDocument->getUser() != $this->getUser()->getId()) {

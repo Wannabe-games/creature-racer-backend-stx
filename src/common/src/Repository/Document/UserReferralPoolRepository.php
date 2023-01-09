@@ -29,7 +29,6 @@ class UserReferralPoolRepository extends DocumentRepository
 
     /**
      * @param int $userId
-     *
      * @return int
      *
      * @throws MongoDBException
@@ -47,7 +46,7 @@ class UserReferralPoolRepository extends DocumentRepository
         if (is_iterable($result)) {
             $result = ($result instanceof Iterator) ? $result->toArray() : $result;
 
-            return $result[0]->getWithdrawId();
+            return isset($result[0]) ? $result[0]->getWithdrawId() : 0;
         }
 
         return 0;

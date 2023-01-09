@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Common\Exception\Api\ApiException;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\Common\Service\Ethereum\ReferralPoolContractManager;
+use App\Common\Service\Stacks\ReferralPoolContractManager;
 use App\Document\UserReferralPool;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\LockException;
+use Doctrine\ODM\MongoDB\Mapping\MappingException;
+use Doctrine\ODM\MongoDB\MongoDBException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,16 +29,18 @@ class ReferralPoolController extends SymfonyAbstractController
      *
      * @param TranslatorInterface $translator
      */
-    public function __construct(private TranslatorInterface $translator) {}
+    public function __construct(private TranslatorInterface $translator)
+    {
+    }
 
     /**
-     * @param DocumentManager           $documentManager
+     * @param DocumentManager $documentManager
      * @param ReferralPoolContractManager $referralPoolContractManager
-     *
      * @return JsonResponse
      *
-     * @throws \Doctrine\ODM\MongoDB\LockException
-     * @throws \Doctrine\ODM\MongoDB\Mapping\MappingException
+     * @throws LockException
+     * @throws MappingException
+     * @throws MongoDBException
      *
      * @Route("/referral-pool/withdraw", name="referral_pool_withdraw", methods={"GET"})
      */
@@ -46,25 +51,27 @@ class ReferralPoolController extends SymfonyAbstractController
         /** @var UserReferralPool $withdrawDocument */
         $withdrawDocument = $documentManager->getRepository(UserReferralPool::class)->findForWithdraw($this->getUser()->getId());
 
-        if (empty($withdrawDocument))  {
+        if (empty($withdrawDocument)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
 
-        if (!empty($withdrawDocument->getWithdrawId()))  {
+        if (!empty($withdrawDocument->getWithdrawId())) {
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::WITHDRAW_EXECUTED));
         }
 
-        $count = $documentManager->getRepository(UserReferralPool::class)->findNextCountForWithdraw($this->getUser()->getId());
+        $withdrawId = $documentManager->getRepository(UserReferralPool::class)->findNextCountForWithdraw($this->getUser()->getId());
 
-        $signature = $referralPoolContractManager->getSignWithdraw($withdrawDocument->getMyReward(), $count);
+        $signature = $referralPoolContractManager->signWithdraw($withdrawDocument->getMyReward() . ' ' . $withdrawId);
 
-        $withdrawDocument->setWithdrawId($count);
+        $withdrawDocument->setWithdrawId($withdrawId);
         $documentManager->flush();
 
-        return new JsonResponse([
-            'amount' => $withdrawDocument->getMyReward(),
-            'withdrawId' => $count,
-            'signature' => $signature
-        ]);
+        return new JsonResponse(
+            [
+                'amount' => $withdrawDocument->getMyReward(),
+                'withdrawId' => $withdrawId,
+                'signature' => $signature
+            ]
+        );
     }
 }

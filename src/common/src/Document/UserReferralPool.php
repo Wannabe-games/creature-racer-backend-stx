@@ -150,7 +150,7 @@ class UserReferralPool
     /**
      * @return int
      */
-    public function getWithdrawId(): int
+    public function getWithdrawId(): ?int
     {
         return $this->withdrawId;
     }

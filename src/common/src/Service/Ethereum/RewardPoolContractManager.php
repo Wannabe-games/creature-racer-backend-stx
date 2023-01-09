@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Common\Service\Ethereum;
@@ -15,7 +16,8 @@ class RewardPoolContractManager
      */
     public function __construct(
         protected ContainerInterface $container
-    ) {}
+    ) {
+    }
 
     /**
      * @param bool $verbose
@@ -34,20 +36,20 @@ class RewardPoolContractManager
             $contractAddress
         ];
 
-        exec('reward-pool-get-balance '.implode(' ', $variable), $result);
+        exec('reward-pool-get-balance ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
     }
 
     /**
-     * @param int  $cycle
+     * @param int $cycle
      * @param bool $verbose
      *
      * @return string
@@ -65,21 +67,21 @@ class RewardPoolContractManager
             $cycle
         ];
 
-        exec('reward-pool-get-cycle-balance '.implode(' ', $variable), $result);
+        exec('reward-pool-get-cycle-balance ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('cycle: '.$cycle);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('cycle: ' . $cycle);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
     }
 
     /**
-     * @param int  $cycle
+     * @param int $cycle
      * @param bool $verbose
      *
      * @return string
@@ -97,14 +99,14 @@ class RewardPoolContractManager
             $cycle
         ];
 
-        exec('reward-pool-collected-balance-in-cycle '.implode(' ', $variable), $result);
+        exec('reward-pool-collected-balance-in-cycle ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('cycle: '.$cycle);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('cycle: ' . $cycle);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
@@ -127,13 +129,13 @@ class RewardPoolContractManager
             $contractAddress
         ];
 
-        exec('reward-pool-get-current-cycle '.implode(' ', $variable), $result);
+        exec('reward-pool-get-current-cycle ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
@@ -158,13 +160,13 @@ class RewardPoolContractManager
             $contractAddress,
         ];
 
-        exec('reward-pool-open-new-cycle '.implode(' ', $variable), $result);
+        exec('reward-pool-open-new-cycle ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            is_array($result) && key_exists(0, $result) ? var_dump('result: '.$result[0]) : var_dump($result);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            is_array($result) && key_exists(0, $result) ? var_dump('result: ' . $result[0]) : var_dump($result);
         }
 
         return is_array($result) && key_exists(0, $result) ? $result[0] : null;
@@ -175,7 +177,7 @@ class RewardPoolContractManager
      */
     public function getBalanceInMatic(): float
     {
-        return (int)$this->getBalance()/1000000000000000000;
+        return (int)$this->getBalance() / 1000000000000000000;
     }
 
     /**
@@ -185,7 +187,7 @@ class RewardPoolContractManager
      */
     public function getCycleBalanceInMatic(int $cycle): float
     {
-        return (int)$this->getCycleBalance($cycle)/1000000000000000000;
+        return (int)$this->getCycleBalance($cycle) / 1000000000000000000;
     }
 
     /**
@@ -195,19 +197,19 @@ class RewardPoolContractManager
      */
     public function getCollectedCycleBalanceInMatic(int $cycle): float
     {
-        return (int)$this->getCollectedCycleBalance($cycle)/1000000000000000000;
+        return (int)$this->getCollectedCycleBalance($cycle) / 1000000000000000000;
     }
 
     /**
-     * @param string  $userWallet
-     * @param string  $amount
-     * @param int     $count
-     * @param int     $cycle
-     * @param bool    $verbose
+     * @param string $userWallet
+     * @param string $amount
+     * @param int $count
+     * @param int $cycle
+     * @param bool $verbose
      *
      * @return string
      */
-    public function getSignWithdraw(string $userWallet, string $amount, int $count, int $cycle, bool $verbose = false): string
+    public function signWithdraw(string $userWallet, string $amount, int $count, int $cycle, bool $verbose = false): string
     {
         $privateKey = $this->container->getParameter('private_wallet_key');
 
@@ -219,13 +221,13 @@ class RewardPoolContractManager
             $cycle
         ];
 
-        exec('sign-withdraw-message '.implode(' ', $variable), $result);
+        exec('sign-withdraw-message ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('privateKey: '.$privateKey);
-            var_dump('amount: '.$amount);
-            var_dump('count: '.$count);
-            var_dump('result: '.$result[0]);
+            var_dump('privateKey: ' . $privateKey);
+            var_dump('amount: ' . $amount);
+            var_dump('count: ' . $count);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
@@ -233,7 +235,7 @@ class RewardPoolContractManager
 
     /**
      * @param string $userAddress
-     * @param bool   $verbose
+     * @param bool $verbose
      *
      * @return string
      */
@@ -250,14 +252,14 @@ class RewardPoolContractManager
             $userAddress
         ];
 
-        exec('reward-pool-get-withdrawal-count '.implode(' ', $variable), $result);
+        exec('reward-pool-get-withdrawal-count ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('userAddress: '.$userAddress);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('userAddress: ' . $userAddress);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];

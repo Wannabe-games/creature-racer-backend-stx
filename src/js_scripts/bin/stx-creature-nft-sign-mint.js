@@ -31,7 +31,7 @@ function sign(buffer, key) {
 }
 
 /* Sign minted creature arguments */
-async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, expiryTimestamp, price, userWallet, userPubKey) {
+async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, expiryTimestamp, price, userPubKey) {
     const payload = parseHexString(userPubKey)
         .concat(uint128toBytes(nftId))
         .concat(uint128toBytes(typeId))
@@ -47,7 +47,7 @@ async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, ex
 }
 
 async function main() {
-    return await mintCreature.apply(null, inputArgs.slice(0, 11));
+    return await mintCreature.apply(null, inputArgs.slice(0, 10));
 }
 
 main().then(function (txt) {

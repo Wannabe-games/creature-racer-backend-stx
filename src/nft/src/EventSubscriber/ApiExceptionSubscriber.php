@@ -6,55 +6,35 @@ use App\Common\Exception\Api\ApiException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-/**
- * Class ApiExceptionSubscriber
- *
- * @package App\EventSubscriber
- *
- * @author Michał Wadas <michal@mklit.pl>
- */
 class ApiExceptionSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @param ExceptionEvent $event
-     */
-    public function onKernelException(ExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event): void
     {
         $e = $event->getThrowable();
 
         if ($e instanceof ApiException) {
             $apiWrapper = $e->getApiExceptionWrapper();
-
-            $response = new JsonResponse(
-                $apiWrapper->toArray(),
-                $apiWrapper->getStatusCode()
-            );
-        } elseif ($e instanceof MethodNotAllowedHttpException) {
-            $response = new JsonResponse(
-                ['message' => $e->getMessage()],
-                400
-            );
-        } elseif ($e instanceof \Throwable) {
-            $response = new JsonResponse(
-                ['message' => $e->getMessage()],
-                500
-            );
+            $responseData = $apiWrapper->toArray();
+            $statusCode = $apiWrapper->getStatusCode();
         } else {
-            return;
+            $responseData = ['message' => $e->getMessage()];
+            if (isset($_ENV['APP_DEBUG'])) {
+                $responseData['file'] = $e->getFile();
+                $responseData['line'] = $e->getLine();
+                $responseData['trace'] = $e->getTrace();
+            }
+            $statusCode = $e instanceof MethodNotAllowedHttpException ? 400 : 500;
         }
 
+        $response = new JsonResponse($responseData, $statusCode);
         $response->headers->set('Content-Type', 'application/problem+json');
         $event->setResponse($response);
     }
 
-    /**
-     * @return array
-     */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::EXCEPTION => 'onKernelException'

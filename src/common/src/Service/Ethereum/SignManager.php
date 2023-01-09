@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Common\Service\Ethereum;
@@ -38,7 +39,7 @@ class SignManager
 
     /**
      * @param string $message
-     * @param bool   $verbose
+     * @param bool $verbose
      *
      * @return string
      */
@@ -46,12 +47,12 @@ class SignManager
     {
         $privateKey = $this->container->getParameter('private_wallet_key');
 
-        exec('sign-mint-message '.$privateKey.' '.$message, $result);
+        exec('sign-mint-message ' . $privateKey . ' ' . $message, $result);
 
         if ($verbose) {
-            var_dump('message: '.$message);
-            var_dump('privateKey: '.$privateKey);
-            var_dump('result: '.$result[0]);
+            var_dump('message: ' . $message);
+            var_dump('privateKey: ' . $privateKey);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];
@@ -68,7 +69,7 @@ class SignManager
      * Returns:
      * "0x2a2785be5d38ba773765df2232d749b01c4ebc97721f9d033a696b7f893ba45d20bccf4341ae6b01a8f697e22e1e4b4697e02e04352363bee1eeaa9494e096cb"
      */
-    public function signChallenge($challenge, $privateKey, $verbose = False): string
+    public function signChallenge($challenge, $privateKey, $verbose = false): string
     {
         if ($verbose) {
             dump("SignChallenge(challenge): $challenge \r\n");
@@ -76,7 +77,7 @@ class SignManager
         $hash = Keccak::hash($challenge, 256);
         $hash = hex2bin($hash);
 
-        return  $this->signHash($hash, $privateKey, $verbose);
+        return $this->signHash($hash, $privateKey, $verbose);
     }
 
     /**
@@ -103,14 +104,15 @@ class SignManager
     public function verifySignature(string $message, string $signature, string $address): bool
     {
         $msgLen = strlen($message);
-        $hash   = Keccak::hash("\x19Ethereum Signed Message:\n{$msgLen}{$message}", 256);
-        $sign   =  [
+        $hash = Keccak::hash("\x19Ethereum Signed Message:\n{$msgLen}{$message}", 256);
+        $sign = [
             "r" => substr($signature, 2, 64),
             "s" => substr($signature, 66, 64)
         ];
-        $recId  = ord(hex2bin(substr($signature, 130, 2))) - 27;
-        if ($recId != ($recId & 1))
+        $recId = ord(hex2bin(substr($signature, 130, 2))) - 27;
+        if ($recId != ($recId & 1)) {
             return false;
+        }
 
         $ec = new EC('secp256k1');
         $pubKey = $ec->recoverPubKey($hash, $sign, $recId);

@@ -6,8 +6,14 @@ namespace App\Common\Service\Stacks;
 
 class Manager
 {
-    protected function exec(string $command, bool $verbose = false): ?string
+    protected function exec(string $command, array $params = [], bool $verbose = false): ?string
     {
+        $command = trim($command);
+
+        if (!empty($params)) {
+            $command .= ' ' . implode(' ', array_map('trim', $params));
+        }
+
         exec($command, $result);
 
         if ($verbose) {

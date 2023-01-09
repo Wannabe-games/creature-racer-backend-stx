@@ -30,24 +30,18 @@ function sign(buffer, key) {
     return signMessageHashRsv({messageHash: sha256(buffer), privateKey: createStacksPrivateKey(key)});
 }
 
-/* Sign minted creature arguments */
-async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, expiryTimestamp, price, userWallet, userPubKey) {
-    const payload = parseHexString(userPubKey)
-        .concat(uint128toBytes(nftId))
-        .concat(uint128toBytes(typeId))
-        .concat(uint128toBytes(part1))
-        .concat(uint128toBytes(part2))
-        .concat(uint128toBytes(part3))
-        .concat(uint128toBytes(part4))
-        .concat(uint128toBytes(part5))
-        .concat(uint128toBytes(expiryTimestamp))
-        .concat(uint128toBytes(price));
+/* Sign withdraw arguments */
+async function signWithdraw(userWallet, amount, withdrawId, cycle) {
+    const payload = parseHexString(userWallet)
+        .concat(uint128toBytes(amount))
+        .concat(uint128toBytes(withdrawId))
+        .concat(uint128toBytes(cycle));
 
     return sign(payload, process.env.OPERATOR_CONTRACT_PRIVATE_KEY).data;
 }
 
 async function main() {
-    return await mintCreature.apply(null, inputArgs.slice(0, 11));
+    return await signWithdraw.apply(null, inputArgs.slice(0, 4));
 }
 
 main().then(function (txt) {

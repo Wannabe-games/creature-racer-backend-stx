@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Common\Service\Ethereum;
@@ -15,7 +16,8 @@ class ProviderManager
      */
     public function __construct(
         protected ContainerInterface $container
-    ) {}
+    ) {
+    }
 
     /**
      * @param bool $verbose
@@ -30,11 +32,11 @@ class ProviderManager
             $providedUrl
         ];
 
-        exec('get-block-number '.implode(' ', $variable), $result);
+        exec('get-block-number ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('result: '.$result[0]);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];

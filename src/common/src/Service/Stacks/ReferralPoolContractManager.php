@@ -8,6 +8,11 @@ class ReferralPoolContractManager extends Manager
 {
     public function getBalance(bool $verbose = false): int
     {
-        return (int)$this->exec('stx-referral-pool-get-balance', $verbose);
+        return (int)$this->exec('stx-referral-pool-get-balance', [], $verbose);
+    }
+
+    public function signWithdraw(string $message, bool $verbose = false): ?string
+    {
+        return $this->exec('stx-referral-pool-sign-withdraw', [$message], $verbose);
     }
 }

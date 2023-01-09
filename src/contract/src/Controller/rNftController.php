@@ -4,18 +4,12 @@ namespace App\Controller;
 
 use App\Common\Enum\UserReferralPoolStatus;
 use App\Common\Exception\Api\ApiException;
-use App\Common\Repository\Creature\CreatureUserRepository;
-use App\Common\Repository\Document\PaymentLogRepository;
 use App\Common\Repository\Document\UserReferralPoolRepository;
 use App\Common\Repository\ReferralNftRepository;
-use App\Common\Repository\UserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\Common\Service\Ethereum\ReferralContractManager;
-use App\Common\Service\Ethereum\SignManager;
+use App\Common\Service\Stacks\ReferralContractManager;
 use App\Document\Log\PaymentLog;
 use App\Document\UserReferralPool;
-use App\DTO\NftUserCreature;
-use App\Entity\Creature\CreatureUser;
 use App\Entity\ReferralNft;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstr
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class rNftController
@@ -35,7 +28,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class rNftController extends SymfonyAbstractController
 {
     /**
-     * @param string                $refCode
+     * @param string $refCode
      * @param ReferralNftRepository $referralNftRepository
      *
      * @return JsonResponse
@@ -46,17 +39,18 @@ class rNftController extends SymfonyAbstractController
         string $refCode,
         ReferralNftRepository $referralNftRepository
     ): JsonResponse {
-
-        $referralNft = $referralNftRepository->findOneBy([
-            'refCode' => $refCode
-        ]);
+        $referralNft = $referralNftRepository->findOneBy(
+            [
+                'refCode' => $refCode
+            ]
+        );
 
         return new JsonResponse(['unique' => empty($referralNft)]);
     }
 
     /**
-     * @param Request                $request
-     * @param ReferralNftRepository  $referralNftRepository
+     * @param Request $request
+     * @param ReferralNftRepository $referralNftRepository
      * @param EntityManagerInterface $entityManager
      *
      * @return JsonResponse
@@ -68,19 +62,18 @@ class rNftController extends SymfonyAbstractController
         ReferralNftRepository $referralNftRepository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-        $data = json_decode($request->getContent(), true);
-
-        if (
-            !key_exists('refCode', $data) ||
-            !key_exists('rNftHash', $data)
-        )  {
+        if (!array_key_exists('refCode', $data) || !array_key_exists('rNftHash', $data)
+        ) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
 
-        $referralNft = $referralNftRepository->findOneBy([
-            'refCode' => $data['refCode']
-        ]);
+        $referralNft = $referralNftRepository->findOneBy(
+            [
+                'refCode' => $data['refCode']
+            ]
+        );
 
         if (!empty($referralNft)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::REF_CODE_EXIST));
@@ -129,11 +122,13 @@ class rNftController extends SymfonyAbstractController
                 $userResult['nick'] = $user->getNick();
 
                 /** @var UserReferralPool $referralPoolLog */
-                $referralPoolLog = $userReferralPoolRepository->findOneBy([
-                    'user' => $user->getFromReferralNft()->getOwner()->getId(),
-                    'status' => UserReferralPoolStatus::CRON_VERIFICATION,
-                    'received' => false
-                ]);
+                $referralPoolLog = $userReferralPoolRepository->findOneBy(
+                    [
+                        'user' => $user->getFromReferralNft()->getOwner()->getId(),
+                        'status' => UserReferralPoolStatus::CRON_VERIFICATION,
+                        'received' => false
+                    ]
+                );
                 $userResult['pool'] = 0;
 
                 /** @var PaymentLog $paymentLog */

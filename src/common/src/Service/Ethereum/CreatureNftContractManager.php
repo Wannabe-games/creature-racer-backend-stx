@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Common\Service\Ethereum;
@@ -16,7 +17,8 @@ class CreatureNftContractManager
      */
     public function __construct(
         protected ContainerInterface $container
-    ) {}
+    ) {
+    }
 
     public function setUri(bool $verbose = false): string
     {
@@ -24,7 +26,7 @@ class CreatureNftContractManager
         $providedUrl = $this->container->getParameter('chain_provider_url');
         $contractAddress = $this->container->getParameter('creature_nft_contract_address');
         $privateOperatorKey = $this->container->getParameter('private_wallet_key');
-        $uri = $this->container->getParameter('base_url').'api/nft/metadata/';
+        $uri = $this->container->getParameter('base_url') . 'api/nft/metadata/';
 
         $variable = [
             $env,
@@ -34,13 +36,13 @@ class CreatureNftContractManager
             $contractAddress,
         ];
 
-        exec('referral-set-uri '.implode(' ', $variable), $result);
+        exec('referral-set-uri ' . implode(' ', $variable), $result);
 
         if ($verbose) {
-            var_dump('env: '.$env);
-            var_dump('provider_url: '.$providedUrl);
-            var_dump('contract_address: '.$contractAddress);
-            var_dump('result: '.$result[0]);
+            var_dump('env: ' . $env);
+            var_dump('provider_url: ' . $providedUrl);
+            var_dump('contract_address: ' . $contractAddress);
+            var_dump('result: ' . $result[0]);
         }
 
         return $result[0];

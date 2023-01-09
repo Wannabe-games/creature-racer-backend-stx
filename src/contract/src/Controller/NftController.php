@@ -6,11 +6,14 @@ use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Common\Service\Game\CreatureManager;
+use App\Common\Service\Stacks\CreatureNftContractManager;
 use App\Common\Service\Stacks\SignManager;
 use App\DTO\NftUserCreature;
 use App\Entity\Creature\CreatureUser;
+use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\OptimisticLockException;
 use JsonException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -32,12 +35,14 @@ class NftController extends SymfonyAbstractController
      *
      * @param TranslatorInterface $translator
      */
-    public function __construct(private TranslatorInterface $translator) {}
+    public function __construct(private TranslatorInterface $translator)
+    {
+    }
 
     /**
      * @param Request $request
      * @param CreatureUserRepository $creatureUserRepository
-     * @param SignManager $signManager
+     * @param CreatureNftContractManager $creatureNftContractManager
      * @param NftUserCreature $nftUserCreature
      * @return JsonResponse
      * @throws JsonException
@@ -47,7 +52,7 @@ class NftController extends SymfonyAbstractController
     public function creatures(
         Request $request,
         CreatureUserRepository $creatureUserRepository,
-        SignManager $signManager,
+        CreatureNftContractManager $creatureNftContractManager,
         NftUserCreature $nftUserCreature
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
@@ -66,7 +71,7 @@ class NftController extends SymfonyAbstractController
         }
 
         $message = $nftUserCreature->toStringMessage($creatureUser);
-        $signature = $signManager->signMint($message);
+        $signature = $creatureNftContractManager->signMint($message);
 
         $result = array_merge(
             [
@@ -79,15 +84,14 @@ class NftController extends SymfonyAbstractController
     }
 
     /**
-     * @param Request                $request
+     * @param Request $request
      * @param CreatureUserRepository $creatureUserRepository
-     *
      * @return JsonResponse
      *
-     * @Route("/creature/nft/name", name="creature_nft_name", methods={"POST"})
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
+     * @Route("/creature/nft/name", name="creature_nft_name", methods={"POST"})
      */
     public function nftNameAction(
         Request $request,
@@ -104,8 +108,8 @@ class NftController extends SymfonyAbstractController
         }
 
         $nft = $creatureUserRepository->findOneBy([
-            'contract' => $data['contract'],
-        ]);
+                                                      'contract' => $data['contract'],
+                                                  ]);
 
         if (empty($nft)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
@@ -124,15 +128,14 @@ class NftController extends SymfonyAbstractController
     }
 
     /**
-     * @param Request         $request
+     * @param Request $request
      * @param CreatureManager $creatureManager
-     *
      * @return JsonResponse
-     *
-     * @Route("/creature/stake", name="stake", methods={"POST"})
      *
      * @throws NoResultException
      * @throws NonUniqueResultException
+     *
+     * @Route("/creature/stake", name="stake", methods={"POST"})
      */
     public function stakeAction(Request $request, CreatureManager $creatureManager): JsonResponse
     {
@@ -147,6 +150,6 @@ class NftController extends SymfonyAbstractController
 
         $id = $creatureManager->stakeCreature($this->getUser(), $data['creatureId'], $data['stake']);
 
-        return new JsonResponse([ 'creatureId' => $id]);
+        return new JsonResponse(['creatureId' => $id]);
     }
 }
