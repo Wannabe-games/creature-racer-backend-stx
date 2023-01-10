@@ -241,6 +241,17 @@ class User implements UserInterface
     }
 
     /**
+     * @return string[]
+     */
+    public static function getRolesChoices(): array
+    {
+        return [
+            'Super Admin' => self::ROLE_SUPER_ADMIN,
+            'User' => self::ROLE_USER,
+        ];
+    }
+
+    /**
      * @return int|null
      */
     public function getId(): ?int

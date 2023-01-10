@@ -31,24 +31,22 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
         api:
-            pattern: ^/api/
+            pattern: ^/api
             stateless: true
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
-        main:
-            pattern: ^/
-            logout:
-                path: app_logout
-                handlers:
-                    - App\Security\Handler\LogoutHandler
-            guard:
-                authenticators:
-                    - App\Security\Authenticator\UserAuthenticator
-            entry_point: App\Security\Authenticator\UserAuthenticator
+        admin:
+            pattern: ^/admin
+            provider: app_user_provider
+            form_login:
+                login_path: admin_login
+                check_path: admin_login
+            logout: true
 
     access_control:
-        - { path: ^/admin,                            role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login,                      role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin,                            role: ROLE_SUPER_ADMIN }
         - { path: ^/api/contract/docs,                role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/contract/user/card,           role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/contract/user/qr-code,        role: IS_AUTHENTICATED_ANONYMOUSLY }
