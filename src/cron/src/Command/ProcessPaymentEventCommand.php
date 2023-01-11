@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Command;
 
 use App\Common\Enum\SystemTypes;
@@ -6,12 +7,13 @@ use App\Common\Enum\UserReferralPoolStatus;
 use App\Common\Repository\Document\UserReferralPoolRepository;
 use App\Common\Repository\SettingsRepository;
 use App\Common\Repository\UserRepository;
-use App\Common\Service\Ethereum\PaymentContractManager;
-use App\Common\Service\Ethereum\ProviderManager;
+use App\Common\Service\Stacks\PaymentContractManager;
+use App\Common\Service\Stacks\ProviderManager;
 use App\Document\Log\PaymentLog;
 use App\Document\UserReferralPool;
 use App\Entity\Settings;
 use App\Entity\User;
+use DateTimeImmutable;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -43,37 +45,43 @@ class ProcessPaymentEventCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         /** @var Settings $lastProcessedBlockNumber */
-        $lastProcessedBlockNumber = $this->settingsRepository->findOneBy([
-            'systemType' => SystemTypes::PAYMENT_LAST_BLOCK_NUMBER,
-        ]);
-        $blockNumber = $this->providerManager->getBlockNumber();
+        $lastProcessedBlockNumber = $this->settingsRepository->findOneBy(['systemType' => SystemTypes::PAYMENT_LAST_BLOCK_NUMBER]);
+        if (null === $lastProcessedBlockNumber) {
+            $lastProcessedBlockNumber = new Settings();
+            $lastProcessedBlockNumber->setSystemType(SystemTypes::PAYMENT_LAST_BLOCK_NUMBER);
+            $lastProcessedBlockNumber->setValue(['block' => 0]);
+        }
+        $actualBlockNumber = $this->providerManager->getBlockNumber();
+        $startBlockNumber = $lastProcessedBlockNumber->getValue()['block'] + 1;
+        $processingBlocks = $actualBlockNumber - $startBlockNumber;
+        $maxBlocksToRead = 10;
+        $packages = (int)ceil($processingBlocks / $maxBlocksToRead);
 
-        $lastBlockNumber = (int)$lastProcessedBlockNumber->getValue()['block'];
-
-        $output->writeln('Start time: '.date('Y-m-d H:i:s'));
-        $output->writeln('Start block: '.$lastBlockNumber);
-        $output->writeln('Actual block: '.$blockNumber);
-
-        $processingBlocks = $blockNumber-$lastBlockNumber;
-
-        $output->writeln('Block to parse: '.$processingBlocks);
-        $packages = (int)ceil($processingBlocks/2000);
-//        dump($packages);
-        $output->writeln('Block packages: '.$packages);
+        $output->writeln('Start time: ' . date('Y-m-d H:i:s'));
+        $output->writeln('Start block: ' . $startBlockNumber);
+        $output->writeln('Actual block: ' . $actualBlockNumber);
+        $output->writeln('Block to parse: ' . $processingBlocks);
+        $output->writeln('Blocks in pack: ' . $maxBlocksToRead);
+        $output->writeln('Block packages: ' . $packages);
 
         $logsCounter = 0;
         for ($i = 0; $i < $packages; ++$i) {
-            $nextBlock = $lastBlockNumber+($i*2000);
-//            dump($nextBlock);
-            $jsonString = $this->paymentContractManager->getLog($nextBlock);
-            $jsonLogs = json_decode($jsonString);
-//            dump($jsonLogs);
-            $output->writeln('Parsing block from: '.$nextBlock.' to: '.($nextBlock+2000).' iteration: '.$i+1);
+            $nextBlockNumber = $startBlockNumber + ($i * $maxBlocksToRead);
+            $endBlockNumber = $nextBlockNumber + $maxBlocksToRead - 1;
+
+            if ($endBlockNumber > $actualBlockNumber) {
+                $endBlockNumber = $actualBlockNumber;
+            }
+
+            $output->writeln('Parsing block from: ' . $nextBlockNumber . ' to: ' . $endBlockNumber . ' iteration: ' . $i + 1);
+
+            $jsonString = $this->paymentContractManager->getLog($nextBlockNumber, $maxBlocksToRead);
+            $jsonLogs = json_decode($jsonString, false, 512, JSON_THROW_ON_ERROR);
 
             if (!empty($jsonString) && empty($jsonLogs) && !is_array($jsonLogs)) {
-                $lastProcessedBlockNumber->setValue(['block' => $nextBlock]);
+                $lastProcessedBlockNumber->setValue(['block' => $nextBlockNumber]);
                 $this->settingsRepository->save($lastProcessedBlockNumber);
-                $output->writeln('Added logs: '.$logsCounter);
+                $output->writeln('Added logs: ' . $logsCounter);
 
                 return -1;
             } elseif (empty($jsonString) && empty($jsonLogs)) {
@@ -84,31 +92,32 @@ class ProcessPaymentEventCommand extends Command
                 $rawData = $log->parsedLogs->args;
                 $amount = hexdec($rawData[1]->hex) / 1000000000000;
                 $referralAmount = hexdec($rawData[4]->hex);
-                $referralPool = $referralAmount == 0 ? $referralAmount : $referralAmount / 1000000000000;
+                $referralPool = $referralAmount === 0 ? $referralAmount : $referralAmount / 1000000000000;
 
                 $paymentLog = new PaymentLog();
                 $paymentLog->setUserWallet(strtolower($rawData[0]));
-                $paymentLog->setTimestamp((new \DateTimeImmutable())->setTimestamp(hexdec($rawData[2]->hex)));
+                $paymentLog->setTimestamp((new DateTimeImmutable())->setTimestamp(hexdec($rawData[2]->hex)));
                 $paymentLog->setAmountReferralPool($referralPool);
-                $paymentLog->setAmountRewardPool(($amount-0.1-$referralPool)/2);
+                $paymentLog->setAmountRewardPool(($amount - 0.1 - $referralPool) / 2);
 
                 /** @var User $user */
-                $user = $this->userRepository->findOneBy([
-                    'wallet' => strtolower($rawData[0])
-                ]);
+                $user = $this->userRepository->findOneBy(
+                    [
+                        'wallet' => strtolower($rawData[0])
+                    ]
+                );
 
                 $this->documentManager->persist($paymentLog);
 
-                if (
-                    !empty($user) &&
-                    !empty($user->getFromReferralNft())
-                ) {
+                if ($user !== null && $user->getFromReferralNft() !== null) {
                     /** @var UserReferralPool $referralPoolLog */
-                    $referralPoolLog = $this->userReferralPoolRepository->findOneBy([
-                        'user' => $user->getFromReferralNft()->getOwner()->getId(),
-                        'status' => UserReferralPoolStatus::CRON_VERIFICATION,
-                        'received' => false
-                    ]);
+                    $referralPoolLog = $this->userReferralPoolRepository->findOneBy(
+                        [
+                            'user' => $user->getFromReferralNft()->getOwner()->getId(),
+                            'status' => UserReferralPoolStatus::CRON_VERIFICATION,
+                            'received' => false
+                        ]
+                    );
 
                     $referralPoolLog->addPaymentLog($paymentLog);
                     $paymentLog->setUserReferralPool($referralPoolLog);
@@ -118,12 +127,12 @@ class ProcessPaymentEventCommand extends Command
             }
             $this->documentManager->flush();
 
-            $lastProcessedBlockNumber->setValue(['block' => $nextBlock+2000]);
+            $lastProcessedBlockNumber->setValue(['block' => $endBlockNumber]);
             $this->settingsRepository->save($lastProcessedBlockNumber);
         }
 
-        $output->writeln('End time: '.date('Y-m-d H:i:s'));
-        $output->writeln('Added logs: '.$logsCounter);
+        $output->writeln('End time: ' . date('Y-m-d H:i:s'));
+        $output->writeln('Added logs: ' . $logsCounter);
 
         return 0;
     }

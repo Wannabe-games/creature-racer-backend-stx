@@ -6,9 +6,9 @@ namespace App\Common\Service\Stacks;
 
 class CreatureNftContractManager extends Manager
 {
-    public function setUri(bool $verbose = false): string
+    public function setUri(string $uri, bool $verbose = false): string
     {
-        return '';
+        return $this->exec('stx-creature-nft-set-uri', [$uri], $verbose);
     }
 
     public function signMint(string $message, bool $verbose = false): ?string
