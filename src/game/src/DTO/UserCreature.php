@@ -1,10 +1,12 @@
 <?php
+
 namespace App\DTO;
 
 use App\Common\Repository\Creature\CreatureLevelRepository;
 use App\Common\Utils\TimeTickerConverter;
 use App\Entity\Creature\CreatureLevel;
 use App\Entity\Creature\CreatureUser;
+use DateTime;
 
 /**
  * Class UserCreature
@@ -12,12 +14,6 @@ use App\Entity\Creature\CreatureUser;
  */
 class UserCreature
 {
-    const UPGRADE_TYPE_BELLY = 'boost';
-    const UPGRADE_TYPE_BUTTOCKS = 'boost2';
-    const UPGRADE_TYPE_HEART = 'reflex';
-    const UPGRADE_TYPE_LUNGS = 'lung';
-    const UPGRADE_TYPE_MUSCLES = 'muscles';
-
     /**
      * @var CreatureLevelRepository
      */
@@ -44,36 +40,38 @@ class UserCreature
             ]
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => self::UPGRADE_TYPE_MUSCLES,
+            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_MUSCLES,
             'Level' => $creatureUser->getMuscles(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeMusclesEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeMusclesEndFormat('U')) : 0
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => self::UPGRADE_TYPE_LUNGS,
+            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_LUNGS,
             'Level' => $creatureUser->getLungs(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeLungsEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeLungsEndFormat('U')) : 0
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => self::UPGRADE_TYPE_HEART,
+            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_HEART,
             'Level' => $creatureUser->getHeart(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeHeartEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeHeartEndFormat('U')) : 0
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => self::UPGRADE_TYPE_BELLY,
+            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_BELLY,
             'Level' => $creatureUser->getBelly(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeBellyEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeBellyEndFormat('U')) : 0
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => self::UPGRADE_TYPE_BUTTOCKS,
+            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_BUTTOCKS,
             'Level' => $creatureUser->getButtocks(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeButtocksEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeButtocksEndFormat('U')) : 0
         ];
 
         /** @var CreatureLevel $creatureBuy */
-        $creatureBuy = $this->creatureLevelRepository->findOneBy([
-            'upgradeType' => 'base',
-            'creatureType' => $creatureUser->getCreature()->getType(),
-        ]);
+        $creatureBuy = $this->creatureLevelRepository->findOneBy(
+            [
+                'creature' => $creatureUser->getCreature(),
+                'upgradeType' => CreatureLevel::UPGRADE_TYPE_BASE,
+            ]
+        );
 
         if (isset($creatureBuy)) {
             $serializedData['DeliveryWaitingTime'] = TimeTickerConverter::TimeToTicks((int)$creatureUser->getCreature()->getCreatedAt()->format('U') + $creatureBuy->getDeliveryWaitingTime());
@@ -84,13 +82,13 @@ class UserCreature
     }
 
     /**
-     * @param \DateTime|null $date
+     * @param DateTime|null $date
      *
      * @return bool
      */
-    private function isActiveUpgrade(?\DateTime $date): bool
+    private function isActiveUpgrade(?DateTime $date): bool
     {
-        $currentDate = new \DateTime();
+        $currentDate = new DateTime();
 
         return $date >= $currentDate;
     }

@@ -40,12 +40,12 @@ class BuildCreatureMaxPreferenceRangeCommand extends Command
         foreach ($creatureLevels as $creatureLevel) {
             /** @var CreatureUpgrade $upgradeChange */
             foreach ($creatureLevel->getUpgradeChanges() as $upgradeChange) {
-                if (!key_exists($creatureLevel->getCreatureType(), $result)) {
-                    $result[$creatureLevel->getCreatureType()][$upgradeChange->getType()] = $upgradeChange->getValue();
-                } elseif (!key_exists($upgradeChange->getType(), $result[$creatureLevel->getCreatureType()])) {
-                    $result[$creatureLevel->getCreatureType()][$upgradeChange->getType()] = $upgradeChange->getValue();
+                if (!key_exists($creatureLevel->getCreature()->getType(), $result)) {
+                    $result[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] = $upgradeChange->getValue();
+                } elseif (!key_exists($upgradeChange->getType(), $result[$creatureLevel->getCreature()->getType()])) {
+                    $result[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] = $upgradeChange->getValue();
                 } else {
-                    $result[$creatureLevel->getCreatureType()][$upgradeChange->getType()] += $upgradeChange->getValue();
+                    $result[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] += $upgradeChange->getValue();
                 }
             }
         }

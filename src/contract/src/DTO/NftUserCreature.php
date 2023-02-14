@@ -39,8 +39,8 @@ class NftUserCreature
         /** @var CreatureLevel $creatureBuy */
         $creatureBuy = $this->creatureLevelRepository->findOneBy(
             [
+                'creature' => $creatureUser->getCreature(),
                 'upgradeType' => 'base',
-                'creatureType' => $creatureUser->getCreature()->getType(),
             ]
         );
 

@@ -11,6 +11,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class CreatureUpgrade
 {
+    public function __toString(): string
+    {
+        return $this->getName() . ': ' . $this->getValue();
+    }
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

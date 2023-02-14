@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Creature\Creature;
+use App\Entity\Creature\CreatureLevel;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -31,6 +32,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Users'),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
             MenuItem::linkToCrud('Creatures', 'fa fa-paw', Creature::class),
+            MenuItem::linkToCrud('Price list', 'fa fa-money-bill', CreatureLevel::class),
         ];
     }
 }

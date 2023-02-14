@@ -1,7 +1,9 @@
 <?php
+
 namespace App\DTO;
 
 use App\Common\Repository\Creature\CreatureLevelRepository;
+use App\Common\Repository\Creature\CreatureRepository;
 use App\Common\Service\Game\CreatureManager;
 use App\Entity\Creature\CreatureLevel;
 use App\Entity\Creature\Creature as CreatureEntity;
@@ -14,9 +16,11 @@ use App\Entity\Creature\CreatureUpgrade;
 class Creature
 {
     public function __construct(
+        private CreatureRepository $creatureRepository,
         private CreatureLevelRepository $creatureLevelRepository,
         private CreatureManager $creatureManager
-    ) {}
+    ) {
+    }
 
     /**
      * @param CreatureEntity $creature
@@ -56,11 +60,16 @@ class Creature
      */
     private function getSerializedFirstLevelData(string $creatureType): array
     {
+        /** @var CreatureEntity $creature */
+        $creature = $this->creatureRepository->findOneBy(['type' => $creatureType]);
+
         /** @var CreatureLevel|null $nextLevel */
-        $nextLevel = $this->creatureLevelRepository->findOneBy([
-            'creatureType' => $creatureType,
-            'upgradeType' => 'base',
-        ]);
+        $nextLevel = $this->creatureLevelRepository->findOneBy(
+            [
+                'creature' => $creature,
+                'upgradeType' => CreatureLevel::UPGRADE_TYPE_BASE,
+            ]
+        );
 
         $nestLevelResult = [];
         if ($nextLevel instanceof CreatureLevel) {

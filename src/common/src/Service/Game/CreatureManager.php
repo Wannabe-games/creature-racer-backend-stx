@@ -57,15 +57,17 @@ class CreatureManager
         if (!CreatureTypes::validate($creatureType)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::TYPE_VALIDATION_ERROR));
         }
+
         /** @var Creature $creature */
-        $creature = $this->creatureRepository->findOneBy([
-                                                             'type' => $creatureType
-                                                         ]);
+        $creature = $this->creatureRepository->findOneBy(['type' => $creatureType]);
+
         /** @var CreatureLevel $creatureLevel */
-        $creatureLevel = $this->creatureLevelRepository->findOneBy([
-                                                                       'creatureType' => $creature->getType(),
-                                                                       'upgradeType' => CreatureUpgradeTypes::BASE_UPGRADE_TYPE
-                                                                   ]);
+        $creatureLevel = $this->creatureLevelRepository->findOneBy(
+            [
+                'creature' => $creature,
+                'upgradeType' => CreatureUpgradeTypes::BASE_UPGRADE_TYPE
+            ]
+        );
 
         if (!($creatureLevel instanceof CreatureLevel)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));
@@ -108,6 +110,7 @@ class CreatureManager
         if (!CreatureUpgradeTypes::validate($upgradeType)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::TYPE_VALIDATION_ERROR));
         }
+
         /** @var CreatureUser $creature */
         $creature = $this->creatureUserRepository->findOneBy(['uuid' => $uuid]);
 
@@ -125,7 +128,7 @@ class CreatureManager
         /** @var CreatureLevel $creatureLevel */
         $creatureLevel = $this->creatureLevelRepository->findOneBy(
             [
-                'creatureType' => $creature->getCreature()->getType(),
+                'creature' => $creature,
                 'upgradeType' => $upgradeType,
                 'level' => $level
             ]
@@ -346,9 +349,6 @@ class CreatureManager
      * @param bool $stake
      *
      * @return string|null
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      */
     public function stakeCreature(User $user, string $uuid, bool $stake): ?string
     {

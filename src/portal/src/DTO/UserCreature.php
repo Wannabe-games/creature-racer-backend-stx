@@ -3,7 +3,9 @@
 namespace App\DTO;
 
 use App\Common\Repository\Creature\CreatureLevelRepository;
+use App\Common\Repository\Creature\CreatureRepository;
 use App\Common\Service\Game\CreatureManager;
+use App\Entity\Creature\Creature as Creature;
 use App\Entity\Creature\CreatureLevel;
 use App\Entity\Creature\CreatureUpgrade;
 use App\Entity\Creature\CreatureUser;
@@ -21,6 +23,7 @@ class UserCreature
     public const UPGRADE_TYPE_MUSCLES = 'muscles';
 
     public function __construct(
+        private CreatureRepository $creatureRepository,
         private CreatureLevelRepository $creatureLevelRepository,
         private CreatureManager $creatureManager
     ) {
@@ -93,7 +96,7 @@ class UserCreature
         $levelEntity = $this->creatureLevelRepository->findOneBy(
             [
                 'level' => 0,
-                'creatureType' => $creatureUser->getCreature()->getType(),
+                'creature' => $creatureUser->getCreature(),
                 'upgradeType' => 'base',
             ]
         );
@@ -178,11 +181,14 @@ class UserCreature
      */
     private function getSerializedNextLevelData(int $level, string $creatureType, string $upgradeType): array
     {
+        /** @var Creature $creature */
+        $creature = $this->creatureRepository->findOneBy(['type' => $creatureType]);
+
         /** @var CreatureLevel|null $nextLevel */
-        $nextLevel = $this->creatureLevelRepository->findOneBy(
+        $nextLevel = $this->creatureLevelRepository->findBy(
             [
                 'level' => ++$level,
-                'creatureType' => $creatureType,
+                'creature' => $creature,
                 'upgradeType' => $upgradeType,
             ]
         );

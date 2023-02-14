@@ -3,6 +3,8 @@
 namespace App\Command;
 
 use App\Common\Repository\Creature\CreatureLevelRepository;
+use App\Common\Repository\Creature\CreatureRepository;
+use App\Entity\Creature\Creature as Creature;
 use App\Entity\Creature\CreatureLevel;
 use App\Entity\Creature\CreatureUpgrade;
 use Symfony\Component\Console\Command\Command;
@@ -15,6 +17,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class ImportDataLevelsCommand extends Command
 {
     public function __construct(
+        private CreatureRepository $creatureRepository,
         private CreatureLevelRepository $creatureLevelRepository
     ) {
         parent::__construct();
@@ -44,12 +47,17 @@ class ImportDataLevelsCommand extends Command
 
 
         foreach ($data as $row) {
+            /** @var Creature $creature */
+            $creature = $this->creatureRepository->findOneBy(['type' => $row[1]]);
+
             /** @var CreatureLevel $creatureLevels */
-            $creatureLevels = $this->creatureLevelRepository->findOneBy([
-                'creatureType' => $row[1],
-                'upgradeType' => $row[2],
-                'level' => $row[3]
-            ]);
+            $creatureLevels = $this->creatureLevelRepository->findOneBy(
+                [
+                    'creature' => $creature,
+                    'upgradeType' => $row[2],
+                    'level' => $row[3]
+                ]
+            );
 
             if (!empty($creatureLevels)) {
                 $creatureLevels->setPriceGold($row[6]);
@@ -75,7 +83,7 @@ class ImportDataLevelsCommand extends Command
 
     /**
      * @param SymfonyStyle $io
-     * @param mixed        $filename
+     * @param mixed $filename
      *
      * @return array
      */

@@ -40,12 +40,12 @@ class BuildCreaturesMaxPreferenceRangeCommand extends Command
         foreach ($creatureLevels as $creatureLevel) {
             /** @var CreatureUpgrade $upgradeChange */
             foreach ($creatureLevel->getUpgradeChanges() as $upgradeChange) {
-                if (!key_exists($creatureLevel->getCreatureType(), $maxCreature)) {
-                    $maxCreature[$creatureLevel->getCreatureType()][$upgradeChange->getType()] = $upgradeChange->getValue();
-                } elseif (!key_exists($upgradeChange->getType(), $maxCreature[$creatureLevel->getCreatureType()])) {
-                    $maxCreature[$creatureLevel->getCreatureType()][$upgradeChange->getType()] = $upgradeChange->getValue();
+                if (!key_exists($creatureLevel->getCreature()->getType(), $maxCreature)) {
+                    $maxCreature[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] = $upgradeChange->getValue();
+                } elseif (!key_exists($upgradeChange->getType(), $maxCreature[$creatureLevel->getCreature()->getType()])) {
+                    $maxCreature[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] = $upgradeChange->getValue();
                 } else {
-                    $maxCreature[$creatureLevel->getCreatureType()][$upgradeChange->getType()] += $upgradeChange->getValue();
+                    $maxCreature[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] += $upgradeChange->getValue();
                 }
             }
         }
@@ -78,12 +78,12 @@ class BuildCreaturesMaxPreferenceRangeCommand extends Command
         foreach ($creatureLevels as $creatureLevel) {
             /** @var CreatureUpgrade $upgradeChange */
             foreach ($creatureLevel->getUpgradeChanges() as $upgradeChange) {
-                if (!key_exists($creatureLevel->getCreatureType(), $maxCreature)) {
-                    $maxCreature[$creatureLevel->getCreatureType()][$upgradeChange->getType()] = $upgradeChange->getValue();
-                } elseif (!key_exists($upgradeChange->getType(), $maxCreature[$creatureLevel->getCreatureType()])) {
-                    $maxCreature[$creatureLevel->getCreatureType()][$upgradeChange->getType()] = $upgradeChange->getValue();
+                if (!key_exists($creatureLevel->getCreature()->getType(), $maxCreature)) {
+                    $maxCreature[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] = $upgradeChange->getValue();
+                } elseif (!key_exists($upgradeChange->getType(), $maxCreature[$creatureLevel->getCreature()->getType()])) {
+                    $maxCreature[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] = $upgradeChange->getValue();
                 } else {
-                    $maxCreature[$creatureLevel->getCreatureType()][$upgradeChange->getType()] += $upgradeChange->getValue();
+                    $maxCreature[$creatureLevel->getCreature()->getType()][$upgradeChange->getType()] += $upgradeChange->getValue();
                 }
             }
         }

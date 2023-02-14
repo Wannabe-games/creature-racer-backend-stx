@@ -45,7 +45,7 @@ class BuildCreaturePreferenceCommand extends Command
 
         /** @var CreatureLevel $creatureLevel */
         foreach ($creatureLevels as $creatureLevel) {
-            $result[$creatureLevel->getCreatureType()][$creatureLevel->getUpgradeType()][$creatureLevel->getLevel()] = [
+            $result[$creatureLevel->getCreature()->getType()][$creatureLevel->getUpgradeType()][$creatureLevel->getLevel()] = [
                 'acceleration' => 0,
                 'speed' => 0,
                 'gas_volume' => 0,
@@ -54,9 +54,9 @@ class BuildCreaturePreferenceCommand extends Command
             /** @var CreatureUpgrade $upgradeChange */
             foreach ($creatureLevel->getUpgradeChanges() as $upgradeChange) {
                 if ($creatureLevel->getLevel() > 1) {
-                    $result[$creatureLevel->getCreatureType()][$creatureLevel->getUpgradeType()][$creatureLevel->getLevel()][$upgradeChange->getName()] = $result[$creatureLevel->getCreatureType()][$creatureLevel->getUpgradeType()][$creatureLevel->getLevel()-1][$upgradeChange->getName()] + $upgradeChange->getValue();
+                    $result[$creatureLevel->getCreature()->getType()][$creatureLevel->getUpgradeType()][$creatureLevel->getLevel()][$upgradeChange->getName()] = $result[$creatureLevel->getCreature()->getType()][$creatureLevel->getUpgradeType()][$creatureLevel->getLevel()-1][$upgradeChange->getName()] + $upgradeChange->getValue();
                 } else {
-                    $result[$creatureLevel->getCreatureType()][$creatureLevel->getUpgradeType()][$creatureLevel->getLevel()][$upgradeChange->getName()] = $upgradeChange->getValue();
+                    $result[$creatureLevel->getCreature()->getType()][$creatureLevel->getUpgradeType()][$creatureLevel->getLevel()][$upgradeChange->getName()] = $upgradeChange->getValue();
                 }
             }
         }
