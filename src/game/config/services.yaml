@@ -90,6 +90,9 @@ services:
     App\Service\OpenApi\CreaturesDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
+    App\Service\OpenApi\BuyGoldDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
     App\Service\OpenApi\BuyCreatureDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]

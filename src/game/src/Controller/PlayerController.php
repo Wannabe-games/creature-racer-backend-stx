@@ -123,4 +123,27 @@ class PlayerController extends SymfonyAbstractController
 
         throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::BAD_REQUEST));
     }
+
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return JsonResponse
+     *
+     * @throws JsonException
+     * @Route("/buy-gold", name="buy_gold", methods={"POST"})
+     */
+    public function buyGoldAction(Request $request, EntityManagerInterface $entityManager): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (!array_key_exists('gold', $data)) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+        }
+
+        $this->getUser()->getPlayer()->setGold($this->getUser()->getPlayer()->getGold() + $data['gold']);
+
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'success']);
+    }
 }

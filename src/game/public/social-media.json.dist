@@ -10,6 +10,7 @@
     "EndpointSettings":"https:\/\/app.creatureracer.com\/api\/game\/settings",
     "EndpointPlayer":"https:\/\/app.creatureracer.com\/api\/game\/player",
     "EndpointPlayerByWallet":"https:\/\/app.creatureracer.com\/api\/game\/wallet\/{id}\/player",
+    "EndpointBuyGold":"https:\/\/app.creatureracer.com\/api\/game\/buy-gold",
     "EndpointRaceStart":"https:\/\/app.creatureracer.com\/api\/game\/race\/start",
     "EndpointRaceFinish":"https:\/\/app.creatureracer.com\/api\/game\/race\/finish",
     "EndpointRaceFinishByWallet":"https:\/\/app.creatureracer.com\/api\/game\/wallet\/{id}\/race\/finish",
