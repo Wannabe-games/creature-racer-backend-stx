@@ -31,8 +31,8 @@ function sign(buffer, key) {
 }
 
 /* Sign withdraw arguments */
-async function signWithdraw(userWallet, amount, withdrawId, cycle) {
-    const payload = parseHexString(userWallet)
+async function signWithdraw(userPublicKey, amount, withdrawId, cycle) {
+    const payload = parseHexString(userPublicKey)
         .concat(uint128toBytes(amount))
         .concat(uint128toBytes(withdrawId))
         .concat(uint128toBytes(cycle));

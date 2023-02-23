@@ -15,20 +15,32 @@ function uint128toBytes(v) {
     return rv;
 }
 
+function parseHexString(str) {
+    let i = 0, result = [];
+
+    while (i < str.length) {
+        result.push(parseInt(str.substring(i, i + 2), 16));
+        i += 2;
+    }
+
+    return result;
+}
+
 function sign(buffer, key) {
     return signMessageHashRsv({messageHash: sha256(buffer), privateKey: createStacksPrivateKey(key)});
 }
 
 /* Sign withdraw arguments */
-async function signWithdraw(amount, withdrawId) {
-    const payload = uint128toBytes(amount)
+async function signWithdraw(userPublicKey, amount, withdrawId) {
+    const payload = parseHexString(userPublicKey)
+        .concat(uint128toBytes(amount))
         .concat(uint128toBytes(withdrawId));
 
     return sign(payload, process.env.OPERATOR_CONTRACT_PRIVATE_KEY).data;
 }
 
 async function main() {
-    return await signWithdraw.apply(null, inputArgs.slice(0, 2));
+    return await signWithdraw.apply(null, inputArgs.slice(0, 3));
 }
 
 main().then(function (txt) {

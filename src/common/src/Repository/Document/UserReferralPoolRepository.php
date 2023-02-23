@@ -63,8 +63,6 @@ class UserReferralPoolRepository extends DocumentRepository
     {
         $result = $this->createQueryBuilder()
             ->field('user')->equals($userId)
-            ->field('withdrawId')->exists(true)
-            ->field('withdrawId')->equals(null)
             ->limit(1)
             ->getQuery()
             ->execute();

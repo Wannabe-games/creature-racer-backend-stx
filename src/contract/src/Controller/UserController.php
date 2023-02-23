@@ -77,17 +77,27 @@ class UserController extends SymfonyAbstractController
      *
      * @throws NoResultException
      * @throws NonUniqueResultException
-     * @Route("/user/statistic", name="user_statistic", methods={"GET"})
      *
+     * @Route("/user/statistic", name="user_statistic", methods={"GET"})
      */
     public function activeInGameAction(
         CreatureUserRepository $creatureUserRepository,
         StakingContractManager $stakingContractManager,
         RewardPoolContractManager $poolContractManager
     ): JsonResponse {
+        $currentCycle = $poolContractManager->getCurrentCycle();
         $result['totalPoolShare'] = round($stakingContractManager->getTotalShare() / 1000000000000000000, 2);
         $result['myPoolShare'] = round($stakingContractManager->getTotalShare() ? ($stakingContractManager->getUserShare($this->getUser()->getWallet()) / $stakingContractManager->getTotalShare() * 100) : 0, 2);
-        $result['rewardPool'] = round($poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle()), 2);
+        $result['rewardPool'] = round(
+            $poolContractManager->getCollectedCycleBalance($currentCycle)
+            + $poolContractManager->getCollectedCycleBalance($currentCycle - 1)
+            + $poolContractManager->getCollectedCycleBalance($currentCycle - 2)
+            + $poolContractManager->getCollectedCycleBalance($currentCycle - 3)
+            + $poolContractManager->getCollectedCycleBalance($currentCycle - 4)
+            + $poolContractManager->getCollectedCycleBalance($currentCycle - 5)
+            ,
+            2
+        );
         $result['referralLevel'] = $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null;
         $result['readyToUpgrade'] = $creatureUserRepository->readyToUpgradeCount($this->getUser());
         $result['totalStaked'] = $creatureUserRepository->stakedCount($this->getUser());
@@ -99,8 +109,6 @@ class UserController extends SymfonyAbstractController
 
     /**
      * @param User $user
-     * @param StakingContractManager $stakingContractManager
-     * @param RewardPoolContractManager $poolContractManager
      * @param ContainerInterface $container
      *
      * @return JsonResponse

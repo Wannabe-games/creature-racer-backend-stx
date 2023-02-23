@@ -37,6 +37,7 @@ class UserRewardPoolRepository extends DocumentRepository
     public function findUserRewardPoolCycles(int $userId, int $limit = 7, int $from = 0): array
     {
         $data = new \DateTime();
+        //TODO do zmiany na 7 cykli wstecz
         $data->sub(new \DateInterval("P7D"));
 
         $result = $this->createQueryBuilder()

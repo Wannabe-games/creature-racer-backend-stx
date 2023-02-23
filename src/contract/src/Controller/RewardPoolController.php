@@ -116,14 +116,15 @@ class RewardPoolController extends SymfonyAbstractController
         }
 
         if (empty($withdrawDocument->getWithdrawId())) {
-            $withdrawId = ((int)$rewardPoolContractManager->getWithdrawCount($this->getUser()->getWallet())) + 1;
+            $withdrawId = ($rewardPoolContractManager->getWithdrawCount($this->getUser()->getWallet())) + 1;
             $withdrawDocument->setWithdrawId($withdrawId);
         } else {
             $withdrawId = $withdrawDocument->getWithdrawId();
         }
 
         $cycle = (int)$withdrawDocument->getCycle();
-        $signature = $rewardPoolContractManager->signWithdraw($this->getUser()->getWallet() . ' ' . $withdrawDocument->getMyReward() . ' ' . $withdrawId . ' ' . $cycle);
+        $ownerPublicKey = $this->getUser()->getPublicKey();
+        $signature = $rewardPoolContractManager->signWithdraw($ownerPublicKey . ' ' . $withdrawDocument->getMyReward() . ' ' . $withdrawId . ' ' . $cycle);
 
         $withdrawDocument->setStatus(UserRewardPoolStatus::PENDING);
         $documentManager->flush();
@@ -133,6 +134,7 @@ class RewardPoolController extends SymfonyAbstractController
                 'amount' => $withdrawDocument->getMyReward(),
                 'withdrawId' => $withdrawId,
                 'cycle' => $cycle,
+                'ownerPublicKey' => $ownerPublicKey,
                 'signature' => $signature
             ]
         );

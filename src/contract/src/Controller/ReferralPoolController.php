@@ -56,12 +56,13 @@ class ReferralPoolController extends SymfonyAbstractController
         }
 
         if (!empty($withdrawDocument->getWithdrawId())) {
-            throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::WITHDRAW_EXECUTED));
+            //    throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::WITHDRAW_EXECUTED));
         }
 
+        $ownerPublicKey = $this->getUser()->getPublicKey();
         $withdrawId = $documentManager->getRepository(UserReferralPool::class)->findNextCountForWithdraw($this->getUser()->getId());
 
-        $signature = $referralPoolContractManager->signWithdraw($withdrawDocument->getMyReward() . ' ' . $withdrawId);
+        $signature = $referralPoolContractManager->signWithdraw($ownerPublicKey . ' ' . $withdrawDocument->getMyReward() . ' ' . $withdrawId);
 
         $withdrawDocument->setWithdrawId($withdrawId);
         $documentManager->flush();
@@ -70,6 +71,7 @@ class ReferralPoolController extends SymfonyAbstractController
             [
                 'amount' => $withdrawDocument->getMyReward(),
                 'withdrawId' => $withdrawId,
+                'ownerPublicKey' => $ownerPublicKey,
                 'signature' => $signature
             ]
         );
