@@ -40,7 +40,7 @@ final class Version20220223113455 extends AbstractMigration
             $this->addSql('insert into game_crature_level_definitions (
                                             id, creature_type, upgrade_type, level, price_soft_currency,
                                             price_hard_currency, waiting_time, delivery_diamonds, creature_id)
-                                values (\''.$key.'\', \''.$creature['Type'].'\', \'base\', 0, \''.$creature['PriceSoftCurrency'].'\', \''.$creature['PriceHardCurrency'].'\', \''.$creature['DeliveryWaitingTime'].'\', \''.$creature['DeliveryDiamonds'].'\', \''.$key.'\');'
+                                values (\''.$key.'\', \''.$creature['Type'].'\', \'base\', 0, \''.$creature['PriceGold'].'\', \''.$creature['PriceStacks'].'\', \''.$creature['DeliveryWaitingTime'].'\', \''.$creature['DeliveryPriceStacks'].'\', \''.$key.'\');'
             );
 
             $this->addSql('insert into game_creature_upgrade_changes_definitions (id, creature_level_id, name, type, "value")
@@ -57,7 +57,7 @@ final class Version20220223113455 extends AbstractMigration
                     $this->addSql('insert into game_crature_level_definitions (
                                             id, creature_type, upgrade_type, level, price_soft_currency,
                                             price_hard_currency, waiting_time, delivery_diamonds, creature_id)
-                                values (\'' . ++$indexLevel . '\', \'' . $creature['Type'] . '\', \'' . $upgrade['Type'] . '\', \'' . $level['Level'] . '\', \'' . $level['PriceSoftCurrency'] . '\', \'' . $level['PriceHardCurrency'] . '\', \'' . $level['WaitingTime'] . '\', \'' . $level['DeliveryDiamonds'] . '\', \'' . $key . '\');'
+                                values (\'' . ++$indexLevel . '\', \'' . $creature['Type'] . '\', \'' . $upgrade['Type'] . '\', \'' . $level['Level'] . '\', \'' . $level['PriceGold'] . '\', \'' . $level['PriceStacks'] . '\', \'' . $level['DeliveryWaitingTime'] . '\', \'' . $level['DeliveryPriceStacks'] . '\', \'' . $key . '\');'
                     );
 
                     foreach ($level['UpgradeChanges'] as $change) {
