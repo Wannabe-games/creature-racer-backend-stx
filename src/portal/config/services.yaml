@@ -3,6 +3,7 @@ parameters:
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
     chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
+    mint_price: '%env(string:MINT_PRICE)%'
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.

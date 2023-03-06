@@ -163,7 +163,8 @@ class CreatureManager
             CreatureUpgradeTypes::BOOST_UPGRADE_TYPE => 'getBelly',
             CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE => 'getButtocks'
         };
-        if ($creature->$getter() + 1 != $level) {
+
+        if (!in_array($level, CreatureLevel::LEVELS) || $level !== $creature->$getter() + 1) {
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::INVALID_LEVEL_VALUE));
         }
     }

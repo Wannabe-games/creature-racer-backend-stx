@@ -7,16 +7,14 @@ use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Entity\Creature\CreatureUser;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use JsonException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use App\Common\Service\User\UserManager;
-use App\Common\Repository\UserRepository;
-use App\Entity\User;
 
 /**
  * Class MintController
@@ -33,18 +31,20 @@ class MintController extends SymfonyAbstractController
      * @param TranslatorInterface $translator
      */
     public function __construct(
-       private TranslatorInterface $translator
-    ) { }
+        private TranslatorInterface $translator
+    ) {
+    }
 
     /**
-     * @param Request                $request
+     * @param Request $request
      * @param CreatureUserRepository $creatureUserRepository
      * @param EntityManagerInterface $entityManager
      *
      * @return JsonResponse
      *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     * @throws JsonException
      *
      * @Route("/creature/mint", name="creature_mint", methods={"POST"})
      */
@@ -52,14 +52,15 @@ class MintController extends SymfonyAbstractController
         Request $request,
         CreatureUserRepository $creatureUserRepository,
         EntityManagerInterface $entityManager
-    ): JsonResponse
-    {
-        $data = json_decode($request->getContent(), true);
+    ): JsonResponse {
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
         if (
             !key_exists('creatureId', $data) ||
             !key_exists('hash', $data) ||
-            !key_exists('contract', $data)
+            !key_exists('contract', $data) ||
+            !key_exists('royalties', $data) ||
+            !key_exists('name', $data)
         ) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         } else {
@@ -76,10 +77,12 @@ class MintController extends SymfonyAbstractController
 
         if ($creatureUser->getContract() == $data['contract']) {
             $creatureUser->setHash($data['hash']);
+            $creatureUser->setRoyalties($data['royalties']);
+            $creatureUser->setNftName($data['name']);
 
             $entityManager->flush();
 
-            return new JsonResponse(['status' => 'success'],200);
+            return new JsonResponse(['status' => 'success'], 200);
         } else {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }

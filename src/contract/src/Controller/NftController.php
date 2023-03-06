@@ -107,9 +107,11 @@ class NftController extends SymfonyAbstractController
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
 
-        $nft = $creatureUserRepository->findOneBy([
-                                                      'contract' => $data['contract'],
-                                                  ]);
+        $nft = $creatureUserRepository->findOneBy(
+            [
+                'contract' => $data['contract'],
+            ]
+        );
 
         if (empty($nft)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));

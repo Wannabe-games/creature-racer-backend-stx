@@ -90,10 +90,6 @@ services:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
 
-    App\Service\OpenApi\ExposureMetadataDecorator:
-        decorates: 'api_platform.openapi.factory'
-        arguments: [ '@.inner' ]
-
     App\Service\OpenApi\SignCreatureDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]

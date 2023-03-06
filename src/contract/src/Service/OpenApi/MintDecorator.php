@@ -34,6 +34,14 @@ final class MintDecorator implements OpenApiFactoryInterface
                     'type' => 'string',
                     'example' => '0xc62f3493fcd5992cf9fe57ec83d9d48d8b843fc200d6a814c19b1b702d1e00c4',
                 ],
+                'royalties' => [
+                    'type' => 'int',
+                    'example' => '99',
+                ],
+                'name' => [
+                    'type' => 'string',
+                    'example' => 'example',
+                ],
             ],
         ]);
 
