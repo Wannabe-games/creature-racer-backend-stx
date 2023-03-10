@@ -94,15 +94,12 @@ class CreatureManager
      * @param User $user
      * @param string $uuid
      * @param string $upgradeType
-     * @param int $level
-     *
      * @return string|null
      *
      * @throws NoResultException
      * @throws NonUniqueResultException
-     * @throws Exception
      */
-    public function upgradeCreature(User $user, string $uuid, string $upgradeType, int $level): ?string
+    public function upgradeCreature(User $user, string $uuid, string $upgradeType): ?string
     {
         // Convert
         $upgradeType = $this->convertUpgradeType($upgradeType);
@@ -111,51 +108,18 @@ class CreatureManager
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::TYPE_VALIDATION_ERROR));
         }
 
-        /** @var CreatureUser $creature */
-        $creature = $this->creatureUserRepository->findOneBy(['uuid' => $uuid]);
+        /** @var CreatureUser $currentUser */
+        $currentUser = $this->creatureUserRepository->findOneBy(['uuid' => $uuid]);
 
-        $this->verifyCooldown($upgradeType, $creature);
+        $this->verifyCooldown($upgradeType, $currentUser);
 
-        /** @var CreatureUser $creatureUser */
-        if ($creature->isStaked()) {
+        if ($currentUser->isStaked()) {
             throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }
 
         // Verification
-        $this->isUserCreatureBelongToUser($creature, $user);
-        $this->verifyLevelUpgrade($upgradeType, $creature, $level);
+        $this->isUserCreatureBelongToUser($currentUser, $user);
 
-        /** @var CreatureLevel $creatureLevel */
-        $creatureLevel = $this->creatureLevelRepository->findOneBy(
-            [
-                'creature' => $creature,
-                'upgradeType' => $upgradeType,
-                'level' => $level
-            ]
-        );
-
-        if (!($creatureLevel instanceof CreatureLevel)) {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));
-        }
-
-        $this->paymentForLevel($user, $creatureLevel);
-        $creatureUser = $this->createCreatureOnLevel($user, $creature->getCreature(), $creatureLevel, $creature);
-
-        $this->setUpgradeTime($upgradeType, $creatureUser, $creatureLevel);
-        $this->entityManager->flush();
-
-        return $creatureUser->getUuid();
-    }
-
-    /**
-     * @param string $upgradeType
-     * @param CreatureUser $creature
-     * @param int $level
-     *
-     * @return void
-     */
-    protected function verifyLevelUpgrade(string $upgradeType, CreatureUser $creature, int $level): void
-    {
         $getter = match ($upgradeType) {
             CreatureUpgradeTypes::MUSCLES_UPGRADE_TYPE => 'getMuscles',
             CreatureUpgradeTypes::LUNG_UPGRADE_TYPE => 'getLungs',
@@ -164,9 +128,32 @@ class CreatureManager
             CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE => 'getButtocks'
         };
 
-        if (!in_array($level, CreatureLevel::LEVELS) || $level !== $creature->$getter() + 1) {
+        $level = (int)$currentUser->$getter() + 1;
+
+        if (!in_array($level, CreatureLevel::LEVELS)) {
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::INVALID_LEVEL_VALUE));
         }
+
+        /** @var CreatureLevel $creatureLevel */
+        $creatureLevel = $this->creatureLevelRepository->findOneBy(
+            [
+                'creature' => $currentUser->getCreature(),
+                'upgradeType' => $upgradeType,
+                'level' => $level
+            ]
+        );
+
+        if (!($creatureLevel instanceof CreatureLevel)) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::INVALID_LEVEL_VALUE));
+        }
+
+        //$this->paymentForLevel($user, $creatureLevel);
+        $creatureUserUpgraded = $this->createCreatureOnLevel($user, $currentUser->getCreature(), $creatureLevel, $currentUser);
+
+        $this->setUpgradeTime($upgradeType, $creatureUserUpgraded, $creatureLevel);
+        $this->entityManager->flush();
+
+        return $creatureUserUpgraded->getUuid();
     }
 
     /**
