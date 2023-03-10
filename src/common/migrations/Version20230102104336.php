@@ -78,7 +78,6 @@ final class Version20230102104336 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE user_accounts ALTER enabled DROP DEFAULT');
         $this->addSql('ALTER TABLE user_accounts ALTER created_at DROP DEFAULT');
         $this->addSql('ALTER TABLE game_crature_level_definitions ADD price_soft_currency INT NOT NULL');

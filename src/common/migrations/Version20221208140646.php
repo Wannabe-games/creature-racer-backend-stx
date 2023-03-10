@@ -32,7 +32,6 @@ final class Version20221208140646 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER SEQUENCE contract_id_seq INCREMENT BY 1');
         $this->addSql('CREATE SEQUENCE game_creature_user_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('ALTER TABLE user_accounts DROP public_key');

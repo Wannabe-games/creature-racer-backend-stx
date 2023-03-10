@@ -30,6 +30,7 @@ class ApiExceptionWrapper
     const REF_CODE_EXIST = 'ref_code_exist';
     const WITHDRAW_EXECUTED = 'withdraw_executed';
     const UPGRADE_IN_PROGRESS = 'upgrade_in_progress';
+    const TOO_LOW_RATE = 'too_low_rate';
 
     /**
      * @var array
@@ -53,7 +54,8 @@ class ApiExceptionWrapper
         self::REF_CODE_EXIST => 'The referral code is taken.',
         self::WITHDRAW_EXECUTED => 'The claim is not possible.',
         self::RNFT_NOT_EXIST => 'This rNFT not exist.',
-        self::UPGRADE_IN_PROGRESS => 'Upgrade in progress.'
+        self::UPGRADE_IN_PROGRESS => 'Upgrade in progress.',
+        self::TOO_LOW_RATE => 'Too low rate.',
     ];
 
     /**
@@ -87,8 +89,7 @@ class ApiExceptionWrapper
         $this->statusCode = $statusCode;
         $this->type = $type;
         if (!isset(self::$titles[$type])) {
-
-            throw new InvalidArgumentException('No title for type '.$type);
+            throw new InvalidArgumentException('No title for type ' . $type);
         }
         $this->title = self::$titles[$type];
     }

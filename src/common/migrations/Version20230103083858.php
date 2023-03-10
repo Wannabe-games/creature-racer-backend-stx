@@ -30,7 +30,6 @@ final class Version20230103083858 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE user_accounts ALTER created_at DROP DEFAULT');
         $this->addSql('ALTER TABLE game_crature_level_definitions ADD waiting_time INT DEFAULT 0 NOT NULL');
         $this->addSql('ALTER TABLE game_crature_level_definitions ADD delivery_diamonds INT DEFAULT 0 NOT NULL');

@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Creature\CreatureUser;
 use App\Entity\Game\Player;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -182,7 +184,7 @@ class User implements UserInterface
     private $signature;
 
     /**
-     * @var ArrayCollection
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureUser", mappedBy="user", fetch="EXTRA_LAZY")
      */
@@ -211,12 +213,28 @@ class User implements UserInterface
     private $fromReferralNft;
 
     /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="host", fetch="EXTRA_LAZY")
+     */
+    private $hostLobbys;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="opponent", fetch="EXTRA_LAZY")
+     */
+    private $opponentLobbys;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->groups = new ArrayCollection();
         $this->creatures = new ArrayCollection();
+        $this->hostLobbys = new ArrayCollection();
+        $this->opponentLobbys = new ArrayCollection();
         $this->enabled = false;
         $this->roles = array();
     }
@@ -257,6 +275,14 @@ class User implements UserInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserIdentifier(): string
+    {
+        return $this->username;
     }
 
     /**
@@ -412,6 +438,11 @@ class User implements UserInterface
         $this->lastName = $lastName;
     }
 
+    public function getFullName(): ?string
+    {
+        return trim($this->firstName . ' ' . $this->lastName) ?: $this->getUsername();
+    }
+
     /**
      * @return string
      */
@@ -479,7 +510,7 @@ class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         $roles = $this->roles;
 
@@ -520,9 +551,33 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getCreatures()
+    public function getCreatures(): Collection
     {
         return $this->creatures;
+    }
+
+    /**
+     * @param CreatureUser $creatureUser
+     * @return void
+     */
+    public function addCreature(CreatureUser $creatureUser): void
+    {
+        if (!$this->creatures->contains($creatureUser)) {
+            $this->creatures->add($creatureUser);
+            $creatureUser->setUser($this);
+        }
+    }
+
+    /**
+     * @param CreatureUser $creatureUser
+     * @return void
+     */
+    public function removeCreature(CreatureUser $creatureUser): void
+    {
+        if ($this->creatures->contains($creatureUser)) {
+            $this->creatures->removeElement($creatureUser);
+            $creatureUser->setUser(null);
+        }
     }
 
     /**
@@ -619,5 +674,21 @@ class User implements UserInterface
     public function setFromReferralNft(ReferralNft $fromReferralNft): void
     {
         $this->fromReferralNft = $fromReferralNft;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getHostLobbys(): Collection
+    {
+        return $this->hostLobbys;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getOpponentLobbys(): Collection
+    {
+        return $this->opponentLobbys;
     }
 }

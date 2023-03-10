@@ -26,7 +26,6 @@ final class Version20220324003850 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE game_player ALTER active_animal_creature_type DROP NOT NULL');
     }
 }

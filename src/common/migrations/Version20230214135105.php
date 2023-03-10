@@ -26,7 +26,6 @@ final class Version20230214135105 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE game_crature_level_definitions ADD creature_type VARCHAR(15) DEFAULT NULL');
     }
 }

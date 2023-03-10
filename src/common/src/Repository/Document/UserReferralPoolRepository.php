@@ -83,7 +83,7 @@ class UserReferralPoolRepository extends DocumentRepository
      *
      * @throws MongoDBException
      */
-    public function findForProcess(int $userId): ?object
+    public function findForUser(int $userId): ?object
     {
         $result = $this->createQueryBuilder()
             ->field('user')->equals($userId)

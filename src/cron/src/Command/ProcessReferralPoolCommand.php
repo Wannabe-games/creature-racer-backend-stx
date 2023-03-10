@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Command;
 
 use App\Common\Enum\UserReferralPoolStatus;
@@ -7,7 +8,10 @@ use App\Common\Repository\UserRepository;
 use App\Document\Log\PaymentLog;
 use App\Document\UserReferralPool;
 use App\Entity\User;
+use DateTime;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Doctrine\ODM\MongoDB\MongoDBException;
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,14 +37,15 @@ class ProcessReferralPoolCommand extends Command
     /**
      * {@inheritdoc}
      *
-     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     * @throws MongoDBException
+     * @throws Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $date = new \DateTime();
+        $date = new DateTime();
         $users = $this->userRepository->findAll();
 
-        $output->writeln('Importing referral pool data: '.$date->format('Y-m-d'));
+        $output->writeln('Importing referral pool data: ' . $date->format('Y-m-d'));
 
         $progressBar = new ProgressBar($output, count($users));
         $progressBar->start();
@@ -55,11 +60,11 @@ class ProcessReferralPoolCommand extends Command
             }
 
             /** @var UserReferralPool $referralLog */
-            $referralLog = $this->userReferralPoolRepository->findForProcess($user->getId());
+            $referralLog = $this->userReferralPoolRepository->findForUser($user->getId());
 
             if (empty($referralLog)) {
                 $referralLog = new UserReferralPool();
-                $dateToday = new \DateTime($date->format('Y-m-d'));
+                $dateToday = new DateTime($date->format('Y-m-d'));
 
                 $referralLog->setTimestamp($dateToday);
                 $referralLog->setUser($user->getId());
@@ -68,10 +73,9 @@ class ProcessReferralPoolCommand extends Command
                 $this->documentManager->persist($referralLog);
             } elseif (empty($referralLog->getStatus())) {
                 $referralLog->setStatus(UserReferralPoolStatus::CRON_VERIFICATION);
-                $referralLog->setChangeStatusDate(new \DateTime());
-            } elseif ($referralLog->getStatus() != UserReferralPoolStatus::CRON_VERIFICATION) {
+                $referralLog->setChangeStatusDate(new DateTime());
+            } elseif ($referralLog->getStatus() !== UserReferralPoolStatus::CRON_VERIFICATION) {
                 $progressBar->advance();
-
                 continue;
             }
 
@@ -80,7 +84,7 @@ class ProcessReferralPoolCommand extends Command
             if (!$referralLog->getPaymentLogs()->isEmpty()) {
                 /** @var PaymentLog $paymentLog */
                 foreach ($referralLog->getPaymentLogs() as $paymentLog) {
-                    $referralLog->setMyReward(number_format((int)$referralLog->getMyReward()+$paymentLog->getAmountReferralPool(),0,'.',''));
+                    $referralLog->setMyReward(number_format((int)$referralLog->getMyReward() + $paymentLog->getAmountReferralPool(), 0, '.', ''));
                 }
             }
 
