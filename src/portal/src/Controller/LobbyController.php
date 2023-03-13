@@ -9,6 +9,7 @@ use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\DTO\Lobby as LobbyDto;
 use App\Entity\Game\Lobby;
 use JsonException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,9 +33,9 @@ class LobbyController extends SymfonyAbstractController
      *
      * @return JsonResponse
      *
-     * @Route("/user-lobby", name="user_lobby", methods={"GET"})
+     * @Route("/user-lobbies", name="user_lobbies", methods={"GET"})
      */
-    public function getUserLobbys(
+    public function getUserLobbies(
         Request $request,
         LobbyRepository $lobbyRepository,
         LobbyDto $lobbyDto
@@ -45,7 +46,7 @@ class LobbyController extends SymfonyAbstractController
         $itemsPerPage = $request->query->getInt('itemsPerPage', self::API_MAX_PER_PAGE_DEFAULT);
 
         /** @var Lobby[] $lobbyForUser */
-        $lobbyForUser = $lobbyRepository->getLobbyForUser(
+        $lobbyForUser = $lobbyRepository->getLobbiesForUser(
             user:   $this->getUser(),
             offset: $page ? ($page - 1) * $itemsPerPage : null,
             limit:  $itemsPerPage
@@ -55,10 +56,30 @@ class LobbyController extends SymfonyAbstractController
             $serializedLobby[] = $lobbyDto->serialize($lobby);
         }
 
-        $result['lobby'] = $serializedLobby;
+        $result['lobbies'] = $serializedLobby;
         $result['maxResults'] = $this->getUser()->getCreatures()->count();
 
         return new JsonResponse($result);
+    }
+
+    /**
+     * @param Lobby|null $lobby
+     * @param LobbyDto $lobbyDto
+     *
+     * @return JsonResponse
+     *
+     * @Route("/user-lobbies/{id}", name="user_lobby_details", methods={"GET"})
+     * @ParamConverter("lobby", options={"mapping": {"id": "uuid"}})
+     */
+    public function getUserLobbyDetails(
+        ?Lobby $lobby,
+        LobbyDto $lobbyDto
+    ): JsonResponse {
+        if (null === $lobby || $this->getUser() !== $lobby->getHost()) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+        }
+
+        return new JsonResponse($lobbyDto->serialize($lobby));
     }
 
     /**
@@ -68,7 +89,7 @@ class LobbyController extends SymfonyAbstractController
      * @return JsonResponse
      * @throws JsonException
      *
-     * @Route("/user-lobby", name="user_lobby_create", methods={"POST"})
+     * @Route("/user-lobbies", name="user_lobby_create", methods={"POST"})
      */
     public function createUserLobby(
         Request $request,
@@ -91,7 +112,7 @@ class LobbyController extends SymfonyAbstractController
 
         $lobbyRepository->save($lobby);
 
-        return new JsonResponse(['lobby' => $lobbyDto->serialize($lobby)]);
+        return new JsonResponse($lobbyDto->serialize($lobby));
     }
 
     /**
@@ -102,7 +123,7 @@ class LobbyController extends SymfonyAbstractController
      * @param Lobby $lobby
      * @return JsonResponse
      * @throws JsonException
-     * @Route("/user-lobby/{id}", name="user_lobby_update", methods={"PUT"})
+     * @Route("/user-lobbies/{id}", name="user_lobby_update", methods={"PUT"})
      */
     public function updateUserLobby(
         Request $request,
@@ -127,6 +148,61 @@ class LobbyController extends SymfonyAbstractController
 
         $lobbyRepository->save($lobby);
 
-        return new JsonResponse(['lobby' => $lobbyDto->serialize($lobby)]);
+        return new JsonResponse($lobbyDto->serialize($lobby));
+    }
+
+    /**
+     * @param Request $request
+     * @param LobbyRepository $lobbyRepository
+     * @param LobbyDto $lobbyDto
+     *
+     * @return JsonResponse
+     *
+     * @Route("/lobbies", name="lobbies", methods={"GET"})
+     */
+    public function getLobbies(
+        Request $request,
+        LobbyRepository $lobbyRepository,
+        LobbyDto $lobbyDto
+    ): JsonResponse {
+        $serializedLobby = [];
+
+        $page = $request->query->getInt('page', 1);
+        $itemsPerPage = $request->query->getInt('itemsPerPage', self::API_MAX_PER_PAGE_DEFAULT);
+
+        /** @var Lobby[] $lobbyForUser */
+        $lobbyForUser = $lobbyRepository->getLobbies(
+            offset: $page ? ($page - 1) * $itemsPerPage : null,
+            limit:  $itemsPerPage
+        );
+
+        foreach ($lobbyForUser as $lobby) {
+            $serializedLobby[] = $lobbyDto->serialize($lobby);
+        }
+
+        $result['lobbies'] = $serializedLobby;
+        $result['maxResults'] = $this->getUser()->getCreatures()->count();
+
+        return new JsonResponse($result);
+    }
+
+    /**
+     * @param Lobby|null $lobby
+     * @param LobbyDto $lobbyDto
+     *
+     * @return JsonResponse
+     *
+     * @Route("/lobbies/{id}", name="lobby_details", methods={"GET"})
+     * @ParamConverter("lobby", options={"mapping": {"id": "uuid"}})
+     */
+    public function getLobbyDetails(
+        ?Lobby $lobby,
+        LobbyDto $lobbyDto
+    ): JsonResponse {
+        if (null === $lobby) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+        }
+
+        return new JsonResponse($lobbyDto->serialize($lobby));
     }
 }

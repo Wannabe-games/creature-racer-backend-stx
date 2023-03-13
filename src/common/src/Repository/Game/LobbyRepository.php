@@ -18,13 +18,32 @@ class LobbyRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int $offset
+     * @param int $limit
+     *
+     * @return array
+     */
+    public function getLobbies(
+        int $offset = 0,
+        int $limit = 20
+    ): array {
+        $qb = $this->createQueryBuilder('l');
+
+        return $qb->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->orderBy('l.id', 'asc')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @param User $user
      * @param int $offset
      * @param int $limit
      *
      * @return array
      */
-    public function getLobbyForUser(
+    public function getLobbiesForUser(
         User $user,
         int $offset = 0,
         int $limit = 20

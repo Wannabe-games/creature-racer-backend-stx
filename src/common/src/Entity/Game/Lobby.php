@@ -32,7 +32,7 @@ class Lobby
     /**
      * User
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="hostLobbys")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="hostLobbies")
      * @ORM\JoinColumn(name="host_id", nullable=false)
      *
      * @Assert\NotNull()
@@ -42,7 +42,7 @@ class Lobby
     /**
      * User
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="opponentLobbys")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="opponentLobbies")
      * @ORM\JoinColumn(name="opponent_id", nullable=true)
      */
     private ?User $opponent = null;
@@ -50,7 +50,7 @@ class Lobby
     /**
      * User
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="winnerLobbys")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="winnerLobbies")
      * @ORM\JoinColumn(name="winner_id", nullable=true)
      */
     private ?User $winner = null;

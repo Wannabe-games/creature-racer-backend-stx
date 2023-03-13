@@ -217,14 +217,21 @@ class User implements UserInterface
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="host", fetch="EXTRA_LAZY")
      */
-    private $hostLobbys;
+    private $hostLobbies;
 
     /**
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="opponent", fetch="EXTRA_LAZY")
      */
-    private $opponentLobbys;
+    private $opponentLobbies;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="winner", fetch="EXTRA_LAZY")
+     */
+    private $winnerLobbies;
 
     /**
      * User constructor.
@@ -233,8 +240,9 @@ class User implements UserInterface
     {
         $this->groups = new ArrayCollection();
         $this->creatures = new ArrayCollection();
-        $this->hostLobbys = new ArrayCollection();
-        $this->opponentLobbys = new ArrayCollection();
+        $this->hostLobbies = new ArrayCollection();
+        $this->opponentLobbies = new ArrayCollection();
+        $this->winnerLobbies = new ArrayCollection();
         $this->enabled = false;
         $this->roles = array();
     }
@@ -244,18 +252,7 @@ class User implements UserInterface
      */
     public function __toString()
     {
-        $supervisor = '';
-        if ($this->firstName) {
-            $supervisor .= $this->firstName;
-        }
-        if ($this->lastName) {
-            $supervisor .= ' ' . $this->lastName;
-        }
-        if (0 === strlen(trim($supervisor))) {
-            $supervisor = $this->username;
-        }
-
-        return (string)$supervisor;
+        return $this->getFullName() ?: 'anonymous user';
     }
 
     /**
@@ -679,16 +676,48 @@ class User implements UserInterface
     /**
      * @return Collection
      */
-    public function getHostLobbys(): Collection
+    public function getHostLobbies(): Collection
     {
-        return $this->hostLobbys;
+        return $this->hostLobbies;
+    }
+
+    /**
+     * @param Collection $hostLobbies
+     */
+    public function setHostLobbies(Collection $hostLobbies): void
+    {
+        $this->hostLobbies = $hostLobbies;
     }
 
     /**
      * @return Collection
      */
-    public function getOpponentLobbys(): Collection
+    public function getOpponentLobbies(): Collection
     {
-        return $this->opponentLobbys;
+        return $this->opponentLobbies;
+    }
+
+    /**
+     * @param Collection $opponentLobbies
+     */
+    public function setOpponentLobbies(Collection $opponentLobbies): void
+    {
+        $this->opponentLobbies = $opponentLobbies;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getWinnerLobbies(): Collection
+    {
+        return $this->winnerLobbies;
+    }
+
+    /**
+     * @param Collection $winnerLobbies
+     */
+    public function setWinnerLobbies(Collection $winnerLobbies): void
+    {
+        $this->winnerLobbies = $winnerLobbies;
     }
 }
