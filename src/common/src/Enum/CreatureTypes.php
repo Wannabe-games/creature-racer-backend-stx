@@ -3,16 +3,17 @@
 namespace App\Common\Enum;
 
 use ReflectionClass;
+use ReflectionException;
 
 /**
  * Class CreatureTypes.
  */
 class CreatureTypes
-{   
+{
    public const CREATURE_TYPE_BOAR = 'boar';
    public const CREATURE_TYPE_BIRD = 'bird';
    public const CREATURE_TYPE_COW = 'cow';
-   public const CREATURE_TYPE_FROG = 'lizard';
+   public const CREATURE_TYPE_FROG = 'frog';
    public const CREATURE_TYPE_DOG = 'dog';
    public const CREATURE_TYPE_SQUIRREL = 'squirrel';
    public const CREATURE_TYPE_RHINO = 'rhino';
@@ -38,7 +39,7 @@ class CreatureTypes
     {
         try {
             $reflector = new ReflectionClass(new self());
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
             return [];
         }
 
@@ -52,6 +53,6 @@ class CreatureTypes
      */
     public static function validate(string $type) : bool
     {
-        return in_array($type, self::getTypes());
+        return in_array($type, self::getTypes(), true);
     }
 }

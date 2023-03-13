@@ -102,7 +102,7 @@ final class CreaturesDecorator implements OpenApiFactoryInterface
                         {
                             "id": 3,
                             "tier": 1,
-                            "type": "lizard",
+                            "type": "frog",
                             "name": "Frog",
                             "skinColor": 0,
                             "speed": 0,
