@@ -43,8 +43,8 @@ final class UpgradeCreatureDecorator implements OpenApiFactoryInterface
                         'example' => 'yefihfipusdhgfiasdhgfh',
                     ],
                     'creatureId' => [
-                        'type' => 'int',
-                        'example' => '23',
+                        'type' => 'string',
+                        'example' => '1eca648f-f8fb-661e-81a5-eda9b0f7948a',
                     ],
                     'type' => [
                         'type' => 'string',

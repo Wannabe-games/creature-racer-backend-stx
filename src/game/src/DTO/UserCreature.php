@@ -31,7 +31,8 @@ class UserCreature
      */
     public function serialize(CreatureUser $creatureUser): array
     {
-        $serializedData['AnimalType'] = $creatureUser->getCreature()->getType();
+        $serializedData['Id'] = $creatureUser->getUuid();
+        $serializedData['AnimalType'] = $creatureUser->getCreature()?->getType();
         $serializedData['ColorOption'] = $creatureUser->getSkinColor() ?? 0;
         $serializedData['ActiveAttachment'] = "v1";
         $serializedData['AvailableAttachments'] = [

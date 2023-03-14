@@ -147,6 +147,7 @@ final class PlayerDecorator implements OpenApiFactoryInterface
                       },
                       "Animals": [
                         {
+                          "Id": "1eca648f-f8fb-661e-81a5-eda9b0f7948a",
                           "AnimalType": "boar",
                           "ColorOption": 1,
                           "ActiveAttachment": "v1",

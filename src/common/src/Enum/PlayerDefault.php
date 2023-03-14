@@ -6,7 +6,7 @@ namespace App\Common\Enum;
  * Class PlayerDefault.
  */
 class PlayerDefault
-{   
+{
     public static array $defaultAdditionalData =
         array (
             'IsFirstRaceCompleted' => false,
@@ -154,6 +154,7 @@ class PlayerDefault
                 array (
                     0 =>
                         array (
+                            'Id' => null,
                             'AnimalType' => 'boar',
                             'ColorOption' => 0,
                             'ActiveAttachment' => 'v1',

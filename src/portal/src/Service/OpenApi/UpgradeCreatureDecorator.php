@@ -32,19 +32,15 @@ final class UpgradeCreatureDecorator implements OpenApiFactoryInterface
         $schemas['CreatureUpgrade'] = new \ArrayObject([
             'type' => 'object',
             'properties' => [
-                'type' => [
-                    'type' => 'string',
-                    'example' => 'muscles',
-                ],
-                'level' => [
-                    'type' => 'int',
-                    'example' => '2',
-                ],
                 'creatureId' => [
                     'type' => 'string',
                     'example' => '1eca648f-f8fb-661e-81a5-eda9b0f7948a',
                 ],
-            ],
+                'type' => [
+                    'type' => 'string',
+                    'example' => 'muscles',
+                ],
+              ],
         ]);
 
         $pathItem = new Model\PathItem(
