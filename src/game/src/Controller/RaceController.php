@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class RaceController
@@ -27,21 +26,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class RaceController extends SymfonyAbstractController
 {
-    /**
-     * @var TranslatorInterface
-     */
-    private TranslatorInterface $translator;
-
-    /**
-     * SecurityController constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
-
     /**
      * @return JsonResponse
      *
@@ -56,8 +40,8 @@ class RaceController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param EntityManagerInterface $entityManager
-     *
      * @return JsonResponse
+     * @throws JsonException
      *
      * @Route("/race/finish", name="race_finish", methods={"POST"})
      */
@@ -124,7 +108,6 @@ class RaceController extends SymfonyAbstractController
 
     /**
      * @param SerializerInterface $serializer
-     *
      * @return JsonResponse
      *
      * @Route("/user-creatures", name="user_creatures", methods={"GET"})
