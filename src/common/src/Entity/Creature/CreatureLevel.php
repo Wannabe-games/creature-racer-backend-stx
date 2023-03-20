@@ -80,6 +80,15 @@ class CreatureLevel
     private int $priceStacks = 0;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(type="float", nullable=false, options={"default": 0})
+     *
+     * @Assert\NotNull()
+     */
+    private float $priceDollar = 0;
+
+    /**
      * @var int
      *
      * @ORM\Column(type="integer", nullable=false, options={"default": 0})
@@ -192,6 +201,22 @@ class CreatureLevel
     public function setPriceStacks(int $priceStacks): void
     {
         $this->priceStacks = $priceStacks;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPriceDollar(): float
+    {
+        return $this->priceDollar;
+    }
+
+    /**
+     * @param float $priceDollar
+     */
+    public function setPriceDollar(float $priceDollar): void
+    {
+        $this->priceDollar = $priceDollar;
     }
 
     /**

@@ -138,20 +138,24 @@ class ProcessRewardPoolCommand extends Command
         if (empty($LastCycle)) {
             $LastCycle = new Settings();
             $LastCycle->setSystemType(SystemTypes::REWARD_POOL_CYCLE);
-            $LastCycle->setValue([
-                                     'cycle' => $cycle,
-                                     'date' => date('Y-m-d')
-                                 ]);
+            $LastCycle->setValue(
+                [
+                    'cycle' => $cycle,
+                    'date' => date('Y-m-d')
+                ]
+            );
 
             $this->settingsRepository->save($LastCycle);
         } elseif (
             $cycle > $LastCycle->getValue()['cycle'] &&
             $rewardPoolLog->getTimestamp()->format('Y-m-d') < date('Y-m-d')
         ) {
-            $LastCycle->setValue([
-                                     'cycle' => $cycle,
-                                     'date' => date('Y-m-d')
-                                 ]);
+            $LastCycle->setValue(
+                [
+                    'cycle' => $cycle,
+                    'date' => date('Y-m-d')
+                ]
+            );
 
             $this->settingsRepository->save($LastCycle);
         }

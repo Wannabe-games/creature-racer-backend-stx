@@ -50,6 +50,7 @@ class RewriteLevelsPreferencesCommand extends Command
 
             $creature['PriceGold'] = $levelEntity->getPriceGold();
             $creature['PriceStacks'] = $levelEntity->getPriceStacks();
+            $creature['PriceDollar'] = $levelEntity->getPriceDollar();
             $creature['DeliveryWaitingTime'] = $levelEntity->getDeliveryWaitingTime();
             $creature['DeliveryPriceStacks'] = $levelEntity->getDeliveryPriceStacks();
 
@@ -84,6 +85,7 @@ class RewriteLevelsPreferencesCommand extends Command
 
                     $level['PriceGold'] = $levelEntity->getPriceGold();
                     $level['PriceStacks'] = $levelEntity->getPriceStacks();
+                    $level['PriceDollar'] = $levelEntity->getPriceDollar();
                     $level['DeliveryWaitingTime'] = $levelEntity->getDeliveryWaitingTime();
                     $level['DeliveryPriceStacks'] = $levelEntity->getDeliveryPriceStacks();
 

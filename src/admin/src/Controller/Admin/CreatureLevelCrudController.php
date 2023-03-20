@@ -27,7 +27,8 @@ class CreatureLevelCrudController extends AbstractCrudController
             ChoiceField::new('upgradeType')->setChoices(CreatureLevel::UPGRADE_TYPES),
             AssociationField::new('upgradeChanges'),
             NumberField::new('priceGold'),
-            NumberField::new('priceStacks'),
+            NumberField::new('priceStacks')->hideOnForm(),
+            NumberField::new('priceDollar'),
             NumberField::new('deliveryPriceStacks'),
             NumberField::new('deliveryWaitingTime'),
         ];
