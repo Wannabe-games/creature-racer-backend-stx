@@ -110,11 +110,11 @@ class Lobby
     private int $betAmount = 1000000;
 
     /**
-     * @var DateTime
+     * @var DateTime|null
      *
-     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private DateTime $timeleft;
+    private ?DateTime $timeleft = null;
 
     /**
      * @var DateTime|null
@@ -129,7 +129,7 @@ class Lobby
     public function __construct()
     {
         $this->uuid = uuid::v6();
-        $this->timeleft = new DateTime('+7 days');
+        $this->timeleft = new DateTime('+1 days');
         $this->createdAt = new DateTime();
     }
 
@@ -192,6 +192,7 @@ class Lobby
     public function setHostPaymentId(?string $hostPaymentId): void
     {
         $this->hostPaymentId = $hostPaymentId;
+        $this->setTimeleft(new DateTime('+7 days'));
     }
 
     /**
@@ -272,6 +273,7 @@ class Lobby
     public function setWinner(?User $winner): void
     {
         $this->winner = $winner;
+        $this->setTimeleft(null);
     }
 
     /**
@@ -307,17 +309,18 @@ class Lobby
     }
 
     /**
-     * @return DateTime
+     * @return DateTime|null
      */
-    public function getTimeleft(): DateTime
+    public function getTimeleft(): ?DateTime
     {
         return $this->timeleft;
     }
 
     /**
-     * @param DateTime $timeleft
+     * @param DateTime|null $timeleft
+     * @return void
      */
-    public function setTimeleft(DateTime $timeleft): void
+    public function setTimeleft(?DateTime $timeleft): void
     {
         $this->timeleft = $timeleft;
     }

@@ -57,7 +57,7 @@ class LobbyController extends SymfonyAbstractController
         }
 
         $result['lobbies'] = $serializedLobby;
-        $result['maxResults'] = $this->getUser()->getCreatures()->count();
+        $result['maxResults'] = $lobbyRepository->countLobbiesForUser($this->getUser());
 
         return new JsonResponse($result);
     }
@@ -181,7 +181,7 @@ class LobbyController extends SymfonyAbstractController
         }
 
         $result['lobbies'] = $serializedLobby;
-        $result['maxResults'] = $this->getUser()->getCreatures()->count();
+        $result['maxResults'] = $lobbyRepository->countLobbies();
 
         return new JsonResponse($result);
     }

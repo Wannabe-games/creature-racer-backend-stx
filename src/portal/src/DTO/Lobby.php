@@ -14,7 +14,7 @@ class Lobby
         $serializedData['opponent'] = $lobby->getOpponent() ? $this->serializeUser($lobby->getOpponent()) : null;
         $serializedData['winnerId'] = $lobby->getWinner()?->getId();
         $serializedData['betAmount'] = $lobby->getBetAmount();
-        $serializedData['timeleft'] = $lobby->getTimeleft()->getTimestamp();
+        $serializedData['timeleft'] = $lobby->getTimeleft()?->getTimestamp();
         $serializedData['status'] = $lobby->getStatus();
 
         return $serializedData;
