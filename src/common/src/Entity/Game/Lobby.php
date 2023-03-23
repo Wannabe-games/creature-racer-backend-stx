@@ -4,6 +4,8 @@ namespace App\Entity\Game;
 
 use App\Entity\User;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV6;
 use Symfony\Component\Uid\Uuid;
@@ -15,35 +17,29 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Lobby
 {
-    public const STATUS_CREATED = 'created'; // bet utworzony
-    public const STATUS_APPROVAL = 'approval'; // host wplacil kase
-    public const STATUS_REJECTED = 'rejected'; // host nie wplacil kasy
-    public const STATUS_ACTIVE = 'active'; // host rozegral
-    public const STATUS_WAITING = 'waiting'; // oponent wplacil i oczekuje na rozgrywke
-    public const STATUS_EXPIRED = 'expired'; // czas minal a opponent nie dolaczyl lub nie rozegral
+    public const STATUS_CREATED = 'created';     // bet utworzony
+    public const STATUS_APPROVAL = 'approval';   // host wplacil kase
+    public const STATUS_REJECTED = 'rejected';   // host nie wplacil kasy
+    public const STATUS_ACTIVE = 'active';       // host rozegral
+    public const STATUS_WAITING = 'waiting';     // oponent wplacil i oczekuje na rozgrywke
+    public const STATUS_EXPIRED = 'expired';     // czas minal a opponent nie dolaczyl lub nie rozegral
     public const STATUS_COMPLETED = 'completed'; // opponent rozegral
-    public const STATUS_DECIDED = 'decided'; // rozstrzygnieto wynik
-    public const STATUS_FINISH = 'finish'; // wyplacono nagrode
-
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private ?int $id;
+    public const STATUS_DECIDED = 'decided';     // rozstrzygnieto wynik
+    public const STATUS_FINISH = 'finish';       // wyplacono nagrode
 
     /**
      * @var UuidV6
      *
-     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\Id
+     * @ORM\Column(type="uuid")
      */
-    protected UuidV6 $uuid;
+    private UuidV6 $id;
 
     /**
      * User
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="hostLobbies")
-     * @ORM\JoinColumn(name="host_id", nullable=false)
+     * @ORM\JoinColumn(nullable=false)
      *
      * @Assert\NotNull()
      */
@@ -54,20 +50,13 @@ class Lobby
      *
      * @ORM\Column(type="string", length=32, nullable=true)
      */
-    protected ?string $hostPaymentId = null;
-
-    /**
-     * @var UuidV6|null
-     *
-     * @ORM\Column(type="uuid", nullable=true)
-     */
-    protected ?UuidV6 $hostRaceId = null;
+    private ?string $hostPaymentId = null;
 
     /**
      * User
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="opponentLobbies")
-     * @ORM\JoinColumn(name="opponent_id", nullable=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private ?User $opponent = null;
 
@@ -76,20 +65,13 @@ class Lobby
      *
      * @ORM\Column(type="string", length=32, nullable=true))
      */
-    protected ?string $opponentPaymentId = null;
+    private ?string $opponentPaymentId = null;
 
     /**
-     * @var UuidV6|null
-     *
-     * @ORM\Column(type="uuid", nullable=true)
-     */
-    protected ?UuidV6 $opponentRaceId = null;
-
-    /**
-     * User
+     * @var User|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="winnerLobbies")
-     * @ORM\JoinColumn(name="winner_id", nullable=true)
+     * @ORM\JoinColumn(nullable=true)
      */
     private ?User $winner = null;
 
@@ -98,7 +80,7 @@ class Lobby
      *
      * @ORM\Column(type="string", length=32, nullable=true))
      */
-    protected ?string $winnerWithdrawId = null;
+    private ?string $winnerWithdrawId = null;
 
     /**
      * @var int
@@ -121,45 +103,40 @@ class Lobby
      *
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
-    protected ?DateTime $createdAt;
+    private ?DateTime $createdAt;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Race", mappedBy="lobby")
+     */
+    private Collection $races;
 
     /**
      * CreatureLevel constructor.
      */
     public function __construct()
     {
-        $this->uuid = uuid::v6();
-        $this->timeleft = new DateTime('+1 days');
+        $this->id = uuid::v6();
+        $this->races = new ArrayCollection();
         $this->createdAt = new DateTime();
-    }
-
-    public function __toString(): string
-    {
-        return $this->getUuid();
+        $this->timeleft = new DateTime('+1 days');
     }
 
     /**
-     * @return int|null
+     * @return string
      */
-    public function getId(): ?int
+    public function __toString(): string
     {
-        return $this->id;
+        return $this->getId();
     }
 
     /**
      * @return UuidV6
      */
-    public function getUuid(): UuidV6
+    public function getId(): UuidV6
     {
-        return $this->uuid;
-    }
-
-    /**
-     * @param UuidV6 $uuid
-     */
-    public function setUuid(UuidV6 $uuid): void
-    {
-        $this->uuid = $uuid;
+        return $this->id;
     }
 
     /**
@@ -192,23 +169,7 @@ class Lobby
     public function setHostPaymentId(?string $hostPaymentId): void
     {
         $this->hostPaymentId = $hostPaymentId;
-        $this->setTimeleft(new DateTime('+7 days'));
-    }
-
-    /**
-     * @return UuidV6|null
-     */
-    public function getHostRaceId(): ?UuidV6
-    {
-        return $this->hostRaceId;
-    }
-
-    /**
-     * @param UuidV6|null $hostRaceId
-     */
-    public function setHostRaceId(?UuidV6 $hostRaceId): void
-    {
-        $this->hostRaceId = $hostRaceId;
+        $this->setTimeleft(new DateTime('+1 days'));
     }
 
     /**
@@ -241,22 +202,6 @@ class Lobby
     public function setOpponentPaymentId(?string $opponentPaymentId): void
     {
         $this->opponentPaymentId = $opponentPaymentId;
-    }
-
-    /**
-     * @return UuidV6|null
-     */
-    public function getOpponentRaceId(): ?UuidV6
-    {
-        return $this->opponentRaceId;
-    }
-
-    /**
-     * @param UuidV6|null $opponentRaceId
-     */
-    public function setOpponentRaceId(?UuidV6 $opponentRaceId): void
-    {
-        $this->opponentRaceId = $opponentRaceId;
     }
 
     /**
@@ -342,6 +287,42 @@ class Lobby
     }
 
     /**
+     * @return Collection|Race[]
+     */
+    public function getRaces(): Collection
+    {
+        return $this->races;
+    }
+
+    /**
+     * @return Race|null
+     */
+    public function getHostRace(): ?Race
+    {
+        foreach ($this->getRaces() as $race) {
+            if ($race->getCreatureUser()->getUser() === $this->getHost()) {
+                return $race;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return Race|null
+     */
+    public function getOpponentRace(): ?Race
+    {
+        foreach ($this->getRaces() as $race) {
+            if ($race->getCreatureUser()->getUser() === $this->getOpponent()) {
+                return $race;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @return string
      */
     public function getStatus(): string
@@ -354,7 +335,7 @@ class Lobby
             return self::STATUS_DECIDED;
         }
 
-        if (null !== $this->getOpponentRaceId()) {
+        if (null !== $this->getOpponentRace()) {
             return self::STATUS_COMPLETED;
         }
 
@@ -366,7 +347,7 @@ class Lobby
             return self::STATUS_EXPIRED;
         }
 
-        if (null !== $this->getHostRaceId()) {
+        if (null !== $this->getHostRace()) {
             return self::STATUS_ACTIVE;
         }
 

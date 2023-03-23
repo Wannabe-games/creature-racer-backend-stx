@@ -8,8 +8,9 @@ use App\Common\Repository\UserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\DTO\Lobby as LobbyDto;
 use App\Entity\Game\Lobby;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use JsonException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,8 +31,9 @@ class LobbyController extends SymfonyAbstractController
      * @param Request $request
      * @param LobbyRepository $lobbyRepository
      * @param LobbyDto $lobbyDto
-     *
      * @return JsonResponse
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      *
      * @Route("/user-lobbies", name="user_lobbies", methods={"GET"})
      */
@@ -69,7 +71,6 @@ class LobbyController extends SymfonyAbstractController
      * @return JsonResponse
      *
      * @Route("/user-lobbies/{id}", name="user_lobby_details", methods={"GET"})
-     * @ParamConverter("lobby", options={"mapping": {"id": "uuid"}})
      */
     public function getUserLobbyDetails(
         ?Lobby $lobby,
@@ -117,46 +118,11 @@ class LobbyController extends SymfonyAbstractController
 
     /**
      * @param Request $request
-     * @param UserRepository $userRepository
      * @param LobbyRepository $lobbyRepository
      * @param LobbyDto $lobbyDto
-     * @param Lobby $lobby
      * @return JsonResponse
-     * @throws JsonException
-     * @Route("/user-lobbies/{id}", name="user_lobby_update", methods={"PUT"})
-     */
-    public function updateUserLobby(
-        Request $request,
-        UserRepository $userRepository,
-        LobbyRepository $lobbyRepository,
-        LobbyDto $lobbyDto,
-        Lobby $lobby
-    ): JsonResponse {
-        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
-
-        if (!array_key_exists('opponent', $data)) {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
-        }
-
-        $opponent = $userRepository->find($data['opponent']);
-
-        if (null === $opponent) {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
-        }
-
-        $lobby->setOpponent($opponent);
-
-        $lobbyRepository->save($lobby);
-
-        return new JsonResponse($lobbyDto->serialize($lobby));
-    }
-
-    /**
-     * @param Request $request
-     * @param LobbyRepository $lobbyRepository
-     * @param LobbyDto $lobbyDto
-     *
-     * @return JsonResponse
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      *
      * @Route("/lobbies", name="lobbies", methods={"GET"})
      */
@@ -189,11 +155,9 @@ class LobbyController extends SymfonyAbstractController
     /**
      * @param Lobby|null $lobby
      * @param LobbyDto $lobbyDto
-     *
      * @return JsonResponse
      *
      * @Route("/lobbies/{id}", name="lobby_details", methods={"GET"})
-     * @ParamConverter("lobby", options={"mapping": {"id": "uuid"}})
      */
     public function getLobbyDetails(
         ?Lobby $lobby,
@@ -202,6 +166,43 @@ class LobbyController extends SymfonyAbstractController
         if (null === $lobby) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
+
+        return new JsonResponse($lobbyDto->serialize($lobby));
+    }
+
+    /**
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @param LobbyRepository $lobbyRepository
+     * @param LobbyDto $lobbyDto
+     * @param Lobby $lobby
+     * @return JsonResponse
+     * @throws JsonException
+     *
+     * @Route("/lobbies/{id}", name="user_lobby_update", methods={"PUT"})
+     */
+    public function updateUserLobby(
+        Request $request,
+        UserRepository $userRepository,
+        LobbyRepository $lobbyRepository,
+        LobbyDto $lobbyDto,
+        Lobby $lobby
+    ): JsonResponse {
+        $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (!array_key_exists('opponentId', $data)) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+        }
+
+        $opponent = $userRepository->find($data['opponentId']);
+
+        if (null === $opponent) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+        }
+
+        $lobby->setOpponent($opponent);
+
+        $lobbyRepository->save($lobby);
 
         return new JsonResponse($lobbyDto->serialize($lobby));
     }

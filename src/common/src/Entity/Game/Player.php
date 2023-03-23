@@ -98,6 +98,7 @@ class Player
     public function addGold(int $gold): void
     {
         $this->gold += $gold;
+        $this->setMaxScore($gold);
     }
 
     /**

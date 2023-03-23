@@ -38,7 +38,7 @@ final class FinishRaceDecorator implements OpenApiFactoryInterface
                                                                      'type' => 'string',
                                                                      'example' => 'NQwyegfnxYGWQEfngx83274rgtx8nf2g',
                                                                  ],
-                                                                 'maxScore' => [
+                                                                 'betScore' => [
                                                                      'type' => 'int',
                                                                      'example' => 10,
                                                                  ],

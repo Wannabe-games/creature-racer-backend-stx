@@ -20,18 +20,19 @@ class LobbyCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('uuid')->setLabel('Id')->onlyOnIndex(),
-            NumberField::new('betAmount'),
+            IdField::new('id')->onlyOnIndex(),
+            DateTimeField::new('createdAt')->hideOnForm(),
+            DateTimeField::new('timeleft'),
+            NumberField::new('betAmount')->setHelp('Enter a value in microstacks'),
             AssociationField::new('host'),
             TextField::new('hostPaymentId')->onlyOnForms(),
-            TextField::new('hostRaceId')->onlyOnForms(),
+            TextField::new('hostRace')->onlyOnDetail(),
             AssociationField::new('opponent'),
             TextField::new('opponentPaymentId')->onlyOnForms(),
-            TextField::new('opponentRaceId')->onlyOnForms(),
+            TextField::new('opponentRace')->onlyOnDetail(),
             AssociationField::new('winner'),
+            TextField::new('winnerWithdrawId')->onlyOnForms(),
             TextField::new('status')->onlyOnIndex(),
-            DateTimeField::new('timeleft')->onlyOnIndex(),
-            DateTimeField::new('createdAt')->onlyOnIndex(),
         ];
     }
 }

@@ -19,14 +19,14 @@ class CreatureUser
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected ?int $id;
+    private ?int $id;
 
     /**
      * @var UuidV6
      *
      * @ORM\Column(type="uuid", unique=true)
      */
-    protected $uuid;
+    private $uuid;
 
     /**
      * @var string
@@ -49,7 +49,7 @@ class CreatureUser
      * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\SequenceGenerator(sequenceName="contract_id_seq", initialValue=1, allocationSize=100)
      */
-    protected $contract;
+    private $contract;
 
     /**
      * Creature definition.
@@ -221,14 +221,14 @@ class CreatureUser
      *
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
-    protected ?DateTime $createdAt;
+    private ?DateTime $createdAt;
 
     /**
      * @var DateTime|null
      *
      * @ORM\Column(type="datetime", nullable=true)
      */
-    protected ?DateTime $nftExpiryDate;
+    private ?DateTime $nftExpiryDate;
 
     /**
      * @var float|null
@@ -278,7 +278,7 @@ class CreatureUser
 
     public function __toString(): string
     {
-        return $this->getCreature()->getType();
+        return $this->getCreature()->getType() . ' (' . $this->getUser()->getUsername() . ')';
     }
 
     /**

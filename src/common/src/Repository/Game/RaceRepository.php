@@ -2,7 +2,7 @@
 
 namespace App\Common\Repository\Game;
 
-use App\Entity\Game\Lobby;
+use App\Entity\Game\Race;
 use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -11,13 +11,13 @@ use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class LobbyRepository.
+ * Class RaceRepository.
  */
-class LobbyRepository extends ServiceEntityRepository
+class RaceRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Lobby::class);
+        parent::__construct($registry, Race::class);
     }
 
     /**
@@ -32,15 +32,14 @@ class LobbyRepository extends ServiceEntityRepository
     ): array {
         $qb = $this->createQueryBuilder('l');
         $qb
-            ->leftJoin('l.races', 'r')
             ->where('l.timeleft IS NOT NULL AND l.timeleft >= :expirationTime')
-            ->andWhere('r.score IS NOT NULL')
+            ->andWhere('l.hostRaceId IS NOT NULL')
             ->setParameter('expirationTime', new DateTime());
 
         return $qb
             ->setFirstResult($offset)
             ->setMaxResults($limit)
-            ->orderBy('l.createdAt', 'desc')
+            ->orderBy('l.id', 'asc')
             ->getQuery()
             ->getResult();
     }
@@ -54,9 +53,8 @@ class LobbyRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('l');
         $qb
-            ->leftJoin('l.races', 'r')
             ->where('l.timeleft IS NOT NULL AND l.timeleft >= :expirationTime')
-            ->andWhere('r.score IS NOT NULL')
+            ->andWhere('l.hostRaceId IS NOT NULL')
             ->setParameter('expirationTime', new DateTime());
 
         return $qb
@@ -87,7 +85,7 @@ class LobbyRepository extends ServiceEntityRepository
         return $qb
             ->setFirstResult($offset)
             ->setMaxResults($limit)
-            ->orderBy('l.createdAt', 'desc')
+            ->orderBy('l.id', 'asc')
             ->getQuery()
             ->getResult();
     }
@@ -115,22 +113,22 @@ class LobbyRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Lobby $lobby
+     * @param Race $race
      * @return void
      */
-    public function save(Lobby $lobby): void
+    public function save(Race $race): void
     {
-        $this->getEntityManager()->persist($lobby);
+        $this->getEntityManager()->persist($race);
         $this->getEntityManager()->flush();
     }
 
     /**
-     * @param Lobby $lobby
+     * @param Race $race
      * @return void
      */
-    public function remove(Lobby $lobby): void
+    public function remove(Race $race): void
     {
-        $this->getEntityManager()->remove($lobby);
+        $this->getEntityManager()->remove($race);
         $this->getEntityManager()->flush();
     }
 
