@@ -103,7 +103,7 @@ class UserCreature
         $serializedData['cohort'] = $creatureUser->getCreature()->getCohort();
         $serializedData['priceGold'] = $levelEntity->getPriceGold();
         $serializedData['priceStacks'] = $levelEntity->getPriceStacks();
-        $serializedData['priceDollar'] = $levelEntity->getPriceDollar();
+        $serializedData['PriceUSD'] = $levelEntity->getPriceUSD();
 
         $serializedData['fuel'] = [
             'level' => $creatureUser->getBelly(),
@@ -194,7 +194,7 @@ class UserCreature
                 'level' => $nextLevel->getLevel(),
                 'priceStacks' => $nextLevel->getPriceStacks(),
                 'priceGold' => $nextLevel->getPriceGold(),
-                'priceDollar' => $nextLevel->getPriceDollar(),
+                'PriceUSD' => $nextLevel->getPriceUSD(),
                 'deliveryPriceStacks' => $nextLevel->getDeliveryPriceStacks(),
                 'deliveryWaitingTime' => $nextLevel->getDeliveryWaitingTime(),
             ];

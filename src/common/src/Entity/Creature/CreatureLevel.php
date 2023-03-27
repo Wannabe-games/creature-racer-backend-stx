@@ -86,7 +86,7 @@ class CreatureLevel
      *
      * @Assert\NotNull()
      */
-    private float $priceDollar = 0;
+    private float $priceUSD = 0;
 
     /**
      * @var int
@@ -206,17 +206,17 @@ class CreatureLevel
     /**
      * @return float
      */
-    public function getPriceDollar(): float
+    public function getPriceUSD(): float
     {
-        return $this->priceDollar;
+        return $this->priceUSD;
     }
 
     /**
-     * @param float $priceDollar
+     * @param float $priceUSD
      */
-    public function setPriceDollar(float $priceDollar): void
+    public function setPriceUSD(float $priceUSD): void
     {
-        $this->priceDollar = $priceDollar;
+        $this->priceUSD = $priceUSD;
     }
 
     /**

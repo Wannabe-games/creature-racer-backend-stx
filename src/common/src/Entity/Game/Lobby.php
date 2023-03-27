@@ -128,7 +128,7 @@ class Lobby
      */
     public function __toString(): string
     {
-        return $this->getId();
+        return $this->getHost()->getUsername() . ' vs. ' . $this->getOpponent()?->getUsername();
     }
 
     /**

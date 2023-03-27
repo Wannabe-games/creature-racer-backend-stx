@@ -32,7 +32,7 @@ class UpdatesExchangeRatesCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $response = json_decode(file_get_contents(self::API_URL), false, 512, JSON_THROW_ON_ERROR);
-        $dollarToMicrostxRate = $response->price * 1000000;
+        $usdToStxRate = $response->price;
 
         /** @var CreatureLevel[] $creatureLevels */
         $creatureLevels = $this->creatureLevelRepository->findAll();
@@ -48,7 +48,7 @@ class UpdatesExchangeRatesCommand extends Command
 
         foreach ($creatureLevels as $creatureLevel) {
             $progressBar->display();
-            $price = $creatureLevel->getPriceDollar() * $dollarToMicrostxRate;
+            $price = round($creatureLevel->getPriceUSD() * $usdToStxRate * 100) * 10000;
             $creatureLevel->setPriceStacks($price);
             $progressBar->advance();
         }
