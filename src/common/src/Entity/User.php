@@ -137,7 +137,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="boolean", options={"default": false})
      */
-    private bool $enabled;
+    private bool $enabled = false;
 
     /**
      * The salt to use for hashing.
@@ -160,7 +160,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="array")
      */
-    private $roles;
+    private array $roles = [];
 
     /**
      * @var string
@@ -234,6 +234,13 @@ class User implements UserInterface
     private $winnerLobbies;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    private bool $paidCommission = false;
+
+    /**
      * User constructor.
      */
     public function __construct()
@@ -243,8 +250,6 @@ class User implements UserInterface
         $this->hostLobbies = new ArrayCollection();
         $this->opponentLobbies = new ArrayCollection();
         $this->winnerLobbies = new ArrayCollection();
-        $this->enabled = false;
-        $this->roles = array();
     }
 
     /**
@@ -719,5 +724,21 @@ class User implements UserInterface
     public function setWinnerLobbies(Collection $winnerLobbies): void
     {
         $this->winnerLobbies = $winnerLobbies;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPaidCommission(): bool
+    {
+        return $this->paidCommission;
+    }
+
+    /**
+     * @param bool $paidCommission
+     */
+    public function setPaidCommission(bool $paidCommission): void
+    {
+        $this->paidCommission = $paidCommission;
     }
 }

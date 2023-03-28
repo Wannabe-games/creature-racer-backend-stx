@@ -62,7 +62,8 @@ class UserController extends SymfonyAbstractController
         $result['rewardPool'] = $poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle());
         $result['nick'] = $user->getNick();
         $result['referralCode'] = $user->getMyReferralNft()?->getRefCode();
-        $result['referralLevel'] = $user->getMyReferralNft()?->getUsers()->count();
+        $result['referralInviteesCount'] = $user->getMyReferralNft() ? $user->getMyReferralNft()->getUsers()->count() : 0;
+        $result['isPaidCommission'] = $user->isPaidCommission();
         $result['qrCode'] = $resultQR->getDataUri();
         $result['avatar'] = $this->creatureFileNameManager->getFileName($user->getPlayer()->getActiveAnimalCreatureType()) . '.png';
 
@@ -98,7 +99,8 @@ class UserController extends SymfonyAbstractController
             ,
             2
         );
-        $result['referralLevel'] = $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null;
+        $result['referralInviteesCount'] = $this->getUser()?->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : 0;
+        $result['isPaidCommission'] = $this->getUser()->isPaidCommission();
         $result['readyToUpgrade'] = $creatureUserRepository->readyToUpgradeCount($this->getUser());
         $result['totalStaked'] = $creatureUserRepository->stakedCount($this->getUser());
         $result['mintedInTotal'] = $creatureUserRepository->mintedCount($this->getUser());

@@ -7,8 +7,7 @@ use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Common\Service\Game\CreatureManager;
 use App\Entity\Creature\CreatureUser;
 use App\Entity\User;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
+use Exception;
 use JsonException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
@@ -16,7 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class CreaturesController
@@ -27,21 +25,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class CreaturesController extends SymfonyAbstractController
 {
-    /**
-     * @var TranslatorInterface
-     */
-    private TranslatorInterface $translator;
-
-    /**
-     * SecurityController constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator)
-    {
-        $this->translator = $translator;
-    }
-
     /**
      * @return JsonResponse
      *
@@ -272,26 +255,22 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureManager $creatureManager
-     *
      * @return JsonResponse
      *
-     * @Route("/buy-creature", name="buy_creature", methods={"POST"})
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      * @throws JsonException
+     * @throws Exception
+     *
+     * @Route("/buy-creature", name="buy_creature", methods={"POST"})
      */
     public function buyCreatureAction(Request $request, CreatureManager $creatureManager): JsonResponse
     {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-        if (
-            !array_key_exists('type', $data)
-        ) {
+        if (!array_key_exists('type', $data) || !array_key_exists('receipt', $data)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
 
-        $id = $creatureManager->buyCreature($this->getUser(), $data['type']);
+        $id = $creatureManager->buyCreature($this->getUser(), $data['type'], $data['receipt']);
 
         return new JsonResponse(['creatureId' => $id]);
     }
@@ -299,27 +278,23 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureManager $creatureManager
-     *
      * @return JsonResponse
+     *
+     * @throws JsonException
+     * @throws Exception
      *
      * @Route("/upgrade-creature", name="upgrade_creature", methods={"POST"})
      *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     * @throws JsonException
      */
     public function upgradeAction(Request $request, CreatureManager $creatureManager): JsonResponse
     {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-        if (
-            !array_key_exists('creatureId', $data) ||
-            !array_key_exists('type', $data)
-        ) {
+        if (!array_key_exists('creatureId', $data) || !array_key_exists('type', $data) || !array_key_exists('receipt', $data)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
 
-        $id = $creatureManager->upgradeCreature($this->getUser(), $data['creatureId'], $data['type']);
+        $id = $creatureManager->upgradeCreature($this->getUser(), $data['creatureId'], $data['type'], $data['receipt']);
 
         return new JsonResponse(['creatureId' => $id]);
     }
