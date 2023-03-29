@@ -50,6 +50,7 @@ security:
         - { path: ^/api/contract/docs,                role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/contract/user/card,           role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/contract/user/qr-code,        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/stripe,              role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/game/docs,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/game/social-media,            role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/game/wallet,                  role: IS_AUTHENTICATED_ANONYMOUSLY }

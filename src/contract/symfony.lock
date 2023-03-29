@@ -288,6 +288,12 @@
             "config/packages/snc_redis.yaml"
         ]
     },
+    "stella-maris/clock": {
+        "version": "0.1.4"
+    },
+    "stripe/stripe-php": {
+        "version": "v10.11.0"
+    },
     "symfony/asset": {
         "version": "v5.4.3"
     },
