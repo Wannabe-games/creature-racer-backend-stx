@@ -2,6 +2,7 @@
 
 namespace App\Common\Service\Game;
 
+use App\Common\Enum\CreatureLevels;
 use App\Common\Enum\CreatureTypes;
 use App\Common\Enum\CreatureUpgradeTypes;
 use App\Common\Exception\Api\ApiException;
@@ -58,7 +59,8 @@ class CreatureManager
         $creatureLevel = $this->creatureLevelRepository->findOneBy(
             [
                 'creature' => $creature,
-                'upgradeType' => CreatureUpgradeTypes::BASE_UPGRADE_TYPE
+                'level' => CreatureLevels::BASE,
+                'upgradeType' => CreatureUpgradeTypes::BASE
             ]
         );
 
@@ -113,16 +115,16 @@ class CreatureManager
         $this->isUserCreatureBelongToUser($currentUser, $user);
 
         $getter = match ($upgradeType) {
-            CreatureUpgradeTypes::MUSCLES_UPGRADE_TYPE => 'getMuscles',
-            CreatureUpgradeTypes::LUNG_UPGRADE_TYPE => 'getLungs',
-            CreatureUpgradeTypes::REFLEX_UPGRADE_TYPE => 'getHeart',
-            CreatureUpgradeTypes::BOOST_UPGRADE_TYPE => 'getBelly',
-            CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE => 'getButtocks'
+            CreatureUpgradeTypes::MUSCLES => 'getMuscles',
+            CreatureUpgradeTypes::LUNGS => 'getLungs',
+            CreatureUpgradeTypes::HEART => 'getHeart',
+            CreatureUpgradeTypes::BELLY => 'getBelly',
+            CreatureUpgradeTypes::BUTTOCKS => 'getButtocks'
         };
 
         $level = (int)$currentUser->$getter() + 1;
 
-        if (!in_array($level, CreatureLevel::LEVELS)) {
+        if (!CreatureLevels::validate($level)) {
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::INVALID_LEVEL_VALUE));
         }
 
@@ -155,10 +157,10 @@ class CreatureManager
     protected function convertUpgradeType(string $upgradeType): string
     {
         return match ($upgradeType) {
-            'lungs' => CreatureUpgradeTypes::LUNG_UPGRADE_TYPE,
-            'heart' => CreatureUpgradeTypes::REFLEX_UPGRADE_TYPE,
-            'fuel' => CreatureUpgradeTypes::BOOST_UPGRADE_TYPE,
-            'boost' => CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE,
+            'lungs' => CreatureUpgradeTypes::LUNGS,
+            'heart' => CreatureUpgradeTypes::HEART,
+            'fuel' => CreatureUpgradeTypes::BELLY,
+            'boost' => CreatureUpgradeTypes::BUTTOCKS,
             default => $upgradeType
         };
     }
@@ -349,19 +351,19 @@ class CreatureManager
         }
 
         switch ($upgradeType) {
-            case CreatureUpgradeTypes::MUSCLES_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::MUSCLES:
                 $creatureUser->setUpgradeMusclesEnd($date);
                 break;
-            case CreatureUpgradeTypes::LUNG_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::LUNGS:
                 $creatureUser->setUpgradeLungsEnd($date);
                 break;
-            case CreatureUpgradeTypes::REFLEX_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::HEART:
                 $creatureUser->setUpgradeHeartEnd($date);
                 break;
-            case CreatureUpgradeTypes::BOOST_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::BELLY:
                 $creatureUser->setUpgradeBellyEnd($date);
                 break;
-            case CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::BUTTOCKS:
                 $creatureUser->setUpgradeButtocksEnd($date);
                 break;
         }
@@ -446,11 +448,11 @@ class CreatureManager
     public static function getBodyPartsName($upgradeType): string
     {
         return match ($upgradeType) {
-            CreatureUpgradeTypes::MUSCLES_UPGRADE_TYPE => 'Muscles',
-            CreatureUpgradeTypes::LUNG_UPGRADE_TYPE => 'Lungs',
-            CreatureUpgradeTypes::REFLEX_UPGRADE_TYPE => 'Heart',
-            CreatureUpgradeTypes::BOOST_UPGRADE_TYPE => 'Fuel',
-            CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE => 'Boost power'
+            CreatureUpgradeTypes::MUSCLES => 'Muscles',
+            CreatureUpgradeTypes::LUNGS => 'Lungs',
+            CreatureUpgradeTypes::HEART => 'Heart',
+            CreatureUpgradeTypes::BELLY => 'Fuel',
+            CreatureUpgradeTypes::BUTTOCKS => 'Boost power'
         };
     }
 
@@ -477,19 +479,19 @@ class CreatureManager
         $levelUpgradeTime = null;
 
         switch ($upgradeType) {
-            case CreatureUpgradeTypes::MUSCLES_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::MUSCLES:
                 $levelUpgradeTime = $creature->getUpgradeMusclesEnd();
                 break;
-            case CreatureUpgradeTypes::LUNG_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::LUNGS:
                 $levelUpgradeTime = $creature->getUpgradeLungsEnd();
                 break;
-            case CreatureUpgradeTypes::REFLEX_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::HEART:
                 $levelUpgradeTime = $creature->getUpgradeHeartEnd();
                 break;
-            case CreatureUpgradeTypes::BOOST_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::BELLY:
                 $levelUpgradeTime = $creature->getUpgradeBellyEnd();
                 break;
-            case CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::BUTTOCKS:
                 $levelUpgradeTime = $creature->getUpgradeButtocksEnd();
                 break;
         }
@@ -519,19 +521,19 @@ class CreatureManager
         }
 
         switch ($creatureLevel->getUpgradeType()) {
-            case CreatureUpgradeTypes::MUSCLES_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::MUSCLES:
                 $creatureUser->setMuscles($creatureUser->getMuscles() + 1);
                 break;
-            case CreatureUpgradeTypes::LUNG_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::LUNGS:
                 $creatureUser->setLungs($creatureUser->getLungs() + 1);
                 break;
-            case CreatureUpgradeTypes::REFLEX_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::HEART:
                 $creatureUser->setHeart($creatureUser->getHeart() + 1);
                 break;
-            case CreatureUpgradeTypes::BOOST_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::BELLY:
                 $creatureUser->setBelly($creatureUser->getBelly() + 1);
                 break;
-            case CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE:
+            case CreatureUpgradeTypes::BUTTOCKS:
                 $creatureUser->setButtocks($creatureUser->getButtocks() + 1);
                 break;
         }

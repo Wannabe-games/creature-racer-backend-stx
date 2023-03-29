@@ -2,6 +2,7 @@
 
 namespace App\DTO;
 
+use App\Common\Enum\CreatureUpgradeTypes;
 use App\Common\Repository\Creature\CreatureLevelRepository;
 use App\Common\Utils\TimeTickerConverter;
 use App\Entity\Creature\CreatureLevel;
@@ -41,27 +42,27 @@ class UserCreature
             ]
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_MUSCLES,
+            'UpgradeType' => CreatureUpgradeTypes::MUSCLES,
             'Level' => $creatureUser->getMuscles(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeMusclesEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeMusclesEndFormat('U')) : 0
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_LUNGS,
+            'UpgradeType' => CreatureUpgradeTypes::LUNGS,
             'Level' => $creatureUser->getLungs(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeLungsEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeLungsEndFormat('U')) : 0
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_HEART,
+            'UpgradeType' => CreatureUpgradeTypes::HEART,
             'Level' => $creatureUser->getHeart(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeHeartEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeHeartEndFormat('U')) : 0
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_BELLY,
+            'UpgradeType' => CreatureUpgradeTypes::BELLY,
             'Level' => $creatureUser->getBelly(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeBellyEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeBellyEndFormat('U')) : 0
         ];
         $serializedData['Upgrades'][] = [
-            'UpgradeType' => CreatureLevel::UPGRADE_TYPE_BUTTOCKS,
+            'UpgradeType' => CreatureUpgradeTypes::BUTTOCKS,
             'Level' => $creatureUser->getButtocks(),
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeButtocksEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeButtocksEndFormat('U')) : 0
         ];
@@ -70,7 +71,7 @@ class UserCreature
         $creatureBuy = $this->creatureLevelRepository->findOneBy(
             [
                 'creature' => $creatureUser->getCreature(),
-                'upgradeType' => CreatureLevel::UPGRADE_TYPE_BASE,
+                'upgradeType' => CreatureUpgradeTypes::BASE,
             ]
         );
 

@@ -3,18 +3,19 @@
 namespace App\Common\Enum;
 
 use ReflectionClass;
+use ReflectionException;
 
 /**
  * Class CreatureUpgradeTypes.
  */
 class CreatureUpgradeTypes
 {
-    public const BASE_UPGRADE_TYPE = 'base';
-    public const MUSCLES_UPGRADE_TYPE = 'muscles';
-    public const LUNG_UPGRADE_TYPE = 'lung';
-    public const REFLEX_UPGRADE_TYPE = 'reflex';
-    public const BOOST_UPGRADE_TYPE = 'boost';
-    public const BOOST2_UPGRADE_TYPE = 'boost2';
+    public const BASE = 'base';
+    public const BELLY = 'boost';
+    public const BUTTOCKS = 'boost2';
+    public const HEART = 'reflex';
+    public const LUNGS = 'lung';
+    public const MUSCLES = 'muscles';
 
     /**
      * @return array
@@ -23,7 +24,7 @@ class CreatureUpgradeTypes
     {
         try {
             $reflector = new ReflectionClass(new self());
-        } catch (\ReflectionException $e) {
+        } catch (ReflectionException $e) {
             return [];
         }
 
@@ -32,11 +33,10 @@ class CreatureUpgradeTypes
 
     /**
      * @param string $type
-     *
      * @return bool
      */
-    public static function validate(string $type) : bool
+    public static function validate(string $type): bool
     {
-        return in_array($type, self::getUpgradeTypes());
+        return in_array($type, self::getUpgradeTypes(), true);
     }
 }

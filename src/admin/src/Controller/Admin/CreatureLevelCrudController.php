@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Common\Enum\CreatureLevels;
+use App\Common\Enum\CreatureUpgradeTypes;
 use App\Entity\Creature\CreatureLevel;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -23,8 +25,8 @@ class CreatureLevelCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             AssociationField::new('creature'),
-            ChoiceField::new('level')->setChoices(CreatureLevel::LEVELS),
-            ChoiceField::new('upgradeType')->setChoices(CreatureLevel::UPGRADE_TYPES),
+            ChoiceField::new('level')->setChoices(CreatureLevels::getUpgradeLevels()),
+            ChoiceField::new('upgradeType')->setChoices(CreatureUpgradeTypes::getUpgradeTypes()),
             AssociationField::new('upgradeChanges'),
             NumberField::new('priceGold'),
             NumberField::new('priceUSD'),
@@ -38,7 +40,7 @@ class CreatureLevelCrudController extends AbstractCrudController
     {
         return $filters
             ->add('creature')
-            ->add(ChoiceFilter::new('level')->setChoices(CreatureLevel::LEVELS))
-            ->add(ChoiceFilter::new('upgradeType')->setChoices(CreatureLevel::UPGRADE_TYPES));
+            ->add(ChoiceFilter::new('level')->setChoices(CreatureLevels::getUpgradeLevels()))
+            ->add(ChoiceFilter::new('upgradeType')->setChoices(CreatureUpgradeTypes::getUpgradeTypes()));
     }
 }

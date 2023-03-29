@@ -43,31 +43,31 @@ Learn more: [www.creatureracer.com](https://www.creatureracer.com)",
             'attributes' => [
                 [
                     'display_type' => 'boost_number',
-                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::MUSCLES_UPGRADE_TYPE),
+                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::MUSCLES),
                     'value' => $creatureUser->getMuscles() + 1,
                     'max_value' => 5
                 ],
                 [
                     'display_type' => 'boost_number',
-                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::LUNG_UPGRADE_TYPE),
+                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::LUNGS),
                     'value' => $creatureUser->getLungs() + 1,
                     'max_value' => 5
                 ],
                 [
                     'display_type' => 'boost_number',
-                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::REFLEX_UPGRADE_TYPE),
+                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::HEART),
                     'value' => $creatureUser->getHeart() + 1,
                     'max_value' => 5
                 ],
                 [
                     'display_type' => 'boost_number',
-                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::BOOST_UPGRADE_TYPE),
+                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::BELLY),
                     'value' => $creatureUser->getBelly() + 1,
                     'max_value' => 5
                 ],
                 [
                     'display_type' => 'boost_number',
-                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::BOOST2_UPGRADE_TYPE),
+                    'trait_type' => CreatureManager::getBodyPartsName(CreatureUpgradeTypes::BUTTOCKS),
                     'value' => $creatureUser->getButtocks() + 1,
                     'max_value' => 5
                 ],

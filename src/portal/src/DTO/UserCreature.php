@@ -2,12 +2,9 @@
 
 namespace App\DTO;
 
+use App\Common\Enum\CreatureLevels;
+use App\Common\Enum\CreatureUpgradeTypes;
 use App\Common\Repository\Creature\CreatureLevelRepository;
-use App\Common\Repository\Creature\CreatureRepository;
-use App\Common\Service\Game\CreatureManager;
-use App\Entity\Creature\Creature as Creature;
-use App\Entity\Creature\CreatureLevel;
-use App\Entity\Creature\CreatureUpgrade;
 use App\Entity\Creature\CreatureUser;
 
 /**
@@ -17,15 +14,13 @@ use App\Entity\Creature\CreatureUser;
 class UserCreature
 {
     public function __construct(
-        private CreatureRepository $creatureRepository,
-        private CreatureLevelRepository $creatureLevelRepository,
-        private CreatureManager $creatureManager
+        private CreatureLevel $creatureLevel,
+        private CreatureLevelRepository $creatureLevelRepository
     ) {
     }
 
     /**
      * @param CreatureUser $creatureUser
-     *
      * @return array
      */
     public function serialize(CreatureUser $creatureUser): array
@@ -81,7 +76,6 @@ class UserCreature
 
     /**
      * @param CreatureUser $creatureUser
-     *
      * @return array
      */
     public function serializeDetails(CreatureUser $creatureUser): array
@@ -89,9 +83,9 @@ class UserCreature
         /** @var CreatureLevel $levelEntity */
         $levelEntity = $this->creatureLevelRepository->findOneBy(
             [
-                'level' => 0,
                 'creature' => $creatureUser->getCreature(),
-                'upgradeType' => 'base',
+                'level' => CreatureLevels::BASE,
+                'upgradeType' => CreatureUpgradeTypes::BASE,
             ]
         );
 
@@ -107,27 +101,27 @@ class UserCreature
 
         $serializedData['fuel'] = [
             'level' => $creatureUser->getBelly(),
-            'next' => $this->getSerializedNextLevelData($creatureUser->getCreature()->getType(), $creatureUser->getBelly(), CreatureLevel::UPGRADE_TYPE_BELLY),
+            'next' => $this->creatureLevel->getSerializedLevelData($creatureUser->getCreature()->getType(), $creatureUser->getBelly() + 1, CreatureUpgradeTypes::BELLY),
             'upgradeDateEnd' => $creatureUser->getUpgradeBellyEndFormat('Y-m-d H:i:s'),
         ];
         $serializedData['boost'] = [
             'level' => $creatureUser->getButtocks(),
-            'next' => $this->getSerializedNextLevelData($creatureUser->getCreature()->getType(), $creatureUser->getButtocks(), CreatureLevel::UPGRADE_TYPE_BUTTOCKS),
+            'next' => $this->creatureLevel->getSerializedLevelData($creatureUser->getCreature()->getType(), $creatureUser->getButtocks() + 1, CreatureUpgradeTypes::BUTTOCKS),
             'upgradeDateEnd' => $creatureUser->getUpgradeButtocksEndFormat('Y-m-d H:i:s'),
         ];
         $serializedData['heart'] = [
             'level' => $creatureUser->getHeart(),
-            'next' => $this->getSerializedNextLevelData($creatureUser->getCreature()->getType(), $creatureUser->getHeart(), CreatureLevel::UPGRADE_TYPE_HEART),
+            'next' => $this->creatureLevel->getSerializedLevelData($creatureUser->getCreature()->getType(), $creatureUser->getHeart() + 1, CreatureUpgradeTypes::HEART),
             'upgradeDateEnd' => $creatureUser->getUpgradeHeartEndFormat('Y-m-d H:i:s'),
         ];
         $serializedData['lungs'] = [
             'level' => $creatureUser->getLungs(),
-            'next' => $this->getSerializedNextLevelData($creatureUser->getCreature()->getType(), $creatureUser->getLungs(), CreatureLevel::UPGRADE_TYPE_LUNGS),
+            'next' => $this->creatureLevel->getSerializedLevelData($creatureUser->getCreature()->getType(), $creatureUser->getLungs() + 1, CreatureUpgradeTypes::LUNGS),
             'upgradeDateEnd' => $creatureUser->getUpgradeLungsEndFormat('Y-m-d H:i:s'),
         ];
         $serializedData['muscles'] = [
             'level' => $creatureUser->getMuscles(),
-            'next' => $this->getSerializedNextLevelData($creatureUser->getCreature()->getType(), $creatureUser->getMuscles(), CreatureLevel::UPGRADE_TYPE_MUSCLES),
+            'next' => $this->creatureLevel->getSerializedLevelData($creatureUser->getCreature()->getType(), $creatureUser->getMuscles() + 1, CreatureUpgradeTypes::MUSCLES),
             'upgradeDateEnd' => $creatureUser->getUpgradeMusclesEndFormat('Y-m-d H:i:s'),
         ];
 
@@ -165,46 +159,5 @@ class UserCreature
         $serializedData['royalties'] = $creatureUser->getRoyalties();
 
         return $serializedData;
-    }
-
-    /**
-     * @param int $level
-     * @param string $creatureType
-     * @param string $upgradeType
-     *
-     * @return array
-     */
-    private function getSerializedNextLevelData(string $creatureType, int $level, string $upgradeType): array
-    {
-        /** @var Creature $creature */
-        $creature = $this->creatureRepository->findOneBy(['type' => $creatureType]);
-
-        /** @var CreatureLevel|null $nextLevel */
-        $nextLevel = $this->creatureLevelRepository->findOneBy(
-            [
-                'level' => ++$level,
-                'creature' => $creature,
-                'upgradeType' => $upgradeType,
-            ]
-        );
-
-        $nestLevelResult = [];
-        if ($nextLevel instanceof CreatureLevel) {
-            $nestLevelResult = [
-                'level' => $nextLevel->getLevel(),
-                'priceStacks' => $nextLevel->getPriceStacks(),
-                'priceGold' => $nextLevel->getPriceGold(),
-                'PriceUSD' => $nextLevel->getPriceUSD(),
-                'deliveryPriceStacks' => $nextLevel->getDeliveryPriceStacks(),
-                'deliveryWaitingTime' => $nextLevel->getDeliveryWaitingTime(),
-            ];
-
-            /** @var CreatureUpgrade $upgradeChange */
-            foreach ($nextLevel->getUpgradeChanges() as $upgradeChange) {
-                $nestLevelResult['upgradeChanges'][$this->creatureManager->mapUpgradeName($upgradeChange->getName())] = $upgradeChange->getValue();
-            }
-        }
-
-        return $nestLevelResult;
     }
 }

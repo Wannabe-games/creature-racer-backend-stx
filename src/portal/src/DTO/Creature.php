@@ -2,12 +2,7 @@
 
 namespace App\DTO;
 
-use App\Common\Repository\Creature\CreatureLevelRepository;
-use App\Common\Repository\Creature\CreatureRepository;
-use App\Common\Service\Game\CreatureManager;
-use App\Entity\Creature\CreatureLevel;
 use App\Entity\Creature\Creature as CreatureEntity;
-use App\Entity\Creature\CreatureUpgrade;
 
 /**
  * Class Creature
@@ -16,15 +11,12 @@ use App\Entity\Creature\CreatureUpgrade;
 class Creature
 {
     public function __construct(
-        private CreatureRepository $creatureRepository,
-        private CreatureLevelRepository $creatureLevelRepository,
-        private CreatureManager $creatureManager
+        private CreatureLevel $creatureLevel
     ) {
     }
 
     /**
      * @param CreatureEntity $creature
-     *
      * @return array
      */
     public function serialize(CreatureEntity $creature): array
@@ -50,45 +42,6 @@ class Creature
         $serializedData['boostTimeMax'] = $creature->getBoostTimeMax();
         $serializedData['boostAccelerationMax'] = $creature->getBoostAccelerationMax();
 
-        return array_merge($serializedData, $this->getSerializedFirstLevelData($creature->getType()));
-    }
-
-    /**
-     * @param string $creatureType
-     *
-     * @return array
-     */
-    private function getSerializedFirstLevelData(string $creatureType): array
-    {
-        /** @var CreatureEntity $creature */
-        $creature = $this->creatureRepository->findOneBy(['type' => $creatureType]);
-
-        /** @var CreatureLevel|null $nextLevel */
-        $nextLevel = $this->creatureLevelRepository->findOneBy(
-            [
-                'creature' => $creature,
-                'upgradeType' => CreatureLevel::UPGRADE_TYPE_BASE,
-            ]
-        );
-
-        $nestLevelResult = [];
-        if ($nextLevel instanceof CreatureLevel) {
-            $nestLevelResult = [
-                'priceStacks' => $nextLevel->getPriceStacks(),
-                'priceGold' => $nextLevel->getPriceGold(),
-                'deliveryPriceStacks' => $nextLevel->getDeliveryPriceStacks(),
-                'deliveryWaitingTime' => $nextLevel->getDeliveryWaitingTime(),
-            ];
-
-            /** @var CreatureUpgrade $upgradeChange */
-            foreach ($nextLevel->getUpgradeChanges() as $upgradeChange) {
-                $nestLevelResult['upgradeChanges'][] = [
-                    'name' => $this->creatureManager->mapUpgradeName($upgradeChange->getName()),
-                    'value' => $upgradeChange->getValue()
-                ];
-            }
-        }
-
-        return $nestLevelResult;
+        return array_merge($serializedData, $this->creatureLevel->getSerializedLevelData($creature->getType()));
     }
 }

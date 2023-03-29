@@ -12,30 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class CreatureLevel
 {
-    public const UPGRADE_TYPE_BASE = 'base';
-    public const UPGRADE_TYPE_BELLY = 'boost';
-    public const UPGRADE_TYPE_BUTTOCKS = 'boost2';
-    public const UPGRADE_TYPE_LUNGS = 'lung';
-    public const UPGRADE_TYPE_MUSCLES = 'muscles';
-    public const UPGRADE_TYPE_HEART = 'reflex';
-
-    public const UPGRADE_TYPES = [
-        'base' => self::UPGRADE_TYPE_BASE,
-        'boost' => self::UPGRADE_TYPE_BELLY,
-        'boost 2' => self::UPGRADE_TYPE_BUTTOCKS,
-        'lungs' => self::UPGRADE_TYPE_LUNGS,
-        'muscles' => self::UPGRADE_TYPE_MUSCLES,
-        'reflex' => self::UPGRADE_TYPE_HEART,
-    ];
-
-    public const LEVELS = [
-        'base' => 0,
-        'level 1' => 1,
-        'level 2' => 2,
-        'level 3' => 3,
-        'level 4' => 4,
-    ];
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
