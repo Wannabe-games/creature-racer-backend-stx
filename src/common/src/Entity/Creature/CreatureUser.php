@@ -191,21 +191,21 @@ class CreatureUser
      *
      * @ORM\Column(type="boolean", options={"default": false})
      */
-    private bool $forGame;
+    private bool $forGame = false;
 
     /**
      * @var bool
      *
      * @ORM\Column(type="boolean", options={"default": false})
      */
-    private bool $staked;
+    private bool $staked = false;
 
     /**
      * @var bool
      *
      * @ORM\Column(type="boolean", options={"default": false})
      */
-    private bool $bonus;
+    private bool $bonus = false;
 
     /**
      * @var int
@@ -257,17 +257,7 @@ class CreatureUser
     public function __construct()
     {
         $this->uuid = uuid::v6();
-        $this->forGame = false;
-        $this->staked = false;
-        $this->bonus = false;
-        $this->skinColor = 0;
         $this->createdAt = new DateTime();
-        // levels
-        $this->muscles = 0;
-        $this->lungs = 0;
-        $this->heart = 0;
-        $this->belly = 0;
-        $this->buttocks = 0;
         // abilities
         $this->speed = 0;
         $this->acceleration = 0;

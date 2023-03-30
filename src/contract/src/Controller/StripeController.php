@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Common\Repository\ReferralNftRepository;
 use App\Common\Repository\UserRepository;
+use App\Entity\ReferralNft;
 use App\Entity\User;
 use Stripe\Exception\SignatureVerificationException;
 use Stripe\Webhook;
@@ -29,7 +31,7 @@ class StripeController extends SymfonyAbstractController
      *
      * @Route("/stripe", name="stripe_event_receive", methods={"POST"})
      */
-    public function stripeEventReceive(ContainerInterface $container, UserRepository $userRepository): Response
+    public function stripeEventReceive(ContainerInterface $container, UserRepository $userRepository, ReferralNftRepository $referralNftRepository): Response
     {
         $payload = @file_get_contents('php://input');
         $sigHeader = $_SERVER['HTTP_STRIPE_SIGNATURE'] ?? null;
@@ -59,6 +61,15 @@ class StripeController extends SymfonyAbstractController
         if (null === $user) {
             return new JsonResponse(['status' => 'User not found'], 400);
         }
+
+//        $referralNft = new ReferralNft();
+//        $referralNft->setOwner($user);
+//        $referralNft->setRefCode($data['refCode']);
+//        $referralNft->setHash($data['rNftHash']);
+//        $referralNft->setSpecial(true);
+//
+//        $referralNftRepository->persist($referralNft);
+//        $referralNftRepository->flush();
 
         $user->setPaidCommission(true);
         $userRepository->flush();

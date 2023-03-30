@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\ReferralNft;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -23,6 +24,7 @@ class ReferralNftCrudController extends AbstractCrudController
             TextField::new('refCode'),
             TextField::new('hash'),
             TextField::new('rNftId'),
+            BooleanField::new('special'),
             AssociationField::new('owner'),
             AssociationField::new('users'),
             DateTimeField::new('nftExpiryDate'),

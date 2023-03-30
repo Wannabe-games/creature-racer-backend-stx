@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +42,13 @@ class ReferralNft
     private $rNftId;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    private bool $special = false;
+
+    /**
      * @var User
      *
      * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="myReferralNft", fetch="EXTRA_LAZY")
@@ -48,7 +56,7 @@ class ReferralNft
     private $owner;
 
     /**
-     * @var ArrayCollection
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="fromReferralNft", fetch="EXTRA_LAZY")
      */
@@ -61,9 +69,6 @@ class ReferralNft
      */
     protected ?DateTime $nftExpiryDate;
 
-    /**
-     *
-     */
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -123,6 +128,22 @@ class ReferralNft
     public function setRNftId(int $rNftId): void
     {
         $this->rNftId = $rNftId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSpecial(): bool
+    {
+        return $this->special;
+    }
+
+    /**
+     * @param bool $special
+     */
+    public function setSpecial(bool $special): void
+    {
+        $this->special = $special;
     }
 
     /**
