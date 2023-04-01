@@ -13,7 +13,11 @@ use App\Document\UserReferralPool;
 use App\Entity\ReferralNft;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use JsonException;
+use Stripe\Exception\ApiErrorException;
+use Stripe\StripeClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,11 +53,72 @@ class rNftController extends SymfonyAbstractController
     }
 
     /**
+     * @param string $refCode
+     * @param ContainerInterface $container
+     * @param ReferralNftRepository $referralNftRepository
+     * @return JsonResponse
+     * @throws ApiErrorException
+     *
+     * @Route("/validate/special-ref-code/{refCode}", name="special_ref_code", methods={"GET"})
+     */
+    public function validateSpecialRefCode(
+        string $refCode,
+        ContainerInterface $container,
+        ReferralNftRepository $referralNftRepository
+    ): JsonResponse {
+        $referralNft = $referralNftRepository->findOneBy(['refCode' => $refCode]);
+
+        if (null !== $referralNft) {
+            return new JsonResponse(
+                [
+                    'unique' => false,
+                    'paymentUrl' => null,
+                ]
+            );
+        }
+
+        $userHasCreatures = (int)$this->getUser()?->getCreatures()->count() > 0;
+
+        $stripe = new StripeClient($container->getParameter('stripe_api_secret_key'));
+
+        $paymentLink = $stripe->paymentLinks->create(
+            [
+                'line_items' => [
+                    [
+                        'price' => $userHasCreatures ? 'price_1MqaFuLW0AEhq379XbcKHmAm' : 'price_1MgnGyLW0AEhq379HC9R5Z23',
+                        'quantity' => 1
+                    ]
+                ],
+                'metadata' => [
+                    'userId' => $this->getUser()->getId(),
+                    'refCode' => $refCode
+                ],
+                'after_completion' => [
+                    'type' => 'redirect',
+                    'redirect' => [
+                        'url' => $container->getParameter('base_url') . ($userHasCreatures ?
+                                '/referrals?order_confirmation={CHECKOUT_SESSION_ID}' :
+                                '/register/step3?order_confirmation={CHECKOUT_SESSION_ID}'
+                            ),
+                    ],
+                ],
+            ]
+        );
+
+        return new JsonResponse(
+            [
+                'unique' => true,
+                'paymentUrl' => $paymentLink->url,
+            ]
+        );
+    }
+
+    /**
      * @param Request $request
      * @param ReferralNftRepository $referralNftRepository
      * @param EntityManagerInterface $entityManager
-     *
      * @return JsonResponse
+     * @throws JsonException
      *
      * @Route("/rnft", name="rnft", methods={"POST"})
      */

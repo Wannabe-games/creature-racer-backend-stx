@@ -38,7 +38,7 @@ final class UserCreaturesDetailsDecorator implements OpenApiFactoryInterface
                                     "deliveryPriceStacks": 28,
                                     "deliveryWaitingTime": 3020,
                                     "upgradeChanges": {
-                                        "boost_power": 0.054
+                                        "boostPower": 0.054
                                     }
                                 },
                                 "upgradeDateEnd": "2022-03-17 23:21:39"

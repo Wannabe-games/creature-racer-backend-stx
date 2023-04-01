@@ -33,7 +33,6 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param CreatureRepository $creatureRepository
      * @param Creature $creatureDTO
-     *
      * @return JsonResponse
      *
      * @Route("/creatures", name="creatures", methods={"GET"})
@@ -52,7 +51,6 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param CreatureRepository $creatureRepository
      * @param Creature $creatureDTO
-     *
      * @return JsonResponse
      *
      * @Route("/register/creatures", name="creatures-register", methods={"GET"})
@@ -60,15 +58,15 @@ class CreaturesController extends SymfonyAbstractController
     public function creaturesRegistration(CreatureRepository $creatureRepository, Creature $creatureDTO): JsonResponse
     {
         $result = [];
-        $creatures = $creatureRepository->findBy(
-            [
-                'tier' => 1,
-            ]
-        );
+        $creatures = $creatureRepository->findBy(['tier' => 1]);
 
         foreach ($creatures as $creature) {
             $result[] = $creatureDTO->serialize($creature);
         }
+
+        usort($result, static function ($a, $b) {
+            return strcmp($a['priceUSD'], $b['priceUSD']);
+        });
 
         return new JsonResponse($result);
     }
@@ -77,7 +75,6 @@ class CreaturesController extends SymfonyAbstractController
      * @param Request $request
      * @param CreatureUserRepository $creatureUserRepository
      * @param UserCreature $userCreatureDto
-     *
      * @return JsonResponse
      *
      * @Route("/user-creatures", name="user_creatures", methods={"GET"})
@@ -114,7 +111,6 @@ class CreaturesController extends SymfonyAbstractController
      * @param string $creatureId
      * @param UserCreature $userCreatureDto
      * @param CreatureUserRepository $creatureUserRepository
-     *
      * @return JsonResponse
      *
      * @Route("/user-creatures/details/{creatureId}", name="user_creatures_details", methods={"GET"})
@@ -141,13 +137,10 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureManager $creatureManager
-     *
      * @return JsonResponse
+     * @throws Exception
      *
      * @Route("/buy-creature", name="buy_creature", methods={"POST"})
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      */
     public function buyCreatureAction(Request $request, CreatureManager $creatureManager): JsonResponse
     {
@@ -167,14 +160,10 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureManager $creatureManager
-     *
      * @return JsonResponse
+     * @throws JsonException
      *
      * @Route("/upgrade-creature", name="upgrade_creature", methods={"POST"})
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     * @throws JsonException
      */
     public function upgradeAction(Request $request, CreatureManager $creatureManager): JsonResponse
     {
@@ -196,13 +185,9 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureManager $creatureManager
-     *
      * @return JsonResponse
      *
      * @Route("/active-in-game", name="active_in_game", methods={"POST"})
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
      */
     public function activeInGameAction(Request $request, CreatureManager $creatureManager): JsonResponse
     {
@@ -223,14 +208,11 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureManager $creatureManager
-     *
      * @return JsonResponse
+     * @throws Exception
      *
      * @Route("/upgrade/skip-waiting", name="upgrade_skip_waiting", methods={"POST"})
      *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     * @throws Exception
      */
     public function skipWaitingTime(Request $request, CreatureManager $creatureManager): JsonResponse
     {

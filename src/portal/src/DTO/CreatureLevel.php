@@ -58,7 +58,7 @@ class CreatureLevel
             'level' => $creatureLevel->getLevel(),
             'priceStacks' => $creatureLevel->getPriceStacks(),
             'priceGold' => $creatureLevel->getPriceGold(),
-            'PriceUSD' => $creatureLevel->getPriceUSD(),
+            'priceUSD' => $creatureLevel->getPriceUSD(),
             'deliveryPriceStacks' => $creatureLevel->getDeliveryPriceStacks(),
             'deliveryWaitingTime' => $creatureLevel->getDeliveryWaitingTime(),
         ];

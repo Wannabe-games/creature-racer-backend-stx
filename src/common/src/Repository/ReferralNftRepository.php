@@ -17,9 +17,6 @@ class ReferralNftRepository extends ServiceEntityRepository
 
     /**
      * @param ReferralNft $referralNft
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
      */
     public function save(ReferralNft $referralNft): void
     {
@@ -29,9 +26,7 @@ class ReferralNftRepository extends ServiceEntityRepository
 
     /**
      * @param ReferralNft $referralNft
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @return void
      */
     public function remove(ReferralNft $referralNft): void
     {
@@ -40,8 +35,7 @@ class ReferralNftRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @return void
      */
     public function flush(): void
     {

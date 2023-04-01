@@ -4,3 +4,7 @@ App\Entity\ReferralNft:
             groups: ['apiGet']
         hash:
             groups: ['apiGet']
+        special:
+            groups: ['apiGet']
+        orderId:
+            groups: ['apiGet']

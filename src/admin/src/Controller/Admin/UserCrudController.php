@@ -42,7 +42,6 @@ class UserCrudController extends AbstractCrudController
             AssociationField::new('creatures'),
             TextField::new('wallet')->hideOnIndex(),
             TextField::new('publicKey')->hideOnIndex(),
-            BooleanField::new('paidCommission'),
             DateTimeField::new('lastLogin')->onlyOnIndex(),
             DateTimeField::new('createdAt')->onlyOnIndex(),
             BooleanField::new('enabled')->hideOnForm(),

@@ -234,13 +234,6 @@ class User implements UserInterface
     private $winnerLobbies;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(type="boolean", options={"default": false})
-     */
-    private bool $paidCommission = false;
-
-    /**
      * User constructor.
      */
     public function __construct()
@@ -724,21 +717,5 @@ class User implements UserInterface
     public function setWinnerLobbies(Collection $winnerLobbies): void
     {
         $this->winnerLobbies = $winnerLobbies;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isPaidCommission(): bool
-    {
-        return $this->paidCommission;
-    }
-
-    /**
-     * @param bool $paidCommission
-     */
-    public function setPaidCommission(bool $paidCommission): void
-    {
-        $this->paidCommission = $paidCommission;
     }
 }

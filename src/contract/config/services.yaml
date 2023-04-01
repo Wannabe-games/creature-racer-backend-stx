@@ -18,7 +18,9 @@ parameters:
     referral_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
     referral_pool_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
     qr_code_referral_redirect_address: '%env(string:QR_CODE_REFERRAL_REDIRECT_ADDRESS)%'
-    stripe_secret: '%env(string:STRIPE_SECRET)%'
+    stripe_api_public_key: '%env(string:STRIPE_API_PUBLIC_KEY)%'
+    stripe_api_secret_key: '%env(string:STRIPE_API_SECRET_KEY)%'
+    stripe_webhook_secret: '%env(string:STRIPE_WEBHOOK_SECRET)%'
 
 services:
     # default configuration for services in *this* file

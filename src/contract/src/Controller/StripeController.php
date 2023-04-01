@@ -27,6 +27,7 @@ class StripeController extends SymfonyAbstractController
     /**
      * @param ContainerInterface $container
      * @param UserRepository $userRepository
+     * @param ReferralNftRepository $referralNftRepository
      * @return Response
      *
      * @Route("/stripe", name="stripe_event_receive", methods={"POST"})
@@ -35,7 +36,7 @@ class StripeController extends SymfonyAbstractController
     {
         $payload = @file_get_contents('php://input');
         $sigHeader = $_SERVER['HTTP_STRIPE_SIGNATURE'] ?? null;
-        $secret = $container->getParameter('stripe_secret');
+        $secret = $container->getParameter('stripe_webhook_secret');
 
         try {
             $event = Webhook::constructEvent($payload, $sigHeader, $secret);
@@ -51,28 +52,41 @@ class StripeController extends SymfonyAbstractController
 
         $responseObject = $event->data->object ?? null;
 
-        if (!$responseObject || !$responseObject->client_reference_id || $responseObject->currency !== 'usd' || $responseObject->amount_total < 5000) {
-            return new JsonResponse(['status' => 'Wrong answer data'], 400);
+        if (!$responseObject?->metadata?->userId) {
+            return new JsonResponse(['status' => 'Wrong answer data, no userId'], 400);
+        }
+
+        if (!$responseObject?->metadata?->refCode) {
+            return new JsonResponse(['status' => 'Wrong answer data, no refCode'], 400);
+        }
+
+        if (!$responseObject?->id) {
+            return new JsonResponse(['status' => 'Wrong answer data, no order id'], 400);
+        }
+
+        if ($responseObject?->currency !== 'usd') {
+            return new JsonResponse(['status' => 'Wrong answer data, wrong currency'], 400);
+        }
+
+        if ($responseObject?->amount_total < 5000) {
+            return new JsonResponse(['status' => 'Wrong answer data, to low amount'], 400);
         }
 
         /** @var User $user */
-        $user = $userRepository->find(id: $responseObject->client_reference_id);
+        $user = $userRepository->find(id: $responseObject->metadata->userId);
 
         if (null === $user) {
             return new JsonResponse(['status' => 'User not found'], 400);
         }
 
-//        $referralNft = new ReferralNft();
-//        $referralNft->setOwner($user);
-//        $referralNft->setRefCode($data['refCode']);
-//        $referralNft->setHash($data['rNftHash']);
-//        $referralNft->setSpecial(true);
-//
-//        $referralNftRepository->persist($referralNft);
-//        $referralNftRepository->flush();
+        $referralNft = new ReferralNft();
+        $referralNft->setOwner($user);
+        $referralNft->setRefCode($responseObject->metadata->refCode);
+        //$referralNft->setHash($data['rNftHash']);
+        $referralNft->setSpecial(true);
+        $referralNft->setOrderId($responseObject->id);
 
-        $user->setPaidCommission(true);
-        $userRepository->flush();
+        $referralNftRepository->save($referralNft);
 
         return new JsonResponse(['status' => 'OK']);
     }

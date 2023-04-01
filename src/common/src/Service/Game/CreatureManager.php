@@ -46,7 +46,7 @@ class CreatureManager
      * @return string|null
      * @throws Exception
      */
-    public function buyCreature(User $user, string $creatureType, ?string $receipt): ?string
+    public function buyCreature(User $user, string $creatureType, ?string $receipt = null): ?string
     {
         if (!CreatureTypes::validate($creatureType)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::TYPE_VALIDATION_ERROR));
@@ -93,7 +93,7 @@ class CreatureManager
      * @return string|null
      * @throws Exception
      */
-    public function upgradeCreature(User $user, string $uuid, string $upgradeType, ?string $receipt): ?string
+    public function upgradeCreature(User $user, string $uuid, string $upgradeType, ?string $receipt = null): ?string
     {
         // Convert
         $upgradeType = $this->convertUpgradeType($upgradeType);
@@ -259,8 +259,8 @@ class CreatureManager
     public function mapUpgradeName(string $upgradeName): string
     {
         return match ($upgradeName) {
-            'gas_pressure' => 'boost_power',
-            'gas_volume' => 'fuel_volume',
+            'gas_pressure' => 'boostPower',
+            'gas_volume' => 'fuelVolume',
             default => $upgradeName,
         };
     }

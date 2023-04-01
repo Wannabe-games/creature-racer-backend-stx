@@ -23,23 +23,23 @@ class ReferralNft
     /**
      * @var string
      *
-     * @ORM\Column(length=150, nullable=true)
+     * @ORM\Column(length=150, unique=true, nullable=false)
      */
-    private $refCode;
+    private string $refCode;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(nullable=true)
      */
-    private $hash;
+    private ?string $hash = null;
 
     /**
-     * @var int
+     * @var string|null
      *
      * @ORM\Column(nullable=true)
      */
-    private $rNftId;
+    private ?string $rNftId = null;
 
     /**
      * @var bool
@@ -47,6 +47,13 @@ class ReferralNft
      * @ORM\Column(type="boolean", options={"default": false})
      */
     private bool $special = false;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(length=70, nullable=true)
+     */
+    private ?string $orderId = null;
 
     /**
      * @var User
@@ -144,6 +151,23 @@ class ReferralNft
     public function setSpecial(bool $special): void
     {
         $this->special = $special;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOrderId(): ?string
+    {
+        return $this->orderId;
+    }
+
+    /**
+     * @param string|null $orderId
+     * @return void
+     */
+    public function setOrderId(?string $orderId): void
+    {
+        $this->orderId = $orderId;
     }
 
     /**
