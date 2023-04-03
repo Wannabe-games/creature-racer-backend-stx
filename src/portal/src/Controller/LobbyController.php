@@ -6,7 +6,7 @@ use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\Game\LobbyRepository;
 use App\Common\Repository\UserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\DTO\Lobby as LobbyDto;
+use App\DTO\LobbySerializer;
 use App\Entity\Game\Lobby;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -30,7 +30,7 @@ class LobbyController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param LobbyRepository $lobbyRepository
-     * @param LobbyDto $lobbyDto
+     * @param LobbySerializer $lobbySerializer
      * @return JsonResponse
      * @throws NoResultException
      * @throws NonUniqueResultException
@@ -40,7 +40,7 @@ class LobbyController extends SymfonyAbstractController
     public function getUserLobbies(
         Request $request,
         LobbyRepository $lobbyRepository,
-        LobbyDto $lobbyDto
+        LobbySerializer $lobbySerializer
     ): JsonResponse {
         $serializedLobby = [];
 
@@ -55,7 +55,7 @@ class LobbyController extends SymfonyAbstractController
         );
 
         foreach ($lobbyForUser as $lobby) {
-            $serializedLobby[] = $lobbyDto->serialize($lobby);
+            $serializedLobby[] = $lobbySerializer->serialize($lobby);
         }
 
         $result['lobbies'] = $serializedLobby;
@@ -66,7 +66,7 @@ class LobbyController extends SymfonyAbstractController
 
     /**
      * @param Lobby|null $lobby
-     * @param LobbyDto $lobbyDto
+     * @param LobbySerializer $lobbySerializer
      *
      * @return JsonResponse
      *
@@ -74,19 +74,19 @@ class LobbyController extends SymfonyAbstractController
      */
     public function getUserLobbyDetails(
         ?Lobby $lobby,
-        LobbyDto $lobbyDto
+        LobbySerializer $lobbySerializer
     ): JsonResponse {
         if (null === $lobby || $this->getUser() !== $lobby->getHost()) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
 
-        return new JsonResponse($lobbyDto->serialize($lobby));
+        return new JsonResponse($lobbySerializer->serialize($lobby));
     }
 
     /**
      * @param Request $request
      * @param LobbyRepository $lobbyRepository
-     * @param LobbyDto $lobbyDto
+     * @param LobbySerializer $lobbySerializer
      * @return JsonResponse
      * @throws JsonException
      *
@@ -95,7 +95,7 @@ class LobbyController extends SymfonyAbstractController
     public function createUserLobby(
         Request $request,
         LobbyRepository $lobbyRepository,
-        LobbyDto $lobbyDto
+        LobbySerializer $lobbySerializer
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
@@ -113,13 +113,13 @@ class LobbyController extends SymfonyAbstractController
 
         $lobbyRepository->save($lobby);
 
-        return new JsonResponse($lobbyDto->serialize($lobby));
+        return new JsonResponse($lobbySerializer->serialize($lobby));
     }
 
     /**
      * @param Request $request
      * @param LobbyRepository $lobbyRepository
-     * @param LobbyDto $lobbyDto
+     * @param LobbySerializer $lobbyDto
      * @return JsonResponse
      * @throws NoResultException
      * @throws NonUniqueResultException
@@ -129,7 +129,7 @@ class LobbyController extends SymfonyAbstractController
     public function getLobbies(
         Request $request,
         LobbyRepository $lobbyRepository,
-        LobbyDto $lobbyDto
+        LobbySerializer $lobbyDto
     ): JsonResponse {
         $serializedLobby = [];
 
@@ -154,14 +154,14 @@ class LobbyController extends SymfonyAbstractController
 
     /**
      * @param Lobby|null $lobby
-     * @param LobbyDto $lobbyDto
+     * @param LobbySerializer $lobbyDto
      * @return JsonResponse
      *
      * @Route("/lobbies/{id}", name="lobby_details", methods={"GET"})
      */
     public function getLobbyDetails(
         ?Lobby $lobby,
-        LobbyDto $lobbyDto
+        LobbySerializer $lobbyDto
     ): JsonResponse {
         if (null === $lobby) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
@@ -174,7 +174,7 @@ class LobbyController extends SymfonyAbstractController
      * @param Request $request
      * @param UserRepository $userRepository
      * @param LobbyRepository $lobbyRepository
-     * @param LobbyDto $lobbyDto
+     * @param LobbySerializer $lobbyDto
      * @param Lobby $lobby
      * @return JsonResponse
      * @throws JsonException
@@ -185,7 +185,7 @@ class LobbyController extends SymfonyAbstractController
         Request $request,
         UserRepository $userRepository,
         LobbyRepository $lobbyRepository,
-        LobbyDto $lobbyDto,
+        LobbySerializer $lobbyDto,
         Lobby $lobby
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);

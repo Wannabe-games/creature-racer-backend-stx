@@ -6,6 +6,7 @@ use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\ReferralNftRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Common\Service\Ethereum\ReferralContractManager;
+use App\DTO\UserSerializer;
 use Doctrine\ORM\EntityManagerInterface;
 use JsonException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
@@ -62,7 +63,7 @@ class UserController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param SerializerInterface $serializer
-     * @param \App\DTO\User $userDTO
+     * @param UserSerializer $userSerializer
      * @return JsonResponse
      * @throws JsonException
      *
@@ -71,12 +72,12 @@ class UserController extends SymfonyAbstractController
     public function currentAction(
         Request $request,
         SerializerInterface $serializer,
-        \App\DTO\User $userDTO
+        UserSerializer $userSerializer
     ): JsonResponse {
         if ('POST' === $request->getMethod()) {
             $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-            $user = $userDTO->unserialize($data, $this->getUser());
+            $user = $userSerializer->unserialize($data, $this->getUser());
 
             return new JsonResponse($serializer->serialize($user, 'json', ['groups' => 'api']), 200, [], true);
         }

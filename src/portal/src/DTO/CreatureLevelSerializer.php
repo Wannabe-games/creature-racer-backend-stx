@@ -14,7 +14,7 @@ use App\Entity\Creature\CreatureUpgrade;
  * Class Creature
  * @package App\DTO\UserCreature
  */
-class CreatureLevel
+class CreatureLevelSerializer
 {
     public function __construct(
         private CreatureRepository $creatureRepository,
@@ -34,7 +34,7 @@ class CreatureLevel
         ?int $level = CreatureLevels::BASE,
         ?string $upgradeType = CreatureUpgradeTypes::BASE
     ): array {
-        /** @var Creature $creature */
+        /** @var CreatureSerializer $creature */
         $creature = $this->creatureRepository->findOneBy(
             [
                 'type' => $creatureType

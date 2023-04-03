@@ -2,16 +2,16 @@
 
 namespace App\Controller;
 
+use App\Common\Enum\CreatureTypes;
 use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\Creature\CreatureRepository;
 use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Common\Service\Game\CreatureManager;
-use App\DTO\Creature;
-use App\DTO\UserCreature;
+use App\DTO\CreatureSerializer;
+use App\DTO\UserCreatureSerializer;
+use App\Entity\Creature\Creature;
 use App\Entity\Creature\CreatureUser;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Exception;
 use JsonException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
@@ -32,36 +32,52 @@ class CreaturesController extends SymfonyAbstractController
 
     /**
      * @param CreatureRepository $creatureRepository
-     * @param Creature $creatureDTO
+     * @param CreatureSerializer $creatureSerializer
      * @return JsonResponse
      *
      * @Route("/creatures", name="creatures", methods={"GET"})
      */
-    public function creatures(CreatureRepository $creatureRepository, Creature $creatureDTO): JsonResponse
+    public function creatures(CreatureRepository $creatureRepository, CreatureSerializer $creatureSerializer): JsonResponse
     {
         $result = [];
 
         foreach ($creatureRepository->findBy([], ['id' => 'asc']) as $creature) {
-            $result[] = $creatureDTO->serialize($creature);
+            $result[] = $creatureSerializer->serialize($creature);
         }
+
+        usort($result, static function ($a, $b) {
+            return strcmp($a['priceUSD'], $b['priceUSD']);
+        });
 
         return new JsonResponse($result);
     }
 
     /**
      * @param CreatureRepository $creatureRepository
-     * @param Creature $creatureDTO
+     * @param CreatureSerializer $creatureSerializer
      * @return JsonResponse
      *
      * @Route("/register/creatures", name="creatures-register", methods={"GET"})
      */
-    public function creaturesRegistration(CreatureRepository $creatureRepository, Creature $creatureDTO): JsonResponse
+    public function creaturesRegistration(CreatureRepository $creatureRepository, CreatureSerializer $creatureSerializer): JsonResponse
     {
+        /** @var Creature[] $creatures */
+        $creatures = $creatureRepository->findBy(['tier' => 1], ['id' => 'asc']);
+
+        $isRegistration = (int)$this->getUser()?->getCreatures()->count() === 0;
+        $fromReferral = (bool)$this->getUser()?->getFromReferralNft();
         $result = [];
-        $creatures = $creatureRepository->findBy(['tier' => 1]);
 
         foreach ($creatures as $creature) {
-            $result[] = $creatureDTO->serialize($creature);
+            $creatureDTO = $creatureSerializer->serialize($creature);
+
+            if ($isRegistration && ($fromReferral || CreatureTypes::CREATURE_TYPE_BOAR === $creature->getType())) {
+                $creatureDTO['priceStacks'] = 0;
+                $creatureDTO['priceGold'] = 0;
+                $creatureDTO['priceUSD'] = 0;
+            }
+
+            $result[] = $creatureDTO;
         }
 
         usort($result, static function ($a, $b) {
@@ -74,7 +90,7 @@ class CreaturesController extends SymfonyAbstractController
     /**
      * @param Request $request
      * @param CreatureUserRepository $creatureUserRepository
-     * @param UserCreature $userCreatureDto
+     * @param UserCreatureSerializer $userCreatureDto
      * @return JsonResponse
      *
      * @Route("/user-creatures", name="user_creatures", methods={"GET"})
@@ -82,7 +98,7 @@ class CreaturesController extends SymfonyAbstractController
     public function getUserCreatures(
         Request $request,
         CreatureUserRepository $creatureUserRepository,
-        UserCreature $userCreatureDto
+        UserCreatureSerializer $userCreatureDto
     ): JsonResponse {
         $resultCreatures = [];
 
@@ -109,7 +125,7 @@ class CreaturesController extends SymfonyAbstractController
 
     /**
      * @param string $creatureId
-     * @param UserCreature $userCreatureDto
+     * @param UserCreatureSerializer $userCreatureDto
      * @param CreatureUserRepository $creatureUserRepository
      * @return JsonResponse
      *
@@ -117,7 +133,7 @@ class CreaturesController extends SymfonyAbstractController
      */
     public function getUserCreaturesDetails(
         string $creatureId,
-        UserCreature $userCreatureDto,
+        UserCreatureSerializer $userCreatureDto,
         CreatureUserRepository $creatureUserRepository
     ): JsonResponse {
         if (empty($creatureUser = $creatureUserRepository->findOneBy(['uuid' => $creatureId]))) {

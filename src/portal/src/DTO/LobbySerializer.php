@@ -5,7 +5,7 @@ namespace App\DTO;
 use App\Entity\Game\Lobby as LobbyEntity;
 use App\Entity\User as UserEntity;
 
-class Lobby
+class LobbySerializer
 {
     public function serialize(LobbyEntity $lobby): array
     {

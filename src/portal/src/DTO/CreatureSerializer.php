@@ -8,10 +8,10 @@ use App\Entity\Creature\Creature as CreatureEntity;
  * Class Creature
  * @package App\DTO\UserCreature
  */
-class Creature
+class CreatureSerializer
 {
     public function __construct(
-        private CreatureLevel $creatureLevel
+        private CreatureLevelSerializer $creatureLevel
     ) {
     }
 

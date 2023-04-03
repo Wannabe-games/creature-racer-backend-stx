@@ -67,7 +67,7 @@ class UserCreature
             'NextLevelTime' => $this->isActiveUpgrade($creatureUser->getUpgradeButtocksEnd()) ? TimeTickerConverter::TimeToTicks((int)$creatureUser->getUpgradeButtocksEndFormat('U')) : 0
         ];
 
-        /** @var CreatureLevel $creatureBuy */
+        /** @var CreatureLevelSerializer $creatureBuy */
         $creatureBuy = $this->creatureLevelRepository->findOneBy(
             [
                 'creature' => $creatureUser->getCreature(),

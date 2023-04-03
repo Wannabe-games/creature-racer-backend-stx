@@ -10,7 +10,7 @@ use App\Common\Service\User\UserManager;
  * Class User
  * @package App\DTO\User
  */
-class User
+class UserSerializer
 {
     /**
      * @var UserManager

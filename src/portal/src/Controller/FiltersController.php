@@ -3,19 +3,15 @@
 namespace App\Controller;
 
 use App\Common\Exception\Api\ApiException;
-use App\Common\Repository\Creature\CreatureRepository;
 use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\Common\Service\Game\CreatureManager;
-use App\DTO\Creature;
-use App\DTO\UserCreature;
-use App\DTO\UserCreatureFilters;
+use App\DTO\UserCreatureSerializer;
+use App\DTO\UserCreatureFilter;
 use App\Entity\Creature\CreatureUser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class FiltersController
@@ -29,20 +25,20 @@ class FiltersController extends SymfonyAbstractController
     public const API_MAX_PER_PAGE_DEFAULT = 20;
 
     /**
-     * @param Request                $request
-     * @param UserCreature           $userCreatureDto
+     * @param Request $request
+     * @param UserCreatureSerializer $userCreatureDto
      * @param CreatureUserRepository $creatureUserRepository
-     * @param UserCreatureFilters    $userCreatureFilters
-      *
+     * @param UserCreatureFilter $userCreatureFilters
+     *
      * @return JsonResponse
      *
      * @Route("/query/user-creatures", name="query_user_creatures", methods={"POST"})
      */
     public function getUserCreaturesNft(
         Request $request,
-        UserCreature $userCreatureDto,
+        UserCreatureSerializer $userCreatureDto,
         CreatureUserRepository $creatureUserRepository,
-        UserCreatureFilters $userCreatureFilters
+        UserCreatureFilter $userCreatureFilters
     ): JsonResponse {
         $result = [];
         $data = json_decode($request->getContent(), true);

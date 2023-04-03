@@ -1,13 +1,13 @@
 <?php
+
 namespace App\DTO;
 
 /**
  * Class UserCreatureFilters
  * @package App\DTO\UserCreatureFilters
  */
-class UserCreatureFilters
+class UserCreatureFilter
 {
-
     /**
      * @param array $data
      *

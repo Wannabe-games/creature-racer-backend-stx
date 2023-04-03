@@ -11,10 +11,10 @@ use App\Entity\Creature\CreatureUser;
  * Class UserCreature
  * @package App\DTO\UserCreature
  */
-class UserCreature
+class UserCreatureSerializer
 {
     public function __construct(
-        private CreatureLevel $creatureLevel,
+        private CreatureLevelSerializer $creatureLevel,
         private CreatureLevelRepository $creatureLevelRepository
     ) {
     }
@@ -80,7 +80,7 @@ class UserCreature
      */
     public function serializeDetails(CreatureUser $creatureUser): array
     {
-        /** @var CreatureLevel $levelEntity */
+        /** @var CreatureLevelSerializer $levelEntity */
         $levelEntity = $this->creatureLevelRepository->findOneBy(
             [
                 'creature' => $creatureUser->getCreature(),

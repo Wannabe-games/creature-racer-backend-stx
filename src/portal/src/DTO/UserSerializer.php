@@ -4,7 +4,7 @@ namespace App\DTO;
 
 use App\Entity\User as UserEntity;
 
-class User
+class UserSerializer
 {
     public function serialize(UserEntity $user): array
     {

@@ -91,7 +91,7 @@ class Player
     public function serialize(\App\Entity\Game\Player $player): array
     {
         $data = [];
-        $userCreature = new UserCreature($this->creatureLevelRepository);
+        $userCreature = new UserCreatureSerializer($this->creatureLevelRepository);
 
         $data['Gold'] = $player->getGold();
         $data['Stacks'] = $player->getStacks();
