@@ -60,7 +60,7 @@ class UserCreatureSerializer
         $serializedData['muscles'] = $creatureUser->getMuscles();
         $serializedData['createdAt'] = $creatureUser->getCreatedAt();
 
-        $serializedData['contract'] = $creatureUser->getContract();
+        $serializedData['contract'] = $creatureUser->getId();
         $serializedData['isForGame'] = $creatureUser->isForGame();
         $serializedData['isStaked'] = $creatureUser->isStaked();
         $serializedData['nftExpiryDate'] = $creatureUser->getNftExpiryDateFormat('Y-m-d H:i:s');
@@ -147,7 +147,7 @@ class UserCreatureSerializer
         ];
 
         $serializedData['createdAt'] = $creatureUser->getCreatedAt();
-        $serializedData['contract'] = $creatureUser->getContract();
+        $serializedData['contract'] = $creatureUser->getId();
         $serializedData['isForGame'] = $creatureUser->isForGame();
         $serializedData['bonus'] = $creatureUser->hasBonus();
         $serializedData['isStaked'] = $creatureUser->isStaked();

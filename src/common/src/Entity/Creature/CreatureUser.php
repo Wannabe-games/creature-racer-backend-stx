@@ -2,6 +2,7 @@
 
 namespace App\Entity\Creature;
 
+use App\Entity\User;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV6;
@@ -43,15 +44,6 @@ class CreatureUser
     private $hash;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="contract_id", type="integer", nullable=true)
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="contract_id_seq", initialValue=1, allocationSize=100)
-     */
-    private $contract;
-
-    /**
      * Creature definition.
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Creature\Creature")
@@ -59,17 +51,15 @@ class CreatureUser
      *
      * @Assert\NotNull()
      */
-    private $creature;
+    private Creature $creature;
 
     /**
-     * User
+     * @var User|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="creatures")
-     * @ORM\JoinColumn(name="user_id", nullable=false)
-     *
-     * @Assert\NotNull()
+     * @ORM\JoinColumn(name="user_id", nullable=true, onDelete="SET NULL")
      */
-    private $user;
+    private ?User $user = null;
 
     /**
      * @var int
@@ -296,49 +286,35 @@ class CreatureUser
     }
 
     /**
-     * @return int|null
-     */
-    public function getContract(): ?int
-    {
-        return $this->contract;
-    }
-
-    /**
-     * @param int $contract
-     */
-    public function setContract(int $contract): void
-    {
-        $this->contract = $contract;
-    }
-
-    /**
      * @return Creature
      */
-    public function getCreature()
+    public function getCreature(): Creature
     {
         return $this->creature;
     }
 
     /**
-     * @param mixed $creature
+     * @param Creature $creature
+     * @return void
      */
-    public function setCreature($creature): void
+    public function setCreature(Creature $creature): void
     {
         $this->creature = $creature;
     }
 
     /**
-     * @return mixed
+     * @return User|null
      */
-    public function getUser()
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
     /**
-     * @param mixed $user
+     * @param User|null $user
+     * @return void
      */
-    public function setUser($user): void
+    public function setUser(?User $user): void
     {
         $this->user = $user;
     }

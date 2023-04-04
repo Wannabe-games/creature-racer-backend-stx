@@ -22,7 +22,7 @@ async function main() {
         contractAddress: deployerAddress,
         contractName: 'creature-racer-admin-v2',
         functionName: 'set-operator',
-        fee: 500,
+        fee: process.env.GAS_PRICE,
         functionArgs: [operatorAddress],
         senderKey: deployerKey,
         validateWithAbi: true,

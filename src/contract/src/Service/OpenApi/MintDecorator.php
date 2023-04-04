@@ -7,6 +7,7 @@ namespace App\Service\OpenApi;
 use ApiPlatform\Core\OpenApi\Factory\OpenApiFactoryInterface;
 use ApiPlatform\Core\OpenApi\OpenApi;
 use ApiPlatform\Core\OpenApi\Model;
+use ArrayObject;
 
 final class MintDecorator implements OpenApiFactoryInterface
 {
@@ -19,16 +20,16 @@ final class MintDecorator implements OpenApiFactoryInterface
         $openApi = ($this->decorated)($context);
         $schemas = $openApi->getComponents()->getSchemas();
 
-        $schemas['CreatureMint'] = new \ArrayObject([
+        $schemas['CreatureMint'] = new ArrayObject([
             'type' => 'object',
             'properties' => [
                 'creatureId' => [
                     'type' => 'uuid',
                     'example' => '123e4567-e89b-12d3-a456-426614174000',
                 ],
-                'contract' => [
+                'expiryTimestamp' => [
                     'type' => 'int',
-                    'example' => '152',
+                    'example' => '123456789',
                 ],
                 'hash' => [
                     'type' => 'string',
@@ -45,7 +46,7 @@ final class MintDecorator implements OpenApiFactoryInterface
             ],
         ]);
 
-        $schemas['Status'] = new \ArrayObject([
+        $schemas['Status'] = new ArrayObject([
             'type' => 'object',
             'properties' => [
                 'status' => [
@@ -77,7 +78,7 @@ final class MintDecorator implements OpenApiFactoryInterface
                 summary: 'Contract',
                 requestBody: new Model\RequestBody(
                     description: 'Mint Creature',
-                    content: new \ArrayObject([
+                    content: new ArrayObject([
                         'application/json' => [
                             'schema' => [
                                 '$ref' => '#/components/schemas/CreatureMint',

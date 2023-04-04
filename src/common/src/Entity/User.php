@@ -43,7 +43,7 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(length=180, nullable=true)
      * @Assert\Length(
@@ -51,7 +51,7 @@ class User implements UserInterface
      *      max = 180,
      * )
      */
-    private $nick;
+    private ?string $nick;
 
     /**
      * @var string
@@ -86,9 +86,9 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private $plainPassword;
+    private ?string $plainPassword;
 
     /**
      * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
@@ -104,7 +104,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $firstName;
+    private ?string $firstName;
 
     /**
      * @var null|string
@@ -115,7 +115,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $lastName;
+    private ?string $lastName;
 
     /**
      * @var string
@@ -142,11 +142,11 @@ class User implements UserInterface
     /**
      * The salt to use for hashing.
      *
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(nullable=true)
      */
-    private $salt;
+    private ?string $salt;
 
     /**
      * @var DateTime|null
@@ -163,37 +163,37 @@ class User implements UserInterface
     private array $roles = [];
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(length=50, nullable=true)
      */
-    private $wallet;
+    private ?string $wallet;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(length=130, nullable=true)
      */
-    private $publicKey;
+    private ?string $publicKey;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(length=150, nullable=true)
      */
-    private $signature;
+    private ?string $signature;
 
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureUser", mappedBy="user", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureUser", mappedBy="user", cascade={"remove"}, fetch="EXTRA_LAZY")
      */
-    private $creatures;
+    private Collection $creatures;
 
     /**
      * @var Player
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\Game\Player", mappedBy="user", fetch="EXTRA_LAZY")
+     * @ORM\OneToOne(targetEntity="App\Entity\Game\Player", mappedBy="user", cascade={"remove"}, fetch="EXTRA_LAZY")
      */
     private $player;
 
@@ -536,9 +536,10 @@ class User implements UserInterface
     }
 
     /**
-     * @param string $wallet
+     * @param string|null $wallet
+     * @return void
      */
-    public function setWallet(string $wallet): void
+    public function setWallet(?string $wallet): void
     {
         $this->wallet = $wallet;
     }
@@ -608,33 +609,35 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPublicKey(): string
+    public function getPublicKey(): ?string
     {
         return $this->publicKey;
     }
 
     /**
-     * @param string $publicKey
+     * @param string|null $publicKey
+     * @return void
      */
-    public function setPublicKey(string $publicKey): void
+    public function setPublicKey(?string $publicKey): void
     {
         $this->publicKey = $publicKey;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSignature(): string
+    public function getSignature(): ?string
     {
         return $this->signature;
     }
 
     /**
-     * @param string $signature
+     * @param string|null $signature
+     * @return void
      */
-    public function setSignature(string $signature): void
+    public function setSignature(?string $signature): void
     {
         $this->signature = $signature;
     }

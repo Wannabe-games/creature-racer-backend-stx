@@ -6,6 +6,7 @@ use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Entity\Creature\CreatureUser;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -57,34 +58,31 @@ class MintController extends SymfonyAbstractController
 
         if (
             !key_exists('creatureId', $data) ||
+            !key_exists('expiryTimestamp', $data) ||
             !key_exists('hash', $data) ||
-            !key_exists('contract', $data) ||
             !key_exists('royalties', $data) ||
             !key_exists('name', $data)
         ) {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
-        } else {
-            /** @var CreatureUser $creatureUser */
-            $creatureUser = $creatureUserRepository->findOneBy(['uuid' => $data['creatureId']]);
-
-            if (empty($creatureUser)) {
-                throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::CREATURE_NOT_EXIST));
-            }
-            if ($creatureUser->getUser()->getId() != $this->getUser()->getId()) {
-                throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
-            }
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::BAD_REQUEST));
         }
 
-        if ($creatureUser->getContract() == $data['contract']) {
-            $creatureUser->setHash($data['hash']);
-            $creatureUser->setRoyalties($data['royalties']);
-            $creatureUser->setNftName($data['name']);
+        /** @var CreatureUser $creatureUser */
+        $creatureUser = $creatureUserRepository->findOneBy(['uuid' => $data['creatureId']]);
 
-            $entityManager->flush();
-
-            return new JsonResponse(['status' => 'success'], 200);
-        } else {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
+        if (null === $creatureUser) {
+            throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::CREATURE_NOT_EXIST));
         }
+        if ($creatureUser->getUser()->getId() !== $this->getUser()->getId()) {
+            throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
+        }
+
+        $creatureUser->setNftExpiryDate((new DateTime())->setTimestamp($data['expiryTimestamp']));
+        $creatureUser->setHash($data['hash']);
+        $creatureUser->setRoyalties($data['royalties']);
+        $creatureUser->setNftName($data['name']);
+
+        $entityManager->flush();
+
+        return new JsonResponse(['status' => 'success'], 200);
     }
 }

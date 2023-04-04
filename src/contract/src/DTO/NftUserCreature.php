@@ -27,7 +27,7 @@ class NftUserCreature
      */
     public function serialize(CreatureUser $creatureUser): array
     {
-        $serializedData['nftId'] = $creatureUser->getContract();
+        $serializedData['nftId'] = $creatureUser->getId();
         $serializedData['typeId'] = $creatureUser->getCreature()->getId();
         $serializedData['part1'] = $creatureUser->getMuscles() + 1;
         $serializedData['part2'] = $creatureUser->getLungs() + 1;

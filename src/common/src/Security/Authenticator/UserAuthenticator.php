@@ -88,8 +88,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         UserPasswordEncoderInterface $passwordEncoder,
         AuthorizationCheckerInterface $aci,
         TranslatorInterface $translator,
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
         $this->passwordChangeManager = $passwordChangeManager;
         $this->urlGenerator = $urlGenerator;
@@ -183,7 +182,7 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
      * @return RedirectResponse
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-    {var_dump($token);exit;
+    {
         /** @var User $user */
         $user = $token->getUser();
         $user->setLastLogin(new \DateTime());

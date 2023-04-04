@@ -10,6 +10,7 @@ use App\Common\Service\Stacks\CreatureNftContractManager;
 use App\Common\Service\Stacks\SignManager;
 use App\DTO\NftUserCreature;
 use App\Entity\Creature\CreatureUser;
+use DateTime;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -70,12 +71,14 @@ class NftController extends SymfonyAbstractController
             throw new ApiException(new ApiExceptionWrapper(403, ApiExceptionWrapper::ACCESS_DENY));
         }
 
+        $creatureUser->setNftExpiryDate(new DateTime('+90 days'));
         $message = $nftUserCreature->toStringMessage($creatureUser);
         $signature = $creatureNftContractManager->signMint($message);
 
         $result = array_merge(
             [
-                'signature' => $signature
+                'signature' => $signature,
+                'address' => $creatureUser->getUser()->getWallet(),
             ],
             $nftUserCreature->serialize($creatureUser)
         );

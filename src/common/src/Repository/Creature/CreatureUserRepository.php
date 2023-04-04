@@ -80,22 +80,6 @@ class CreatureUserRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return int
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     */
-    public function findNextContractId(): int
-    {
-        $qb = $this->createQueryBuilder('cu');
-
-        $qb->select('max(cu.contract)')
-            ->setMaxResults(1);
-
-        return $qb->getQuery()->getSingleScalarResult() + 1;
-    }
-
-    /**
      * @param string $type
      * @param User $user
      *
@@ -151,9 +135,9 @@ class CreatureUserRepository extends ServiceEntityRepository
     ): array {
         $qb = $this->createQueryBuilder('cu');
 
-        $qb->leftJoin('cu.user', 'u')
-            ->leftJoin('cu.creature', 'c')
-            ->where($qb->expr()->isNotNull('cu.contract'));
+        $qb
+            ->leftJoin('cu.user', 'u')
+            ->leftJoin('cu.creature', 'c');
 
         if (!empty($user)) {
             $qb->andWhere($qb->expr()->eq('u.id', ':userId'))
@@ -218,13 +202,13 @@ class CreatureUserRepository extends ServiceEntityRepository
     ): array {
         $qb = $this->createQueryBuilder('cu');
 
-        $qb->leftJoin('cu.user', 'u')
-            ->where($qb->expr()->eq('u.id', ':userId'))
+        $qb
+            ->where($qb->expr()->eq('cu.user', ':userId'))
             ->setParameter('userId', $user->getId());
 
         return $qb->setFirstResult($offset)
             ->setMaxResults($limit)
-            ->orderBy('cu.id', 'asc')
+            ->orderBy('cu.createdAt', 'asc')
             ->getQuery()
             ->getResult();
     }
@@ -287,7 +271,6 @@ class CreatureUserRepository extends ServiceEntityRepository
 
         $qb->select('count(cu.id)')
             ->leftJoin('cu.user', 'u')
-            ->where($qb->expr()->isNotNull('cu.contract'))
             ->andWhere($qb->expr()->eq('u.id', ':userId'))
             ->setParameter('userId', $user->getId());
 

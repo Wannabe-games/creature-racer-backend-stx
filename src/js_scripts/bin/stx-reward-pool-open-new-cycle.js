@@ -11,7 +11,7 @@ async function main() {
         contractAddress: process.env.DEPLOYER_CONTRACT_ADDRESS,
         contractName: 'creature-racer-reward-pool-v' + process.env.CONTRACT_VERSION,
         functionName: 'open-new-cycle',
-        fee: 500,
+        fee: process.env.GAS_PRICE,
         functionArgs: [],
         senderKey: process.env.OPERATOR_CONTRACT_PRIVATE_KEY,
         validateWithAbi: true,

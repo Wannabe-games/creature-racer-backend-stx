@@ -13,7 +13,7 @@ async function main() {
         contractAddress: process.env.DEPLOYER_CONTRACT_ADDRESS,
         contractName: 'creature-racer-referral-nft-v' + process.env.CONTRACT_VERSION,
         functionName: 'increment-invitations',
-        fee: 500,
+        fee: process.env.GAS_PRICE,
         functionArgs: [stringUtf8CV(refCode), standardPrincipalCV(wallet)],
         senderKey: process.env.OPERATOR_CONTRACT_PRIVATE_KEY,
         validateWithAbi: true,
