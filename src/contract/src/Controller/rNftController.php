@@ -164,7 +164,7 @@ class rNftController extends SymfonyAbstractController
      */
     public function incrementInvitations(ReferralContractManager $referralContractManager): JsonResponse
     {
-        $referralContractManager->incrementInvitations($this->getUser());
+        $referralContractManager->incrementInvitations($this->getUser()->getFromReferralNft()?->getRefCode(), $this->getUser()->getWallet());
 
         return new JsonResponse(['status' => 'success']);
     }

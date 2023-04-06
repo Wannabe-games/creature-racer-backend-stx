@@ -39,6 +39,13 @@ class ReferralNft
      *
      * @ORM\Column(nullable=true)
      */
+    private ?string $transferHash = null;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true)
+     */
     private ?string $rNftId = null;
 
     /**
@@ -75,6 +82,13 @@ class ReferralNft
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected ?DateTime $nftExpiryDate;
+
+    /**
+     * @var DateTime|null
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTime $updatedAt;
 
     public function __construct()
     {
@@ -114,11 +128,27 @@ class ReferralNft
     }
 
     /**
-     * @param string $hash
+     * @param string|null $hash
      */
-    public function setHash(string $hash): void
+    public function setHash(?string $hash): void
     {
         $this->hash = $hash;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTransferHash(): ?string
+    {
+        return $this->transferHash;
+    }
+
+    /**
+     * @param string|null $transferHash
+     */
+    public function setTransferHash(?string $transferHash): void
+    {
+        $this->transferHash = $transferHash;
     }
 
     /**
@@ -216,5 +246,21 @@ class ReferralNft
     public function setNftExpiryDate(?DateTime $nftExpiryDate): void
     {
         $this->nftExpiryDate = $nftExpiryDate;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime|null $updatedAt
+     */
+    public function setUpdatedAt(?DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 }

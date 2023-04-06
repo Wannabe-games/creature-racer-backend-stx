@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Common\Service\Stacks\CreatureNftContractManager;
+use App\Common\Service\Stacks\ReferralContractManager;
 use App\Common\Service\Stacks\ReferralPoolContractManager;
 use App\Common\Service\Stacks\RewardPoolContractManager;
 use App\Common\Service\Stacks\StakingContractManager;
@@ -10,7 +11,6 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -24,6 +24,7 @@ class ContractTestCommand extends Command
         private ContainerInterface $container,
         private EntityManagerInterface $entityManager,
         private CreatureNftContractManager $signManager,
+        private ReferralContractManager $referralContractManager,
         private ReferralPoolContractManager $referralPoolContractManager,
         private RewardPoolContractManager $rewardPoolContractManager,
         private StakingContractManager $stakingContractManager
@@ -53,6 +54,12 @@ class ContractTestCommand extends Command
         $output->writeln('Creature');
         $output->writeln('========');
         $output->writeln('signMint: ' . $this->signManager->signMint(self::CREATURE_NFT_MINT_MESSAGE, $verbose));
+
+        $output->writeln('');
+
+        $output->writeln('Referral');
+        $output->writeln('=============');
+        $output->writeln('mint: ' . $this->referralContractManager->mint(time(), $verbose));
 
         $output->writeln('');
 

@@ -26,8 +26,8 @@ function parseHexString(str) {
     return result;
 }
 
-function sign(buffer, key) {
-    return signMessageHashRsv({messageHash: sha256(buffer), privateKey: createStacksPrivateKey(key)});
+function sign(buffer) {
+    return signMessageHashRsv({messageHash: sha256(buffer), privateKey: createStacksPrivateKey(process.env.OPERATOR_CONTRACT_PRIVATE_KEY)});
 }
 
 /* Sign withdraw arguments */
@@ -36,7 +36,7 @@ async function signWithdraw(userPublicKey, amount, withdrawId) {
         .concat(uint128toBytes(amount))
         .concat(uint128toBytes(withdrawId));
 
-    return sign(payload, process.env.OPERATOR_CONTRACT_PRIVATE_KEY).data;
+    return sign(payload).data;
 }
 
 async function main() {

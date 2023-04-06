@@ -26,8 +26,8 @@ function parseHexString(str) {
     return result;
 }
 
-function sign(buffer, key) {
-    return signMessageHashRsv({messageHash: sha256(buffer), privateKey: createStacksPrivateKey(key)});
+function sign(buffer) {
+    return signMessageHashRsv({messageHash: sha256(buffer), privateKey: createStacksPrivateKey(process.env.OPERATOR_CONTRACT_PRIVATE_KEY)});
 }
 
 /* Sign minted creature arguments */
@@ -43,7 +43,7 @@ async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, ex
         .concat(uint128toBytes(expiryTimestamp))
         .concat(uint128toBytes(price));
 
-    return sign(payload, process.env.OPERATOR_CONTRACT_PRIVATE_KEY).data;
+    return sign(payload).data;
 }
 
 async function main() {
