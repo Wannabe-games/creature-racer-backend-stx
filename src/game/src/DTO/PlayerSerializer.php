@@ -6,12 +6,15 @@ use App\Common\Repository\Creature\CreatureLevelRepository;
 use App\Common\Repository\Creature\CreatureUserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Common\Utils\TimeTickerConverter;
+use App\Entity\Game\Player;
+use DateTime;
+use Exception;
 
 /**
  * Class Player
  * @package App\DTO\Player
  */
-class Player
+class PlayerSerializer
 {
     /**
      * @var CreatureUserRepository
@@ -51,13 +54,13 @@ class Player
 
     /**
      * @param array                   $data
-     * @param \App\Entity\Game\Player $player
+     * @param Player $player
      *
-     * @return \App\Entity\Game\Player
+     * @return Player
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public function unserialize(array $data, \App\Entity\Game\Player $player): \App\Entity\Game\Player
+    public function unserialize(array $data, Player $player): Player
     {
         $this->validate($data);
 
@@ -72,7 +75,7 @@ class Player
             $player->setEnergy($data['Energy_']['Value']);
         }
         if (!empty($data['Energy_']['RestoreStartTime'])) {
-            $player->setRestoreStartTime(new \DateTime('@'.TimeTickerConverter::TicksToTime($data['Energy_']['RestoreStartTime'])));
+            $player->setRestoreStartTime(new DateTime('@'.TimeTickerConverter::TicksToTime($data['Energy_']['RestoreStartTime'])));
         }
         unset($data['ActiveAnimalType']);
         unset($data['Energy_']);
@@ -84,11 +87,11 @@ class Player
     }
 
     /**
-     * @param \App\Entity\Game\Player $player
+     * @param Player $player
      *
      * @return array
      */
-    public function serialize(\App\Entity\Game\Player $player): array
+    public function serialize(Player $player): array
     {
         $data = [];
         $userCreature = new UserCreatureSerializer($this->creatureLevelRepository);

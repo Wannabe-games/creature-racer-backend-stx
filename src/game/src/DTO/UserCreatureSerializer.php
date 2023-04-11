@@ -13,7 +13,7 @@ use DateTime;
  * Class UserCreature
  * @package App\DTO\UserCreature
  */
-class UserCreature
+class UserCreatureSerializer
 {
     /**
      * @var CreatureLevelRepository

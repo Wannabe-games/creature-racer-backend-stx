@@ -6,8 +6,8 @@ use App\Common\Exception\Api\ApiException;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Entity\User;
 use App\Service\ExperienceManager;
-use App\DTO\Experience;
-use App\DTO\Player;
+use App\DTO\ExperienceSerializer;
+use App\DTO\PlayerSerializer;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use JsonException;
@@ -28,14 +28,14 @@ class PlayerController extends SymfonyAbstractController
 {
     /**
      * @param Request $request
-     * @param Player $playerDTO
+     * @param PlayerSerializer $playerDTO
      * @param EntityManagerInterface $entityManager
      * @return JsonResponse
      * @throws Exception
      *
      * @Route("/player", name="player", methods={"GET", "POST"})
      */
-    public function playerAction(Request $request, Player $playerDTO, EntityManagerInterface $entityManager): JsonResponse
+    public function playerAction(Request $request, PlayerSerializer $playerDTO, EntityManagerInterface $entityManager): JsonResponse
     {
         if ($request->getMethod() === 'GET') {
             return new JsonResponse($playerDTO->serialize($this->getUser()->getPlayer()));
@@ -59,7 +59,7 @@ class PlayerController extends SymfonyAbstractController
     /**
      * @param User|null $user
      * @param Request $request
-     * @param Player $playerDTO
+     * @param PlayerSerializer $playerDTO
      * @param EntityManagerInterface $entityManager
      * @return JsonResponse
      * @throws JsonException
@@ -67,7 +67,7 @@ class PlayerController extends SymfonyAbstractController
      * @Route("/wallet/{id}/player", name="player_by_wallet_id", methods={"GET", "POST"})
      * @ParamConverter("user", options={"mapping": {"id": "wallet"}})
      */
-    public function playerByWalletAction(?User $user, Request $request, Player $playerDTO, EntityManagerInterface $entityManager): JsonResponse
+    public function playerByWalletAction(?User $user, Request $request, PlayerSerializer $playerDTO, EntityManagerInterface $entityManager): JsonResponse
     {
         if (null === $user) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
@@ -94,7 +94,7 @@ class PlayerController extends SymfonyAbstractController
 
     /**
      * @param Request $request
-     * @param Experience $experienceDTO
+     * @param ExperienceSerializer $experienceDTO
      * @param EntityManagerInterface $entityManager
      * @param ExperienceManager $experienceManager
      * @return JsonResponse
@@ -102,7 +102,7 @@ class PlayerController extends SymfonyAbstractController
      *
      * @Route("/experience", name="experience", methods={"GET", "POST"})
      */
-    public function experienceAction(Request $request, Experience $experienceDTO, EntityManagerInterface $entityManager, ExperienceManager $experienceManager): JsonResponse
+    public function experienceAction(Request $request, ExperienceSerializer $experienceDTO, EntityManagerInterface $entityManager, ExperienceManager $experienceManager): JsonResponse
     {
         if ($request->getMethod() === 'GET') {
             return new JsonResponse($experienceDTO->serialize($this->getUser()->getPlayer()));

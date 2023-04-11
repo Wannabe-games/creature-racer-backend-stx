@@ -10,7 +10,7 @@ use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
  * Class Experience
  * @package App\DTO\Experience
  */
-class Experience
+class ExperienceSerializer
 {
     /**
      * @var CreatureUserRepository
