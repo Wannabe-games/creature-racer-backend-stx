@@ -56,14 +56,13 @@ class UserController extends SymfonyAbstractController
         RewardPoolContractManager $poolContractManager,
         ContainerInterface $container
     ): JsonResponse {
-        $resultQR = $this->getResultQR($container, $user);
-
         $result['poolShare'] = $stakingContractManager->getTotalShare();
         $result['rewardPool'] = $poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle());
         $result['nick'] = $user->getNick();
         $result['referralCode'] = $user->getMyReferralNft()?->getRefCode();
         $result['referralInviteesCount'] = $user->getMyReferralNft() ? $user->getMyReferralNft()->getUsers()->count() : 0;
-        $result['qrCode'] = $resultQR->getDataUri();
+        $result['qrCode'] = $this->getResultQR($container, $user)->getDataUri();
+        $result['qrCode2'] = $this->getResultQR($container, $user, 140)->getDataUri();
         $result['avatar'] = $this->creatureFileNameManager->getFileName($user->getPlayer()->getActiveAnimalCreatureType()) . '.png';
 
         return new JsonResponse($result);
@@ -127,14 +126,15 @@ class UserController extends SymfonyAbstractController
     /**
      * @param ContainerInterface $container
      * @param User $user
-     *
+     * @param int $size
      * @return ResultInterface
      *
      * @throws Exception
      */
     protected function getResultQR(
         ContainerInterface $container,
-        User $user
+        User $user,
+        int $size = 200
     ): ResultInterface {
         $qrColors = [
 //            new Color(30, 246, 223),
@@ -149,7 +149,7 @@ class UserController extends SymfonyAbstractController
         $qrCode = QrCode::create($container->getParameter('qr_code_referral_redirect_address') . ($user->getMyReferralNft() ? '?referralcode=' . $user->getMyReferralNft()->getRefCode() : ''))
             ->setEncoding(new Encoding('UTF-8'))
             ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
-            ->setSize(100)
+            ->setSize($size)
             ->setMargin(0)
             ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin())
             ->setForegroundColor($qrColors[rand(0, (count($qrColors) - 1))])
