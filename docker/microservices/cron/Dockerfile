@@ -9,6 +9,7 @@ RUN apt-get update --fix-missing \
     && sed -i -e 's/# pl_PL.UTF-8 UTF-8/pl_PL.UTF-8 UTF-8/' /etc/locale.gen \
     && dpkg-reconfigure --frontend=noninteractive locales
 
+ENV ENVIRONMENT=docker
 ENV PROJECT_PATH /app
 ENV LC_ALL=pl_PL.UTF-8
 ENV LANG=pl_PL.UTF-8

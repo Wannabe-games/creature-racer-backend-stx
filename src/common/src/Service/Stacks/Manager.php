@@ -10,12 +10,12 @@ class Manager
     {
         $command = trim($command);
 
-        if (0) {
+        if ('docker' !== getenv('ENVIRONMENT')) {
             $command = __DIR__ . '/../../../../js_scripts/bin/' . $command . '.js';
         }
 
         if (!empty($params)) {
-            $command .= ' "' . implode('" "', array_map('trim', $params)) . '"';
+            $command .= ' ' . implode(' ', array_map('trim', $params));
         }
 
         exec($command, $result);

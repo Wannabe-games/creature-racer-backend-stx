@@ -11,8 +11,8 @@ class CreatureNftContractManager extends Manager
         return $this->exec('stx-creature-nft-set-uri', [$uri], $verbose);
     }
 
-    public function signMint(string $message, bool $verbose = false): ?string
+    public function signMint(array $params, bool $verbose = false): ?string
     {
-        return $this->exec('stx-creature-nft-sign-mint', [$message], $verbose);
+        return $this->exec('stx-creature-nft-sign-mint', $params, $verbose);
     }
 }

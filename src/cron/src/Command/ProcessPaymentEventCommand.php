@@ -51,35 +51,35 @@ class ProcessPaymentEventCommand extends Command
             $lastProcessedBlockNumber->setSystemType(SystemTypes::PAYMENT_LAST_BLOCK_NUMBER);
             $lastProcessedBlockNumber->setValue(['block' => 0]);
         }
-        $actualBlockNumber = $this->providerManager->getBlockNumber();
-        $startBlockNumber = $lastProcessedBlockNumber->getValue()['block'] + 1;
-        $processingBlocks = $actualBlockNumber - $startBlockNumber;
+        $actualBlock = $this->providerManager->getBlockNumber();
+        $lastProcessedBlock = $lastProcessedBlockNumber->getValue()['block'];
+        $processingBlocks = $actualBlock - $lastProcessedBlock;
         $maxBlocksToRead = 10;
         $packages = (int)ceil($processingBlocks / $maxBlocksToRead);
 
         $output->writeln('Start time: ' . date('Y-m-d H:i:s'));
-        $output->writeln('Start block: ' . $startBlockNumber);
-        $output->writeln('Actual block: ' . $actualBlockNumber);
+        $output->writeln('Last processed block: ' . $lastProcessedBlock);
+        $output->writeln('Actual block: ' . $actualBlock);
         $output->writeln('Block to parse: ' . $processingBlocks);
         $output->writeln('Blocks in pack: ' . $maxBlocksToRead);
         $output->writeln('Block packages: ' . $packages);
 
         $logsCounter = 0;
         for ($i = 0; $i < $packages; ++$i) {
-            $nextBlockNumber = $startBlockNumber + ($i * $maxBlocksToRead);
-            $endBlockNumber = $nextBlockNumber + $maxBlocksToRead - 1;
+            $nextBlock = $lastProcessedBlock + ($i * $maxBlocksToRead) + 1;
+            $endBlock = $lastProcessedBlock + ($i * $maxBlocksToRead) + $maxBlocksToRead;
 
-            if ($endBlockNumber > $actualBlockNumber) {
-                $endBlockNumber = $actualBlockNumber;
+            if ($endBlock > $actualBlock) {
+                $endBlock = $actualBlock;
             }
 
-            $output->writeln('Parsing block from: ' . $nextBlockNumber . ' to: ' . $endBlockNumber . ' iteration: ' . $i + 1);
+            $output->writeln('Parsing block from: ' . $nextBlock . ' to: ' . $endBlock . ' iteration: ' . $i + 1);
 
-            $jsonString = $this->paymentContractManager->getLog($nextBlockNumber, $maxBlocksToRead);
+            $jsonString = $this->paymentContractManager->getLog($nextBlock, $maxBlocksToRead);
             $jsonLogs = json_decode($jsonString, false, 512, JSON_THROW_ON_ERROR);
 
             if (!empty($jsonString) && empty($jsonLogs) && !is_array($jsonLogs)) {
-                $lastProcessedBlockNumber->setValue(['block' => $nextBlockNumber]);
+                $lastProcessedBlockNumber->setValue(['block' => $nextBlock]);
                 $this->settingsRepository->save($lastProcessedBlockNumber);
                 $output->writeln('Added logs: ' . $logsCounter);
 
@@ -127,7 +127,7 @@ class ProcessPaymentEventCommand extends Command
             }
             $this->documentManager->flush();
 
-            $lastProcessedBlockNumber->setValue(['block' => $endBlockNumber]);
+            $lastProcessedBlockNumber->setValue(['block' => $endBlock]);
             $this->settingsRepository->save($lastProcessedBlockNumber);
         }
 

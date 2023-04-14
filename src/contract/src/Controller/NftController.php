@@ -72,8 +72,7 @@ class NftController extends SymfonyAbstractController
         }
 
         $creatureUser->setNftExpiryDate(new DateTime('+90 days'));
-        $message = $nftUserCreature->toStringMessage($creatureUser);
-        $signature = $creatureNftContractManager->signMint($message);
+        $signature = $creatureNftContractManager->signMint($nftUserCreature->serialize($creatureUser));
 
         $result = array_merge(
             [
