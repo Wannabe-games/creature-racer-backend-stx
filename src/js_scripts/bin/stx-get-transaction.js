@@ -23,5 +23,5 @@ const main = async () => {
 };
 
 main().then(function (result) {
-    console.log(result.tx_status);
+    console.log(result);
 });

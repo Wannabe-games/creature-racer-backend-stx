@@ -2,7 +2,7 @@ App\Entity\ReferralNft:
     attributes:
         refCode:
             groups: ['apiGet']
-        hash:
+        mintHash:
             groups: ['apiGet']
         special:
             groups: ['apiGet']

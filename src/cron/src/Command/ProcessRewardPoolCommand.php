@@ -103,7 +103,7 @@ class ProcessRewardPoolCommand extends Command
         $progressBar->finish();
         $output->writeln('');
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     /**

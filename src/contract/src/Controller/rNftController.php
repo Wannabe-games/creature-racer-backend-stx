@@ -7,7 +7,7 @@ use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\Document\UserReferralPoolRepository;
 use App\Common\Repository\ReferralNftRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\Common\Service\Stacks\ReferralContractManager;
+use App\Common\Service\Stacks\ReferralNftContractManager;
 use App\Document\Log\PaymentLog;
 use App\Document\UserReferralPool;
 use App\Entity\ReferralNft;
@@ -147,7 +147,8 @@ class rNftController extends SymfonyAbstractController
         $referralNft = new ReferralNft();
         $referralNft->setOwner($this->getUser());
         $referralNft->setRefCode($data['refCode']);
-        $referralNft->setHash($data['rNftHash']);
+        $referralNft->setMintHash($data['rNftHash']);
+        $referralNft->setTransferHash($data['rNftHash']);
 
         $entityManager->persist($referralNft);
         $entityManager->flush();
@@ -156,15 +157,15 @@ class rNftController extends SymfonyAbstractController
     }
 
     /**
-     * @param ReferralContractManager $referralContractManager
+     * @param ReferralNftContractManager $referralNftContractManager
      *
      * @return JsonResponse
      *
      * @Route("/rnft/increment-invitations", name="rnft-increment-invitations", methods={"GET"})
      */
-    public function incrementInvitations(ReferralContractManager $referralContractManager): JsonResponse
+    public function incrementInvitations(ReferralNftContractManager $referralNftContractManager): JsonResponse
     {
-        $referralContractManager->incrementInvitations($this->getUser()->getFromReferralNft()?->getRefCode(), $this->getUser()->getWallet());
+        $referralNftContractManager->incrementInvitations($this->getUser()?->getFromReferralNft()?->getRefCode(), $this->getUser()?->getWallet());
 
         return new JsonResponse(['status' => 'success']);
     }

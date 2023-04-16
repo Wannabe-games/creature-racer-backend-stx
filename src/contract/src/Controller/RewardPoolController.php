@@ -122,21 +122,24 @@ class RewardPoolController extends SymfonyAbstractController
             $withdrawId = $withdrawDocument->getWithdrawId();
         }
 
-        $cycle = (int)$withdrawDocument->getCycle();
-        $ownerPublicKey = $this->getUser()->getPublicKey();
-        $signature = $rewardPoolContractManager->signWithdraw($ownerPublicKey . ' ' . $withdrawDocument->getMyReward() . ' ' . $withdrawId . ' ' . $cycle);
+        $signedParameters = [
+            'ownerPublicKey' => $this->getUser()?->getPublicKey(),
+            'amount' => $withdrawDocument->getMyReward(),
+            'withdrawId' => $withdrawId,
+            'cycle' => (int)$withdrawDocument->getCycle(),
+        ];
+        $signature = $rewardPoolContractManager->signWithdraw($signedParameters);
 
         $withdrawDocument->setStatus(UserRewardPoolStatus::PENDING);
         $documentManager->flush();
 
         return new JsonResponse(
-            [
-                'amount' => $withdrawDocument->getMyReward(),
-                'withdrawId' => $withdrawId,
-                'cycle' => $cycle,
-                'ownerPublicKey' => $ownerPublicKey,
-                'signature' => $signature
-            ]
+            array_merge(
+                [
+                    'signature' => $signature,
+                ],
+                $signedParameters
+            )
         );
     }
 

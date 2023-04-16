@@ -62,6 +62,6 @@ class SetBlockNumberCommand extends Command
 
         $this->settingsRepository->save($lastProcessedBlockNumber);
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

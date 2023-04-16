@@ -65,6 +65,6 @@ class ProcessReferralLogsCommand extends Command
         $output->writeln('End process at: ' . $date->format('Y-m-d H:i:s'));
         $output->writeln('-------------------------------------------------------------------------------');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

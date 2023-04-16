@@ -6,10 +6,13 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Common\Repository\ReferralNftRepository")
  * @ORM\Table(name="user_referral_nft")
+ * @UniqueEntity(fields="refCode", message="Ref code already exists")
  */
 class ReferralNft
 {
@@ -32,7 +35,7 @@ class ReferralNft
      *
      * @ORM\Column(nullable=true)
      */
-    private ?string $hash = null;
+    private ?string $mintHash = null;
 
     /**
      * @var string|null
@@ -66,6 +69,7 @@ class ReferralNft
      * @var User
      *
      * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="myReferralNft", fetch="EXTRA_LAZY")
+     * @Assert\NotNull()
      */
     private $owner;
 
@@ -122,17 +126,17 @@ class ReferralNft
     /**
      * @return string|null
      */
-    public function getHash(): ?string
+    public function getMintHash(): ?string
     {
-        return $this->hash;
+        return $this->mintHash;
     }
 
     /**
-     * @param string|null $hash
+     * @param string|null $mintHash
      */
-    public function setHash(?string $hash): void
+    public function setMintHash(?string $mintHash): void
     {
-        $this->hash = $hash;
+        $this->mintHash = $mintHash;
     }
 
     /**
@@ -201,17 +205,17 @@ class ReferralNft
     }
 
     /**
-     * @return User
+     * @return User|null
      */
-    public function getOwner(): User
+    public function getOwner(): ?User
     {
         return $this->owner;
     }
 
     /**
-     * @param User $owner
+     * @param User|null $owner
      */
-    public function setOwner(User $owner): void
+    public function setOwner(?User $owner): void
     {
         $this->owner = $owner;
     }

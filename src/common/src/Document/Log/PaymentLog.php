@@ -32,6 +32,19 @@ class PaymentLog
     /**
      * @var string|null
      * @ODM\Field(type="string")
+     * @ODM\Index(unique=true)
+     */
+    private ?string $transactionId = null;
+
+    /**
+     * @var string|null
+     * @ODM\Field(type="string")
+     */
+    private ?string $transactionType = null;
+
+    /**
+     * @var string|null
+     * @ODM\Field(type="string")
      */
     private ?string $userWallet = null;
 
@@ -80,6 +93,38 @@ class PaymentLog
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTransactionId(): ?string
+    {
+        return $this->transactionId;
+    }
+
+    /**
+     * @param string|null $transactionId
+     */
+    public function setTransactionId(?string $transactionId): void
+    {
+        $this->transactionId = $transactionId;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTransactionType(): ?string
+    {
+        return $this->transactionType;
+    }
+
+    /**
+     * @param string|null $transactionType
+     */
+    public function setTransactionType(?string $transactionType): void
+    {
+        $this->transactionType = $transactionType;
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Common\Repository\ReferralNftRepository;
 use App\Common\Repository\UserRepository;
-use App\Common\Service\Stacks\ReferralContractManager;
 use App\Entity\ReferralNft;
 use App\Entity\User;
 use Stripe\Exception\SignatureVerificationException;
@@ -29,7 +28,6 @@ class StripeController extends SymfonyAbstractController
      * @param ContainerInterface $container
      * @param UserRepository $userRepository
      * @param ReferralNftRepository $referralNftRepository
-     * @param ReferralContractManager $referralContractManager
      * @return Response
      *
      * @Route("/stripe", name="stripe_event_receive", methods={"POST"})
@@ -37,8 +35,7 @@ class StripeController extends SymfonyAbstractController
     public function stripeEventReceive(
         ContainerInterface $container,
         UserRepository $userRepository,
-        ReferralNftRepository $referralNftRepository,
-        ReferralContractManager $referralContractManager
+        ReferralNftRepository $referralNftRepository
     ): Response {
         $payload = @file_get_contents('php://input');
         $sigHeader = $_SERVER['HTTP_STRIPE_SIGNATURE'] ?? null;

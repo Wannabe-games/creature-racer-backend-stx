@@ -46,15 +46,17 @@ class ProcessPaymentEventCommand extends Command
     {
         /** @var Settings $lastProcessedBlockNumber */
         $lastProcessedBlockNumber = $this->settingsRepository->findOneBy(['systemType' => SystemTypes::PAYMENT_LAST_BLOCK_NUMBER]);
+
         if (null === $lastProcessedBlockNumber) {
             $lastProcessedBlockNumber = new Settings();
             $lastProcessedBlockNumber->setSystemType(SystemTypes::PAYMENT_LAST_BLOCK_NUMBER);
             $lastProcessedBlockNumber->setValue(['block' => 0]);
         }
+
+        $maxBlocksToRead = 10;
         $actualBlock = $this->providerManager->getBlockNumber();
         $lastProcessedBlock = $lastProcessedBlockNumber->getValue()['block'];
         $processingBlocks = $actualBlock - $lastProcessedBlock;
-        $maxBlocksToRead = 10;
         $packages = (int)ceil($processingBlocks / $maxBlocksToRead);
 
         $output->writeln('Start time: ' . date('Y-m-d H:i:s'));
@@ -73,7 +75,7 @@ class ProcessPaymentEventCommand extends Command
                 $endBlock = $actualBlock;
             }
 
-            $output->writeln('Parsing block from: ' . $nextBlock . ' to: ' . $endBlock . ' iteration: ' . $i + 1);
+            $output->writeln('Parsing block from: ' . $nextBlock . ', to: ' . $endBlock . ', iteration: ' . $i + 1);
 
             $jsonString = $this->paymentContractManager->getLog($nextBlock, $maxBlocksToRead);
             $jsonLogs = json_decode($jsonString, false, 512, JSON_THROW_ON_ERROR);
@@ -83,31 +85,32 @@ class ProcessPaymentEventCommand extends Command
                 $this->settingsRepository->save($lastProcessedBlockNumber);
                 $output->writeln('Added logs: ' . $logsCounter);
 
-                return -1;
+                return Command::INVALID;
             } elseif (empty($jsonString) && empty($jsonLogs)) {
                 continue;
             }
 
-            foreach ($jsonLogs as $log) {
-                $rawData = $log->parsedLogs->args;
-                $amount = hexdec($rawData[1]->hex) / 1000000000000;
-                $referralAmount = hexdec($rawData[4]->hex);
-                $referralPool = $referralAmount === 0 ? $referralAmount : $referralAmount / 1000000000000;
+            foreach ($jsonLogs as $rowData) {
+                if ('success' !== $rowData->tx_status || !in_array($rowData->tx_type, ['mint', 'contract_call'], true)) {
+                    continue;
+                }
 
+//                $amount = hexdec($rawData[1]->hex) / 1000000000000;
+//                $referralAmount = hexdec($rawData[4]->hex);
+//                $referralPool = $referralAmount === 0 ? $referralAmount : $referralAmount / 1000000000000;
+//print_r($rowData);exit;
                 $paymentLog = new PaymentLog();
-                $paymentLog->setUserWallet(strtolower($rawData[0]));
-                $paymentLog->setTimestamp((new DateTimeImmutable())->setTimestamp(hexdec($rawData[2]->hex)));
-                $paymentLog->setAmountReferralPool($referralPool);
-                $paymentLog->setAmountRewardPool(($amount - 0.1 - $referralPool) / 2);
-
-                /** @var User $user */
-                $user = $this->userRepository->findOneBy(
-                    [
-                        'wallet' => strtolower($rawData[0])
-                    ]
-                );
+                $paymentLog->setTransactionId($rowData->tx_id);
+                $paymentLog->setTransactionType($rowData->tx_type);
+                $paymentLog->setUserWallet($rowData->sender_address);
+                $paymentLog->setTimestamp(new DateTimeImmutable($rowData->burn_block_time_iso));
+//                $paymentLog->setAmountReferralPool($referralPool);
+//                $paymentLog->setAmountRewardPool(($amount - 0.1 - $referralPool) / 2);
 
                 $this->documentManager->persist($paymentLog);
+
+                /** @var User $user */
+                $user = $this->userRepository->findOneBy(['wallet' => $rowData->sender_address]);
 
                 if ($user !== null && $user->getFromReferralNft() !== null) {
                     /** @var UserReferralPool $referralPoolLog */
@@ -134,6 +137,6 @@ class ProcessPaymentEventCommand extends Command
         $output->writeln('End time: ' . date('Y-m-d H:i:s'));
         $output->writeln('Added logs: ' . $logsCounter);
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

@@ -36,8 +36,8 @@ class RewardPoolContractManager extends Manager
         return $this->exec('stx-reward-pool-open-new-cycle', [], $verbose);
     }
 
-    public function signWithdraw(string $message, bool $verbose = false): ?string
+    public function signWithdraw(array $params, bool $verbose = false): ?string
     {
-        return $this->exec('stx-reward-pool-sign-withdraw', [$message], $verbose);
+        return $this->exec('stx-reward-pool-sign-withdraw', $params, $verbose);
     }
 }

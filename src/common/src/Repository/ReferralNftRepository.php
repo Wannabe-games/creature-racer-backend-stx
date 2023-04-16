@@ -17,34 +17,34 @@ class ReferralNftRepository extends ServiceEntityRepository
         parent::__construct($registry, ReferralNft::class);
     }
 
-    public function getNextSpecialRnftToMint(DateTime $time): ?ReferralNft
+    public function getNextRnftToMint(DateTime $time): ?ReferralNft
     {
         $qb = $this->createQueryBuilder('r');
         $qb
-            ->where($qb->expr()->eq('r.special', 'true'))
-            ->andWhere('r.hash IS NULL')
+            ->where('r.mintHash IS NULL')
             ->andWhere('r.transferHash IS NULL')
             ->andWhere('r.updatedAt IS NULL OR r.updatedAt < :time')
             ->setParameter('time', $time);
 
         return $qb
             ->orderBy('r.updatedAt', 'asc')
+            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
     }
 
-    public function getNextSpecialRnftToTransfer(DateTime $time): ?ReferralNft
+    public function getNextRnftToTransfer(DateTime $time): ?ReferralNft
     {
         $qb = $this->createQueryBuilder('r');
         $qb
-            ->where($qb->expr()->eq('r.special', 'true'))
-            ->andWhere('r.hash IS NOT NULL')
+            ->where('r.mintHash IS NOT NULL')
             ->andWhere('r.transferHash IS NULL')
             ->andWhere('r.updatedAt IS NULL OR r.updatedAt < :time')
             ->setParameter('time', $time);
 
         return $qb
             ->orderBy('r.updatedAt', 'asc')
+            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
     }

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const {makeContractCall, broadcastTransaction, standardPrincipalCV, createStacksPrivateKey, privateKeyToString, someCV} = require("@stacks/transactions");
 const {generateWallet} = require('@stacks/wallet-sdk');
-const {StacksMainnet} = require("@stacks/network");
+const {StacksTestnet} = require("@stacks/network");
 const process = require('process');
 
 const deployerAddress = '';
@@ -14,7 +14,7 @@ async function main() {
     }
     const operatorAddress = someCV(standardPrincipalCV(process.argv[2]));
 
-    const network = new StacksMainnet();
+    const network = new StacksTestnet();
     const wallet = await generateWallet({secretKey: deployerSecretKey, password: ''});
     const deployerKey = privateKeyToString(createStacksPrivateKey(wallet.accounts[0].stxPrivateKey));
 

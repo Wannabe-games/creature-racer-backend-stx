@@ -15,7 +15,7 @@ class Manager
         }
 
         if (!empty($params)) {
-            $command .= ' ' . implode(' ', array_map('trim', $params));
+            $command .= ' ' . implode(' ', array_map('escapeshellarg', array_map('trim', $params)));
         }
 
         exec($command, $result);

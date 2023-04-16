@@ -3,7 +3,7 @@
 namespace App\Command;
 
 use App\Common\Service\Stacks\CreatureNftContractManager;
-use App\Common\Service\Stacks\ReferralContractManager;
+use App\Common\Service\Stacks\ReferralNftContractManager;
 use App\Common\Service\Stacks\ReferralPoolContractManager;
 use App\Common\Service\Stacks\RewardPoolContractManager;
 use App\Common\Service\Stacks\StakingContractManager;
@@ -16,15 +16,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ContractTestCommand extends Command
 {
-    private const CREATURE_NFT_MINT_MESSAGE = '314159 7 1 1 1 1 1 1673445045 30000 029fb154a570a1645af3dd43c3c668a979b59d21a46dd717fd799b13be3b2a0dc7';
-    private const REFERRAL_POOL_WITHDRAW_MESSAGE = '1000000 1';
-    private const REWARD_POOL_WITHDRAW_MESSAGE = 'ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP 1000000 1 1';
+    private const CREATURE_NFT_MINT_PARAMS = [314159, 7, 1, 1, 1, 1, 1, 1673445045, 30000, '029fb154a570a1645af3dd43c3c668a979b59d21a46dd717fd799b13be3b2a0dc7'];
+    private const REFERRAL_POOL_WITHDRAW_PARAMS = ['ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP', 1000000, 1];
+    private const REWARD_POOL_WITHDRAW_PARAMS = ['ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP', 1000000, 1, 1];
 
     public function __construct(
         private ContainerInterface $container,
         private EntityManagerInterface $entityManager,
         private CreatureNftContractManager $signManager,
-        private ReferralContractManager $referralContractManager,
+        private ReferralNftContractManager $referralNftContractManager,
         private ReferralPoolContractManager $referralPoolContractManager,
         private RewardPoolContractManager $rewardPoolContractManager,
         private StakingContractManager $stakingContractManager
@@ -53,20 +53,21 @@ class ContractTestCommand extends Command
 
         $output->writeln('Creature');
         $output->writeln('========');
-        $output->writeln('signMint: ' . $this->signManager->signMint(self::CREATURE_NFT_MINT_MESSAGE, $verbose));
+        $output->writeln('signMint: ' . $this->signManager->signMint(self::CREATURE_NFT_MINT_PARAMS, $verbose));
 
         $output->writeln('');
 
         $output->writeln('Referral');
         $output->writeln('=============');
-        $output->writeln('mint: ' . $this->referralContractManager->mint(time(), $verbose));
+        $output->writeln('mint: ' . $this->referralNftContractManager->mint(time(), $verbose));
 
         $output->writeln('');
 
         $output->writeln('Referral Pool');
         $output->writeln('=============');
         $output->writeln('getBalance: ' . $this->referralPoolContractManager->getBalance($verbose));
-        $output->writeln('signWithdraw: ' . $this->referralPoolContractManager->signWithdraw(self::REFERRAL_POOL_WITHDRAW_MESSAGE, $verbose));
+        $output->writeln('getWithdrawCount: ' . $this->referralPoolContractManager->getWithdrawCount($user->getWallet(), $verbose));
+        $output->writeln('signWithdraw: ' . $this->referralPoolContractManager->signWithdraw(self::REFERRAL_POOL_WITHDRAW_PARAMS, $verbose));
 
         $output->writeln('');
 
@@ -77,7 +78,7 @@ class ContractTestCommand extends Command
         $output->writeln('getCollectedCycleBalance: ' . $this->rewardPoolContractManager->getCollectedCycleBalance($this->rewardPoolContractManager->getCurrentCycle()));
         $output->writeln('getCycleBalance: ' . $this->rewardPoolContractManager->getCycleBalance($this->rewardPoolContractManager->getCurrentCycle(), $verbose));
         $output->writeln('getWithdrawCount: ' . $this->rewardPoolContractManager->getWithdrawCount($user->getWallet(), $verbose));
-        $output->writeln('signWithdraw: ' . $this->rewardPoolContractManager->signWithdraw(self::REWARD_POOL_WITHDRAW_MESSAGE, $verbose));
+        $output->writeln('signWithdraw: ' . $this->rewardPoolContractManager->signWithdraw(self::REWARD_POOL_WITHDRAW_PARAMS, $verbose));
 
         $output->writeln('');
 

@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Common\Exception\Api\ApiException;
 use App\Common\Repository\ReferralNftRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
-use App\Common\Service\Ethereum\ReferralContractManager;
+use App\Common\Service\Stacks\ReferralNftContractManager;
 use App\DTO\UserSerializer;
 use Doctrine\ORM\EntityManagerInterface;
 use JsonException;
@@ -93,7 +93,7 @@ class UserController extends SymfonyAbstractController
      * @param Request $request
      * @param ReferralNftRepository $referralNftRepository
      * @param EntityManagerInterface $entityManager
-     * @param ReferralContractManager $referralContractManager
+     * @param ReferralNftContractManager $referralNftContractManager
      * @return JsonResponse
      * @throws JsonException
      *
@@ -101,9 +101,9 @@ class UserController extends SymfonyAbstractController
      */
     public function addReferralCode(
         Request $request,
-        ReferralNftRepository $referralNftRepository,
         EntityManagerInterface $entityManager,
-        ReferralContractManager $referralContractManager
+        ReferralNftRepository $referralNftRepository,
+        ReferralNftContractManager $referralNftContractManager
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
@@ -126,7 +126,7 @@ class UserController extends SymfonyAbstractController
 
         $user->setFromReferralNft($referralNft);
 
-        $referralContractManager->incrementInvitations($this->getUser());
+        $referralNftContractManager->incrementInvitations($this->getUser()?->getFromReferralNft()?->getRefCode(), $this->getUser()?->getWallet());
 
         $entityManager->flush();
 

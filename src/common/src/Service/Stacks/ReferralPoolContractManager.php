@@ -11,8 +11,13 @@ class ReferralPoolContractManager extends Manager
         return (int)$this->exec('stx-referral-pool-get-balance', [], $verbose);
     }
 
-    public function signWithdraw(string $message, bool $verbose = false): ?string
+    public function getWithdrawCount(string $wallet, bool $verbose = false): int
     {
-        return $this->exec('stx-referral-pool-sign-withdraw', [$message], $verbose);
+        return (int)$this->exec('stx-referral-pool-get-withdrawal-count', [$wallet], $verbose);
+    }
+
+    public function signWithdraw(array $params, bool $verbose = false): ?string
+    {
+        return $this->exec('stx-referral-pool-sign-withdraw', $params, $verbose);
     }
 }
