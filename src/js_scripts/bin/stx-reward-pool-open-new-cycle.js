@@ -24,5 +24,5 @@ async function main() {
 }
 
 main().then(function (result) {
-    console.log('submitted transaction:', '0x' + result.txid);
+    console.log('0x' + result.txid);
 });

@@ -2,17 +2,9 @@
 namespace App\Command;
 
 use App\Common\Enum\SystemTypes;
-use App\Common\Repository\Creature\CreatureLevelRepository;
 use App\Common\Repository\SettingsRepository;
-use App\Common\Service\Ethereum\PaymentContractManager;
 use App\Common\Service\Ethereum\ProviderManager;
-use App\Document\Log\PaymentLog;
-use App\Entity\Creature\Creature;
-use App\Entity\Creature\CreatureLevel;
-use App\Entity\Creature\CreatureUpgrade;
-use App\Common\Repository\Creature\CreatureRepository;
 use App\Entity\Settings;
-use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -53,7 +45,7 @@ class SetBlockNumberCommand extends Command
             'systemType' => SystemTypes::PAYMENT_LAST_BLOCK_NUMBER,
         ]);
 
-        if (empty($lastProcessedBlockNumber)) {
+        if (null === $lastProcessedBlockNumber) {
             $lastProcessedBlockNumber = new Settings();
             $lastProcessedBlockNumber->setSystemType(SystemTypes::PAYMENT_LAST_BLOCK_NUMBER);
         }

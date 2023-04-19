@@ -8,7 +8,7 @@ use App\Common\Repository\Document\UserReferralPoolRepository;
 use App\Common\Repository\ReferralNftRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\Common\Service\Stacks\ReferralNftContractManager;
-use App\Document\Log\PaymentLog;
+use App\Document\ContractLog;
 use App\Document\UserReferralPool;
 use App\Entity\ReferralNft;
 use App\Entity\User;
@@ -197,7 +197,7 @@ class rNftController extends SymfonyAbstractController
                 );
                 $userResult['pool'] = 0;
 
-                /** @var PaymentLog $paymentLog */
+                /** @var ContractLog $paymentLog */
                 foreach ($referralPoolLog->getPaymentLogs() as $paymentLog) {
                     if ($paymentLog->getUserWallet() == $user->getWallet()) {
                         $userResult['pool'] += $paymentLog->getUserReferralPool();

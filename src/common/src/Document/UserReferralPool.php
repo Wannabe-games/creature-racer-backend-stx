@@ -2,7 +2,6 @@
 
 namespace App\Document;
 
-use App\Document\Log\PaymentLog;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -212,9 +211,9 @@ class UserReferralPool
     }
 
     /**
-     * @param PaymentLog $paymentLog
+     * @param ContractLog $paymentLog
      */
-    public function addPaymentLog(PaymentLog $paymentLog): void
+    public function addPaymentLog(ContractLog $paymentLog): void
     {
         if (!$this->paymentLogs->contains($paymentLog)) {
             $this->paymentLogs->add($paymentLog);
@@ -222,9 +221,9 @@ class UserReferralPool
     }
 
     /**
-     * @param PaymentLog $paymentLog
+     * @param ContractLog $paymentLog
      */
-    public function removePaymentLog(PaymentLog $paymentLog): void
+    public function removePaymentLog(ContractLog $paymentLog): void
     {
         if ($this->paymentLogs->contains($paymentLog)) {
             $this->paymentLogs->removeElement($paymentLog);

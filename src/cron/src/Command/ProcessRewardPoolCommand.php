@@ -2,36 +2,37 @@
 
 namespace App\Command;
 
-use App\Common\Enum\SystemTypes;
 use App\Common\Enum\UserRewardPoolStatus;
 use App\Common\Repository\Document\UserRewardPoolRepository;
-use App\Common\Repository\SettingsRepository;
 use App\Common\Repository\UserRepository;
 use App\Common\Service\Stacks\RewardPoolContractManager;
 use App\Common\Service\Stacks\StakingContractManager;
 use App\Document\UserRewardPool;
-use App\Entity\Settings;
 use App\Entity\User;
+use DateTime;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ProcessRewardPoolCommand extends Command
 {
+    use LockableTrait;
+
+    protected static $defaultName = 'app:user-reward-pool:get-settlement';
+
     public function __construct(
         private RewardPoolContractManager $rewardPoolContractManager,
         private StakingContractManager $stakingContractManager,
         private DocumentManager $documentManager,
         private UserRewardPoolRepository $userRewardPoolRepository,
-        private UserRepository $userRepository,
-        private SettingsRepository $settingsRepository
+        private UserRepository $userRepository
     ) {
         parent::__construct();
     }
-
-    protected static $defaultName = 'app:user-reward-pool:get-settlement';
 
     protected function configure()
     {
@@ -40,124 +41,85 @@ class ProcessRewardPoolCommand extends Command
 
     /**
      * {@inheritdoc}
-     *
-     * @throws \Doctrine\ODM\MongoDB\MongoDBException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $date = new \DateTime();
+        if (!$this->lock()) {
+            $output->writeln('The command is already running in another process.');
+            return Command::SUCCESS;
+        }
 
+        $io = new SymfonyStyle($input, $output);
+        $io->writeln('Start...');
+
+        $rewardPoolCycle = $this->rewardPoolContractManager->getCurrentCycle();
+        $rewardPoolBalance = $this->rewardPoolContractManager->getCollectedCycleBalance($rewardPoolCycle);
+        $stakingCycle = $this->stakingContractManager->getCurrentCycle();
+        $totalStakingShare = $this->stakingContractManager->getTotalShare();
+
+        if ($rewardPoolCycle !== $stakingCycle) {
+            $io->error('Error! Different cycle numbers (reward pool: ' . $rewardPoolCycle . ', staking cycle: ' . $stakingCycle . ').');
+            $this->release();
+            return Command::FAILURE;
+        }
+
+        $output->writeln('Reward pool cycle: ' . $rewardPoolCycle);
+        $output->writeln('Reward pool balance: ' . $rewardPoolBalance);
+        $output->writeln('Staking cycle: ' . $stakingCycle);
+        $output->writeln('Staking total share: ' . $totalStakingShare);
+
+        /** @var User[] $users */
         $users = $this->userRepository->findAll();
-        $cycle = $this->rewardPoolContractManager->getCurrentCycle();
-        $balance = $this->rewardPoolContractManager->getCollectedCycleBalance($cycle);
-        $totalShare = $this->stakingContractManager->getTotalShare();
-
-        $output->writeln('Importing reward pool data in cycle: ' . $date->format('Y-m-d'));
-
-        $this->verifyCycle($cycle, $output);
 
         $progressBar = new ProgressBar($output, count($users));
         $progressBar->start();
         $progressBar->setFormat('debug');
 
-        /** @var User $user */
         foreach ($users as $user) {
             if (empty($user->getWallet())) {
                 $progressBar->advance();
-
-                continue;
-            }
-            $userShare = $this->stakingContractManager->getUserShare($user->getWallet());
-
-            /** @var UserRewardPool $rewardLog */
-            $rewardLog = $this->userRewardPoolRepository->findCycleByDate($date, $user->getId());
-
-            if (empty($rewardLog)) {
-                $rewardLog = new UserRewardPool();
-                $dateToday = new \DateTime($date->format('Y-m-d'));
-
-                $rewardLog->setCycle($cycle);
-                $rewardLog->setTimestamp($dateToday);
-                $rewardLog->setUser($user->getId());
-                $rewardLog->setReceived(false);
-                $rewardLog->setStatus(UserRewardPoolStatus::CRON_VERIFICATION);
-
-                $this->documentManager->persist($rewardLog);
-            } elseif (empty($rewardLog->getStatus())) {
-                $rewardLog->setStatus(UserRewardPoolStatus::CRON_VERIFICATION);
-            } elseif ($rewardLog->getStatus() != UserRewardPoolStatus::CRON_VERIFICATION) {
-                $progressBar->advance();
-
                 continue;
             }
 
-            $rewardLog->setTotalRewardPool($balance);
-            $rewardLog->setMyReward(number_format($totalShare ? $balance * ($userShare / $totalShare) : 0, 0, '.', ''));
-            $rewardLog->setMyStakingPower($totalShare ? $userShare / $totalShare * 100 : 0);
+            /** @var UserRewardPool $userRewardPool */
+            $userRewardPool = $this->userRewardPoolRepository->findCycleByUser($user->getId(), $rewardPoolCycle);
+
+            if (null === $userRewardPool) {
+                $userRewardPool = $this->createUserRewardPool($user, $rewardPoolCycle);
+            }
+
+            $userStakingShare = $this->stakingContractManager->getUserShare($user->getWallet());
+            $userStakingPower = $totalStakingShare ? $userStakingShare / $totalStakingShare : 0;
+            $userRewardPool->setMyStakingPower($userStakingPower * 100);
+            $userRewardPool->setMyReward(round($userStakingPower * $rewardPoolBalance));
+            $userRewardPool->setTotalRewardPool($rewardPoolBalance);
 
             $this->documentManager->flush();
-
             $progressBar->advance();
         }
 
         $progressBar->finish();
-        $output->writeln('');
+
+        $io->success('Complete!');
+        $this->release();
 
         return Command::SUCCESS;
     }
 
     /**
-     * @param string $cycle
-     * @param OutputInterface $output
-     *
-     * @return void
-     *
-     * @throws \Doctrine\ODM\MongoDB\MongoDBException
+     * @param int $rewardPoolCycle
+     * @param User $user
+     * @return UserRewardPool
      */
-    protected function verifyCycle(string $cycle, OutputInterface $output): void
+    private function createUserRewardPool(User $user, int $rewardPoolCycle): UserRewardPool
     {
-        $date = new \DateTime();
-        $date->sub(new \DateInterval('P1D'));
+        $userRewardPool = new UserRewardPool();
+        $userRewardPool->setCycle($rewardPoolCycle);
+        $userRewardPool->setUserId($user->getId());
+        $userRewardPool->setReceived(false);
+        $userRewardPool->setStatus(UserRewardPoolStatus::CRON_VERIFICATION);
+        $this->documentManager->persist($userRewardPool);
 
-        /** @var Settings|null $LastCycle */
-        $LastCycle = $this->settingsRepository->findOneBy(['systemType' => SystemTypes::REWARD_POOL_CYCLE]);
-        /** @var UserRewardPool $rewardPoolLog */
-        $rewardPoolLog = $this->userRewardPoolRepository->getCycleFromLastDay($date->format('Y-m-d'));
-
-        if (
-            !empty($LastCycle) &&
-            $cycle <= $LastCycle->getValue()['cycle'] &&
-            !empty($rewardPoolLog) &&
-            $rewardPoolLog->getCycle() == $cycle
-        ) {
-            $output->writeln('Processing is stop, because the new cycle isn\'t open.');
-
-            exit();
-        }
-
-        if (empty($LastCycle)) {
-            $LastCycle = new Settings();
-            $LastCycle->setSystemType(SystemTypes::REWARD_POOL_CYCLE);
-            $LastCycle->setValue(
-                [
-                    'cycle' => $cycle,
-                    'date' => date('Y-m-d')
-                ]
-            );
-
-            $this->settingsRepository->save($LastCycle);
-        } elseif (
-            $cycle > $LastCycle->getValue()['cycle'] &&
-            $rewardPoolLog->getTimestamp()->format('Y-m-d') < date('Y-m-d')
-        ) {
-            $LastCycle->setValue(
-                [
-                    'cycle' => $cycle,
-                    'date' => date('Y-m-d')
-                ]
-            );
-
-            $this->settingsRepository->save($LastCycle);
-        }
+        return $userRewardPool;
     }
 }

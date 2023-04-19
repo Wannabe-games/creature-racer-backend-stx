@@ -3,6 +3,7 @@
 namespace App\Common\Repository\Document;
 
 use App\Document\UserRewardPool;
+use DateTime;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Iterator\Iterator;
 use Doctrine\ODM\MongoDB\MongoDBException;
@@ -27,25 +28,18 @@ class UserRewardPoolRepository extends DocumentRepository
 
     /**
      * @param int $userId
-     * @param int $limit
-     * @param int $from
-     *
-     * @return array
-     *
+     * @param int $startCycle
+     * @param int $endCycle
+     * @return array|UserRewardPool[]
      * @throws MongoDBException
      */
-    public function findUserRewardPoolCycles(int $userId, int $limit = 7, int $from = 0): array
+    public function findUserRewardPoolCycles(int $userId, int $startCycle = 1, int $endCycle = 1): array
     {
-        $data = new \DateTime();
-        //TODO do zmiany na 7 cykli wstecz
-        $data->sub(new \DateInterval("P7D"));
-
         $result = $this->createQueryBuilder()
-            ->field('user')->equals($userId)
-            ->field('timestamp')->gte($data)
-            ->sort('timestamp', 'desc')
-            ->limit($limit)
-            ->skip($from)
+            ->field('userId')->equals($userId)
+            ->field('cycle')->lte($startCycle)
+            ->field('cycle')->gte($endCycle)
+            ->sort('cycle', 'desc')
             ->getQuery()
             ->execute();
 
@@ -60,22 +54,19 @@ class UserRewardPoolRepository extends DocumentRepository
 
     /**
      * @param int $userId
-     *
      * @return int
-     *
      * @throws MongoDBException
      */
     public function findNextCountForWithdraw(int $userId): int
     {
         $result = $this->createQueryBuilder()
-            ->field('user')->equals($userId)
+            ->field('userId')->equals($userId)
             ->field('withdrawId')->exists(true)
             ->field('withdrawId')->notEqual(null)
             ->getQuery()
             ->execute();
 
         if (is_iterable($result)) {
-
             return $result instanceof CachingIterator ? count($result->toArray()) : count($result);
         }
 
@@ -83,47 +74,37 @@ class UserRewardPoolRepository extends DocumentRepository
     }
 
     /**
-     * @param \DateTime $date
-     * @param int       $user
-     *
+     * @param int $user
+     * @param int $cycle
      * @return object|null
-     *
      * @throws MongoDBException
      */
-    public function findCycleByDate(\DateTime $date, int $user): ?object
+    public function findCycleByUser(int $user, int $cycle): ?object
     {
-        $dateToday = new \DateTime($date->format('Y-m-d'));
-
         $result = $this->createQueryBuilder()
-            ->field('timestamp')->equals($dateToday)
-            ->field('user')->equals($user)
+            ->field('userId')->equals($user)
+            ->field('cycle')->equals($cycle)
             ->getQuery()
             ->execute()
             ->toArray();
 
         foreach ($result as $key => $value) {
-            if ($key != 0) {
+            if ($key !== 0) {
                 $this->getDocumentManager()->remove($value);
             }
         }
 
-        if (empty($result)) {
-            return null;
-        } else {
-            return $result[0];
-        }
+        return $result[0] ?? null;
     }
 
     /**
      * @param string $date
-     *
      * @return object|null
-     *
      * @throws MongoDBException
      */
     public function getCycleFromLastDay(string $date): ?object
     {
-        $dateToday = new \DateTime($date);
+        $dateToday = new DateTime($date);
 
         $result = $this->createQueryBuilder()
             ->field('timestamp')->equals($dateToday)

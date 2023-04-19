@@ -2,52 +2,56 @@
 
 namespace App\Service;
 
+use App\Document\UserRewardPool;
+use DateInterval;
+use DateTime;
+
 /**
  * Class RewardPoolManager
  */
 class RewardPoolManager
 {
     /**
-     * @param array $userRewardPools
-     * @param int $userId
-     *
+     * @param array|UserRewardPool[] $userRewardPools
+     * @param int $startCycle
+     * @param int $endCycle
      * @return array
      */
-    public function prepareRewardList(array $userRewardPools, int $userId): array
+    public function prepareRewardList(array $userRewardPools, int $startCycle = 1, int $endCycle = 1): array
     {
-        $date = new \DateTime();
+        $date = new DateTime();
         $result = [];
 
-        for ($i = 0; $i < 7; ++$i) {
-            if (key_exists($i, $userRewardPools)) {
-                $result[] = [
-                    'id' => $userRewardPools[$i]->getId(),
-                    'myReward' => round($userRewardPools[$i]->getMyReward() / 1000000000000, 2),
-                    'myStakingPower' => round($userRewardPools[$i]->getMyStakingPower(), 2),
-                    'totalRewardPool' => round($userRewardPools[$i]->getTotalRewardPool() / 1000000000000, 2),
-                    'user' => $userId,
-                    'isReceived' => $userRewardPools[$i]->isReceived(),
-                    'withdrawId' => $userRewardPools[$i]->getWithdrawId(),
-                    'date' => $userRewardPools[$i]->getTimestamp()->format('Y-m-d'),
-                ];
+        for ($cycle = $startCycle; $cycle >= $endCycle; --$cycle) {
+            $result[$cycle] = [
+                'id' => null,
+                'cycle' => $cycle,
+                'myStakingPower' => 0,
+                'myReward' => 0,
+                'totalRewardPool' => 0,
+                'isReceived' => false,
+                'withdrawId' => null,
+                'date' => $date->format('Y-m-d'),
+            ];
 
-                $date = $userRewardPools[$i]->getTimestamp();
-            } else {
-                $result[] = [
-                    'id' => null,
-                    'myReward' => null,
-                    'myStakingPower' => null,
-                    'totalRewardPool' => null,
-                    'user' => $userId,
-                    'isReceived' => null,
-                    'withdrawId' => null,
-                    'date' => $date->format('Y-m-d'),
-                ];
-            }
-            $date->sub(new \DateInterval('P1D'));
+            $date->sub(new DateInterval('P1D'));
         }
 
-        return $result;
-    }
+        foreach ($userRewardPools as $cycleDetails) {
+            $cycle = $cycleDetails->getCycle();
 
+            if ($cycle > $startCycle || $cycle < $endCycle) {
+                continue;
+            }
+
+            $result[$cycle]['id'] = $cycleDetails->getId();
+            $result[$cycle]['myStakingPower'] = (float)$cycleDetails->getMyStakingPower();
+            $result[$cycle]['myReward'] = $cycleDetails->getMyReward();
+            $result[$cycle]['totalRewardPool'] = $cycleDetails->getTotalRewardPool();
+            $result[$cycle]['isReceived'] = $cycleDetails->isReceived();
+            $result[$cycle]['withdrawId'] = $cycleDetails->getWithdrawId();
+        }
+
+        return array_values($result);
+    }
 }

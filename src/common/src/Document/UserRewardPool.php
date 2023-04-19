@@ -16,8 +16,8 @@ use Exception;
  *     indexes={
  *         @ODM\Index(keys={
  *              "user"="desc",
+ *              "cycle"="desc",
  *              "isReceived"="desc",
- *              "timestamp"="desc"
  *         })
  *     }
  * )
@@ -30,28 +30,34 @@ class UserRewardPool
     protected ?string $id = null;
 
     /**
-     * @var string|null
-     * @ODM\Field(type="string")
+     * @var integer|null
+     * @ODM\Field(type="int")
      */
-    private ?string $myReward = null;
-
-    /**
-     * @var string|null
-     * @ODM\Field(type="string")
-     */
-    private ?string $myStakingPower = null;
-
-    /**
-     * @var string|null
-     * @ODM\Field(type="string")
-     */
-    private ?string $totalRewardPool = null;
+    private ?int $userId = null;
 
     /**
      * @var integer|null
      * @ODM\Field(type="int")
      */
-    private ?int $user = null;
+    private ?int $cycle = null;
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    private string $myStakingPower = '0';
+
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    private int $myReward = 0;
+
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    private int $totalRewardPool = 0;
 
     /**
      * @var bool
@@ -72,23 +78,17 @@ class UserRewardPool
     private ?int $withdrawId = null;
 
     /**
-     * @var integer|null
-     * @ODM\Field(type="int")
-     */
-    private ?int $cycle = null;
-
-    /**
      * @var DateTimeInterface
      * @ODM\Field(type="date")
      */
-    protected DateTimeInterface $timestamp;
+    protected DateTimeInterface $createdAt;
 
     /**
      * @throws Exception
      */
     public function __construct()
     {
-        $this->timestamp = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     /**
@@ -100,83 +100,83 @@ class UserRewardPool
     }
 
     /**
-     * @return DateTimeInterface
+     * @return int
      */
-    public function getTimestamp(): DateTimeInterface
+    public function getUserId(): int
     {
-        return $this->timestamp;
+        return $this->userId;
     }
 
     /**
-     * @param DateTimeInterface $timestamp
+     * @param int $userId
      */
-    public function setTimestamp(DateTimeInterface $timestamp): void
+    public function setUserId(int $userId): void
     {
-        $this->timestamp = $timestamp;
+        $this->userId = $userId;
     }
 
     /**
-     * @return string|null
+     * @return int|null
      */
-    public function getMyReward(): ?string
+    public function getCycle(): ?int
     {
-        return $this->myReward;
+        return $this->cycle;
     }
 
     /**
-     * @param string|null $myReward
+     * @param int $cycle
      */
-    public function setMyReward(?string $myReward): void
+    public function setCycle(int $cycle): void
     {
-        $this->myReward = $myReward;
+        $this->cycle = $cycle;
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getMyStakingPower(): ?string
+    public function getMyStakingPower(): string
     {
         return $this->myStakingPower;
     }
 
     /**
-     * @param string|null $myStakingPower
+     * @param string $myStakingPower
      */
-    public function setMyStakingPower(?string $myStakingPower): void
+    public function setMyStakingPower(string $myStakingPower): void
     {
         $this->myStakingPower = $myStakingPower;
     }
 
     /**
-     * @return string|null
+     * @return int
      */
-    public function getTotalRewardPool(): ?string
+    public function getMyReward(): int
     {
-        return $this->totalRewardPool;
+        return $this->myReward;
     }
 
     /**
-     * @param string|null $totalRewardPool
+     * @param int $myReward
      */
-    public function setTotalRewardPool(?string $totalRewardPool): void
+    public function setMyReward(int $myReward): void
     {
-        $this->totalRewardPool = $totalRewardPool;
+        $this->myReward = $myReward;
     }
 
     /**
      * @return int
      */
-    public function getUser(): int
+    public function getTotalRewardPool(): int
     {
-        return $this->user;
+        return $this->totalRewardPool;
     }
 
     /**
-     * @param int $user
+     * @param int $totalRewardPool
      */
-    public function setUser(int $user): void
+    public function setTotalRewardPool(int $totalRewardPool): void
     {
-        $this->user = $user;
+        $this->totalRewardPool = $totalRewardPool;
     }
 
     /**
@@ -214,22 +214,6 @@ class UserRewardPool
     /**
      * @return int|null
      */
-    public function getCycle(): ?int
-    {
-        return $this->cycle;
-    }
-
-    /**
-     * @param int $cycle
-     */
-    public function setCycle(int $cycle): void
-    {
-        $this->cycle = $cycle;
-    }
-
-    /**
-     * @return int|null
-     */
     public function getStatus(): ?int
     {
         return $this->status;
@@ -241,5 +225,21 @@ class UserRewardPool
     public function setStatus(int $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getCreatedAt(): DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param DateTimeInterface $createdAt
+     */
+    public function setCreatedAt(DateTimeInterface $createdAt): void
+    {
+        $this->createdAt = $createdAt;
     }
 }

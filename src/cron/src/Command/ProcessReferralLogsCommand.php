@@ -2,19 +2,8 @@
 
 namespace App\Command;
 
-use App\Common\Enum\UserReferralPoolStatus;
-use App\Common\Repository\Document\UserReferralPoolRepository;
-use App\Common\Repository\UserRepository;
-use App\Common\Service\Ethereum\ReferralPoolContractManager;
-use App\Document\Log\PaymentLog;
-use App\Document\UserReferralPool;
-use App\Entity\User;
 use DateTime;
-use Doctrine\ODM\MongoDB\DocumentManager;
-use Doctrine\ODM\MongoDB\MongoDBException;
-use Exception;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

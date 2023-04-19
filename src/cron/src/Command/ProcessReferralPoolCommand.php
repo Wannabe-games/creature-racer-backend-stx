@@ -5,7 +5,7 @@ namespace App\Command;
 use App\Common\Enum\UserReferralPoolStatus;
 use App\Common\Repository\Document\UserReferralPoolRepository;
 use App\Common\Repository\UserRepository;
-use App\Document\Log\PaymentLog;
+use App\Document\ContractLog;
 use App\Document\UserReferralPool;
 use App\Entity\User;
 use DateTime;
@@ -82,7 +82,7 @@ class ProcessReferralPoolCommand extends Command
             $referralLog->setMyReward('0');
 
             if (!$referralLog->getPaymentLogs()->isEmpty()) {
-                /** @var PaymentLog $paymentLog */
+                /** @var ContractLog $paymentLog */
                 foreach ($referralLog->getPaymentLogs() as $paymentLog) {
                     $referralLog->setMyReward(number_format((int)$referralLog->getMyReward() + $paymentLog->getAmountReferralPool(), 0, '.', ''));
                 }

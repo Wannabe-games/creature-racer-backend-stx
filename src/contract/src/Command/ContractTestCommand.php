@@ -87,7 +87,7 @@ class ContractTestCommand extends Command
         $output->writeln('getCurrentCycle: ' . $this->stakingContractManager->getCurrentCycle($verbose));
         $output->writeln('getTotalShare: ' . $this->stakingContractManager->getTotalShare($verbose));
         $output->writeln('getUserShare: ' . $this->stakingContractManager->getUserShare($user->getWallet(), $verbose));
-        $output->writeln('getUserReward: ' . $this->stakingContractManager->getUserReward($user->getWallet()));
+        $output->writeln('getUserStakingPower: ' . $this->stakingContractManager->getUserStakingPower($user->getWallet()));
 
         return Command::SUCCESS;
     }

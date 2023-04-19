@@ -2,7 +2,7 @@
 
 namespace App\Common\Repository\Document;
 
-use App\Document\Log\PaymentLog;
+use App\Document\ContractLog;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
@@ -13,7 +13,7 @@ use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
  * @package App\Repository\Document
  * @author Michał Wadas <michal@mklit.pl>
  */
-class PaymentLogRepository extends DocumentRepository
+class ContractLogRepository extends DocumentRepository
 {
     /**
      * @param DocumentManager $dm
@@ -21,7 +21,7 @@ class PaymentLogRepository extends DocumentRepository
     public function __construct(DocumentManager $dm)
     {
         $uow = $dm->getUnitOfWork();
-        $classMetaData = $dm->getClassMetadata(PaymentLog::class);
+        $classMetaData = $dm->getClassMetadata(ContractLog::class);
 
         parent::__construct($dm, $uow, $classMetaData);
     }

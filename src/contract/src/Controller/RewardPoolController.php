@@ -29,7 +29,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class RewardPoolController extends SymfonyAbstractController
 {
-    const API_MAX_PER_PAGE_DEFAULT = 10;
+    const API_MAX_PER_PAGE_DEFAULT = 7;
 
     /**
      * SecurityController constructor.
@@ -56,7 +56,7 @@ class RewardPoolController extends SymfonyAbstractController
         return new JsonResponse(
             [
                 'rewardPool' => $rewardPoolContractManager->getCollectedCycleBalance($rewardPoolContractManager->getCurrentCycle()),
-                'userReward' => round(($stakingContractManager->getUserReward($this->getUser()->getWallet()) * 100), 2) . '%',
+                'userReward' => round(($stakingContractManager->getUserStakingPower($this->getUser()->getWallet()) * 100), 2) . '%',
                 'activeReferral' => $this->getUser()->getMyReferralNft() ? $this->getUser()->getMyReferralNft()->getUsers()->count() : null,
                 'usersDailyAmount' => rand(10, 1000000)
             ]
@@ -67,6 +67,7 @@ class RewardPoolController extends SymfonyAbstractController
      * @param Request $request
      * @param DocumentManager $documentManager
      * @param RewardPoolManager $rewardPoolManager
+     * @param RewardPoolContractManager $rewardPoolContractManager
      * @return JsonResponse
      *
      * @Route("/reward-pool/user/list", name="reward_pool_user_list", methods={"GET"})
@@ -74,18 +75,19 @@ class RewardPoolController extends SymfonyAbstractController
     public function userList(
         Request $request,
         DocumentManager $documentManager,
-        RewardPoolManager $rewardPoolManager
+        RewardPoolManager $rewardPoolManager,
+        RewardPoolContractManager $rewardPoolContractManager
     ): JsonResponse {
         $page = $request->query->getInt('page', 1);
-        $itemsPerPage = $request->query->getInt('itemsPerPage', self::API_MAX_PER_PAGE_DEFAULT);
+        $maxItems = $request->query->getInt('itemsPerPage', self::API_MAX_PER_PAGE_DEFAULT);
 
-        $result = $documentManager->getRepository(UserRewardPool::class)->findUserRewardPoolCycles(
-            $this->getUser()->getId(),
-            $itemsPerPage,
-            $page ? ($page - 1) * $itemsPerPage : null
-        );
+        $startCycle = $rewardPoolContractManager->getCurrentCycle() - $maxItems * ($page - 1);
+        $endCycle = max($startCycle - $maxItems + 1, 1);
 
-        return new JsonResponse($rewardPoolManager->prepareRewardList($result, $this->getUser()->getId()));
+        $result = $documentManager->getRepository(UserRewardPool::class)
+            ->findUserRewardPoolCycles($this->getUser()?->getId(), $startCycle, $endCycle);
+
+        return new JsonResponse($rewardPoolManager->prepareRewardList($result, $startCycle, $endCycle));
     }
 
     /**
@@ -111,7 +113,7 @@ class RewardPoolController extends SymfonyAbstractController
         if (empty($withdrawDocument)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
-        if ($withdrawDocument->getUser() != $this->getUser()->getId()) {
+        if ($withdrawDocument->getUserId() != $this->getUser()->getId()) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
 
@@ -164,7 +166,7 @@ class RewardPoolController extends SymfonyAbstractController
         if (empty($withdrawDocument)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
-        if ($withdrawDocument->getUser() != $this->getUser()->getId()) {
+        if ($withdrawDocument->getUserId() != $this->getUser()->getId()) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
         $withdrawDocument->setReceived(true);

@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Common\Service\Stacks\ProviderManager;
 use App\Common\Service\Stacks\RewardPoolContractManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,6 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class RewardPoolOpenNewCycleCommand extends Command
 {
     public function __construct(
+        private ProviderManager $providerManager,
         private RewardPoolContractManager $rewardPoolContractManager
     ) {
         parent::__construct();
@@ -17,7 +19,7 @@ class RewardPoolOpenNewCycleCommand extends Command
 
     protected static $defaultName = 'app:reward-pool-open-new-cycle';
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Open reward pool cycle.');
     }
@@ -25,8 +27,9 @@ class RewardPoolOpenNewCycleCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         do {
-            $i = (int)$this->rewardPoolContractManager->openNewCycle(true);
-        } while ($i);
+            $transactionHash = $this->rewardPoolContractManager->openNewCycle(true);
+            sleep(1);
+        } while ('pending' !== $this->providerManager->getTransactionStatus($transactionHash));
 
         return Command::SUCCESS;
     }

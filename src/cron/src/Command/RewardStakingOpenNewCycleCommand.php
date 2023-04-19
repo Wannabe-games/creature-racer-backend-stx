@@ -2,20 +2,22 @@
 
 namespace App\Command;
 
+use App\Common\Service\Stacks\ProviderManager;
 use App\Common\Service\Stacks\StakingContractManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class StakingOpenNewCycleCommand extends Command
+class RewardStakingOpenNewCycleCommand extends Command
 {
     public function __construct(
+        private ProviderManager $providerManager,
         private StakingContractManager $stakingContractManager
     ) {
         parent::__construct();
     }
 
-    protected static $defaultName = 'app:staking-open-new-cycle';
+    protected static $defaultName = 'app:reward-staking-open-new-cycle';
 
     protected function configure(): void
     {
@@ -25,8 +27,9 @@ class StakingOpenNewCycleCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         do {
-            $i = (int)$this->stakingContractManager->openNewCycle(true);
-        } while ($i);
+            $transactionHash = $this->stakingContractManager->openNewCycle(true);
+            sleep(1);
+        } while ('pending' !== $this->providerManager->getTransactionStatus($transactionHash));
 
         return Command::SUCCESS;
     }

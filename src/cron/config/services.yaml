@@ -2,6 +2,7 @@ parameters:
     app_env: '%env(string:APP_ENV)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
+    contract_version: '%env(string:CONTRACT_VERSION)%'
     private_wallet_key: '%env(string:OPERATOR_CONTRACT_PRIVATE_KEY)%'
     chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
     payment_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
@@ -70,9 +71,9 @@ services:
         # you can also use \RedisArray, \RedisCluster or \Predis\Client classes
         class: Redis
         calls:
-            - connect:
-                  - '%env(REDIS_HOST)%'
-                  - '%env(int:REDIS_PORT)%'
+            -   connect:
+                    - '%env(REDIS_HOST)%'
+                    - '%env(int:REDIS_PORT)%'
     #            - auth:
     #                - '%env(REDIS_PASSWORD)%'
     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
@@ -83,12 +84,12 @@ services:
             # and the expiration time for any given entry (in seconds), defaults are 'sf_s' and null:
             # - { 'prefix': 'my_prefix', 'ttl': 600 }
 
-#    App\Service\OpenApi\SettingsDecorator:
-#        decorates: 'api_platform.openapi.factory'
-#        arguments: [ '@.inner' ]
+    #    App\Service\OpenApi\SettingsDecorator:
+    #        decorates: 'api_platform.openapi.factory'
+    #        arguments: [ '@.inner' ]
 
     ##################
     gesdinet.jwtrefreshtoken.refresh_token_manager:
-        class:  App\Doctrine\RefreshTokenManager
+        class: App\Doctrine\RefreshTokenManager
         public: true
         arguments: [ '@gesdinet.jwtrefreshtoken.object_manager', '%gesdinet.jwtrefreshtoken.refresh_token.class%' ]
