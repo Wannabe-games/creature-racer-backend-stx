@@ -4,8 +4,6 @@ namespace App\Document;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Exception;
 
@@ -19,7 +17,6 @@ use Exception;
  *         @ODM\Index(keys={
  *              "user"="desc",
  *              "isReceived"="desc",
- *              "timestamp"="desc"
  *         })
  *     }
  * )
@@ -32,16 +29,16 @@ class UserReferralPool
     protected ?string $id = null;
 
     /**
-     * @var string|null
-     * @ODM\Field(type="string")
+     * @var int
+     * @ODM\Field(type="int")
      */
-    private ?string $myReward = null;
+    private int $myReward = 0;
 
     /**
      * @var integer|null
      * @ODM\Field(type="int")
      */
-    private ?int $user = null;
+    private ?int $userId = null;
 
     /**
      * @var bool
@@ -56,38 +53,23 @@ class UserReferralPool
     private ?int $withdrawId = null;
 
     /**
-     * @var DateTimeInterface
-     * @ODM\Field(type="date")
-     */
-    protected DateTimeInterface $timestamp;
-
-    /**
-     * @var DateTimeInterface
-     * @ODM\Field(type="date")
-     */
-    protected DateTimeInterface $changeStatusDate;
-
-    /**
      * @var integer|null
      * @ODM\Field(type="int")
      */
     private ?int $status = null;
 
     /**
-     * @var ArrayCollection
-     *
-     * @ODM\ReferenceMany(targetDocument=PaymentLog::class)
+     * @var DateTimeInterface
+     * @ODM\Field(type="date")
      */
-    private $paymentLogs;
+    protected DateTimeInterface $createdAt;
 
     /**
      * @throws Exception
      */
     public function __construct()
     {
-        $this->paymentLogs = new ArrayCollection();
-        $this->timestamp = new DateTimeImmutable();
-        $this->changeStatusDate = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     /**
@@ -99,35 +81,35 @@ class UserReferralPool
     }
 
     /**
-     * @return DateTimeInterface
-     */
-    public function getTimestamp(): DateTimeInterface
-    {
-        return $this->timestamp;
-    }
-
-    /**
-     * @param DateTimeInterface $timestamp
-     */
-    public function setTimestamp(DateTimeInterface $timestamp): void
-    {
-        $this->timestamp = $timestamp;
-    }
-
-    /**
      * @return int
      */
-    public function getUser(): int
+    public function getMyReward(): int
     {
-        return $this->user;
+        return $this->myReward;
     }
 
     /**
-     * @param int $user
+     * @param int $myReward
      */
-    public function setUser(int $user): void
+    public function setMyReward(int $myReward): void
     {
-        $this->user = $user;
+        $this->myReward = $myReward;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param int|null $userId
+     */
+    public function setUserId(?int $userId): void
+    {
+        $this->userId = $userId;
     }
 
     /**
@@ -147,7 +129,7 @@ class UserReferralPool
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getWithdrawId(): ?int
     {
@@ -155,27 +137,11 @@ class UserReferralPool
     }
 
     /**
-     * @param int $withdrawId
+     * @param int|null $withdrawId
      */
-    public function setWithdrawId(int $withdrawId): void
+    public function setWithdrawId(?int $withdrawId): void
     {
         $this->withdrawId = $withdrawId;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getMyReward(): ?string
-    {
-        return $this->myReward;
-    }
-
-    /**
-     * @param string|null $myReward
-     */
-    public function setMyReward(?string $myReward): void
-    {
-        $this->myReward = $myReward;
     }
 
     /**
@@ -187,62 +153,26 @@ class UserReferralPool
     }
 
     /**
-     * @param int $status
+     * @param int|null $status
      */
-    public function setStatus(int $status): void
+    public function setStatus(?int $status): void
     {
         $this->status = $status;
     }
 
     /**
-     * @return Collection
-     */
-    public function getPaymentLogs(): Collection
-    {
-        return $this->paymentLogs;
-    }
-
-    /**
-     * @param ArrayCollection $paymentLogs
-     */
-    public function setPaymentLogs(ArrayCollection $paymentLogs): void
-    {
-        $this->paymentLogs = $paymentLogs;
-    }
-
-    /**
-     * @param ContractLog $paymentLog
-     */
-    public function addPaymentLog(ContractLog $paymentLog): void
-    {
-        if (!$this->paymentLogs->contains($paymentLog)) {
-            $this->paymentLogs->add($paymentLog);
-        }
-    }
-
-    /**
-     * @param ContractLog $paymentLog
-     */
-    public function removePaymentLog(ContractLog $paymentLog): void
-    {
-        if ($this->paymentLogs->contains($paymentLog)) {
-            $this->paymentLogs->removeElement($paymentLog);
-        }
-    }
-
-    /**
      * @return DateTimeInterface
      */
-    public function getChangeStatusDate(): DateTimeInterface
+    public function getCreatedAt(): DateTimeInterface
     {
-        return $this->changeStatusDate;
+        return $this->createdAt;
     }
 
     /**
-     * @param DateTimeInterface $changeStatusDate
+     * @param DateTimeInterface $createdAt
      */
-    public function setChangeStatusDate(DateTimeInterface $changeStatusDate): void
+    public function setCreatedAt(DateTimeInterface $createdAt): void
     {
-        $this->changeStatusDate = $changeStatusDate;
+        $this->createdAt = $createdAt;
     }
 }

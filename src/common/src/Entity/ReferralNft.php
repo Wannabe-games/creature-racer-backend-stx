@@ -74,11 +74,11 @@ class ReferralNft
     private $owner;
 
     /**
-     * @var Collection
+     * @var User[]|ArrayCollection|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="fromReferralNft", fetch="EXTRA_LAZY")
      */
-    private $users;
+    private Collection $users;
 
     /**
      * @var DateTime|null
@@ -221,7 +221,7 @@ class ReferralNft
     }
 
     /**
-     * @return mixed
+     * @return User[]|ArrayCollection|Collection
      */
     public function getUsers()
     {

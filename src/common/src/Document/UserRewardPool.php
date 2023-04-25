@@ -30,13 +30,13 @@ class UserRewardPool
     protected ?string $id = null;
 
     /**
-     * @var integer|null
+     * @var int|null
      * @ODM\Field(type="int")
      */
     private ?int $userId = null;
 
     /**
-     * @var integer|null
+     * @var int|null
      * @ODM\Field(type="int")
      */
     private ?int $cycle = null;
@@ -66,13 +66,13 @@ class UserRewardPool
     private bool $received = false;
 
     /**
-     * @var integer|null
+     * @var int|null
      * @ODM\Field(type="int")
      */
     private ?int $status = null;
 
     /**
-     * @var integer|null
+     * @var int|null
      * @ODM\Field(type="int")
      */
     private ?int $withdrawId = null;

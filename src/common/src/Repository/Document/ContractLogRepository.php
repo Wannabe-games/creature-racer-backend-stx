@@ -3,9 +3,11 @@
 namespace App\Common\Repository\Document;
 
 use App\Document\ContractLog;
+use DateTime;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
+use Iterator;
 
 /**
  * Class PaymentLogRepository
@@ -27,14 +29,14 @@ class ContractLogRepository extends DocumentRepository
     }
 
     /**
-     * @param \DateTime|null $dateFrom
-     * @param \DateTime|null $dateTo
+     * @param DateTime|null $dateFrom
+     * @param DateTime|null $dateTo
      *
      * @return object|null
      *
      * @throws MongoDBException
      */
-    public function findCycleSettlement(?\DateTime $dateFrom = null, ?\DateTime $dateTo = null): ?object
+    public function findCycleSettlement(?DateTime $dateFrom = null, ?DateTime $dateTo = null): ?object
     {
         $dq = $this->createQueryBuilder()
             ->field('timestamp');
@@ -47,5 +49,23 @@ class ContractLogRepository extends DocumentRepository
 
         return $dq->getQuery()
             ->execute();
+    }
+
+    public function getRewardTransactionForWallets(array $userReferralWallets): array
+    {
+        $result = $this->createQueryBuilder()
+            ->field('userWallet')->equals($userReferralWallets)
+            ->field('contractName')->equals('creature-racer-payment')
+            ->field('contractFunctionName')->equals('receive-funds')
+            ->getQuery()
+            ->execute();
+
+        if (is_iterable($result)) {
+            $result = ($result instanceof Iterator) ? $result->toArray() : $result;
+
+            return (count($result) > 0) ? $result : [];
+        }
+
+        return [];
     }
 }

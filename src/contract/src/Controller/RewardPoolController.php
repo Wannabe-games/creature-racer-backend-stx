@@ -18,7 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstr
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class RewardPoolController
@@ -30,15 +29,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RewardPoolController extends SymfonyAbstractController
 {
     const API_MAX_PER_PAGE_DEFAULT = 7;
-
-    /**
-     * SecurityController constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(private TranslatorInterface $translator)
-    {
-    }
 
     /**
      * @param CreatureUserRepository $creatureUserRepository
@@ -107,32 +97,32 @@ class RewardPoolController extends SymfonyAbstractController
         DocumentManager $documentManager,
         RewardPoolContractManager $rewardPoolContractManager
     ): JsonResponse {
-        /** @var UserRewardPool $withdrawDocument */
-        $withdrawDocument = $documentManager->getRepository(UserRewardPool::class)->find($id);
+        /** @var UserRewardPool $userRewardPool */
+        $userRewardPool = $documentManager->getRepository(UserRewardPool::class)->find($id);
 
-        if (empty($withdrawDocument)) {
+        if (null === $userRewardPool) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
-        if ($withdrawDocument->getUserId() != $this->getUser()->getId()) {
+        if ($userRewardPool->getUserId() !== $this->getUser()->getId()) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
 
-        if (empty($withdrawDocument->getWithdrawId())) {
+        if (null === $userRewardPool->getWithdrawId()) {
             $withdrawId = ($rewardPoolContractManager->getWithdrawCount($this->getUser()->getWallet())) + 1;
-            $withdrawDocument->setWithdrawId($withdrawId);
+            $userRewardPool->setWithdrawId($withdrawId);
         } else {
-            $withdrawId = $withdrawDocument->getWithdrawId();
+            $withdrawId = $userRewardPool->getWithdrawId();
         }
 
         $signedParameters = [
             'ownerPublicKey' => $this->getUser()?->getPublicKey(),
-            'amount' => $withdrawDocument->getMyReward(),
+            'amount' => $userRewardPool->getMyReward(),
             'withdrawId' => $withdrawId,
-            'cycle' => (int)$withdrawDocument->getCycle(),
+            'cycle' => (int)$userRewardPool->getCycle(),
         ];
         $signature = $rewardPoolContractManager->signWithdraw($signedParameters);
 
-        $withdrawDocument->setStatus(UserRewardPoolStatus::PENDING);
+        $userRewardPool->setStatus(UserRewardPoolStatus::PENDING);
         $documentManager->flush();
 
         return new JsonResponse(
@@ -160,16 +150,18 @@ class RewardPoolController extends SymfonyAbstractController
         string $id,
         DocumentManager $documentManager
     ): JsonResponse {
-        /** @var UserRewardPool $withdrawDocument */
-        $withdrawDocument = $documentManager->getRepository(UserRewardPool::class)->find($id);
+        /** @var UserRewardPool $userRewardPool */
+        $userRewardPool = $documentManager->getRepository(UserRewardPool::class)->find($id);
 
-        if (empty($withdrawDocument)) {
+        if (null === $userRewardPool) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
-        if ($withdrawDocument->getUserId() != $this->getUser()->getId()) {
+
+        if ($userRewardPool->getUserId() !== $this->getUser()->getId()) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
-        $withdrawDocument->setReceived(true);
+
+        $userRewardPool->setReceived(true);
         $documentManager->flush();
 
         return new JsonResponse(['status' => 'done']);

@@ -9,7 +9,6 @@ use App\Common\Service\Stacks\RewardPoolContractManager;
 use App\Common\Service\Stacks\StakingContractManager;
 use App\Document\UserRewardPool;
 use App\Entity\User;
-use DateTime;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;
@@ -81,7 +80,6 @@ class ProcessRewardPoolCommand extends Command
                 continue;
             }
 
-            /** @var UserRewardPool $userRewardPool */
             $userRewardPool = $this->userRewardPoolRepository->findCycleByUser($user->getId(), $rewardPoolCycle);
 
             if (null === $userRewardPool) {

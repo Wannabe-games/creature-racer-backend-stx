@@ -13,7 +13,6 @@ use Doctrine\ODM\MongoDB\MongoDBException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ReferralPoolController
@@ -24,15 +23,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ReferralPoolController extends SymfonyAbstractController
 {
-    /**
-     * SecurityController constructor.
-     *
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(private TranslatorInterface $translator)
-    {
-    }
-
     /**
      * @param DocumentManager $documentManager
      * @param ReferralPoolContractManager $referralPoolContractManager
@@ -48,10 +38,10 @@ class ReferralPoolController extends SymfonyAbstractController
         DocumentManager $documentManager,
         ReferralPoolContractManager $referralPoolContractManager
     ): JsonResponse {
-        /** @var UserReferralPool $withdrawDocument */
-        $withdrawDocument = $documentManager->getRepository(UserReferralPool::class)->findForWithdraw($this->getUser()->getId());
+        /** @var UserReferralPool $userReferralPool */
+        $userReferralPool = $documentManager->getRepository(UserReferralPool::class)->findForWithdraw($this->getUser()->getId());
 
-        if (empty($withdrawDocument)) {
+        if (null === $userReferralPool) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
         }
 
@@ -59,12 +49,12 @@ class ReferralPoolController extends SymfonyAbstractController
 
         $signedParameters = [
             'ownerPublicKey' => $this->getUser()?->getPublicKey(),
-            'amount' => $withdrawDocument->getMyReward(),
+            'amount' => $userReferralPool->getMyReward(),
             'withdrawId' => $withdrawId,
         ];
         $signature = $referralPoolContractManager->signWithdraw($signedParameters);
 
-        $withdrawDocument->setWithdrawId($withdrawId);
+        $userReferralPool->setWithdrawId($withdrawId);
         $documentManager->flush();
 
         return new JsonResponse(
@@ -75,5 +65,37 @@ class ReferralPoolController extends SymfonyAbstractController
                 $signedParameters
             )
         );
+    }
+
+    /**
+     * @param string $id
+     * @param DocumentManager $documentManager
+     * @return JsonResponse
+     *
+     * @throws LockException
+     * @throws MappingException
+     * @throws MongoDBException
+     *
+     * @Route("/referral-pool/withdraw/received/{id}", name="reward_pool_withdraw_status_received", methods={"PUT"})
+     */
+    public function withdrawReceived(
+        string $id,
+        DocumentManager $documentManager
+    ): JsonResponse {
+        /** @var UserReferralPool $userReferralPool */
+        $userReferralPool = $documentManager->getRepository(UserReferralPool::class)->find($id);
+
+        if (null === $userReferralPool) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+        }
+
+        if ($userReferralPool->getUserId() !== $this->getUser()->getId()) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
+        }
+
+        $userReferralPool->setReceived(true);
+        $documentManager->flush();
+
+        return new JsonResponse(['status' => 'done']);
     }
 }

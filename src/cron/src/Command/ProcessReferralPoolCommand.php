@@ -3,24 +3,29 @@
 namespace App\Command;
 
 use App\Common\Enum\UserReferralPoolStatus;
+use App\Common\Repository\Document\ContractLogRepository;
 use App\Common\Repository\Document\UserReferralPoolRepository;
 use App\Common\Repository\UserRepository;
 use App\Document\ContractLog;
 use App\Document\UserReferralPool;
 use App\Entity\User;
-use DateTime;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Exception;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ProcessReferralPoolCommand extends Command
 {
+    use LockableTrait;
+
     public function __construct(
         private DocumentManager $documentManager,
+        private ContractLogRepository $contractLogRepository,
         private UserReferralPoolRepository $userReferralPoolRepository,
         private UserRepository $userRepository
     ) {
@@ -42,51 +47,47 @@ class ProcessReferralPoolCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $date = new DateTime();
-        $users = $this->userRepository->findAll();
+        if (!$this->lock()) {
+            $output->writeln('The command is already running in another process.');
+            return Command::SUCCESS;
+        }
 
-        $output->writeln('Importing referral pool data: ' . $date->format('Y-m-d'));
+        $io = new SymfonyStyle($input, $output);
+        $io->writeln('Start...');
+
+        /** @var User[] $users */
+        $users = $this->userRepository->findAll();
 
         $progressBar = new ProgressBar($output, count($users));
         $progressBar->start();
         $progressBar->setFormat('debug');
 
-        /** @var User $user */
         foreach ($users as $user) {
-            if (empty($user->getWallet())) {
-                $progressBar->advance();
+            $myReferralUsers = $user->getMyReferralNft()?->getUsers() ?? [];
+            $myReferralWallets = [];
 
-                continue;
-            }
-
-            /** @var UserReferralPool $referralLog */
-            $referralLog = $this->userReferralPoolRepository->findForUser($user->getId());
-
-            if (empty($referralLog)) {
-                $referralLog = new UserReferralPool();
-                $dateToday = new DateTime($date->format('Y-m-d'));
-
-                $referralLog->setTimestamp($dateToday);
-                $referralLog->setUser($user->getId());
-                $referralLog->setStatus(UserReferralPoolStatus::CRON_VERIFICATION);
-
-                $this->documentManager->persist($referralLog);
-            } elseif (empty($referralLog->getStatus())) {
-                $referralLog->setStatus(UserReferralPoolStatus::CRON_VERIFICATION);
-                $referralLog->setChangeStatusDate(new DateTime());
-            } elseif ($referralLog->getStatus() !== UserReferralPoolStatus::CRON_VERIFICATION) {
-                $progressBar->advance();
-                continue;
-            }
-
-            $referralLog->setMyReward('0');
-
-            if (!$referralLog->getPaymentLogs()->isEmpty()) {
-                /** @var ContractLog $paymentLog */
-                foreach ($referralLog->getPaymentLogs() as $paymentLog) {
-                    $referralLog->setMyReward(number_format((int)$referralLog->getMyReward() + $paymentLog->getAmountReferralPool(), 0, '.', ''));
+            foreach ($myReferralUsers as $myUser) {
+                if ($wallet = $myUser->getWallet()) {
+                    $myReferralWallets[] = $wallet;
                 }
             }
+
+            /** @var ContractLog[] $rewardTransactionForWallet */
+            $rewardTransactionForWallet = $this->contractLogRepository->getRewardTransactionForWallets($myReferralWallets);
+
+            $myReward = 0;
+
+            foreach ($rewardTransactionForWallet as $transaction) {
+                $myReward += $transaction->getTransactionFee();
+            }
+
+            $userReferralPool = $this->userReferralPoolRepository->findForUser($user->getId());
+
+            if (null === $userReferralPool) {
+                $userReferralPool = $this->createUserReferralPool($user);
+            }
+
+            $userReferralPool->setMyReward($myReward);
 
             $this->documentManager->flush();
 
@@ -94,8 +95,24 @@ class ProcessReferralPoolCommand extends Command
         }
 
         $progressBar->finish();
-        $output->writeln('');
+
+        $io->success('Complete!');
+        $this->release();
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * @param User $user
+     * @return UserReferralPool
+     */
+    private function createUserReferralPool(User $user): UserReferralPool
+    {
+        $referralLog = new UserReferralPool();
+        $referralLog->setUserId($user->getId());
+        $referralLog->setStatus(UserReferralPoolStatus::CRON_VERIFICATION);
+        $this->documentManager->persist($referralLog);
+
+        return $referralLog;
     }
 }

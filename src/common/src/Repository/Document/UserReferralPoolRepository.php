@@ -30,7 +30,6 @@ class UserReferralPoolRepository extends DocumentRepository
     /**
      * @param int $userId
      * @return int
-     *
      * @throws MongoDBException
      */
     public function findNextCountForWithdraw(int $userId): int
@@ -54,9 +53,7 @@ class UserReferralPoolRepository extends DocumentRepository
 
     /**
      * @param int $userId
-     *
      * @return object|null
-     *
      * @throws MongoDBException
      */
     public function findForWithdraw(int $userId): ?object
@@ -78,15 +75,13 @@ class UserReferralPoolRepository extends DocumentRepository
 
     /**
      * @param int $userId
-     *
      * @return object|null
-     *
      * @throws MongoDBException
      */
     public function findForUser(int $userId): ?object
     {
         $result = $this->createQueryBuilder()
-            ->field('user')->equals($userId)
+            ->field('userId')->equals($userId)
             ->field('received')->exists(true)
             ->field('received')->equals(false)
             ->limit(1)
