@@ -17,6 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ContractTestCommand extends Command
 {
     private const CREATURE_NFT_MINT_PARAMS = [314159, 7, 1, 1, 1, 1, 1, 1673445045, 30000, '029fb154a570a1645af3dd43c3c668a979b59d21a46dd717fd799b13be3b2a0dc7'];
+    private const REFERRAL_NFT_MINT_PARAMS = ['rNFT test', 'https://test.pl'];
     private const REFERRAL_POOL_WITHDRAW_PARAMS = ['ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP', 1000000, 1];
     private const REWARD_POOL_WITHDRAW_PARAMS = ['ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP', 1000000, 1, 1];
 
@@ -57,9 +58,11 @@ class ContractTestCommand extends Command
 
         $output->writeln('');
 
-        $output->writeln('Referral');
+        $output->writeln('Referral NFT');
         $output->writeln('=============');
-        $output->writeln('mint: ' . $this->referralNftContractManager->mint(time(), $verbose));
+        $output->writeln('signMint: ' . $this->referralNftContractManager->signMint(self::REFERRAL_NFT_MINT_PARAMS, $verbose));
+//        $output->writeln('mint: ' . $this->referralNftContractManager->mint(self::REFERRAL_NFT_MINT_PARAMS[0], self::REFERRAL_NFT_MINT_PARAMS[1], $verbose));
+//        $output->writeln('specialMint: ' . $this->referralNftContractManager->mint(self::REFERRAL_NFT_MINT_PARAMS[0], self::REFERRAL_NFT_MINT_PARAMS[1], $verbose));
 
         $output->writeln('');
 

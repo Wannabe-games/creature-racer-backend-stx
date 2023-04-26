@@ -2,13 +2,13 @@
     "name": "js-scripts",
     "version": "1.0.0",
     "description": "sign service for smart contract",
-    "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Michał Wadas",
     "license": "MIT",
     "bin": {
+        "stx-admin-get-operator": "./bin/stx-admin-get-operator.js",
+        "stx-admin-set-operator": "./bin/stx-admin-set-operator.js",
         "stx-creature-nft-set-uri": "./bin/stx-creature-nft-set-uri.js",
         "stx-creature-nft-sign-mint": "./bin/stx-creature-nft-sign-mint.js",
         "stx-get-block-number": "./bin/stx-get-block-number.js",

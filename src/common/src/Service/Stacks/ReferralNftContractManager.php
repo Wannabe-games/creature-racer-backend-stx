@@ -26,9 +26,9 @@ class ReferralNftContractManager extends Manager
         return $this->exec('stx-referral-nft-increment-invitations', [$refCode, $wallet], $verbose);
     }
 
-    public function mint(string $refCode, bool $verbose = false): ?string
+    public function mint(string $refCode, string $uri = '', bool $verbose = false): ?string
     {
-        return $this->exec('stx-referral-nft-mint', [$refCode], $verbose);
+        return $this->exec('stx-referral-nft-mint', [$refCode, $uri], $verbose);
     }
 
     public function setUri(string $uri, bool $verbose = false): string
@@ -36,9 +36,14 @@ class ReferralNftContractManager extends Manager
         return $this->exec('stx-referral-nft-set-uri', [$uri], $verbose);
     }
 
-    public function specialMint(string $refCode, bool $verbose = false): ?string
+    public function signMint(array $params, bool $verbose = false): ?string
     {
-        return $this->exec('stx-referral-nft-special-mint', [$refCode], $verbose);
+        return $this->exec('stx-referral-nft-sign-mint', $params, $verbose);
+    }
+
+    public function specialMint(string $refCode, string $uri = '', bool $verbose = false): ?string
+    {
+        return $this->exec('stx-referral-nft-special-mint', [$refCode, $uri], $verbose);
     }
 
     public function transfer(string $refCode, string $wallet, bool $verbose = false): ?string

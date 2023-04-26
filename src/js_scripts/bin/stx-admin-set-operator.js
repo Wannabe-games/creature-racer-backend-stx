@@ -1,30 +1,27 @@
 #!/usr/bin/env node
-const {makeContractCall, broadcastTransaction, standardPrincipalCV, createStacksPrivateKey, privateKeyToString, someCV} = require("@stacks/transactions");
-const {generateWallet} = require('@stacks/wallet-sdk');
+require('dotenv').config({path: __dirname + '/../../common/.env'});
+require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
 const {StacksTestnet} = require("@stacks/network");
-const process = require('process');
-
-const deployerAddress = '';
-const deployerSecretKey = '';
+const {generateWallet} = require('@stacks/wallet-sdk');
+const {makeContractCall, broadcastTransaction, standardPrincipalCV, createStacksPrivateKey, privateKeyToString, someCV} = require("@stacks/transactions");
+const deployerSecretKey = process.argv.slice(2, 3).join('') || "sell invite acquire kitten bamboo drastic jelly vivid peace spawn twice guilt pave pen trash pretty park cube fragile unaware remain midnight betray rebuild";
 
 async function main() {
-    if (process.argv.length < 3) {
-        console.log("usage: node set-operator.js address");
-        return;
+    if (!deployerSecretKey) {
+        console.log("enter deployer secret key");
+        return '';
     }
-    const operatorAddress = someCV(standardPrincipalCV(process.argv[2]));
 
-    const network = new StacksTestnet();
+    const network = new StacksTestnet({url: process.env.CHAIN_PROVIDER_URL});
     const wallet = await generateWallet({secretKey: deployerSecretKey, password: ''});
-    const deployerKey = privateKeyToString(createStacksPrivateKey(wallet.accounts[0].stxPrivateKey));
 
     const callArgs = {
-        contractAddress: deployerAddress,
-        contractName: 'creature-racer-admin-v2',
+        contractAddress: process.env.DEPLOYER_CONTRACT_ADDRESS,
+        contractName: 'creature-racer-admin-v' + process.env.CONTRACT_VERSION,
         functionName: 'set-operator',
         fee: process.env.GAS_PRICE,
-        functionArgs: [operatorAddress],
-        senderKey: deployerKey,
+        functionArgs: [someCV(standardPrincipalCV(process.env.OPERATOR_CONTRACT_ADDRESS))],
+        senderKey: privateKeyToString(createStacksPrivateKey(wallet.accounts[0].stxPrivateKey)),
         validateWithAbi: true,
         network,
     };
