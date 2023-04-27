@@ -15,7 +15,8 @@ use Exception;
  *     repositoryClass="App\Common\Repository\Document\UserReferralPoolRepository",
  *     indexes={
  *         @ODM\Index(keys={
- *              "user"="desc",
+ *              "userId"="desc",
+ *              "fromUserId"="desc",
  *              "isReceived"="desc",
  *         })
  *     }
@@ -39,6 +40,12 @@ class UserReferralPool
      * @ODM\Field(type="int")
      */
     private ?int $userId = null;
+
+    /**
+     * @var integer|null
+     * @ODM\Field(type="int")
+     */
+    private ?int $fromUserId = null;
 
     /**
      * @var bool
@@ -110,6 +117,22 @@ class UserReferralPool
     public function setUserId(?int $userId): void
     {
         $this->userId = $userId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getFromUserId(): ?int
+    {
+        return $this->fromUserId;
+    }
+
+    /**
+     * @param int|null $fromUserId
+     */
+    public function setFromUserId(?int $fromUserId): void
+    {
+        $this->fromUserId = $fromUserId;
     }
 
     /**

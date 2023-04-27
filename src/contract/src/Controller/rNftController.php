@@ -177,35 +177,26 @@ class rNftController extends SymfonyAbstractController
      *
      * @Route("/rnft/invitees", name="rnft-invitees", methods={"GET"})
      */
-    public function invitees(
-        UserReferralPoolRepository $userReferralPoolRepository
-    ): JsonResponse {
+    public function invitees(UserReferralPoolRepository $userReferralPoolRepository): JsonResponse
+    {
         $result = [];
-        if (!empty($this->getUser()->getMyReferralNft())) {
-            /** @var User $user */
-            foreach ($this->getUser()->getMyReferralNft()->getUsers() as $user) {
-                $userResult['wallet'] = $user->getWallet();
-                $userResult['nick'] = $user->getNick();
 
-                /** @var UserReferralPool $referralPoolLog */
-                $referralPoolLog = $userReferralPoolRepository->findOneBy(
-                    [
-                        'user' => $user->getFromReferralNft()->getOwner()->getId(),
-                        'status' => UserReferralPoolStatus::CRON_VERIFICATION,
-                        'received' => false
-                    ]
-                );
-                $userResult['pool'] = 0;
+        /** @var User $user */
+        foreach ($this->getUser()?->getMyReferralNft()?->getUsers() ?? [] as $user) {
+            /** @var UserReferralPool $userReferralPool */
+            $userReferralPool = $userReferralPoolRepository->findOneBy(
+                [
+                    'fromUserId' => $user->getFromReferralNft()->getOwner()->getId(),
+                    'status' => UserReferralPoolStatus::CRON_VERIFICATION,
+                    'received' => false
+                ]
+            );
 
-                /** @var ContractLog $paymentLog */
-                foreach ($referralPoolLog->getPaymentLogs() as $paymentLog) {
-                    if ($paymentLog->getUserWallet() == $user->getWallet()) {
-                        $userResult['pool'] += $paymentLog->getUserReferralPool();
-                    }
-                }
+            $userResult['wallet'] = $user->getWallet();
+            $userResult['nick'] = $user->getNick();
+            $userResult['pool'] = $userReferralPool?->getMyReward() ?? 0;
 
-                $result[] = $userResult;
-            }
+            $result[] = $userResult;
         }
 
         return new JsonResponse($result);

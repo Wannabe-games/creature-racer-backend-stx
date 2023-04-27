@@ -60,6 +60,8 @@ class ProcessContractLogCommand extends Command
         $output->writeln('Blocks in pack: ' . $maxBlocksToRead);
         $output->writeln('Block packages: ' . $packages);
 
+        $addedLogs = 0;
+
         for ($i = 0; $i < $packages; ++$i) {
             $nextBlock = $lastProcessedBlock + ($i * $maxBlocksToRead) + 1;
             $endBlock = $lastProcessedBlock + ($i * $maxBlocksToRead) + $maxBlocksToRead;
@@ -76,7 +78,9 @@ class ProcessContractLogCommand extends Command
             if (!empty($jsonString) && empty($jsonLogs) && !is_array($jsonLogs)) {
                 $lastProcessedBlockSettings->setValue(['block' => $nextBlock]);
                 $this->settingsRepository->save($lastProcessedBlockSettings);
-                $output->writeln('Added logs: ' . $i);
+
+                $output->writeln('End time: ' . date('Y-m-d H:i:s'));
+                $output->writeln('Added logs: ' . $addedLogs);
 
                 return Command::INVALID;
             } elseif (empty($jsonString) && empty($jsonLogs)) {
@@ -103,7 +107,7 @@ class ProcessContractLogCommand extends Command
                 $paymentLog->setTimestamp(new DateTimeImmutable($rowData->burn_block_time_iso));
                 $this->documentManager->persist($paymentLog);
 
-                ++$i;
+                $addedLogs++;
             }
             $this->documentManager->flush();
 
@@ -112,7 +116,7 @@ class ProcessContractLogCommand extends Command
         }
 
         $output->writeln('End time: ' . date('Y-m-d H:i:s'));
-        $output->writeln('Added logs: ' . $i);
+        $output->writeln('Added logs: ' . $addedLogs);
 
         return Command::SUCCESS;
     }

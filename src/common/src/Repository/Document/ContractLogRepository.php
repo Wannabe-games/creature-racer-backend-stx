@@ -51,10 +51,10 @@ class ContractLogRepository extends DocumentRepository
             ->execute();
     }
 
-    public function getRewardTransactionForWallets(array $userReferralWallets): array
+    public function getRewardTransactionForWallet(string $userReferralWallet): array
     {
         $result = $this->createQueryBuilder()
-            ->field('userWallet')->equals($userReferralWallets)
+            ->field('userWallet')->equals($userReferralWallet)
             ->field('contractName')->equals('creature-racer-payment')
             ->field('contractFunctionName')->equals('receive-funds')
             ->getQuery()

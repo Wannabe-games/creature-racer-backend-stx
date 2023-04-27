@@ -56,8 +56,8 @@ class ProcessRewardPoolCommand extends Command
         $stakingCycle = $this->stakingContractManager->getCurrentCycle();
         $totalStakingShare = $this->stakingContractManager->getTotalShare();
 
-        if ($rewardPoolCycle !== $stakingCycle) {
-            $io->error('Error! Different cycle numbers (reward pool: ' . $rewardPoolCycle . ', staking cycle: ' . $stakingCycle . ').');
+        if ($rewardPoolCycle < 1 || $stakingCycle < 1 || $rewardPoolCycle !== $stakingCycle) {
+            $io->error('Error! Wrong cycle numbers (reward pool: ' . $rewardPoolCycle . ', staking cycle: ' . $stakingCycle . ').');
             $this->release();
             return Command::FAILURE;
         }

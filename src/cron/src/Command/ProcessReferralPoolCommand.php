@@ -63,17 +63,8 @@ class ProcessReferralPoolCommand extends Command
         $progressBar->setFormat('debug');
 
         foreach ($users as $user) {
-            $myReferralUsers = $user->getMyReferralNft()?->getUsers() ?? [];
-            $myReferralWallets = [];
-
-            foreach ($myReferralUsers as $myUser) {
-                if ($wallet = $myUser->getWallet()) {
-                    $myReferralWallets[] = $wallet;
-                }
-            }
-
             /** @var ContractLog[] $rewardTransactionForWallet */
-            $rewardTransactionForWallet = $this->contractLogRepository->getRewardTransactionForWallets($myReferralWallets);
+            $rewardTransactionForWallet = $user->getWallet() ? $this->contractLogRepository->getRewardTransactionForWallet($user->getWallet()) : [];
 
             $myReward = 0;
 
@@ -109,7 +100,8 @@ class ProcessReferralPoolCommand extends Command
     private function createUserReferralPool(User $user): UserReferralPool
     {
         $referralLog = new UserReferralPool();
-        $referralLog->setUserId($user->getId());
+        $referralLog->setUserId($user->getFromReferralNft()?->getId());
+        $referralLog->setFromUserId($user->getId());
         $referralLog->setStatus(UserReferralPoolStatus::CRON_VERIFICATION);
         $this->documentManager->persist($referralLog);
 
