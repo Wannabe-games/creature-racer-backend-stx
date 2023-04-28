@@ -74,14 +74,14 @@ class UserReferralPoolRepository extends DocumentRepository
     }
 
     /**
-     * @param int $userId
+     * @param int $fromUserId
      * @return object|null
      * @throws MongoDBException
      */
-    public function findForUser(int $userId): ?object
+    public function findByFromUserId(int $fromUserId): ?object
     {
         $result = $this->createQueryBuilder()
-            ->field('userId')->equals($userId)
+            ->field('fromUserId')->equals($fromUserId)
             ->field('received')->exists(true)
             ->field('received')->equals(false)
             ->limit(1)

@@ -28,7 +28,7 @@ class SetBlockNumberCommand extends Command
             ->setDescription('Set payment contract start block number')
             ->setDefinition(
                 [
-                    new InputArgument('block-number', InputArgument::REQUIRED, 'Number of last block'),
+                    new InputArgument('block-number', InputArgument::OPTIONAL, 'Number of last block', $this->providerManager->getBlockNumber()),
                 ]
             );
     }
@@ -39,9 +39,6 @@ class SetBlockNumberCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $blockNumber = $input->getArgument('block-number');
-        if (empty($blockNumber)) {
-            $blockNumber = $this->providerManager->getBlockNumber();
-        }
 
         /** @var Settings $lastProcessedBlockNumber */
         $lastProcessedBlockNumber = $this->settingsRepository->findOneBy(

@@ -12,5 +12,5 @@ async function main() {
 }
 
 main().then(function (response) {
-    console.log(response.burn_block_height);
+    console.log(response.stable_burn_block_height);
 });

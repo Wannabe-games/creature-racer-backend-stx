@@ -72,7 +72,7 @@ class ProcessReferralPoolCommand extends Command
                 $myReward += $transaction->getTransactionFee();
             }
 
-            $userReferralPool = $this->userReferralPoolRepository->findForUser($user->getId());
+            $userReferralPool = $this->userReferralPoolRepository->findByFromUserId($user->getId());
 
             if (null === $userReferralPool) {
                 $userReferralPool = $this->createUserReferralPool($user);
