@@ -5,7 +5,7 @@ const {fetch} = require("cross-fetch");
 const transactionHash = process.argv.slice(2, 3).join('');
 
 const main = async () => {
-    const url = `${process.env.CHAIN_PROVIDER_URL}/extended/v1/tx/${transactionHash}`;
+    const url = (process.env.CHAIN_PROVIDER_URL || 'https://stacks-node-api.stacks.co') + `/extended/v1/tx/${transactionHash}`;
 
     try {
         const response = await fetch(url);

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 require('dotenv').config({path: __dirname + '/../../common/.env'});
 require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
-const {StacksTestnet} = require("@stacks/network");
+const {StacksMainnet, StacksTestnet} = require("@stacks/network");
 const {stringUtf8CV, makeContractCall, broadcastTransaction, bufferCV, signMessageHashRsv, createStacksPrivateKey, getPublicKey, publicKeyToString} = require("@stacks/transactions");
 const sha256 = require("sha256");
 const refCode = process.argv.slice(2, 3).join('');
@@ -52,7 +52,7 @@ function sign(refCode, publicKey) {
 }
 
 async function main() {
-    const network = new StacksTestnet({url: process.env.CHAIN_PROVIDER_URL});
+    const network = process.env.CHAIN_PROVIDER_URL ? new StacksTestnet({url: process.env.CHAIN_PROVIDER_URL}) : new StacksMainnet();
 
     const publicKey = publicKeyToString(getPublicKey(createStacksPrivateKey(process.env.OPERATOR_CONTRACT_PRIVATE_KEY)));
     const signature = sign(refCode, publicKey);

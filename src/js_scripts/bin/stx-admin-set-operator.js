@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 require('dotenv').config({path: __dirname + '/../../common/.env'});
 require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
-const {StacksTestnet} = require("@stacks/network");
+const {StacksMainnet, StacksTestnet} = require("@stacks/network");
 const {generateWallet} = require('@stacks/wallet-sdk');
 const {makeContractCall, broadcastTransaction, standardPrincipalCV, createStacksPrivateKey, privateKeyToString, someCV} = require("@stacks/transactions");
-const deployerSecretKey = process.argv.slice(2, 3).join('') || "sell invite acquire kitten bamboo drastic jelly vivid peace spawn twice guilt pave pen trash pretty park cube fragile unaware remain midnight betray rebuild";
+const deployerSecretKey = process.argv.slice(2, 3).join('') || 'sell invite acquire kitten bamboo drastic jelly vivid peace spawn twice guilt pave pen trash pretty park cube fragile unaware remain midnight betray rebuild';
 
 async function main() {
     if (!deployerSecretKey) {
@@ -12,7 +12,7 @@ async function main() {
         return '';
     }
 
-    const network = new StacksTestnet({url: process.env.CHAIN_PROVIDER_URL});
+    const network = process.env.CHAIN_PROVIDER_URL ? new StacksTestnet({url: process.env.CHAIN_PROVIDER_URL}) : new StacksMainnet();
     const wallet = await generateWallet({secretKey: deployerSecretKey, password: ''});
 
     const callArgs = {

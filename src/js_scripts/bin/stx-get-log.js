@@ -3,7 +3,7 @@ require('dotenv').config({path: __dirname + '/../../common/.env'});
 require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
 const {InfoApi, TransactionsApi, Configuration} = require("@stacks/blockchain-api-client");
 const {fetch} = require("cross-fetch");
-const cfg = new Configuration({fetchApi: fetch, basePath: process.env.CHAIN_PROVIDER_URL});
+const cfg = new Configuration({fetchApi: fetch, basePath: (process.env.CHAIN_PROVIDER_URL || 'https://stacks-node-api.stacks.co')});
 const startBlock = parseInt(process.argv.slice(2, 3).join('') || 1);
 const maxBlocksToRead = parseInt(process.argv.slice(3, 4).join('') || 2000);
 
