@@ -85,7 +85,7 @@ class rNftController extends SymfonyAbstractController
             [
                 'line_items' => [
                     [
-                        'price' => $userHasCreatures ? 'price_1MqaFuLW0AEhq379XbcKHmAm' : 'price_1MgnGyLW0AEhq379HC9R5Z23',
+                        'price' => $userHasCreatures ? $container->getParameter('stripe_price_default') : $container->getParameter('stripe_price_promo'),
                         'quantity' => 1
                     ]
                 ],
