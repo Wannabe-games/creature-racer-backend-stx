@@ -20,6 +20,7 @@
         "stx-referral-nft-get-refcode-profit": "./bin/stx-referral-nft-get-refcode-profit.js",
         "stx-referral-nft-increment-invitations": "./bin/stx-referral-nft-increment-invitations.js",
         "stx-referral-nft-mint": "./bin/stx-referral-nft-mint.js",
+        "stx-referral-nft-set-referral-to-receiving-fixed-bonus": "./bin/stx-referral-nft-set-referral-to-receiving-fixed-bonus.js",
         "stx-referral-nft-set-uri": "./bin/stx-referral-nft-set-uri.js",
         "stx-referral-nft-sign-mint": "./bin/stx-referral-nft-sign-mint.js",
         "stx-referral-nft-special-mint": "./bin/stx-referral-nft-special-mint.js",

@@ -31,6 +31,11 @@ class ReferralNftContractManager extends Manager
         return $this->exec('stx-referral-nft-mint', [$refCode, $uri], $verbose);
     }
 
+    public function setReferralToReceivingFixedBonus(string $refCode, bool $verbose = false): ?string
+    {
+        return $this->exec('set-referral-to-receiving-fixed-bonus', [$refCode], $verbose);
+    }
+
     public function setUri(string $uri, bool $verbose = false): string
     {
         return $this->exec('stx-referral-nft-set-uri', [$uri], $verbose);
