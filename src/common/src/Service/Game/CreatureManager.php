@@ -76,7 +76,7 @@ class CreatureManager
         } else {
             $user->getPlayer()->setActiveAnimalCreatureType($creature->getType());
         }
-        $creatureUser = $this->createCreatureOnLevel($user, $creature, $creatureLevel);
+        $creatureUser = $this->createCreatureOnLevel($user, $creatureLevel);
 
         $date = new DateTime();
         $date->add(new DateInterval('PT' . $creatureLevel->getDeliveryWaitingTime() . 'S'));
@@ -142,7 +142,7 @@ class CreatureManager
         }
 
         //$this->paymentForLevel($user, $creatureLevel);
-        $creatureUserUpgraded = $this->createCreatureOnLevel($user, $currentUser->getCreature(), $creatureLevel, $currentUser);
+        $creatureUserUpgraded = $this->createCreatureOnLevel($user, $creatureLevel, $currentUser);
 
         $this->setUpgradeTime($upgradeType, $creatureUserUpgraded, $creatureLevel);
         $this->entityManager->flush();
@@ -167,22 +167,20 @@ class CreatureManager
 
     /**
      * @param User $user
-     * @param Creature $creature
      * @param CreatureLevel $creatureLevel
      * @param CreatureUser|null $creatureCurrentUser
      * @return CreatureUser
      */
     protected function createCreatureOnLevel(
         User $user,
-        Creature $creature,
         CreatureLevel $creatureLevel,
         ?CreatureUser $creatureCurrentUser = null
     ): CreatureUser {
         if (is_null($creatureCurrentUser) || !empty($creatureCurrentUser->getHash())) {
             $creatureUser = new CreatureUser();
             $creatureUser->setUser($user);
-            $creatureUser->setCreature($creature);
-            $creatureUser->setName($creature->getName());
+            $creatureUser->setCreature($creatureLevel->getCreature());
+            $creatureUser->setName($creatureLevel->getCreature()->getName());
         } else {
             $creatureUser = $creatureCurrentUser;
         }
@@ -418,9 +416,11 @@ class CreatureManager
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::TYPE_VALIDATION_ERROR));
         }
         /** @var CreatureUser $creature */
-        $creature = $this->creatureUserRepository->findOneBy([
-                                                                 'uuid' => $uuid
-                                                             ]);
+        $creature = $this->creatureUserRepository->findOneBy(
+            [
+                'uuid' => $uuid
+            ]
+        );
 
         /** @var CreatureUser $creatureUser */
         if ($creature->isStaked()) {

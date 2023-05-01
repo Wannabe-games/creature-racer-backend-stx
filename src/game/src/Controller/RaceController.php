@@ -48,16 +48,13 @@ class RaceController extends SymfonyAbstractController
         RaceRepository $raceRepository
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
+        $creatureUserId = ($data['creatureUserId'] ?? $data['creature_user_id'] ?? null) ?: $this->getUser()?->getCreatures()->first()->getUuid();
 
-        if (!array_key_exists('creatureUserId', $data)) {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::BAD_REQUEST));
-        }
-
-        if (!($creatureUser = $creatureUserRepository->findOneBy(['uuid' => $data['creatureUserId']]))) {
+        if (!($creatureUser = $creatureUserRepository->findOneBy(['uuid' => $creatureUserId]))) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));
         }
 
-        if (isset($data['lobbyId']) && !($lobby = $lobbyRepository->findOneBy(['uuid' => $data['lobbyId']]))) {
+        if (isset($data['lobbyId']) && !($lobby = $lobbyRepository->findOneBy(['id' => $data['lobbyId']]))) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::LOBBY_NOT_EXIST));
         }
 
@@ -66,7 +63,12 @@ class RaceController extends SymfonyAbstractController
         $race->setLobby($lobby ?? null);
         $raceRepository->save($race);
 
-        return new JsonResponse(['raceId' => $race->getId()]);
+        return new JsonResponse(
+            [
+                'raceId' => $race->getId(),
+                'race_id' => $race->getId(),
+            ]
+        );
     }
 
     /**
@@ -82,11 +84,11 @@ class RaceController extends SymfonyAbstractController
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
-        if (!array_key_exists('raceId', $data)) {
+        if (!array_key_exists('raceId', $data) && !array_key_exists('race_id', $data)) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::BAD_REQUEST));
         }
         /** @var $race Race */
-        if (!($race = $raceRepository->find($data['raceId']))) {
+        if (!($race = $raceRepository->find($data['raceId'] ?? $data['race_id']))) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));
         }
 
