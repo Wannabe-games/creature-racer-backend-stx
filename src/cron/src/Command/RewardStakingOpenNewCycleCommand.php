@@ -29,7 +29,7 @@ class RewardStakingOpenNewCycleCommand extends Command
         do {
             $transactionHash = $this->stakingContractManager->openNewCycle(true);
             sleep(1);
-        } while ('pending' !== $this->providerManager->getTransactionStatus($transactionHash));
+        } while (!$transactionHash || 'pending' !== $this->providerManager->getTransactionStatus($transactionHash));
 
         return Command::SUCCESS;
     }

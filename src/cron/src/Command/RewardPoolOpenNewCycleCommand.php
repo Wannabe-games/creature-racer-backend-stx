@@ -29,7 +29,7 @@ class RewardPoolOpenNewCycleCommand extends Command
         do {
             $transactionHash = $this->rewardPoolContractManager->openNewCycle(true);
             sleep(1);
-        } while ('pending' !== $this->providerManager->getTransactionStatus($transactionHash));
+        } while (!$transactionHash || 'pending' !== $this->providerManager->getTransactionStatus($transactionHash));
 
         return Command::SUCCESS;
     }

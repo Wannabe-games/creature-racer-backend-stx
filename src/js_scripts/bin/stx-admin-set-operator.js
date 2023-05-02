@@ -4,11 +4,11 @@ require('dotenv').config({path: __dirname + '/../../common/.env.local', override
 const {StacksMainnet, StacksTestnet} = require("@stacks/network");
 const {generateWallet} = require('@stacks/wallet-sdk');
 const {makeContractCall, broadcastTransaction, standardPrincipalCV, createStacksPrivateKey, privateKeyToString, someCV} = require("@stacks/transactions");
-const deployerSecretKey = process.argv.slice(2, 3).join('') || 'sell invite acquire kitten bamboo drastic jelly vivid peace spawn twice guilt pave pen trash pretty park cube fragile unaware remain midnight betray rebuild';
+const deployerSecretKey = process.argv.slice(2, 3).join('');
 
 async function main() {
     if (!deployerSecretKey) {
-        console.log("enter deployer secret key");
+        console.log("Enter deployer secret mnemonic key!");
         return '';
     }
 
@@ -27,11 +27,13 @@ async function main() {
     };
 
     const tx = await makeContractCall(callArgs);
-    const result = await broadcastTransaction(tx, network);
 
-    return result.txid;
+    return await broadcastTransaction(tx, network);
 }
 
-main().then(function (txid) {
-    console.log('0x' + txid);
+main().then(function (result) {
+    if (result.error) {
+        throw new Error(`Error execution transaction 0x${result.txid}: ${result.reason}`);
+    }
+    console.log(`0x${result.txid}`);
 });

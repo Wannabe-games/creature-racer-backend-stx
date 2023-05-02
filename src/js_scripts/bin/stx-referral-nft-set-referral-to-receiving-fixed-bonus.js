@@ -27,5 +27,8 @@ async function main() {
 }
 
 main().then(function (result) {
-    console.log('0x' + result.txid);
+    if (result.error) {
+        throw new Error(`Error execution transaction 0x${result.txid}: ${result.reason}`);
+    }
+    console.log(`0x${result.txid}`);
 });

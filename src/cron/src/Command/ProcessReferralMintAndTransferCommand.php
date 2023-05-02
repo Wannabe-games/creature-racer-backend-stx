@@ -41,8 +41,7 @@ class ProcessReferralMintAndTransferCommand extends Command
         }
 
         while ($rnft = $this->referralNftRepository->getNextRnftToTransfer($currentTime)) {
-            if ('success' === $this->providerManager->getTransactionStatus($rnft->getMintHash())) {
-                $this->referralNftContractManager->setReferralToReceivingFixedBonus($rnft->getRefCode());
+            if ($rnft->getMintHash() && 'success' === $this->providerManager->getTransactionStatus($rnft->getMintHash())) {
                 $transferHash = $this->referralNftContractManager->transfer($rnft->getRefCode(), $rnft->getOwner()?->getWallet());
                 $rnft->setTransferHash($transferHash);
             }

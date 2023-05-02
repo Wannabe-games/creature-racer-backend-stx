@@ -52,6 +52,10 @@ function sign(refCode, publicKey) {
 }
 
 async function main() {
+    if (!refCode) {
+        console.log("Enter ref code!");
+        return '';
+    }
     const network = process.env.CHAIN_PROVIDER_URL ? new StacksTestnet({url: process.env.CHAIN_PROVIDER_URL}) : new StacksMainnet();
 
     const publicKey = publicKeyToString(getPublicKey(createStacksPrivateKey(process.env.OPERATOR_CONTRACT_PRIVATE_KEY)));
@@ -78,5 +82,8 @@ async function main() {
 }
 
 main().then(function (result) {
-    console.log('0x' + result.txid);
+    if (result.error) {
+        throw new Error(`Error execution transaction 0x${result.txid}: ${result.reason}`);
+    }
+    console.log(`0x${result.txid}`);
 });
