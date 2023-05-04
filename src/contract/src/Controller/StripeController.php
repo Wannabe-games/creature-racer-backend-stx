@@ -82,13 +82,22 @@ class StripeController extends SymfonyAbstractController
             return new JsonResponse(['status' => 'User not found'], 400);
         }
 
-        $referralNft = new ReferralNft();
-        $referralNft->setOwner($user);
-        $referralNft->setSpecial(true);
-        $referralNft->setOrderId($responseObject->id);
-        $referralNft->setRefCode($responseObject->metadata->refCode);
+        /** @var ReferralNft $referralNft */
+        $referralNft = $referralNftRepository->findOneBy(['refCode' => $responseObject->metadata->refCode]);
 
-        $referralNftRepository->save($referralNft);
+        if ($referralNft && $user !== $referralNft->getOwner()) {
+            return new JsonResponse(['status' => 'Ref code ' . $responseObject->metadata->refCode . ' already belongs to user ' . $referralNft->getOwner()?->getUsername()]);
+        }
+
+        if (!$referralNft) {
+            $referralNft = new ReferralNft();
+            $referralNft->setOwner($user);
+            $referralNft->setSpecial(true);
+            $referralNft->setOrderId($responseObject->id);
+            $referralNft->setRefCode($responseObject->metadata->refCode);
+
+            $referralNftRepository->save($referralNft);
+        }
 
         return new JsonResponse(['status' => 'OK']);
     }
