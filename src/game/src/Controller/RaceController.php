@@ -48,7 +48,7 @@ class RaceController extends SymfonyAbstractController
         RaceRepository $raceRepository
     ): JsonResponse {
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
-        $creatureUserId = ($data['creatureUserId'] ?? $data['creature_user_id'] ?? null) ?: $this->getUser()?->getCreatures()->first()->getUuid();
+        $creatureUserId = ($data['creatureUserId'] ?? $data['creature_user_id'] ?? null) ?: $creatureUserRepository->findActiveCreatureUser($this->getUser())?->getUuid();
 
         if (!($creatureUser = $creatureUserRepository->findOneBy(['uuid' => $creatureUserId]))) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));

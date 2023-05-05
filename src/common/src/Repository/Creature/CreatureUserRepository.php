@@ -80,6 +80,32 @@ class CreatureUserRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param User $user
+     * @return CreatureUser|null
+     * @throws NonUniqueResultException
+     */
+    public function findActiveCreatureUser(User $user)
+    {
+        $qb = $this->createQueryBuilder('cu');
+
+        return $qb
+            ->leftJoin('cu.creature', 'c')
+            ->where('cu.user = :user')
+            ->andWhere('c.type = :type')
+            ->andWhere('cu.forGame = :forGame')
+            ->setParameters(
+                [
+                    'user' => $user->getId(),
+                    'type' => $user->getPlayer()?->getActiveAnimalCreatureType(),
+                    'forGame' => true,
+                ]
+            )
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
      * @param string $type
      * @param User $user
      *
