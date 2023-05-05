@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace App\Common\Service\Stacks;
 
-class StakingContractManager extends Manager
+use App\Common\Service\CommandService;
+
+class StakingContractManager
 {
     public function getCurrentCycle(bool $verbose = false): int
     {
-        return (int)$this->exec('stx-staking-get-current-cycle', [], $verbose);
+        return (int)CommandService::exec('stx-staking-get-current-cycle', [], $verbose);
     }
 
     public function getTotalShare(bool $verbose = false): int
     {
-        return (int)$this->exec('stx-staking-get-total-share', [], $verbose);
+        return (int)CommandService::exec('stx-staking-get-total-share', [], $verbose);
     }
 
     public function getUserShare(string $wallet, bool $verbose = false): int
     {
-        return (int)$this->exec('stx-staking-get-user-share', [$wallet], $verbose);
+        return (int)CommandService::exec('stx-staking-get-user-share', [$wallet], $verbose);
     }
 
     public function getUserStakingPower(string $wallet, bool $verbose = false): float
@@ -28,6 +30,6 @@ class StakingContractManager extends Manager
 
     public function openNewCycle(bool $verbose = false): ?string
     {
-        return $this->exec('stx-staking-open-new-cycle', [], $verbose);
+        return CommandService::exec('stx-staking-open-new-cycle', [], $verbose);
     }
 }

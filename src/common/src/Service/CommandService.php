@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Common\Service\Stacks;
+namespace App\Common\Service;
 
-class Manager
+class CommandService
 {
-    protected function exec(string $command, array $params = [], bool $verbose = false): ?string
+    public static function exec(string $command, array $params = [], bool $verbose = false): ?string
     {
         $command = trim($command);
 
         if ('docker' !== getenv('ENVIRONMENT')) {
-            $command = __DIR__ . '/../../../../js_scripts/bin/' . $command . '.js';
+            $command = __DIR__ . '/../../../js_scripts/bin/' . $command . '.js';
         }
 
         if (!empty($params)) {

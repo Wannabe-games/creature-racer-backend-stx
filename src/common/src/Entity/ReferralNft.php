@@ -94,6 +94,12 @@ class ReferralNft
      */
     private ?DateTime $updatedAt;
 
+
+    public function __toString(): string
+    {
+        return $this->getRefCode() . ' (' . $this->getOwner()?->getUsername() . ')';
+    }
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
