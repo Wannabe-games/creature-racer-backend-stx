@@ -120,14 +120,11 @@ class UserController extends SymfonyAbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        if ($user->getFromReferralNft() !== null) {
+        if (null !== $user->getFromReferralNft()) {
             throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::ACCESS_DENY));
         }
 
         $user->setFromReferralNft($referralNft);
-
-        $referralNftContractManager->incrementInvitations($this->getUser()?->getFromReferralNft()?->getRefCode(), $this->getUser()?->getWallet());
-
         $entityManager->flush();
 
         return new JsonResponse(['status' => 'success'], 200);

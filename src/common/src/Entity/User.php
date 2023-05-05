@@ -96,6 +96,13 @@ class User implements UserInterface
     private ?DateTime $createdAt;
 
     /**
+     * @var DateTime|null
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTime $updatedAt;
+
+    /**
      * @var null|string
      * @Assert\Length(
      *      min = 2,
@@ -211,6 +218,13 @@ class User implements UserInterface
      * @ORM\JoinColumn(name="referral_nft_id")
      */
     private $fromReferralNft;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(nullable=true)
+     */
+    private ?string $incrementInvitationHash = null;
 
     /**
      * @var Collection
@@ -399,6 +413,22 @@ class User implements UserInterface
     public function setCreatedAt(DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param DateTime|null $updatedAt
+     */
+    public function setUpdatedAt(?DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 
     /**
@@ -672,6 +702,22 @@ class User implements UserInterface
     public function setFromReferralNft(ReferralNft $fromReferralNft): void
     {
         $this->fromReferralNft = $fromReferralNft;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIncrementInvitationHash(): ?string
+    {
+        return $this->incrementInvitationHash;
+    }
+
+    /**
+     * @param string|null $incrementInvitationHash
+     */
+    public function setIncrementInvitationHash(?string $incrementInvitationHash): void
+    {
+        $this->incrementInvitationHash = $incrementInvitationHash;
     }
 
     /**

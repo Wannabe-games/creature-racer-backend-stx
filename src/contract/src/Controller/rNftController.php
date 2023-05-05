@@ -157,20 +157,6 @@ class rNftController extends SymfonyAbstractController
     }
 
     /**
-     * @param ReferralNftContractManager $referralNftContractManager
-     *
-     * @return JsonResponse
-     *
-     * @Route("/rnft/increment-invitations", name="rnft-increment-invitations", methods={"GET"})
-     */
-    public function incrementInvitations(ReferralNftContractManager $referralNftContractManager): JsonResponse
-    {
-        $referralNftContractManager->incrementInvitations($this->getUser()?->getFromReferralNft()?->getRefCode(), $this->getUser()?->getWallet());
-
-        return new JsonResponse(['status' => 'success']);
-    }
-
-    /**
      * @param UserReferralPoolRepository $userReferralPoolRepository
      *
      * @return JsonResponse
