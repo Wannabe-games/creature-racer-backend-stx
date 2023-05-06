@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Filter;
+namespace App\Form\Filter;
 
 use App\Form\UserRolesType;
 use Doctrine\ORM\QueryBuilder;
@@ -10,7 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\FilterDataDto;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\FilterTrait;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Filter\FilterInterface;
 
-final class UserRoleFilter implements FilterInterface
+final class UserRolesFilter implements FilterInterface
 {
     use FilterTrait;
 

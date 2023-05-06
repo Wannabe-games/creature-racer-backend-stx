@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ReferralNft;
+use App\Form\Field\TransactionHashField;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -29,8 +30,8 @@ class ReferralNftCrudController extends AbstractCrudController
             DateField::new('nftExpiryDate')->hideWhenUpdating(),
             AssociationField::new('owner')->hideWhenUpdating(),
             BooleanField::new('special')->renderAsSwitch(false)->hideWhenUpdating(),
-            TextField::new('mintHash')->onlyOnDetail(),
-            TextField::new('transferHash')->onlyOnDetail(),
+            TransactionHashField::new('mintHash')->onlyOnDetail(),
+            TransactionHashField::new('transferHash')->onlyOnDetail(),
             AssociationField::new('users')->setLabel('Used during registration')->onlyOnDetail(),
         ];
     }

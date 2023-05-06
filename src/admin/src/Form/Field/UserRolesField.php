@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Admin\Field;
+namespace App\Form\Field;
 
 use App\Entity\User;
-use App\Form\RolesType;
+use App\Form\Type\UserRolesType;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FieldTrait;
 
-final class RolesField implements FieldInterface
+final class UserRolesField implements FieldInterface
 {
     use FieldTrait;
 
@@ -16,7 +16,7 @@ final class RolesField implements FieldInterface
         return (new self())
             ->setProperty($propertyName)
             ->setLabel($label)
-            ->setFormType(RolesType::class)
+            ->setFormType(UserRolesType::class)
             ->setTemplateName('crud/field/array')
             ->addCssClass('field-map')
             ->formatValue(

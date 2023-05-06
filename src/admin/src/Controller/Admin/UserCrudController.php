@@ -2,9 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Admin\Field\RolesField;
 use App\Common\Service\User\Utils\PasswordUpdaterInterface;
 use App\Entity\User;
+use App\Form\Field\TransactionHashField;
+use App\Form\Field\UserRolesField;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -32,7 +33,7 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            RolesField::new('roles')->setPermission(User::ROLE_SUPER_ADMIN),
+            UserRolesField::new('roles')->setPermission(User::ROLE_SUPER_ADMIN),
             TextField::new('nick'),
             EmailField::new('email'),
             TextField::new('plainPassword')->setLabel('Password'),
@@ -44,6 +45,8 @@ class UserCrudController extends AbstractCrudController
             TextField::new('publicKey')->hideOnIndex(),
             DateTimeField::new('lastLogin')->onlyOnIndex(),
             DateTimeField::new('createdAt')->onlyOnIndex(),
+            AssociationField::new('fromReferralNft'),
+            TransactionHashField::new('incrementInvitationHash')->onlyOnDetail(),
             BooleanField::new('enabled')->hideOnForm(),
         ];
     }
