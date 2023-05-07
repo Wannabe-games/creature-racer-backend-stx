@@ -24,7 +24,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 RUN curl -sSL -o  /tmp/web3_mac https://github.com/gochain/web3/releases/download/v0.2.77/web3_linux
 
 #################################################################
-
 COPY php/extension/docker-php-ext-configure /usr/local/bin/docker-php-ext-configure
 RUN chmod +x /usr/local/bin/docker-php-*
 

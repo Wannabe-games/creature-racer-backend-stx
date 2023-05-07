@@ -55,10 +55,14 @@ RUN apt-get autoremove \
 RUN chmod +s /usr/sbin/gosu
 RUN mkdir -p $PROJECT_PATH
 
+# node.js
+RUN apt-get install -y software-properties-common \
+    && curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update \
+    && apt-get install -y nodejs
+
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY php/conf/www.conf /usr/local/etc/php-fpm.d/www.conf
-COPY php/conf/php-prod.ini /usr/local/etc/php/php.ini
 
 WORKDIR $PROJECT_PATH/admin
 

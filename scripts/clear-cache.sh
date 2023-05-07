@@ -45,3 +45,10 @@ docker exec -it service-creature-racer-nft bin/console doctrine:cache:clear-resu
 docker exec -it service-creature-racer-nft bin/console assets:install
 docker exec -it service-creature-racer-nft chmod -R 777 var/
 
+docker exec -it service-creature-racer-admin composer dump-autoload
+docker exec -it service-creature-racer-admin bin/console cache:clear
+docker exec -it service-creature-racer-admin bin/console doctrine:cache:clear-metadata
+docker exec -it service-creature-racer-admin bin/console doctrine:cache:clear-query
+docker exec -it service-creature-racer-admin bin/console doctrine:cache:clear-result
+docker exec -it service-creature-racer-admin bin/console assets:install
+docker exec -it service-creature-racer-admin chmod -R 777 var/

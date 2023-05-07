@@ -21,3 +21,5 @@ docker exec -it service-creature-racer-cron npm --prefix ../js_scripts install
 docker exec -it service-creature-racer-cron npm install -g /app/js_scripts
 
 docker exec -it service-creature-racer-admin composer install
+docker exec -it service-creature-racer-admin npm --prefix ../js_scripts install
+docker exec -it service-creature-racer-admin npm install -g /app/js_scripts

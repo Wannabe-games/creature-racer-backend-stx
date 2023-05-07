@@ -10,8 +10,8 @@ class CommandService
     {
         $command = trim($command);
 
-        if ('docker' !== getenv('ENVIRONMENT')) {
-            $command = __DIR__ . '/../../../js_scripts/bin/' . $command . '.js';
+        if ('/app' !== getenv('PROJECT_PATH')) {
+            $command = 'node ' . __DIR__ . '/../../../js_scripts/bin/' . $command . '.js';
         }
 
         if (!empty($params)) {

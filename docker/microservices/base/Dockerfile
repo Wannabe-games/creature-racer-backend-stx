@@ -32,8 +32,6 @@ ENV PHPIZE_DEPS \
 		pkg-config \
 		re2c
 
-ENV ENVIRONMENT=docker
-
 # persistent / runtime deps
 RUN set -eux; \
 	apt-get update; \

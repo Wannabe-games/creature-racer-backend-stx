@@ -52,6 +52,7 @@ RUN apt-get autoremove \
 RUN chmod +s /usr/sbin/gosu
 RUN mkdir -p $PROJECT_PATH
 
+# node.js
 RUN apt-get install -y software-properties-common \
     && curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update \
