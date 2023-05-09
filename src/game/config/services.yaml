@@ -111,7 +111,18 @@ services:
     App\Service\OpenApi\ExperienceDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
-
+    App\Service\OpenApi\LobbiesDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+    App\Service\OpenApi\LobbiesDetailsDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+    App\Service\OpenApi\UserLobbiesDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+    App\Service\OpenApi\UserLobbiesDetailsDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
 ##################
     gesdinet.jwtrefreshtoken.refresh_token_manager:
         class:  App\Doctrine\RefreshTokenManager
