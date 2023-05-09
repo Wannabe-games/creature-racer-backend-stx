@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\ContractLog;
 use App\Entity\Creature\Creature;
 use App\Entity\Creature\CreatureLevel;
 use App\Entity\Game\Lobby;
@@ -29,6 +30,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Races', 'fa fa-flag-checkered', Race::class),
             MenuItem::linkToCrud('Lobbies', 'fa fa-scale-balanced', Lobby::class),
             MenuItem::linkToCrud('Referral NFT', 'fa fa-registered', ReferralNft::class),
+            MenuItem::linkToCrud('Contracts log', 'fa fa-list', ContractLog::class),
         ];
     }
 

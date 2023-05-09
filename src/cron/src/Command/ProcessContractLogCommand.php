@@ -3,10 +3,12 @@
 namespace App\Command;
 
 use App\Common\Enum\SystemTypes;
+use App\Common\Repository\ContractLogRepository;
 use App\Common\Repository\SettingsRepository;
 use App\Common\Service\Stacks\ProviderManager;
 use App\Document\ContractLog;
 use App\Entity\Settings;
+use DateTime;
 use DateTimeImmutable;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\Console\Command\Command;
@@ -18,8 +20,8 @@ class ProcessContractLogCommand extends Command
 {
     public function __construct(
         private ContainerInterface $container,
-        private DocumentManager $documentManager,
         private ProviderManager $providerManager,
+        private ContractLogRepository $contractLogRepository,
         private SettingsRepository $settingsRepository
     ) {
         parent::__construct();
@@ -88,7 +90,7 @@ class ProcessContractLogCommand extends Command
             }
 
             foreach ($jsonLogs as $rowData) {
-                if ('success' !== $rowData->tx_status || $rowData->tx_type !== 'contract_call') {
+                if ('contract_call' !== $rowData->tx_type || 'success' !== $rowData->tx_status) {
                     continue;
                 }
 
@@ -96,23 +98,23 @@ class ProcessContractLogCommand extends Command
                     continue;
                 }
 
-                $paymentLog = new ContractLog();
-                $paymentLog->setTransactionId($rowData->tx_id);
-                $paymentLog->setTransactionFee($rowData->fee_rate);
-                $paymentLog->setUserWallet($rowData->sender_address);
+                $paymentLog = new \App\Entity\ContractLog();
+                $paymentLog->setId($rowData->tx_id);
+                $paymentLog->setWallet($rowData->sender_address);
+                $paymentLog->setFee($rowData->fee_rate);
+                $paymentLog->setPostConditions($rowData->post_conditions);
                 $paymentLog->setContractName($contract[1]);
                 $paymentLog->setContractVersion($contract[2]);
                 $paymentLog->setContractFunctionName($rowData->contract_call->function_name);
-                $paymentLog->setContractFunctionArgs(json_encode($rowData->contract_call->function_args, JSON_THROW_ON_ERROR));
-                $paymentLog->setTimestamp(new DateTimeImmutable($rowData->burn_block_time_iso));
-                $this->documentManager->persist($paymentLog);
+                $paymentLog->setContractFunctionArgs($rowData->contract_call->function_args);
+                $paymentLog->setCreatedAt(new DateTime($rowData->burn_block_time_iso));
+                $this->contractLogRepository->persist($paymentLog);
 
                 $addedLogs++;
             }
-            $this->documentManager->flush();
 
             $lastProcessedBlockSettings->setValue(['block' => $endBlock]);
-            $this->settingsRepository->save($lastProcessedBlockSettings);
+            $this->contractLogRepository->flush();
         }
 
         $output->writeln('End time: ' . date('Y-m-d H:i:s'));

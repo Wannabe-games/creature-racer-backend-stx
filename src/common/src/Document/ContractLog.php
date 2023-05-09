@@ -36,10 +36,16 @@ class ContractLog
     private ?string $transactionId = null;
 
     /**
+     * @var int|null
+     * @ODM\Field(type="string")
+     */
+    private ?int $transactionFee = null;
+
+    /**
      * @var string|null
      * @ODM\Field(type="string")
      */
-    private ?string $transactionFee = null;
+    private ?string $transactionPostConditions = null;
 
     /**
      * @var string|null
@@ -69,13 +75,13 @@ class ContractLog
      * @var string|null
      * @ODM\Field(type="string")
      */
-    private ?string $userWallet = null;
+    private ?string $wallet = null;
 
     /**
      * @var DateTimeInterface
      * @ODM\Field(type="date")
      */
-    protected DateTimeInterface $timestamp;
+    private DateTimeInterface $timestamp;
 
     /**
      * @throws Exception
@@ -123,6 +129,22 @@ class ContractLog
     public function setTransactionFee(?string $transactionFee): void
     {
         $this->transactionFee = $transactionFee;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTransactionPostConditions(): ?string
+    {
+        return $this->transactionPostConditions;
+    }
+
+    /**
+     * @param string|null $transactionPostConditions
+     */
+    public function setTransactionPostConditions(?string $transactionPostConditions): void
+    {
+        $this->transactionPostConditions = $transactionPostConditions;
     }
 
     /**
@@ -192,17 +214,17 @@ class ContractLog
     /**
      * @return string|null
      */
-    public function getUserWallet(): ?string
+    public function getWallet(): ?string
     {
-        return $this->userWallet;
+        return $this->wallet;
     }
 
     /**
-     * @param string|null $userWallet
+     * @param string|null $wallet
      */
-    public function setUserWallet(?string $userWallet): void
+    public function setWallet(?string $wallet): void
     {
-        $this->userWallet = $userWallet;
+        $this->wallet = $wallet;
     }
 
     /**
