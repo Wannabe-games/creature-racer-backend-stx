@@ -24,5 +24,5 @@ const main = async () => {
 };
 
 main().then(function (result) {
-    console.log(result);
+    console.log(JSON.stringify(result, null, 0))
 });

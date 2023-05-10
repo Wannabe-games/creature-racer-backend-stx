@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Common\Service\Stacks;
 
 use App\Common\Service\CommandService;
+use stdClass;
 
 class ProviderManager
 {
@@ -13,14 +14,14 @@ class ProviderManager
         return (int)CommandService::exec('stx-get-block-number', [], $verbose);
     }
 
-    public function getLog(int $startBlock = 1, int $maxBlocksToRead = 10, bool $verbose = false): string
+    public function getLog(int $startBlock = 1, int $maxBlocksToRead = 10, bool $verbose = false): ?array
     {
-        return CommandService::exec('stx-get-log', [$startBlock, $maxBlocksToRead], $verbose);
+        return json_decode(CommandService::exec('stx-get-log', [$startBlock, $maxBlocksToRead], $verbose), false, 512, JSON_THROW_ON_ERROR);
     }
 
-    public function getTransactionDetails(string $transactionHash, bool $verbose = false): ?string
+    public function getTransactionDetails(string $transactionHash, bool $verbose = false): ?stdClass
     {
-        return CommandService::exec('stx-get-transaction-details', [$transactionHash], $verbose);
+        return json_decode(CommandService::exec('stx-get-transaction-details', [$transactionHash], $verbose), false, 512, JSON_THROW_ON_ERROR);
     }
 
     public function getTransactionStatus(string $transactionHash, bool $verbose = false): ?string

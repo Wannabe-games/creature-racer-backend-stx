@@ -36,17 +36,23 @@ class ReferralNftCrudController extends AbstractCrudController
         ];
     }
 
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    public function configureCrud(Crud $crud): Crud
     {
-        /** @var ReferralNft $entityInstance */
-        $entityInstance->setNftExpiryDate($entityInstance->getNftExpiryDate()?->setTime(23, 59, 59));
-
-        parent::persistEntity($entityManager, $entityInstance);
+        return $crud
+            ->setDefaultSort(['id' => 'DESC']);
     }
 
     public function configureActions(Actions $actions): Actions
     {
         return parent::configureActions($actions)
             ->remove(Crud::PAGE_INDEX, Action::EDIT);
+    }
+
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        /** @var ReferralNft $entityInstance */
+        $entityInstance->setNftExpiryDate($entityInstance->getNftExpiryDate()?->setTime(23, 59, 59));
+
+        parent::persistEntity($entityManager, $entityInstance);
     }
 }

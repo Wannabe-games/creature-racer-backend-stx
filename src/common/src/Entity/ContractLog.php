@@ -31,10 +31,16 @@ class ContractLog
     private ?int $fee = null;
 
     /**
-     * @var array|null
-     * @ORM\Column(type="json")
+     * @var array
+     * @ORM\Column(type="json", options={"default": "[]"}))
      */
-    private ?array $postConditions = null;
+    private array $postConditions = [];
+
+    /**
+     * @var array
+     * @ORM\Column(type="json", options={"default": "[]"}))
+     */
+    private array $events = [];
 
     /**
      * @var string|null
@@ -55,10 +61,10 @@ class ContractLog
     private ?string $contractFunctionName = null;
 
     /**
-     * @var array|null
-     * @ORM\Column(type="json")
+     * @var array
+     * @ORM\Column(type="json", options={"default": "[]"})
      */
-    private ?array $contractFunctionArgs = null;
+    private array $contractFunctionArgs = [];
 
     /**
      * @var DateTimeInterface|null
@@ -134,6 +140,22 @@ class ContractLog
     public function setPostConditions(?array $postConditions): void
     {
         $this->postConditions = $postConditions;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getEvents(): ?array
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param array|null $events
+     */
+    public function setEvents(?array $events): void
+    {
+        $this->events = $events;
     }
 
     /**

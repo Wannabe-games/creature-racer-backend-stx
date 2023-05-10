@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Game\Lobby;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -34,5 +35,11 @@ class LobbyCrudController extends AbstractCrudController
             TextField::new('winnerWithdrawId')->onlyOnForms(),
             TextField::new('status')->onlyOnIndex(),
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['createdAt' => 'DESC']);
     }
 }

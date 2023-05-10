@@ -6,11 +6,10 @@ use App\Common\Enum\SystemTypes;
 use App\Common\Repository\ContractLogRepository;
 use App\Common\Repository\SettingsRepository;
 use App\Common\Service\Stacks\ProviderManager;
-use App\Document\ContractLog;
+use App\Entity\ContractLog;
 use App\Entity\Settings;
 use DateTime;
-use DateTimeImmutable;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -74,10 +73,11 @@ class ProcessContractLogCommand extends Command
 
             $output->writeln('Parsing block from: ' . $nextBlock . ', to: ' . $endBlock . ', iteration: ' . $i + 1);
 
-            $jsonString = $this->providerManager->getLog($nextBlock, $maxBlocksToRead);
-            $jsonLogs = json_decode($jsonString, false, 512, JSON_THROW_ON_ERROR);
+            $log = $this->providerManager->getLog($nextBlock, $maxBlocksToRead);
 
-            if (!empty($jsonString) && empty($jsonLogs) && !is_array($jsonLogs)) {
+            if (empty($log)) {
+                continue;
+            } elseif (!is_array($log)) {
                 $lastProcessedBlockSettings->setValue(['block' => $nextBlock]);
                 $this->settingsRepository->save($lastProcessedBlockSettings);
 
@@ -85,11 +85,9 @@ class ProcessContractLogCommand extends Command
                 $output->writeln('Added logs: ' . $addedLogs);
 
                 return Command::INVALID;
-            } elseif (empty($jsonString) && empty($jsonLogs)) {
-                continue;
             }
 
-            foreach ($jsonLogs as $rowData) {
+            foreach ($log as $rowData) {
                 if ('contract_call' !== $rowData->tx_type || 'success' !== $rowData->tx_status) {
                     continue;
                 }
@@ -98,7 +96,7 @@ class ProcessContractLogCommand extends Command
                     continue;
                 }
 
-                $paymentLog = new \App\Entity\ContractLog();
+                $paymentLog = new ContractLog();
                 $paymentLog->setId($rowData->tx_id);
                 $paymentLog->setWallet($rowData->sender_address);
                 $paymentLog->setFee($rowData->fee_rate);
@@ -108,17 +106,33 @@ class ProcessContractLogCommand extends Command
                 $paymentLog->setContractFunctionName($rowData->contract_call->function_name);
                 $paymentLog->setContractFunctionArgs($rowData->contract_call->function_args);
                 $paymentLog->setCreatedAt(new DateTime($rowData->burn_block_time_iso));
+                if ($rowData->event_count > 0) {
+                    $paymentLog->setEvents($this->providerManager->getTransactionDetails($rowData->tx_id)->events ?? []);
+                }
                 $this->contractLogRepository->persist($paymentLog);
 
                 $addedLogs++;
             }
 
             $lastProcessedBlockSettings->setValue(['block' => $endBlock]);
-            $this->contractLogRepository->flush();
+
+            $this->contractLogRepository->beginTransaction();
+
+            try {
+                $this->contractLogRepository->flush();
+            } catch (Exception $e) {
+                $this->contractLogRepository->rollbackTransaction();
+                $output->writeln('End time: ' . date('Y-m-d H:i:s'));
+                $output->writeln('Error adding log: ' . $e->getMessage());
+
+                return Command::INVALID;
+            }
+
+            $this->contractLogRepository->commitTransaction();
         }
 
         $output->writeln('End time: ' . date('Y-m-d H:i:s'));
-        $output->writeln('Added logs: ' . $addedLogs);
+        $output->writeln('Added log: ' . $addedLogs);
 
         return Command::SUCCESS;
     }

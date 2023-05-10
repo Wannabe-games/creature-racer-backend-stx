@@ -1,0 +1,7 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{% if ea.crud.currentAction == 'detail' %}
+    <pre style="line-height: 1; max-height: 200px;">{{ field.formattedValue|json_encode(constant('JSON_PRETTY_PRINT'))|raw|nl2br }}</pre>
+{% else %}
+{% endif %}

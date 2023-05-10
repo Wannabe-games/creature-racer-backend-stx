@@ -51,4 +51,28 @@ class ContractLogRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->flush();
     }
+
+    /**
+     * @return void
+     */
+    public function beginTransaction(): void
+    {
+        $this->getEntityManager()->beginTransaction();
+    }
+
+    /**
+     * @return void
+     */
+    public function commitTransaction(): void
+    {
+        $this->getEntityManager()->commit();
+    }
+
+    /**
+     * @return void
+     */
+    public function rollbackTransaction(): void
+    {
+        $this->getEntityManager()->rollback();
+    }
 }

@@ -8,6 +8,7 @@ use App\Form\Field\TransactionHashField;
 use App\Form\Field\UserRolesField;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -49,6 +50,12 @@ class UserCrudController extends AbstractCrudController
             TransactionHashField::new('incrementInvitationHash')->onlyOnDetail(),
             BooleanField::new('enabled')->hideOnForm(),
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['id' => 'DESC']);
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void

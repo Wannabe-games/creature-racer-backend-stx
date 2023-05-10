@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Creature\Creature;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -39,5 +40,11 @@ class CreatureCrudController extends AbstractCrudController
             NumberField::new('speedMin')->onlyOnForms(),
             NumberField::new('speedMax')->onlyOnForms(),
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['id' => 'ASC']);
     }
 }

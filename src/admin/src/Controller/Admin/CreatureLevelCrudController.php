@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Common\Enum\CreatureLevels;
 use App\Common\Enum\CreatureUpgradeTypes;
 use App\Entity\Creature\CreatureLevel;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -34,6 +35,12 @@ class CreatureLevelCrudController extends AbstractCrudController
             NumberField::new('deliveryPriceStacks'),
             NumberField::new('deliveryWaitingTime'),
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['id' => 'ASC']);
     }
 
     public function configureFilters(Filters $filters): Filters

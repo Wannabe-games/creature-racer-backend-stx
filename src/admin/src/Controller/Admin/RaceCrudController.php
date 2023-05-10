@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Game\Race;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -26,5 +27,11 @@ class RaceCrudController extends AbstractCrudController
             AssociationField::new('lobby'),
             NumberField::new('score'),
         ];
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['createdAt' => 'DESC']);
     }
 }
