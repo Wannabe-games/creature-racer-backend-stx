@@ -3,11 +3,11 @@
 namespace App\Command;
 
 use App\Common\Enum\UserReferralPoolStatus;
-use App\Common\Repository\Document\ContractLogRepository;
+use App\Common\Repository\ContractLogRepository;
 use App\Common\Repository\Document\UserReferralPoolRepository;
 use App\Common\Repository\UserRepository;
-use App\Document\ContractLog;
 use App\Document\UserReferralPool;
+use App\Entity\ContractLog;
 use App\Entity\User;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\MongoDBException;
@@ -64,12 +64,16 @@ class ProcessReferralPoolCommand extends Command
 
         foreach ($users as $user) {
             /** @var ContractLog[] $rewardTransactionForWallet */
-            $rewardTransactionForWallet = $user->getWallet() ? $this->contractLogRepository->getRewardTransactionForWallet($user->getWallet()) : [];
+            $rewardTransactionForWallet = $user->getWallet() ? $this->contractLogRepository->findBy(['wallet' => $user->getWallet()]) : [];
 
             $myReward = 0;
 
             foreach ($rewardTransactionForWallet as $transaction) {
-                $myReward += $transaction->getTransactionFee();
+                foreach ($transaction->getEvents() as $event) {
+                    if (str_contains($event['asset']['recipient'], 'creature-racer-referral-pool')) {
+                        $myReward += $event['asset']['amount'];
+                    }
+                }
             }
 
             $userReferralPool = $this->userReferralPoolRepository->findByFromUserId($user->getId());
