@@ -1,10 +1,14 @@
-# Reward Pool
-*/2 * * * * /usr/local/bin/php /app/cron/bin/console app:user-reward-pool:get-settlement  >> /var/log/reward_pool/get_settlement.log 2>&1
-59 23 * * * /usr/local/bin/php /app/cron/bin/console app:reward-pool-contract:cycle:open  >> /var/log/reward_pool/cycle_open.log 2>&1
+DF="/usr/local/bin/php /app/cron/bin/console"
+LOG="/var/log/creature-racer/"
 
-# Staking
-59 23 * * * /usr/local/bin/php /app/cron/bin/console app:staking-contract:cycle:open  >> /var/log/staking/cycle_open.log 2>&1
+# Reward Pool
+* 1-23 * * * ${DF} app:user-reward-pool:get-settlement   >> ${LOG}user-reward-pool-get-settlement.log 2>&1
+0 0 * * *    ${DF} app:reward-open-new-cycle             >> ${LOG}reward-open-new-cycle.log 2>&1
 
 # Referral Pool
-*/5 * * * * /usr/local/bin/php /app/cron/bin/console app:logs:referral-data  >> /var/log/referral_pool/get_settlement.log 2>&1
+* * * * *    ${DF} app:user-referral-pool:get-settlement >> ${LOG}user-referral-pool-get-settlement.log 2>&1
+* * * * *    ${DF} app:referral-nft:set-refcodes         >> ${LOG}referral-nft-set-refcodes.log 2>&1
+* * * * *    ${DF} app:contract-log                      >> ${LOG}contract-log.log 2>&1
 
+# Other
+30 * * * *   ${DF} app:updates-exchange-rates            >> ${LOG}updates-exchange-rates.log 2>&1

@@ -10,69 +10,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ContractLogRepository extends ServiceEntityRepository
 {
+    use RepositoryTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ContractLog::class);
-    }
-
-    /**
-     * @param ContractLog $contractLog
-     * @return void
-     */
-    public function save(ContractLog $contractLog): void
-    {
-        $this->getEntityManager()->persist($contractLog);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @param ContractLog $contractLog
-     * @return void
-     */
-    public function remove(ContractLog $contractLog): void
-    {
-        $this->getEntityManager()->remove($contractLog);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @param $contractLog
-     * @return void
-     */
-    public function persist($contractLog): void
-    {
-        $this->getEntityManager()->persist($contractLog);
-    }
-
-    /**
-     * @return void
-     */
-    public function flush(): void
-    {
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @return void
-     */
-    public function beginTransaction(): void
-    {
-        $this->getEntityManager()->beginTransaction();
-    }
-
-    /**
-     * @return void
-     */
-    public function commitTransaction(): void
-    {
-        $this->getEntityManager()->commit();
-    }
-
-    /**
-     * @return void
-     */
-    public function rollbackTransaction(): void
-    {
-        $this->getEntityManager()->rollback();
     }
 }

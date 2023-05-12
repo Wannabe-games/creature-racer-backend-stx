@@ -2,6 +2,7 @@
 
 namespace App\Common\Repository\Game;
 
+use App\Common\Repository\RepositoryTrait;
 use App\Entity\Game\Lobby;
 use App\Entity\User;
 use DateTime;
@@ -15,6 +16,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LobbyRepository extends ServiceEntityRepository
 {
+    use RepositoryTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Lobby::class);
@@ -23,7 +26,6 @@ class LobbyRepository extends ServiceEntityRepository
     /**
      * @param int $offset
      * @param int $limit
-     *
      * @return array
      */
     public function getLobbies(
@@ -69,7 +71,6 @@ class LobbyRepository extends ServiceEntityRepository
      * @param User $user
      * @param int $offset
      * @param int $limit
-     *
      * @return array
      */
     public function getLobbiesForUser(
@@ -94,7 +95,6 @@ class LobbyRepository extends ServiceEntityRepository
 
     /**
      * @param User $user
-     *
      * @return int
      * @throws NoResultException
      * @throws NonUniqueResultException
@@ -112,33 +112,5 @@ class LobbyRepository extends ServiceEntityRepository
             ->select('COUNT(DISTINCT l.id)')
             ->getQuery()
             ->getSingleScalarResult();
-    }
-
-    /**
-     * @param Lobby $lobby
-     * @return void
-     */
-    public function save(Lobby $lobby): void
-    {
-        $this->getEntityManager()->persist($lobby);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @param Lobby $lobby
-     * @return void
-     */
-    public function remove(Lobby $lobby): void
-    {
-        $this->getEntityManager()->remove($lobby);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @return void
-     */
-    public function flush(): void
-    {
-        $this->getEntityManager()->flush();
     }
 }

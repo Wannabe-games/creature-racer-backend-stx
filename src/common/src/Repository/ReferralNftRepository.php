@@ -12,6 +12,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ReferralNftRepository extends ServiceEntityRepository
 {
+    use RepositoryTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ReferralNft::class);
@@ -47,32 +49,5 @@ class ReferralNftRepository extends ServiceEntityRepository
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
-    }
-
-    /**
-     * @param ReferralNft $referralNft
-     */
-    public function save(ReferralNft $referralNft): void
-    {
-        $this->getEntityManager()->persist($referralNft);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @param ReferralNft $referralNft
-     * @return void
-     */
-    public function remove(ReferralNft $referralNft): void
-    {
-        $this->getEntityManager()->remove($referralNft);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @return void
-     */
-    public function flush(): void
-    {
-        $this->getEntityManager()->flush();
     }
 }

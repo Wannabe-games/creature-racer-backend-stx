@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Common\Repository;
 
 use App\Entity\Settings;
@@ -10,41 +11,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class SettingsRepository extends ServiceEntityRepository
 {
-    /**
-     * @param ManagerRegistry $registry
-     */
+    use RepositoryTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Settings::class);
-    }
-
-    /**
-     * @param Settings $settings
-     *
-     * @return void
-     */
-    public function save(Settings $settings): void
-    {
-        $this->getEntityManager()->persist($settings);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @param Settings $settings
-     *
-     * @return void
-     */
-    public function remove(Settings $settings): void
-    {
-        $this->getEntityManager()->remove($settings);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @return void
-     */
-    public function flush(): void
-    {
-        $this->getEntityManager()->flush();
     }
 }

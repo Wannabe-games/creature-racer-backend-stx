@@ -12,6 +12,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UserRepository extends ServiceEntityRepository
 {
+    use RepositoryTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -31,38 +33,5 @@ class UserRepository extends ServiceEntityRepository
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
-    }
-
-    /**
-     * @param User $user
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function save(User $user): void
-    {
-        $this->getEntityManager()->persist($user);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @param User $user
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function remove(User $user): void
-    {
-        $this->getEntityManager()->remove($user);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function flush(): void
-    {
-        $this->getEntityManager()->flush();
     }
 }

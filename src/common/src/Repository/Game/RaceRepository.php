@@ -2,6 +2,7 @@
 
 namespace App\Common\Repository\Game;
 
+use App\Common\Repository\RepositoryTrait;
 use App\Entity\Game\Race;
 use App\Entity\User;
 use DateTime;
@@ -15,6 +16,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class RaceRepository extends ServiceEntityRepository
 {
+    use RepositoryTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Race::class);
@@ -23,7 +26,6 @@ class RaceRepository extends ServiceEntityRepository
     /**
      * @param int $offset
      * @param int $limit
-     *
      * @return array
      */
     public function getLobbies(
@@ -67,7 +69,6 @@ class RaceRepository extends ServiceEntityRepository
      * @param User $user
      * @param int $offset
      * @param int $limit
-     *
      * @return array
      */
     public function getLobbiesForUser(
@@ -92,7 +93,6 @@ class RaceRepository extends ServiceEntityRepository
 
     /**
      * @param User $user
-     *
      * @return int
      * @throws NoResultException
      * @throws NonUniqueResultException
@@ -110,33 +110,5 @@ class RaceRepository extends ServiceEntityRepository
             ->select('COUNT(DISTINCT l.id)')
             ->getQuery()
             ->getSingleScalarResult();
-    }
-
-    /**
-     * @param Race $race
-     * @return void
-     */
-    public function save(Race $race): void
-    {
-        $this->getEntityManager()->persist($race);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @param Race $race
-     * @return void
-     */
-    public function remove(Race $race): void
-    {
-        $this->getEntityManager()->remove($race);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @return void
-     */
-    public function flush(): void
-    {
-        $this->getEntityManager()->flush();
     }
 }

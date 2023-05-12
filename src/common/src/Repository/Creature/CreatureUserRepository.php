@@ -2,15 +2,14 @@
 
 namespace App\Common\Repository\Creature;
 
+use App\Common\Repository\RepositoryTrait;
 use App\Entity\Creature\CreatureUser;
 use App\Entity\User;
 use DateInterval;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
 
 use function Doctrine\ORM\QueryBuilder;
@@ -20,41 +19,11 @@ use function Doctrine\ORM\QueryBuilder;
  */
 class CreatureUserRepository extends ServiceEntityRepository
 {
+    use RepositoryTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, CreatureUser::class);
-    }
-
-    /**
-     * @param CreatureUser $creatureUser
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function save(CreatureUser $creatureUser): void
-    {
-        $this->getEntityManager()->persist($creatureUser);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @param CreatureUser $creatureUser
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function remove(CreatureUser $creatureUser): void
-    {
-        $this->getEntityManager()->remove($creatureUser);
-        $this->getEntityManager()->flush();
-    }
-
-    /**
-     * @return void
-     */
-    public function flush(): void
-    {
-        $this->getEntityManager()->flush();
     }
 
     /**
