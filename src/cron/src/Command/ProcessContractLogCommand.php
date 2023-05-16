@@ -11,12 +11,17 @@ use App\Entity\Settings;
 use DateTime;
 use Exception;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ProcessContractLogCommand extends Command
 {
+    use LockableTrait;
+
+    protected static $defaultName = 'app:contract-log';
+
     public function __construct(
         private ContainerInterface $container,
         private ProviderManager $providerManager,
@@ -25,8 +30,6 @@ class ProcessContractLogCommand extends Command
     ) {
         parent::__construct();
     }
-
-    protected static $defaultName = 'app:contract-log';
 
     protected function configure()
     {
@@ -38,6 +41,11 @@ class ProcessContractLogCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (!$this->lock()) {
+            $output->writeln('The command is already running in another process.');
+            return Command::SUCCESS;
+        }
+
         /** @var Settings $lastProcessedBlockSettings */
         $lastProcessedBlockSettings = $this->settingsRepository->findOneBy(['systemType' => SystemTypes::PAYMENT_LAST_BLOCK_NUMBER]);
 
@@ -51,6 +59,9 @@ class ProcessContractLogCommand extends Command
         $lastProcessedBlock = $lastProcessedBlockSettings->getValue()['block'];
         $actualBlock = $this->providerManager->getBlockNumber();
         $processingBlocks = $actualBlock - $lastProcessedBlock;
+        if ($processingBlocks < 0) {
+            $processingBlocks = 0;
+        }
         $packages = (int)ceil($processingBlocks / $maxBlocksToRead);
         $contractIdMatchPattern = '/^' . $this->container->getParameter('referral_pool_contract_address') . '\.([\w-]+)-v([1-9][0-9]?)/';
 
@@ -76,6 +87,9 @@ class ProcessContractLogCommand extends Command
             $log = $this->providerManager->getLog($nextBlock, $maxBlocksToRead);
 
             if (empty($log)) {
+                $lastProcessedBlockSettings->setValue(['block' => $nextBlock]);
+                $this->settingsRepository->save($lastProcessedBlockSettings);
+
                 continue;
             } elseif (!is_array($log)) {
                 $lastProcessedBlockSettings->setValue(['block' => $nextBlock]);
@@ -83,6 +97,8 @@ class ProcessContractLogCommand extends Command
 
                 $output->writeln('End time: ' . date('Y-m-d H:i:s'));
                 $output->writeln('Added logs: ' . $addedLogs);
+
+                $this->release();
 
                 return Command::INVALID;
             }
@@ -122,8 +138,11 @@ class ProcessContractLogCommand extends Command
                 $this->contractLogRepository->flush();
             } catch (Exception $e) {
                 $this->contractLogRepository->rollbackTransaction();
+
                 $output->writeln('End time: ' . date('Y-m-d H:i:s'));
                 $output->writeln('Error adding log: ' . $e->getMessage());
+
+                $this->release();
 
                 return Command::INVALID;
             }
@@ -133,6 +152,8 @@ class ProcessContractLogCommand extends Command
 
         $output->writeln('End time: ' . date('Y-m-d H:i:s'));
         $output->writeln('Added log: ' . $addedLogs);
+
+        $this->release();
 
         return Command::SUCCESS;
     }

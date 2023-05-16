@@ -10,14 +10,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class RewardStakingOpenNewCycleCommand extends Command
 {
+    protected static $defaultName = 'app:reward-staking-open-new-cycle';
+
     public function __construct(
         private ProviderManager $providerManager,
         private StakingContractManager $stakingContractManager
     ) {
         parent::__construct();
     }
-
-    protected static $defaultName = 'app:reward-staking-open-new-cycle';
 
     protected function configure(): void
     {

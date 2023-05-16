@@ -23,6 +23,8 @@ class ProcessReferralPoolCommand extends Command
 {
     use LockableTrait;
 
+    protected static $defaultName = 'app:user-referral-pool:get-settlement';
+
     public function __construct(
         private DocumentManager $documentManager,
         private ContractLogRepository $contractLogRepository,
@@ -31,8 +33,6 @@ class ProcessReferralPoolCommand extends Command
     ) {
         parent::__construct();
     }
-
-    protected static $defaultName = 'app:user-referral-pool:get-settlement';
 
     protected function configure()
     {

@@ -5,12 +5,17 @@ namespace App\Command;
 use App\Common\Repository\Creature\CreatureLevelRepository;
 use App\Entity\Creature\CreatureLevel;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class UpdatesExchangeRatesCommand extends Command
 {
+    use LockableTrait;
+
+    protected static $defaultName = 'app:updates-exchange-rates';
+
     private const API_URL = 'https://api.coinpaprika.com/v1/price-converter?base_currency_id=usd-us-dollars&quote_currency_id=stx-stacks&amount=1';
 
     public function __construct(
@@ -18,8 +23,6 @@ class UpdatesExchangeRatesCommand extends Command
     ) {
         parent::__construct();
     }
-
-    protected static $defaultName = 'app:updates-exchange-rates';
 
     protected function configure(): void
     {
@@ -31,6 +34,11 @@ class UpdatesExchangeRatesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        if (!$this->lock()) {
+            $output->writeln('The command is already running in another process.');
+            return Command::SUCCESS;
+        }
+
         $response = json_decode(file_get_contents(self::API_URL), false, 512, JSON_THROW_ON_ERROR);
         $usdToStxRate = $response->price;
 
@@ -39,6 +47,8 @@ class UpdatesExchangeRatesCommand extends Command
         $countLevels = count($creatureLevels);
 
         if ($countLevels < 1) {
+            $this->release();
+
             return Command::SUCCESS;
         }
 
@@ -57,6 +67,7 @@ class UpdatesExchangeRatesCommand extends Command
 
         $progressBar->finish();
         $output->writeln('');
+        $this->release();
 
         return Command::SUCCESS;
     }

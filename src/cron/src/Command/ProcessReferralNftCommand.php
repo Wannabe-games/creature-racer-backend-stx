@@ -8,11 +8,16 @@ use App\Common\Service\Stacks\ProviderManager;
 use App\Common\Service\Stacks\ReferralNftContractManager;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ProcessReferralNftCommand extends Command
 {
+    use LockableTrait;
+
+    protected static $defaultName = 'app:referral-nft:set-refcodes';
+
     public function __construct(
         private ProviderManager $providerManager,
         private ReferralNftContractManager $referralNftContractManager,
@@ -21,8 +26,6 @@ class ProcessReferralNftCommand extends Command
     ) {
         parent::__construct();
     }
-
-    protected static $defaultName = 'app:referral-nft:set-refcodes';
 
     protected function configure()
     {
@@ -59,6 +62,8 @@ class ProcessReferralNftCommand extends Command
             $user->setUpdatedAt($currentTime);
             $this->userRepository->save($user);
         }
+
+        $this->release();
 
         return Command::SUCCESS;
     }

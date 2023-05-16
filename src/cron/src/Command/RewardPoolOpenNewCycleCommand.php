@@ -10,6 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class RewardPoolOpenNewCycleCommand extends Command
 {
+    protected static $defaultName = 'app:reward-pool-open-new-cycle';
+
     public function __construct(
         private ProviderManager $providerManager,
         private RewardPoolContractManager $rewardPoolContractManager
@@ -17,9 +19,7 @@ class RewardPoolOpenNewCycleCommand extends Command
         parent::__construct();
     }
 
-    protected static $defaultName = 'app:reward-pool-open-new-cycle';
-
-    protected function configure(): void
+     protected function configure(): void
     {
         $this->setDescription('Open reward pool cycle.');
     }

@@ -2,9 +2,8 @@
 require('dotenv').config({path: __dirname + '/../../common/.env'});
 require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
 const {signMessageHashRsv, createStacksPrivateKey, getPublicKey, publicKeyToString} = require("@stacks/transactions");
+const {asciiToBytes} = require("@stacks/common");
 const sha256 = require("sha256");
-const refCode = process.argv.slice(2, 3).join('');
-const uri = process.argv.slice(3, 4).join('');
 
 function parseHexString(str) {
     const result = [];
@@ -34,29 +33,41 @@ function uint32toBytes(v) {
     return rv;
 }
 
-function sign(refCode, uri) {
-    const argBuff = Uint8Array.from(refCode.split('').map((x) => x.charCodeAt()));
-    const argLengthBytes = uint32toBytes(argBuff.length);
+function sign(refCode, uri, publicKey) {
+    let message = parseHexString(publicKey);
 
-    let buff = concatUint8Arrays(parseHexString(getOperatorPublicKey()), new Uint8Array([0xe]));
-    buff = concatUint8Arrays(buff, new Uint8Array(argLengthBytes));
-    buff = concatUint8Arrays(buff, argBuff);
+    if (uri.length > 0) {
+        const uriBuff = asciiToBytes(uri);
+        message = concatUint8Arrays(message, new Uint8Array([0xD]));
+        message = concatUint8Arrays(message, uint32toBytes(uriBuff.length));
+        message = concatUint8Arrays(message, uriBuff);
+    }
 
-    const msghash = sha256(Buffer.from(buff));
-    const opsig = signMessageHashRsv({
-        messageHash: msghash,
+    if (refCode.length > 0) {
+        const refCodeBuff = Uint8Array.from(refCode.split("").map(x => x.charCodeAt()));
+        message = concatUint8Arrays(message, new Uint8Array([0xE]));
+        message = concatUint8Arrays(message, uint32toBytes(refCodeBuff.length));
+        message = concatUint8Arrays(message, refCodeBuff);
+    }
+
+    return signMessageHashRsv({
+        messageHash: sha256(message),
         privateKey: createStacksPrivateKey(process.env.OPERATOR_CONTRACT_PRIVATE_KEY),
     });
-
-    return opsig.data;
-}
-
-function getOperatorPublicKey() {
-    return publicKeyToString(getPublicKey(createStacksPrivateKey(process.env.OPERATOR_CONTRACT_PRIVATE_KEY)));
 }
 
 async function main() {
-    return sign(refCode, uri);
+    const refCode = process.argv.slice(2, 3).join('');
+
+    if (!refCode) {
+        console.log("Enter ref code!");
+        return '';
+    }
+
+    const uri = process.argv.slice(3, 4).join('');
+    const publicKey = process.argv.slice(4, 5).join('') || publicKeyToString(getPublicKey(createStacksPrivateKey(process.env.OPERATOR_CONTRACT_PRIVATE_KEY)));
+
+    return sign(refCode, uri, publicKey).data;
 }
 
 main().then(function (result) {

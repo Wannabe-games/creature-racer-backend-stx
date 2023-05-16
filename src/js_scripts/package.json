@@ -43,6 +43,7 @@
     },
     "dependencies": {
         "@stacks/blockchain-api-client": "^6.3.0",
+        "@stacks/common": "^6.5.2",
         "@stacks/connect": "^7.0.0",
         "@stacks/network": "^6.0.0",
         "@stacks/stacks-blockchain-api-types": "^7.1.2",

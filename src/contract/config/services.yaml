@@ -123,10 +123,6 @@ services:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
 
-    App\Service\OpenApi\IncrementInvitationsDecorator:
-        decorates: 'api_platform.openapi.factory'
-        arguments: [ '@.inner' ]
-
     App\Service\OpenApi\UsersInviteesDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]

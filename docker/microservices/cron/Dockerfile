@@ -36,9 +36,7 @@ RUN apt-get install -y libpq-dev \
     && docker-php-ext-enable mongodb
 
 # Cron
-RUN mkdir -p /var/log/reward_pool/
-RUN mkdir -p /var/log/referral_pool/
-RUN mkdir -p /var/log/staking/
+RUN mkdir -p /var/log/creature-racer/
 COPY root /var/spool/cron/crontabs/root
 RUN chmod 0600 /var/spool/cron/crontabs/root
 
@@ -57,7 +55,7 @@ RUN mkdir -p $PROJECT_PATH
 
 # node.js
 RUN apt-get install -y software-properties-common \
-    && curl -sL https://deb.nodesource.com/setup_16.x | bash -
+    && curl -sL https://deb.nodesource.com/setup_19.x | bash -
 RUN apt-get update \
     && apt-get install -y nodejs
 

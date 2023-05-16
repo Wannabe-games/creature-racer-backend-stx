@@ -47,7 +47,7 @@ class ContractTestCommand extends Command
         /** @var User $user */
         $user = $this->entityManager->getRepository(User::class)->find(1);
 
-        $output->writeln('Chain provider url: ' . $this->container->getParameter('chain_provider_url'));
+        $output->writeln('Chain provider url: ' . ($this->container->getParameter('chain_provider_url') ?: 'https://stacks-node-api.mainnet.stacks.co'));
         $output->writeln('User wallet: ' . $user->getWallet());
 
         $output->writeln('');

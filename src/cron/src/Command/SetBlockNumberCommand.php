@@ -13,6 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class SetBlockNumberCommand extends Command
 {
+    protected static $defaultName = 'app:payment-contract:set-start-block-number';
+
     public function __construct(
         private ProviderManager $providerManager,
         private SettingsRepository $settingsRepository
@@ -20,9 +22,7 @@ class SetBlockNumberCommand extends Command
         parent::__construct();
     }
 
-    protected static $defaultName = 'app:payment-contract:set-start-block-number';
-
-    protected function configure()
+     protected function configure()
     {
         $this
             ->setDescription('Set payment contract start block number')
