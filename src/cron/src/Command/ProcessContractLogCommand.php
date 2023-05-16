@@ -104,26 +104,26 @@ class ProcessContractLogCommand extends Command
             }
 
             foreach ($log as $rowData) {
-                if ('contract_call' !== $rowData->tx_type || 'success' !== $rowData->tx_status) {
+                if ('contract_call' !== $rowData?->tx_type || 'success' !== $rowData?->tx_status) {
                     continue;
                 }
 
-                if (!preg_match($contractIdMatchPattern, $rowData->contract_call->contract_id, $contract)) {
+                if (!preg_match($contractIdMatchPattern, $rowData?->contract_call->contract_id, $contract)) {
                     continue;
                 }
 
                 $paymentLog = new ContractLog();
-                $paymentLog->setId($rowData->tx_id);
-                $paymentLog->setWallet($rowData->sender_address);
-                $paymentLog->setFee($rowData->fee_rate);
-                $paymentLog->setPostConditions($rowData->post_conditions);
+                $paymentLog->setId($rowData?->tx_id);
+                $paymentLog->setWallet($rowData?->sender_address);
+                $paymentLog->setFee($rowData?->fee_rate);
+                $paymentLog->setPostConditions($rowData?->post_conditions);
                 $paymentLog->setContractName($contract[1]);
                 $paymentLog->setContractVersion($contract[2]);
-                $paymentLog->setContractFunctionName($rowData->contract_call->function_name);
-                $paymentLog->setContractFunctionArgs($rowData->contract_call->function_args);
-                $paymentLog->setCreatedAt(new DateTime($rowData->burn_block_time_iso));
-                if ($rowData->event_count > 0) {
-                    $paymentLog->setEvents($this->providerManager->getTransactionDetails($rowData->tx_id)->events ?? []);
+                $paymentLog->setContractFunctionName($rowData?->contract_call->function_name);
+                $paymentLog->setContractFunctionArgs($rowData?->contract_call->function_args);
+                $paymentLog->setCreatedAt(new DateTime($rowData?->burn_block_time_iso));
+                if ($rowData?->event_count > 0) {
+                    $paymentLog->setEvents($this->providerManager->getTransactionDetails($rowData?->tx_id)->events ?? []);
                 }
                 $this->contractLogRepository->persist($paymentLog);
 
