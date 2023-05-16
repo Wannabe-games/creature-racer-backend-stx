@@ -168,18 +168,18 @@ class rNftController extends SymfonyAbstractController
         $result = [];
 
         /** @var User $user */
-        foreach ($this->getUser()?->getMyReferralNft()?->getUsers() ?? [] as $user) {
+        foreach ($this->getUser()?->getMyReferralNft()?->getUsers() ?? [] as $fromUser) {
             /** @var UserReferralPool $userReferralPool */
             $userReferralPool = $userReferralPoolRepository->findOneBy(
                 [
-                    'fromUserId' => $user->getFromReferralNft()->getOwner()->getId(),
+                    'fromUserId' => $fromUser->getId(),
                     'status' => UserReferralPoolStatus::CRON_VERIFICATION,
                     'received' => false
                 ]
             );
 
-            $userResult['wallet'] = $user->getWallet();
-            $userResult['nick'] = $user->getNick();
+            $userResult['wallet'] = $fromUser->getWallet();
+            $userResult['nick'] = $fromUser->getNick();
             $userResult['pool'] = $userReferralPool?->getMyReward() ?? 0;
 
             $result[] = $userResult;

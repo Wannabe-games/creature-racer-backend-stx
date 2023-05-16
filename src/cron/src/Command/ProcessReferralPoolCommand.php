@@ -104,7 +104,7 @@ class ProcessReferralPoolCommand extends Command
     private function createUserReferralPool(User $user): UserReferralPool
     {
         $referralLog = new UserReferralPool();
-        $referralLog->setUserId($user->getFromReferralNft()?->getId());
+        $referralLog->setUserId($user->getFromReferralNft()?->getOwner()?->getId());
         $referralLog->setFromUserId($user->getId());
         $referralLog->setStatus(UserReferralPoolStatus::CRON_VERIFICATION);
         $this->documentManager->persist($referralLog);
