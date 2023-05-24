@@ -187,4 +187,39 @@ class rNftController extends SymfonyAbstractController
 
         return new JsonResponse($result);
     }
+
+    /**
+     * @param ReferralNft|null $referralNft
+     * @param ContainerInterface $container
+     * @return JsonResponse
+     *
+     * @Route("/rnft/{refCode}/metadata.json", name="rnft-metadata-json", methods={"GET"})
+     */
+    public function getMetadataJson(?ReferralNft $referralNft, ContainerInterface $container): JsonResponse
+    {
+        if (null === $referralNft) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::RNFT_NOT_EXIST));
+        }
+
+        $result = [
+            "title" => "Creature Racer rNFT",
+            "type" => "object",
+            "properties" => [
+                "name" => [
+                    "type" => "string",
+                    "description" => "rNFT"
+                ],
+                "description" => [
+                    "type" => "string",
+                    "description" => "Creature Racer NFT used for referrals."
+                ],
+                "image" => [
+                    "type" => "string",
+                    "description" => $container->getParameter('base_url') . $container->getParameter('base_path') . '/user/qr-code/' . $referralNft->getOwner()?->getId()
+                ]
+            ]
+        ];
+
+        return new JsonResponse($result);
+    }
 }
