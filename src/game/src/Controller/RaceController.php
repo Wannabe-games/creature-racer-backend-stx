@@ -122,7 +122,7 @@ class RaceController extends SymfonyAbstractController
         RaceRepository $raceRepository
     ): JsonResponse {
         if (null === $user) {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::WALLET_NOT_EXIST));
         }
 
         $data = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);

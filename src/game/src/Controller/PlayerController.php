@@ -70,7 +70,7 @@ class PlayerController extends SymfonyAbstractController
     public function playerByWalletAction(?User $user, Request $request, PlayerSerializer $playerDTO, EntityManagerInterface $entityManager): JsonResponse
     {
         if (null === $user) {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::WALLET_NOT_EXIST));
         }
 
         if ($request->getMethod() === 'GET') {

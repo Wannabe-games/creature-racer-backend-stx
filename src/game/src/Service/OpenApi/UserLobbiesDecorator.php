@@ -142,6 +142,31 @@ final class UserLobbiesDecorator implements OpenApiFactoryInterface
         );
         $openApi->getPaths()->addPath('/api/game/user-lobbies', $pathItem);
 
+        $pathItemByWallet = new Model\PathItem(
+            ref: 'User Creature',
+            get: new Model\Operation(
+                     operationId: 'userLobbiesGetByWallet',
+                     tags:        ['Lobby'],
+                     responses:   [
+                                      '200' => [
+                                          'description' => 'Get all lobbies signed to user',
+                                          'content' => [
+                                              'application/json' => [
+                                                  'schema' => [
+                                                      '$ref' => '#/components/schemas/UserLobbies',
+                                                  ],
+                                              ],
+                                          ],
+                                      ],
+                                  ],
+                     summary:     'User Creature by Wallet',
+                     parameters:  [
+                                      new Model\Parameter('id', 'path'),
+                                  ],
+                 ),
+        );
+        $openApi->getPaths()->addPath('/api/game/wallet/{id}/user-lobbies', $pathItemByWallet);
+
         return $openApi;
     }
 }

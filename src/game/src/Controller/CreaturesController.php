@@ -237,7 +237,7 @@ class CreaturesController extends SymfonyAbstractController
     public function getUserCreaturesByWallet(?User $user, SerializerInterface $serializer): JsonResponse
     {
         if (null === $user) {
-            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::NOT_FOUND));
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::WALLET_NOT_EXIST));
         }
 
         $result = [];

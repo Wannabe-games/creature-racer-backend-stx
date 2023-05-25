@@ -8,9 +8,11 @@ use App\Common\Repository\UserRepository;
 use App\Common\Service\Api\Wrapper\ApiExceptionWrapper;
 use App\DTO\LobbySerializer;
 use App\Entity\Game\Lobby;
+use App\Entity\User;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use JsonException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,26 +44,7 @@ class LobbyController extends SymfonyAbstractController
         LobbyRepository $lobbyRepository,
         LobbySerializer $lobbySerializer
     ): JsonResponse {
-        $serializedLobby = [];
-
-        $page = $request->query->getInt('page', 1);
-        $itemsPerPage = $request->query->getInt('itemsPerPage', self::API_MAX_PER_PAGE_DEFAULT);
-
-        /** @var Lobby[] $lobbyForUser */
-        $lobbyForUser = $lobbyRepository->getLobbiesForUser(
-            user:   $this->getUser(),
-            offset: $page ? ($page - 1) * $itemsPerPage : null,
-            limit:  $itemsPerPage
-        );
-
-        foreach ($lobbyForUser as $lobby) {
-            $serializedLobby[] = $lobbySerializer->serialize($lobby);
-        }
-
-        $result['lobbies'] = $serializedLobby;
-        $result['maxResults'] = $lobbyRepository->countLobbiesForUser($this->getUser());
-
-        return new JsonResponse($result);
+        return $this->getUserLobbiesByUser($this->getUser(), $request, $lobbyRepository, $lobbySerializer);
     }
 
     /**
@@ -114,6 +97,50 @@ class LobbyController extends SymfonyAbstractController
         $lobbyRepository->save($lobby);
 
         return new JsonResponse($lobbySerializer->serialize($lobby));
+    }
+
+    /**
+     * @param User|null $user
+     * @param Request $request
+     * @param LobbyRepository $lobbyRepository
+     * @param LobbySerializer $lobbySerializer
+     * @return JsonResponse
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     *
+     * @Route("/wallet/{id}/user-lobbies", name="user_lobbies_by_wallet_id", methods={"GET"})
+     * @ParamConverter("user", options={"mapping": {"id": "wallet"}})
+     */
+    public function getUserLobbiesByUser(
+        ?User $user,
+        Request $request,
+        LobbyRepository $lobbyRepository,
+        LobbySerializer $lobbySerializer
+    ): JsonResponse {
+        if (null === $user) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::WALLET_NOT_EXIST));
+        }
+
+        $serializedLobby = [];
+
+        $page = $request->query->getInt('page', 1);
+        $itemsPerPage = $request->query->getInt('itemsPerPage', self::API_MAX_PER_PAGE_DEFAULT);
+
+        /** @var Lobby[] $lobbyForUser */
+        $lobbyForUser = $lobbyRepository->getLobbiesForUser(
+            user:   $user,
+            offset: $page ? ($page - 1) * $itemsPerPage : null,
+            limit:  $itemsPerPage
+        );
+
+        foreach ($lobbyForUser as $lobby) {
+            $serializedLobby[] = $lobbySerializer->serialize($lobby);
+        }
+
+        $result['lobbies'] = $serializedLobby;
+        $result['maxResults'] = $lobbyRepository->countLobbiesForUser($user);
+
+        return new JsonResponse($result);
     }
 
     /**

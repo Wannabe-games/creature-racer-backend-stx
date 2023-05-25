@@ -31,19 +31,20 @@ class ApiExceptionWrapper
     public const TYPE_VALIDATION_ERROR = 'validation_error';
     public const UPGRADE_IN_PROGRESS = 'upgrade_in_progress';
     public const WALLET_EXIST = 'wallet_exist';
+    public const WALLET_NOT_EXIST = 'wallet_not_exist';
     public const WITHDRAW_EXECUTED = 'withdraw_executed';
 
     /**
      * @var array
      */
     private static array $titles = [
-        self::ACCESS_DENY => 'Access deny',
+        self::ACCESS_DENY => 'Access deny.',
         self::ACCOUNT_EXIST => 'Account exist.',
-        self::BAD_CONFIRMATION_TOKEN => 'Bad configuration token',
-        self::BAD_REQUEST => 'The current request has bad schema',
+        self::BAD_CONFIRMATION_TOKEN => 'Bad configuration token.',
+        self::BAD_REQUEST => 'The current request has bad schema.',
         self::CREATURE_NOT_EXIST => 'The Creature in User resource is not exist.',
-        self::INCORRECT_OBJECT_ID_FORMAT => 'Incorrect format of object ids',
-        self::INTEGRAL_ERROR => 'Internal error',
+        self::INCORRECT_OBJECT_ID_FORMAT => 'Incorrect format of object ids.',
+        self::INTEGRAL_ERROR => 'Internal error.',
         self::INVALID_LEVEL_VALUE => 'Can not upgrade creature. This is not a valid next level.',
         self::LEVEL_NOT_EXIST => 'The level not exist.',
         self::LOBBY_NOT_EXIST => 'The lobby not exist.',
@@ -56,7 +57,8 @@ class ApiExceptionWrapper
         self::TYPE_INVALID_REQUEST_BODY_FORMAT => 'Invalid JSON format sent',
         self::TYPE_VALIDATION_ERROR => 'There was a validation error',
         self::UPGRADE_IN_PROGRESS => 'Upgrade in progress.',
-        self::WALLET_EXIST => 'The wallet is already attached',
+        self::WALLET_EXIST => 'The wallet is already attached.',
+        self::WALLET_NOT_EXIST => 'The wallet is not exist',
         self::WITHDRAW_EXECUTED => 'The claim is not possible.',
     ];
 
