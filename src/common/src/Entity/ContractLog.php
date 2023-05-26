@@ -19,6 +19,12 @@ class ContractLog
     private ?string $id = null;
 
     /**
+     * @var int|null
+     * @ORM\Column(type="integer")
+     */
+    private ?int $blockHeight = null;
+
+    /**
      * @var string|null
      * @ORM\Column(type="string", length=42)
      */
@@ -92,6 +98,22 @@ class ContractLog
     public function setId(?string $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getBlockHeight(): ?int
+    {
+        return $this->blockHeight;
+    }
+
+    /**
+     * @param int|null $blockHeight
+     */
+    public function setBlockHeight(?int $blockHeight): void
+    {
+        $this->blockHeight = $blockHeight;
     }
 
     /**

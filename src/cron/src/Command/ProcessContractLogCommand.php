@@ -111,9 +111,10 @@ class ProcessContractLogCommand extends Command
                 if (!preg_match($contractIdMatchPattern, $rowData?->contract_call->contract_id, $contract)) {
                     continue;
                 }
-
+//print_r($rowData);exit;
                 $paymentLog = new ContractLog();
                 $paymentLog->setId($rowData?->tx_id);
+                $paymentLog->setBlockHeight($rowData?->block_height);
                 $paymentLog->setWallet($rowData?->sender_address);
                 $paymentLog->setFee($rowData?->fee_rate);
                 $paymentLog->setPostConditions($rowData?->post_conditions);
