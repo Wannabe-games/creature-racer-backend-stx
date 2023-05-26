@@ -4,6 +4,7 @@ namespace App\Entity\Creature;
 
 use App\Entity\User;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\UuidV6;
 use Symfony\Component\Uid\Uuid;
@@ -242,6 +243,13 @@ class CreatureUser
     private ?string $nftName;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Race", mappedBy="creatureUser", cascade={"remove"})
+     */
+    private $races;
+
+    /**
      * CreatureUser constructor
      */
     public function __construct()
@@ -254,6 +262,7 @@ class CreatureUser
         $this->boostAcceleration = 0;
         $this->boostVelocity = 0;
         $this->boostTime = 0;
+        $this->races = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -817,5 +826,13 @@ class CreatureUser
     public function setNftName(string $nftName): void
     {
         $this->nftName = $nftName;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getRaces(): ArrayCollection
+    {
+        return $this->races;
     }
 }

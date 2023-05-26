@@ -108,7 +108,7 @@ class Lobby
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Game\Race", mappedBy="lobby")
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Race", mappedBy="lobby", cascade={"remove"})
      */
     private Collection $races;
 

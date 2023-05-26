@@ -193,21 +193,21 @@ class User implements UserInterface
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureUser", mappedBy="user", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureUser", mappedBy="user", fetch="EXTRA_LAZY", cascade={"remove"})
      */
     private Collection $creatures;
 
     /**
      * @var Player
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\Game\Player", mappedBy="user", cascade={"remove"}, fetch="EXTRA_LAZY")
+     * @ORM\OneToOne(targetEntity="App\Entity\Game\Player", mappedBy="user", fetch="EXTRA_LAZY", cascade={"remove"})
      */
     private $player;
 
     /**
      * @var ReferralNft|null
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\ReferralNft", mappedBy="owner", fetch="EXTRA_LAZY")
+     * @ORM\OneToOne(targetEntity="App\Entity\ReferralNft", mappedBy="owner", fetch="EXTRA_LAZY", cascade={"remove"})
      */
     private $myReferralNft;
 
@@ -229,21 +229,21 @@ class User implements UserInterface
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="host", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="host", fetch="EXTRA_LAZY", cascade={"remove"})
      */
     private $hostLobbies;
 
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="opponent", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="opponent", fetch="EXTRA_LAZY", cascade={"remove"})
      */
     private $opponentLobbies;
 
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="winner", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\Game\Lobby", mappedBy="winner", fetch="EXTRA_LAZY", cascade={"remove"})
      */
     private $winnerLobbies;
 

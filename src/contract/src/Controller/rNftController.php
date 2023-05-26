@@ -34,14 +34,15 @@ class rNftController extends SymfonyAbstractController
     /**
      * @param string $refCode
      * @param ReferralNftRepository $referralNftRepository
-     *
+     * @param ReferralNftContractManager $referralNftContractManager
      * @return JsonResponse
      *
      * @Route("/validate/ref-code/{refCode}", name="ref_code", methods={"GET"})
      */
     public function validateRefCode(
         string $refCode,
-        ReferralNftRepository $referralNftRepository
+        ReferralNftRepository $referralNftRepository,
+        ReferralNftContractManager $referralNftContractManager
     ): JsonResponse {
         $referralNft = $referralNftRepository->findOneBy(
             [
@@ -49,7 +50,13 @@ class rNftController extends SymfonyAbstractController
             ]
         );
 
-        return new JsonResponse(['unique' => empty($referralNft)]);
+        return new JsonResponse(
+            [
+                'unique' => empty($referralNft),
+                'uri' => $referralNftContractManager->getUriForRefCode($refCode),
+                'signature' => $referralNftContractManager->signMint($refCode, $this->getUser()?->getPublicKey()),
+            ]
+        );
     }
 
     /**
@@ -215,7 +222,7 @@ class rNftController extends SymfonyAbstractController
                 ],
                 "image" => [
                     "type" => "string",
-                    "description" => $container->getParameter('base_url') . $container->getParameter('base_path') . '/user/qr-code/' . $referralNft->getOwner()?->getId()
+                    "description" => $container->getParameter('base_url') . '/api/contract/user/qr-code/' . $referralNft->getOwner()?->getId()
                 ]
             ]
         ];

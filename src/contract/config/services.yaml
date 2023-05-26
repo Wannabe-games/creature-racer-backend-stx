@@ -8,11 +8,11 @@ parameters:
     app_env: '%env(string:APP_ENV)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
-    private_wallet_key: '%env(string:OPERATOR_CONTRACT_PRIVATE_KEY)%'
     base_url: '%env(string:BASE_URL)%'
-    base_path: '/%env(API_BASE_URI)%/contract'
-    mint_price: '%env(string:MINT_PRICE)%'
     chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
+    contract_version: '%env(string:CONTRACT_VERSION)%'
+    private_wallet_key: '%env(string:OPERATOR_CONTRACT_PRIVATE_KEY)%'
+    mint_price: '%env(string:MINT_PRICE)%'
     staking_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
     reward_pool_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
     creature_nft_contract_address: '%env(string:DEPLOYER_CONTRACT_ADDRESS)%'
@@ -39,7 +39,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Kernel.php'
 
-#### Common Service ####
+    #### Common Service ####
     App\Entity\:
         resource: '%kernel.project_dir%/../common/src/Entity'
         tags: [ 'app.security.provider.voter' ]
@@ -71,7 +71,7 @@ services:
     App\Common\Enum\:
         resource: '%kernel.project_dir%/../common/src/Enum'
         tags: [ 'app.common.enum' ]
-#### End Common Service ####
+    #### End Common Service ####
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
@@ -79,9 +79,9 @@ services:
         # you can also use \RedisArray, \RedisCluster or \Predis\Client classes
         class: Redis
         calls:
-            - connect:
-                  - '%env(REDIS_HOST)%'
-                  - '%env(int:REDIS_PORT)%'
+            -   connect:
+                    - '%env(REDIS_HOST)%'
+                    - '%env(int:REDIS_PORT)%'
     #            - auth:
     #                - '%env(REDIS_PASSWORD)%'
     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
@@ -145,6 +145,6 @@ services:
         arguments: [ '@.inner' ]
     ##################
     gesdinet.jwtrefreshtoken.refresh_token_manager:
-        class:  App\Doctrine\RefreshTokenManager
+        class: App\Doctrine\RefreshTokenManager
         public: true
         arguments: [ '@gesdinet.jwtrefreshtoken.object_manager', '%gesdinet.jwtrefreshtoken.refresh_token.class%' ]

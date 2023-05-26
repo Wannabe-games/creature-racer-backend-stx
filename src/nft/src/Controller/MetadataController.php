@@ -23,9 +23,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class MetadataController extends SymfonyAbstractController
 {
     /**
-     * @param int                    $id
+     * @param int $id
      * @param CreatureUserRepository $creatureUserRepository
-     * @param NftMetadataManager     $metadataManager
+     * @param NftMetadataManager $metadataManager
      *
      * @return JsonResponse
      *
@@ -38,8 +38,7 @@ class MetadataController extends SymfonyAbstractController
         int $id,
         CreatureUserRepository $creatureUserRepository,
         NftMetadataManager $metadataManager
-    ): JsonResponse
-    {
+    ): JsonResponse {
         /** @var CreatureUser $creatureUser */
         $creatureUser = $creatureUserRepository->findOneBy(['contract' => $id]);
 
@@ -51,33 +50,29 @@ class MetadataController extends SymfonyAbstractController
     }
 
     /**
-     * @param int                   $id
+     * @param int $id
      * @param ReferralNftRepository $referralNftRepository
      *
      * @return JsonResponse
      *
      * @Route("/referral/metadata/{id}", name="referral_metadata", methods={"GET"})
-     *
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function referralMetadataAction(
         int $id,
         ReferralNftRepository $referralNftRepository
-    ): JsonResponse
-    {
-        /** @var ReferralNft $referral */
-        $referral = $referralNftRepository->findOneBy(['rNftId' => $id]);
+    ): JsonResponse {
+        /** @var ReferralNft $referralNft */
+        $referralNft = $referralNftRepository->findOneBy(['rNftId' => $id]);
 
-        if (empty($referral)) {
+        if (empty($referralNft)) {
             throw new ApiException(new ApiExceptionWrapper(400, ApiExceptionWrapper::RNFT_NOT_EXIST));
         }
 
         return new JsonResponse(
             [
-                'name' => $referral->getRefCode(),
+                'name' => $referralNft->getRefCode(),
                 'description' => "rNFT Invite & Earn</br></br>This is a Referral Code for Creature Racer - Race and Earn mobile game.</br></br>It works like this: mint your Referral NFT (rNFT) and hold it in your wallet. Now, show your friends new gaming possibilities.</br></br>Give them your unique referral code, to use while creating an account in Creature Racer and get a percentage of what they spend while playing the game. The more people you invite, the more you can earn. Don’t wait, invite your mother, brother, sister! Let everyone play for your success, and yes if you want you can always sell your rNFT and mint a new one</br></br>If you are buying this rNFT it means that probably it gives some nice profit to the owner, or it just looks cool!</br></br>Learn more: <a href=\"https://www.creatureracer.com\">www.creatureracer.com</a>",
-                'image' => 'https://api.'.$this->getParameter('base_url').'/api/contract/user/qr-code/'.$referral->getOwner()->getId()
+                'image' => $this->getParameter('base_url') . '/api/contract/user/qr-code/' . $referralNft->getOwner()->getId()
             ]
         );
     }

@@ -76,7 +76,7 @@ class ReferralNft
     /**
      * @var User[]|ArrayCollection|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="fromReferralNft", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="fromReferralNft", fetch="EXTRA_LAZY", cascade={"remove"})
      */
     private Collection $users;
 

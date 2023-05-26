@@ -85,7 +85,7 @@ class CreatureLevel
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureUpgrade", mappedBy="creatureLevel")
+     * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureUpgrade", mappedBy="creatureLevel", cascade={"remove"})
      */
     private $upgradeChanges;
 

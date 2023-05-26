@@ -174,7 +174,7 @@ class Creature
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureLevel", mappedBy="creature")
+     * @ORM\OneToMany(targetEntity="App\Entity\Creature\CreatureLevel", mappedBy="creature", cascade={"remove"})
      */
     private $changeLevels;
 

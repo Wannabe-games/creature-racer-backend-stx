@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -26,6 +27,7 @@ class ContractLogCrudController extends AbstractCrudController
             DateTimeField::new('createdAt'),
             TransactionHashField::new('id')->onlyOnDetail()->setLabel('Transaction id'),
             TextField::new('wallet'),
+            IntegerField::new('blockHeight')->onlyOnDetail(),
             NumberField::new('fee')->onlyOnDetail(),
             TextField::new('contractName'),
             NumberField::new('contractVersion'),

@@ -16,8 +16,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ContractTestCommand extends Command
 {
+    private const REFERRAL_NFT_MINT_CODE = 'rNFT_test';
     private const CREATURE_NFT_MINT_PARAMS = [314159, 7, 1, 1, 1, 1, 1, 1673445045, 30000, '029fb154a570a1645af3dd43c3c668a979b59d21a46dd717fd799b13be3b2a0dc7'];
-    private const REFERRAL_NFT_MINT_PARAMS = ['rNFT test', 'https://test.pl'];
     private const REFERRAL_POOL_WITHDRAW_PARAMS = ['ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP', 1000000, 1];
     private const REWARD_POOL_WITHDRAW_PARAMS = ['ST3NBRSFKX28FQ2ZJ1MAKX58HKHSDGNV5N7R21XCP', 1000000, 1, 1];
 
@@ -48,6 +48,7 @@ class ContractTestCommand extends Command
         $user = $this->entityManager->getRepository(User::class)->find(1);
 
         $output->writeln('Chain provider url: ' . ($this->container->getParameter('chain_provider_url') ?: 'https://stacks-node-api.mainnet.stacks.co'));
+        $output->writeln('Contracts version: ' . $this->container->getParameter('contract_version'));
         $output->writeln('User wallet: ' . $user->getWallet());
 
         $output->writeln('');
@@ -60,9 +61,9 @@ class ContractTestCommand extends Command
 
         $output->writeln('Referral NFT');
         $output->writeln('=============');
-        $output->writeln('signMint: ' . $this->referralNftContractManager->signMint(self::REFERRAL_NFT_MINT_PARAMS, $verbose));
-//        $output->writeln('mint: ' . $this->referralNftContractManager->mint(self::REFERRAL_NFT_MINT_PARAMS[0], self::REFERRAL_NFT_MINT_PARAMS[1], $verbose));
-//        $output->writeln('specialMint: ' . $this->referralNftContractManager->mint(self::REFERRAL_NFT_MINT_PARAMS[0], self::REFERRAL_NFT_MINT_PARAMS[1], $verbose));
+        $output->writeln('signMint: ' . $this->referralNftContractManager->signMint(self::REFERRAL_NFT_MINT_CODE, $verbose));
+//        $output->writeln('mint: ' . $this->referralNftContractManager->mint(self::REFERRAL_NFT_MINT_CODE, $verbose));
+//        $output->writeln('specialMint: ' . $this->referralNftContractManager->specialMint(self::REFERRAL_NFT_MINT_CODE, $verbose));
 
         $output->writeln('');
 
