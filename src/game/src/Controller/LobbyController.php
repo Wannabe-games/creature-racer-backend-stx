@@ -127,7 +127,7 @@ class LobbyController extends SymfonyAbstractController
         $itemsPerPage = $request->query->getInt('itemsPerPage', self::API_MAX_PER_PAGE_DEFAULT);
 
         /** @var Lobby[] $lobbyForUser */
-        $lobbyForUser = $lobbyRepository->getLobbiesForUser(
+        $lobbyForUser = $lobbyRepository->getActiveLobbiesByUser(
             user:   $user,
             offset: $page ? ($page - 1) * $itemsPerPage : null,
             limit:  $itemsPerPage

@@ -5,13 +5,20 @@ namespace App\Entity\Game;
 use App\Entity\Creature\CreatureUser;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Uid\UuidV6;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Common\Repository\Game\RaceRepository")
- * @ORM\Table(name="game_race")
+ * @ORM\Table(
+ *      name="game_race",
+ *      uniqueConstraints={
+ *          @ORM\UniqueConstraint(columns={"lobby_id", "creature_user_id"}),
+ *      }
+ * )
+ * @UniqueEntity(fields={"lobby", "creatureUser"}, message="The race associated with such a lobby already exists")
  */
 class Race
 {

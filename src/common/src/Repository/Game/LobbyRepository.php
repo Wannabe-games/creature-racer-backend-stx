@@ -95,6 +95,34 @@ class LobbyRepository extends ServiceEntityRepository
 
     /**
      * @param User $user
+     * @param int $offset
+     * @param int $limit
+     * @return array
+     */
+    public function getActiveLobbiesByUser(
+        User $user,
+        int $offset = 0,
+        int $limit = 20
+    ): array {
+        $qb = $this->createQueryBuilder('l');
+        $qb
+            ->leftJoin('l.races', 'r')
+            ->where('l.timeleft IS NOT NULL AND l.timeleft >= :expirationTime')
+            ->andWhere('(l.host = :user AND l.hostPaymentId IS NOT NULL) OR (l.opponent = :user AND l.opponentPaymentId IS NOT NULL)')
+            ->andWhere('r.creatureUser IS NULL')
+            ->setParameter('expirationTime', new DateTime())
+            ->setParameter('user', $user);
+
+        return $qb
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->orderBy('l.createdAt', 'desc')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param User $user
      * @return int
      * @throws NoResultException
      * @throws NonUniqueResultException
