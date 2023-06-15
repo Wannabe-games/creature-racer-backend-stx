@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 require('dotenv').config({path: __dirname + '/../../common/.env'});
 require('dotenv').config({path: __dirname + '/../../common/.env.local', override: true});
-const {signMessageHashRsv, createStacksPrivateKey} = require("@stacks/transactions");
+const {signMessageHashRsv, createStacksPrivateKey, stringAsciiCV} = require("@stacks/transactions");
 const sha256 = require("sha256");
 const inputArgs = process.argv.slice(2);
 
@@ -31,8 +31,8 @@ function sign(buffer) {
 }
 
 /* Sign minted creature arguments */
-async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, expiryTimestamp, price, userPubKey) {
-    const payload = parseHexString(userPubKey)
+async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, expiryTimestamp, price, uri, userPubKey) {
+    let payload = parseHexString(userPubKey)
         .concat(uint128toBytes(nftId))
         .concat(uint128toBytes(typeId))
         .concat(uint128toBytes(part1))
@@ -43,11 +43,15 @@ async function mintCreature(nftId, typeId, part1, part2, part3, part4, part5, ex
         .concat(uint128toBytes(expiryTimestamp))
         .concat(uint128toBytes(price));
 
+    if (process.env.CONTRACT_VERSION > 4) {
+        payload.concat(stringAsciiCV(uri));
+    }
+
     return sign(payload).data;
 }
 
 async function main() {
-    return await mintCreature.apply(null, inputArgs.slice(0, 10));
+    return await mintCreature.apply(null, inputArgs.slice(0, 11));
 }
 
 main().then(function (txt) {

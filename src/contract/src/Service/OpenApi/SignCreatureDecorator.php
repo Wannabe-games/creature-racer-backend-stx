@@ -21,7 +21,7 @@ final class SignCreatureDecorator implements OpenApiFactoryInterface
 
         $schemas['SignCreatureData'] = new \ArrayObject([
             'type' => 'object',
-            'example' => '{"signature":"0x2ba82fe78fbaea4dc97cd69b0f6027c4b07de2a6c0babf44eb7cea20234c9339521342e5fdefe3af02b998d70d9b27cc3d00f4995a1daa47cf11efb2db20d4ab01","address":"0x6dfE6AD0fc823f4A8521c6A6b5e8723b7fA85010","contractId":2,"typeId":5,"part1":3,"part2":0,"part3":0,"part4":0,"part5":1,"expiryTime":"1647559299","price":10}',
+            'example' => '{"signature":"0x2ba82fe78fbaea4dc97cd69b0f6027c4b07de2a6c0babf44eb7cea20234c9339521342e5fdefe3af02b998d70d9b27cc3d00f4995a1daa47cf11efb2db20d4ab01","address":"0x6dfE6AD0fc823f4A8521c6A6b5e8723b7fA85010","contractId":2,"typeId":5,"part1":3,"part2":0,"part3":0,"part4":0,"part5":1,"expiryTime":"1647559299","price":10,"uri":"http:\/\/creatureracer.local\/api\/contract\/creature\/frog\/metadata.json"}',
         ]);
         $schemas['CreatureId'] = new \ArrayObject([
             'type' => 'object',

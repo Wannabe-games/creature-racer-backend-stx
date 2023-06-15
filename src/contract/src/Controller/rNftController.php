@@ -54,6 +54,7 @@ class rNftController extends SymfonyAbstractController
             [
                 'unique' => empty($referralNft),
                 'uri' => $referralNftContractManager->getUriForRefCode($refCode),
+                'key' => $this->getUser()?->getPublicKey(),
                 'signature' => $referralNftContractManager->signMint($refCode, $this->getUser()?->getPublicKey()),
             ]
         );
@@ -209,20 +210,20 @@ class rNftController extends SymfonyAbstractController
         }
 
         $result = [
-            "title" => "Creature Racer rNFT",
-            "type" => "object",
-            "properties" => [
-                "name" => [
-                    "type" => "string",
-                    "description" => "rNFT"
+            'title' => 'Creature Racer rNFT',
+            'type' => 'object',
+            'properties' => [
+                'name' => [
+                    'type' => 'string',
+                    'description' => 'rNFT'
                 ],
-                "description" => [
-                    "type" => "string",
-                    "description" => "Creature Racer NFT used for referrals."
+                'description' => [
+                    'type' => 'string',
+                    'description' => 'Creature Racer NFT used for referrals.'
                 ],
-                "image" => [
-                    "type" => "string",
-                    "description" => $container->getParameter('base_url') . '/api/contract/user/qr-code/' . $referralNft->getOwner()?->getId()
+                'image' => [
+                    'type' => 'string',
+                    'description' => $container->getParameter('base_url') . '/api/contract/user/qr-code/' . $referralNft->getOwner()?->getId()
                 ]
             ]
         ];

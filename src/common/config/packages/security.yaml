@@ -45,29 +45,30 @@ security:
             logout: true
 
     access_control:
-        - { path: ^/admin/login,                              role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin,                                    role: ROLE_SUPER_ADMIN }
-        - { path: ^/api/contract/docs,                        role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/contract/user/card,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/contract/user/qr-code,                role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/contract/rnft/[^?\/]+/metadata.json,  role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/contract/stripe,                      role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/game/docs,                            role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/game/social-media,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/game/wallet,                          role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/nft/docs,                             role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/nft/referral/metadata,                role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/nft/metadata,                         role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/portal/docs,                          role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/portal/user/image,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/user/docs,                            role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/user/token,                           role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/user/login_check,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/user/registry,                        role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/user/password/wallet,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/user/password/email,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api,                                      role: IS_AUTHENTICATED_FULLY }
-        - { path: ^/,                                         role: ROLE_USER }
+        - { path: ^/admin/login,                                 role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin,                                       role: ROLE_SUPER_ADMIN }
+        - { path: ^/api/contract/docs,                           role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/user/card,                      role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/user/qr-code,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/creature/[^?\/]+/metadata.json, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/rnft/[^?\/]+/metadata.json,     role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/contract/stripe,                         role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/game/docs,                               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/game/social-media,                       role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/game/wallet,                             role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/nft/docs,                                role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/nft/referral/metadata,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/nft/metadata,                            role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/portal/docs,                             role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/portal/user/image,                       role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/docs,                               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/token,                              role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/login_check,                        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/registry,                           role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/password/wallet,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/user/password/email,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api,                                         role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/,                                            role: ROLE_USER }
 
     role_hierarchy:
         ROLE_SUPER_ADMIN:

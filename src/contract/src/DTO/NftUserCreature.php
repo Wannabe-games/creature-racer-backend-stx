@@ -2,6 +2,7 @@
 
 namespace App\DTO;
 
+use App\Common\Service\Stacks\CreatureNftContractManager;
 use App\Entity\Creature\CreatureUser;
 
 /**
@@ -10,6 +11,13 @@ use App\Entity\Creature\CreatureUser;
  */
 class NftUserCreature
 {
+    private CreatureNftContractManager $creatureNftContractManager;
+
+    public function __construct(CreatureNftContractManager $creatureNftContractManager)
+    {
+        $this->creatureNftContractManager = $creatureNftContractManager;
+    }
+
     /**
      * @param CreatureUser $creatureUser
      *
@@ -36,6 +44,7 @@ class NftUserCreature
         $serializedData['part5'] = $creatureUser->getButtocks() + 1;
         $serializedData['expiryTimestamp'] = (int)$creatureUser->getNftExpiryDateFormat('U');
         $serializedData['price'] = 1000000;
+        $serializedData['uri'] = $this->creatureNftContractManager->getUriForCreatureType($creatureUser->getCreature()->getType());
         $serializedData['key'] = $creatureUser->getUser()->getPublicKey();
 
         return $serializedData;

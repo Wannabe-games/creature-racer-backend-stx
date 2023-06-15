@@ -9,6 +9,7 @@ use App\Common\Service\Game\CreatureManager;
 use App\Common\Service\Stacks\CreatureNftContractManager;
 use App\Common\Service\Stacks\SignManager;
 use App\DTO\NftUserCreature;
+use App\Entity\Creature\Creature;
 use App\Entity\Creature\CreatureUser;
 use DateTime;
 use Doctrine\ORM\Exception\ORMException;
@@ -17,6 +18,7 @@ use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use JsonException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -130,6 +132,41 @@ class NftController extends SymfonyAbstractController
         $creatureUserRepository->save($nft);
 
         return new JsonResponse(['status' => 'success']);
+    }
+
+    /**
+     * @param Creature|null $creature
+     * @param ContainerInterface $container
+     * @return JsonResponse
+     *
+     * @Route("/creature/{type}/metadata.json", name="creature-metadata-json", methods={"GET"})
+     */
+    public function getMetadataJson(?Creature $creature, ContainerInterface $container): JsonResponse
+    {
+        if (null === $creature) {
+            throw new ApiException(new ApiExceptionWrapper(404, ApiExceptionWrapper::CREATURE_NOT_EXIST));
+        }
+
+        $result = [
+            'title' => 'Creature Racer',
+            'type' => 'object',
+            'properties' => [
+                'name' => [
+                    'type' => 'string',
+                    'description' => $creature->getName()
+                ],
+                'description' => [
+                    'type' => 'string',
+                    'description' => 'Creature Racer NFT of type ' . $creature->getType() . '.'
+                ],
+                'image' => [
+                    'type' => 'string',
+                    'description' => $container->getParameter('base_url') . '/static/creatures/' . $creature->getType() . '.png'
+                ]
+            ]
+        ];
+
+        return new JsonResponse($result);
     }
 
     /**
