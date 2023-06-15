@@ -65,12 +65,16 @@ class ProcessContractLogCommand extends Command
         $packages = (int)ceil($processingBlocks / $maxBlocksToRead);
         $contractIdMatchPattern = '/^' . $this->container->getParameter('referral_pool_contract_address') . '\.([\w-]+)-v([1-9][0-9]?)/';
 
-        $output->writeln('Start time: ' . date('Y-m-d H:i:s'));
-        $output->writeln('Last processed block: ' . $lastProcessedBlock);
-        $output->writeln('Actual block: ' . $actualBlock);
-        $output->writeln('Block to parse: ' . $processingBlocks);
-        $output->writeln('Blocks in pack: ' . $maxBlocksToRead);
-        $output->writeln('Block packages: ' . $packages);
+        $output->write('Start time: ' . date('Y-m-d H:i:s '));
+
+        if ($output->isVerbose()) {
+            $output->writeln('');
+            $output->writeln('Last processed block: ' . $lastProcessedBlock);
+            $output->writeln('Actual block: ' . $actualBlock);
+            $output->writeln('Block to parse: ' . $processingBlocks);
+            $output->writeln('Blocks in pack: ' . $maxBlocksToRead);
+            $output->writeln('Block packages: ' . $packages);
+        }
 
         $addedLogs = 0;
 
@@ -82,7 +86,9 @@ class ProcessContractLogCommand extends Command
                 $endBlock = $actualBlock;
             }
 
-            $output->writeln('Parsing block from: ' . $nextBlock . ', to: ' . $endBlock . ', iteration: ' . $i + 1);
+            if ($output->isVerbose()) {
+                $output->writeln('Parsing block from: ' . $nextBlock . ', to: ' . $endBlock . ', iteration: ' . $i + 1);
+            }
 
             $log = $this->providerManager->getLog($nextBlock, $maxBlocksToRead);
 
@@ -95,7 +101,12 @@ class ProcessContractLogCommand extends Command
                 $lastProcessedBlockSettings->setValue(['block' => $nextBlock]);
                 $this->settingsRepository->save($lastProcessedBlockSettings);
 
-                $output->writeln('End time: ' . date('Y-m-d H:i:s'));
+                $output->write('End time: ' . date('Y-m-d H:i:s '));
+
+                if ($output->isVerbose()) {
+                    $output->writeln('');
+                }
+
                 $output->writeln('Added logs: ' . $addedLogs);
 
                 $this->release();
@@ -111,7 +122,7 @@ class ProcessContractLogCommand extends Command
                 if (!preg_match($contractIdMatchPattern, $rowData?->contract_call->contract_id, $contract)) {
                     continue;
                 }
-//print_r($rowData);exit;
+
                 $paymentLog = new ContractLog();
                 $paymentLog->setId($rowData?->tx_id);
                 $paymentLog->setBlockHeight($rowData?->block_height);
@@ -140,7 +151,12 @@ class ProcessContractLogCommand extends Command
             } catch (Exception $e) {
                 $this->contractLogRepository->rollbackTransaction();
 
-                $output->writeln('End time: ' . date('Y-m-d H:i:s'));
+                $output->write('End time: ' . date('Y-m-d H:i:s '));
+
+                if ($output->isVerbose()) {
+                    $output->writeln('');
+                }
+
                 $output->writeln('Error adding log: ' . $e->getMessage());
 
                 $this->release();
@@ -151,8 +167,13 @@ class ProcessContractLogCommand extends Command
             $this->contractLogRepository->commitTransaction();
         }
 
-        $output->writeln('End time: ' . date('Y-m-d H:i:s'));
-        $output->writeln('Added log: ' . $addedLogs);
+        $output->write('End time: ' . date('Y-m-d H:i:s '));
+
+        if ($output->isVerbose()) {
+            $output->writeln('');
+        }
+
+        $output->writeln('Added logs: ' . $addedLogs);
 
         $this->release();
 
