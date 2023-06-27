@@ -32,6 +32,7 @@ class ContractLogCrudController extends AbstractCrudController
             TextField::new('contractName'),
             NumberField::new('contractVersion'),
             TextField::new('contractFunctionName'),
+            TextField::new('status'),
             DataField::new('contractFunctionArgs')->onlyOnDetail(),
             DataField::new('events')->onlyOnDetail(),
         ];

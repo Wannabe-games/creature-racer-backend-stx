@@ -9,6 +9,10 @@ use App\Common\Repository\ContractLogRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ContractLogRepository::class)
+ * @ORM\Table(indexes={
+ *     @ORM\Index(columns={"wallet"}),
+ *     @ORM\Index(columns={"status"}),
+ * })
  */
 class ContractLog
 {
@@ -71,6 +75,12 @@ class ContractLog
      * @ORM\Column(type="json", options={"default": "[]"})
      */
     private array $contractFunctionArgs = [];
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=50)
+     */
+    private ?string $status = null;
 
     /**
      * @var DateTimeInterface|null
@@ -242,6 +252,22 @@ class ContractLog
     public function setContractFunctionArgs(?array $contractFunctionArgs): void
     {
         $this->contractFunctionArgs = $contractFunctionArgs;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string|null $status
+     */
+    public function setStatus(?string $status): void
+    {
+        $this->status = $status;
     }
 
     /**

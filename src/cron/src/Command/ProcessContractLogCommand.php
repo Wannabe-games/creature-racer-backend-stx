@@ -87,20 +87,12 @@ class ProcessContractLogCommand extends Command
             }
 
             if ($output->isVerbose()) {
-                $output->writeln('Parsing block from: ' . $nextBlock . ', to: ' . $endBlock . ', iteration: ' . $i + 1);
+                $output->writeln('Parsing block from: ' . $nextBlock . ', to: ' . $endBlock . ', iteration: ' . ($i + 1) . ' of ' . $packages);
             }
 
             $log = $this->providerManager->getLog($nextBlock, $maxBlocksToRead);
 
-            if (empty($log)) {
-                $lastProcessedBlockSettings->setValue(['block' => $nextBlock]);
-                $this->settingsRepository->save($lastProcessedBlockSettings);
-
-                continue;
-            } elseif (!is_array($log)) {
-                $lastProcessedBlockSettings->setValue(['block' => $nextBlock]);
-                $this->settingsRepository->save($lastProcessedBlockSettings);
-
+            if (!is_array($log)) {
                 $output->write('End time: ' . date('Y-m-d H:i:s '));
 
                 if ($output->isVerbose()) {
@@ -115,7 +107,7 @@ class ProcessContractLogCommand extends Command
             }
 
             foreach ($log as $rowData) {
-                if ('contract_call' !== $rowData?->tx_type || 'success' !== $rowData?->tx_status) {
+                if ('contract_call' !== $rowData?->tx_type) {
                     continue;
                 }
 
@@ -133,6 +125,7 @@ class ProcessContractLogCommand extends Command
                 $paymentLog->setContractVersion($contract[2]);
                 $paymentLog->setContractFunctionName($rowData?->contract_call->function_name);
                 $paymentLog->setContractFunctionArgs($rowData?->contract_call->function_args);
+                $paymentLog->setStatus($rowData?->tx_status);
                 $paymentLog->setCreatedAt(new DateTime($rowData?->burn_block_time_iso));
                 if ($rowData?->event_count > 0) {
                     $paymentLog->setEvents($this->providerManager->getTransactionDetails($rowData?->tx_id)->events ?? []);
@@ -165,6 +158,8 @@ class ProcessContractLogCommand extends Command
             }
 
             $this->contractLogRepository->commitTransaction();
+
+            sleep(5);
         }
 
         $output->write('End time: ' . date('Y-m-d H:i:s '));

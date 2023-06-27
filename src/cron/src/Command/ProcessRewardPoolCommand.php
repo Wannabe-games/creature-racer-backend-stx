@@ -49,7 +49,6 @@ class ProcessRewardPoolCommand extends Command
         }
 
         $io = new SymfonyStyle($input, $output);
-        $io->writeln('Start...');
 
         $rewardPoolCycle = $this->rewardPoolContractManager->getCurrentCycle();
         $rewardPoolBalance = $this->rewardPoolContractManager->getCollectedCycleBalance($rewardPoolCycle);
@@ -62,43 +61,79 @@ class ProcessRewardPoolCommand extends Command
             return Command::FAILURE;
         }
 
-        $output->writeln('Reward pool cycle: ' . $rewardPoolCycle);
-        $output->writeln('Reward pool balance: ' . $rewardPoolBalance);
-        $output->writeln('Staking cycle: ' . $stakingCycle);
-        $output->writeln('Staking total share: ' . $totalStakingShare);
+        $output->write('Start time: ' . date('Y-m-d H:i:s '));
+
+        if ($output->isVerbose()) {
+            $output->writeln('');
+        }
 
         /** @var User[] $users */
         $users = $this->userRepository->findAll();
+        $count = count($users);
 
-        $progressBar = new ProgressBar($output, count($users));
-        $progressBar->start();
-        $progressBar->setFormat('debug');
+        if ($count > 0) {
+            $progressBar = new ProgressBar($output, $count);
+            $progressBar->setFormat('debug');
 
-        foreach ($users as $user) {
-            if (empty($user->getWallet())) {
-                $progressBar->advance();
-                continue;
+            if ($output->isVerbose()) {
+                $output->writeln('Reward pool cycle: ' . $rewardPoolCycle);
+                $output->writeln('Reward pool balance: ' . $rewardPoolBalance);
+                $output->writeln('Staking cycle: ' . $stakingCycle);
+                $output->writeln('Staking total share: ' . $totalStakingShare);
+                $progressBar->start();
             }
 
-            $userRewardPool = $this->userRewardPoolRepository->findCycleByUser($user->getId(), $rewardPoolCycle);
+            foreach ($users as $user) {
+                if ($output->isVerbose()) {
+                    $progressBar->display();
+                }
 
-            if (null === $userRewardPool) {
-                $userRewardPool = $this->createUserRewardPool($user, $rewardPoolCycle);
+                if (empty($user->getWallet())) {
+                    if ($output->isVerbose()) {
+                        $progressBar->advance();
+                    }
+                    continue;
+                }
+
+                $userRewardPool = $this->userRewardPoolRepository->findCycleByUser($user->getId(), $rewardPoolCycle);
+
+                if (null === $userRewardPool) {
+                    $userRewardPool = $this->createUserRewardPool($user, $rewardPoolCycle);
+                }
+
+                $userStakingShare = $this->stakingContractManager->getUserShare($user->getWallet());
+                $userStakingPower = $totalStakingShare ? $userStakingShare / $totalStakingShare : 0;
+                $userRewardPool->setMyStakingPower($userStakingPower * 100);
+                $userRewardPool->setMyReward(round($userStakingPower * $rewardPoolBalance));
+                $userRewardPool->setTotalRewardPool($rewardPoolBalance);
+
+                $this->documentManager->flush();
+
+                if ($output->isVerbose()) {
+                    $progressBar->advance();
+                }
+
+                sleep(1);
             }
 
-            $userStakingShare = $this->stakingContractManager->getUserShare($user->getWallet());
-            $userStakingPower = $totalStakingShare ? $userStakingShare / $totalStakingShare : 0;
-            $userRewardPool->setMyStakingPower($userStakingPower * 100);
-            $userRewardPool->setMyReward(round($userStakingPower * $rewardPoolBalance));
-            $userRewardPool->setTotalRewardPool($rewardPoolBalance);
-
-            $this->documentManager->flush();
-            $progressBar->advance();
+            if ($output->isVerbose()) {
+                $progressBar->finish();
+                $output->writeln('');
+            }
         }
 
-        $progressBar->finish();
+        $output->write('End time: ' . date('Y-m-d H:i:s '));
 
-        $io->success('Complete!');
+        if ($output->isVerbose()) {
+            $output->writeln('');
+        }
+
+        $output->writeln('Update users: ' . $count);
+
+        if ($output->isVerbose()) {
+            $io->success('Complete!');
+        }
+
         $this->release();
 
         return Command::SUCCESS;

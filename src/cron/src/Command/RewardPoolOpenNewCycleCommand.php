@@ -19,7 +19,7 @@ class RewardPoolOpenNewCycleCommand extends Command
         parent::__construct();
     }
 
-     protected function configure(): void
+    protected function configure(): void
     {
         $this->setDescription('Open reward pool cycle.');
     }
@@ -28,8 +28,8 @@ class RewardPoolOpenNewCycleCommand extends Command
     {
         do {
             $transactionHash = $this->rewardPoolContractManager->openNewCycle(true);
-            sleep(1);
-        } while (!$transactionHash || 'pending' !== $this->providerManager->getTransactionStatus($transactionHash));
+            sleep(5);
+        } while (!$transactionHash || !in_array($this->providerManager->getTransactionStatus($transactionHash), ['pending', 'success']));
 
         return Command::SUCCESS;
     }

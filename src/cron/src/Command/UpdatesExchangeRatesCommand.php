@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class UpdatesExchangeRatesCommand extends Command
 {
@@ -39,36 +40,70 @@ class UpdatesExchangeRatesCommand extends Command
             return Command::SUCCESS;
         }
 
-        $response = json_decode(file_get_contents(self::API_URL), false, 512, JSON_THROW_ON_ERROR);
-        $usdToStxRate = $response->price;
+        $io = new SymfonyStyle($input, $output);
+
+        $output->write('Start time: ' . date('Y-m-d H:i:s '));
+
+        if ($output->isVerbose()) {
+            $output->writeln('');
+        }
 
         /** @var CreatureLevel[] $creatureLevels */
         $creatureLevels = $this->creatureLevelRepository->findAll();
-        $countLevels = count($creatureLevels);
+        $count = count($creatureLevels);
 
-        if ($countLevels < 1) {
-            $this->release();
+        if ($count > 0) {
+            $progressBar = new ProgressBar($output, $count);
+            $progressBar->setFormat('debug');
 
-            return Command::SUCCESS;
+            if ($output->isVerbose()) {
+                $progressBar->start();
+            }
+
+            $usdToStxRate = $this->getUsdToStxRate();
+
+            foreach ($creatureLevels as $creatureLevel) {
+                if ($output->isVerbose()) {
+                    $progressBar->display();
+                }
+
+                $price = round($creatureLevel->getPriceUSD() * $usdToStxRate * 100) * 10000;
+                $creatureLevel->setPriceStacks($price);
+
+                if ($output->isVerbose()) {
+                    $progressBar->advance();
+                }
+            }
+
+            $this->creatureLevelRepository->flush();
+
+            if ($output->isVerbose()) {
+                $progressBar->finish();
+                $output->writeln('');
+            }
         }
 
-        $progressBar = new ProgressBar($output, $countLevels);
-        $progressBar->setFormat('debug');
-        $progressBar->start();
+        $output->write('End time: ' . date('Y-m-d H:i:s '));
 
-        foreach ($creatureLevels as $creatureLevel) {
-            $progressBar->display();
-            $price = round($creatureLevel->getPriceUSD() * $usdToStxRate * 100) * 10000;
-            $creatureLevel->setPriceStacks($price);
-            $progressBar->advance();
+        if ($output->isVerbose()) {
+            $output->writeln('');
         }
 
-        $this->creatureLevelRepository->flush();
+        $output->writeln('Update prices: ' . $count);
 
-        $progressBar->finish();
-        $output->writeln('');
+        if ($output->isVerbose()) {
+            $io->success('Complete!');
+        }
+
         $this->release();
 
         return Command::SUCCESS;
+    }
+
+    private function getUsdToStxRate()
+    {
+        $response = json_decode(file_get_contents(self::API_URL), false, 512, JSON_THROW_ON_ERROR);
+
+        return $response->price;
     }
 }

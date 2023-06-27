@@ -1,5 +1,6 @@
 parameters:
     app_env: '%env(string:APP_ENV)%'
+    chain_provider_url: '%env(string:CHAIN_PROVIDER_URL)%'
     env(MONGODB_URL): ''
     env(MONGODB_DB): ''
 

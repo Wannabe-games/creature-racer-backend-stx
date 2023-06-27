@@ -22,7 +22,7 @@ class SetBlockNumberCommand extends Command
         parent::__construct();
     }
 
-     protected function configure()
+    protected function configure()
     {
         $this
             ->setDescription('Set payment contract start block number')
@@ -38,7 +38,7 @@ class SetBlockNumberCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $blockNumber = $input->getArgument('block-number');
+        $blockNumber = (int)$input->getArgument('block-number');
 
         /** @var Settings $lastProcessedBlockNumber */
         $lastProcessedBlockNumber = $this->settingsRepository->findOneBy(
@@ -52,7 +52,7 @@ class SetBlockNumberCommand extends Command
             $lastProcessedBlockNumber->setSystemType(SystemTypes::PAYMENT_LAST_BLOCK_NUMBER);
         }
 
-        $lastProcessedBlockNumber->setValue(['block' => $blockNumber]);
+        $lastProcessedBlockNumber->setValue(['block' => $blockNumber > 0 ? $blockNumber - 1 : 0]);
 
         $this->settingsRepository->save($lastProcessedBlockNumber);
 

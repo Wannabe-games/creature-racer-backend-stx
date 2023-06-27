@@ -53,45 +53,76 @@ class ProcessReferralPoolCommand extends Command
         }
 
         $io = new SymfonyStyle($input, $output);
-        $io->writeln('Start...');
+
+        $output->write('Start time: ' . date('Y-m-d H:i:s '));
+
+        if ($output->isVerbose()) {
+            $output->writeln('');
+        }
 
         /** @var User[] $users */
         $users = $this->userRepository->findAll();
+        $count = count($users);
 
-        $progressBar = new ProgressBar($output, count($users));
-        $progressBar->start();
-        $progressBar->setFormat('debug');
+        if ($count > 0) {
+            $progressBar = new ProgressBar($output, $count);
+            $progressBar->setFormat('debug');
 
-        foreach ($users as $user) {
-            /** @var ContractLog[] $rewardTransactionForWallet */
-            $rewardTransactionForWallet = $user->getWallet() ? $this->contractLogRepository->findBy(['wallet' => $user->getWallet()]) : [];
+            if ($output->isVerbose()) {
+                $progressBar->start();
+            }
 
-            $myReward = 0;
+            foreach ($users as $user) {
+                if ($output->isVerbose()) {
+                    $progressBar->display();
+                }
 
-            foreach ($rewardTransactionForWallet as $transaction) {
-                foreach ($transaction->getEvents() as $event) {
-                    if (str_contains($event['asset']['recipient'], 'creature-racer-referral-pool')) {
-                        $myReward += $event['asset']['amount'];
+                /** @var ContractLog[] $rewardTransactionForWallet */
+                $rewardTransactionForWallet = $user->getWallet() ? $this->contractLogRepository->findBy(['wallet' => $user->getWallet(), 'status' => 'success']) : [];
+
+                $myReward = 0;
+
+                foreach ($rewardTransactionForWallet as $transaction) {
+                    foreach ($transaction->getEvents() as $event) {
+                        if (str_contains($event['asset']['recipient'], 'creature-racer-referral-pool')) {
+                            $myReward += $event['asset']['amount'];
+                        }
                     }
+                }
+
+                $userReferralPool = $this->userReferralPoolRepository->findByFromUserId($user->getId());
+
+                if (null === $userReferralPool) {
+                    $userReferralPool = $this->createUserReferralPool($user);
+                }
+
+                $userReferralPool->setMyReward($myReward);
+
+                $this->documentManager->flush();
+
+                if ($output->isVerbose()) {
+                    $progressBar->advance();
                 }
             }
 
-            $userReferralPool = $this->userReferralPoolRepository->findByFromUserId($user->getId());
-
-            if (null === $userReferralPool) {
-                $userReferralPool = $this->createUserReferralPool($user);
+            if ($output->isVerbose()) {
+                $progressBar->finish();
+                $output->writeln('');
             }
-
-            $userReferralPool->setMyReward($myReward);
-
-            $this->documentManager->flush();
-
-            $progressBar->advance();
         }
 
-        $progressBar->finish();
+        $output->write('End time: ' . date('Y-m-d H:i:s '));
 
-        $io->success('Complete!');
+        if ($output->isVerbose()) {
+            $output->writeln('');
+        }
+
+        $output->writeln('Update users: ' . $count);
+
+        if ($output->isVerbose()) {
+            $io->success('Complete!');
+        }
+
         $this->release();
 
         return Command::SUCCESS;
