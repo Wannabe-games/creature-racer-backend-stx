@@ -6,6 +6,7 @@ use App\Common\Enum\UserReferralPoolStatus;
 use App\Common\Repository\ContractLogRepository;
 use App\Common\Repository\Document\UserReferralPoolRepository;
 use App\Common\Repository\UserRepository;
+use App\Common\Service\Stacks\ProviderManager;
 use App\Document\UserReferralPool;
 use App\Entity\ContractLog;
 use App\Entity\User;
@@ -27,6 +28,7 @@ class ProcessReferralPoolCommand extends Command
 
     public function __construct(
         private DocumentManager $documentManager,
+        private ProviderManager $providerManager,
         private ContractLogRepository $contractLogRepository,
         private UserReferralPoolRepository $userReferralPoolRepository,
         private UserRepository $userRepository
@@ -60,8 +62,7 @@ class ProcessReferralPoolCommand extends Command
             $output->writeln('');
         }
 
-        /** @var User[] $users */
-        $users = $this->userRepository->findAll();
+        $users = $this->userRepository->findByWalletIsNotNull();
         $count = count($users);
 
         if ($count > 0) {
@@ -77,18 +78,8 @@ class ProcessReferralPoolCommand extends Command
                     $progressBar->display();
                 }
 
-                /** @var ContractLog[] $rewardTransactionForWallet */
-                $rewardTransactionForWallet = $user->getWallet() ? $this->contractLogRepository->findBy(['wallet' => $user->getWallet(), 'status' => 'success']) : [];
-
-                $myReward = 0;
-
-                foreach ($rewardTransactionForWallet as $transaction) {
-                    foreach ($transaction->getEvents() as $event) {
-                        if (str_contains($event['asset']['recipient'], 'creature-racer-referral-pool')) {
-                            $myReward += $event['asset']['amount'];
-                        }
-                    }
-                }
+                //$myReward = $this->getMyRewardFromContractLog($user);
+                $myReward = $this->getMyRewardFromBlockchain($user);
 
                 $userReferralPool = $this->userReferralPoolRepository->findByFromUserId($user->getId());
 
@@ -128,10 +119,6 @@ class ProcessReferralPoolCommand extends Command
         return Command::SUCCESS;
     }
 
-    /**
-     * @param User $user
-     * @return UserReferralPool
-     */
     private function createUserReferralPool(User $user): UserReferralPool
     {
         $referralLog = new UserReferralPool();
@@ -141,5 +128,57 @@ class ProcessReferralPoolCommand extends Command
         $this->documentManager->persist($referralLog);
 
         return $referralLog;
+    }
+
+    private function getMyRewardFromContractLog(User $user): int
+    {
+        /** @var ContractLog[] $transactionForWallet */
+        $transactionForWallet = $user->getWallet() ? $this->contractLogRepository->findBy(['wallet' => $user->getWallet(), 'status' => 'success']) : [];
+
+        $myReward = 0;
+
+        foreach ($transactionForWallet as $transaction) {
+            foreach ($transaction->getEvents() as $event) {
+                if (str_contains($event['asset']['recipient'], 'creature-racer-referral-pool')) {
+                    $myReward += (int)$event['asset']['amount'];
+                }
+            }
+        }
+
+        return $myReward;
+    }
+
+    private function getMyRewardFromBlockchain(User $user): int
+    {
+        $myReward = 0;
+        $limit = 50;
+        $total = $limit;
+
+        for ($offset = 0; $offset < $total; $offset += $limit) {
+            sleep(1);
+            $log = $this->providerManager->getLogByWallet($user->getWallet(), $offset, $limit);
+            $total = (int)$log?->total;
+
+            if (!is_array($log?->results)) {
+                continue;
+            }
+
+            foreach ($log->results as $rowData) {
+                if ((int)$rowData?->tx->event_count === 0) {
+                    continue;
+                }
+
+                sleep(1);
+                $events = $this->providerManager->getTransactionDetails($rowData->tx->tx_id)->events ?? [];
+
+                foreach ($events as $event) {
+                    if (isset($event->asset->recipient) && str_contains($event->asset->recipient, 'creature-racer-referral-pool')) {
+                        $myReward += (int)$event->asset?->amount;
+                    }
+                }
+            }
+        }
+
+        return $myReward;
     }
 }

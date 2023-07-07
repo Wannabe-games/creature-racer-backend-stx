@@ -19,6 +19,11 @@ class ProviderManager
         return json_decode(CommandService::exec('stx-get-log', [$startBlock, $maxBlocksToRead], $verbose), false, 512, JSON_THROW_ON_ERROR);
     }
 
+    public function getLogByWallet(string $wallet, int $offset = 0, int $limit = 50, bool $verbose = false): ?stdClass
+    {
+        return json_decode(CommandService::exec('stx-get-log-by-wallet', [$wallet, $offset, $limit], $verbose), false, 512, JSON_THROW_ON_ERROR);
+    }
+
     public function getTransactionDetails(string $transactionHash, bool $verbose = false): ?stdClass
     {
         return json_decode(CommandService::exec('stx-get-transaction-details', [$transactionHash], $verbose), false, 512, JSON_THROW_ON_ERROR);

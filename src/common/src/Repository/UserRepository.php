@@ -19,6 +19,19 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * @return User[]|array
+     */
+    public function findByWalletIsNotNull(): array
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        return $qb
+            ->where('u.wallet IS NOT NULL')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getNextRnftToIncrementInvitation(DateTime $time): ?User
     {
         $qb = $this->createQueryBuilder('u');

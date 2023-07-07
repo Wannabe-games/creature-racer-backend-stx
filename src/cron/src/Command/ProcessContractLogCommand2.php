@@ -2,12 +2,10 @@
 
 namespace App\Command;
 
-use App\Common\Enum\SystemTypes;
 use App\Common\Repository\ContractLogRepository;
 use App\Common\Repository\SettingsRepository;
 use App\Common\Service\Stacks\ProviderManager;
 use App\Entity\ContractLog;
-use App\Entity\Settings;
 use DateTime;
 use Exception;
 use Symfony\Component\Console\Command\Command;
@@ -16,11 +14,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ProcessContractLogCommand extends Command
+class ProcessContractLogCommand2 extends Command
 {
     use LockableTrait;
 
-    protected static $defaultName = 'app:contract-log';
+    protected static $defaultName = 'app:contract-log-2';
     private string $contractMatchPattern;
 
     public function __construct(
@@ -34,7 +32,7 @@ class ProcessContractLogCommand extends Command
 
     protected function configure()
     {
-        $this->setDescription('Get contracts log data.');
+        $this->setDescription('Get data from payment contract.');
         $this->contractMatchPattern = '/^' . $this->container->getParameter('deployer_contract_address') . '\.([\w-]+)-v([1-9][0-9]?)/';
     }
 
@@ -48,52 +46,26 @@ class ProcessContractLogCommand extends Command
             return Command::SUCCESS;
         }
 
-        /** @var Settings $lastProcessedBlockSettings */
-        $lastProcessedBlockSettings = $this->settingsRepository->findOneBy(['systemType' => SystemTypes::PAYMENT_LAST_BLOCK_NUMBER]);
-
-        if (null === $lastProcessedBlockSettings) {
-            $lastProcessedBlockSettings = new Settings();
-            $lastProcessedBlockSettings->setSystemType(SystemTypes::PAYMENT_LAST_BLOCK_NUMBER);
-            $lastProcessedBlockSettings->setValue(['block' => 0]);
-        }
-
-        $maxBlocksToRead = 50;
-        $lastProcessedBlock = $lastProcessedBlockSettings->getValue()['block'];
-        $actualBlock = $this->providerManager->getBlockNumber();
-        $processingBlocks = $actualBlock - $lastProcessedBlock;
-        if ($processingBlocks < 0) {
-            $processingBlocks = 0;
-        }
-        $packages = (int)ceil($processingBlocks / $maxBlocksToRead);
-
         $output->write('Start time: ' . date('Y-m-d H:i:s '));
 
         if ($output->isVerbose()) {
             $output->writeln('');
-            $output->writeln('Last processed block: ' . $lastProcessedBlock);
-            $output->writeln('Actual block: ' . $actualBlock);
-            $output->writeln('Block to parse: ' . $processingBlocks);
-            $output->writeln('Blocks in pack: ' . $maxBlocksToRead);
-            $output->writeln('Block packages: ' . $packages);
         }
 
+        $wallet = $this->container->getParameter('operator_contract_address');
         $addedLogs = 0;
+        $limit = 50;
+        $total = $limit;
 
-        for ($i = 0; $i < $packages; ++$i) {
-            $nextBlock = $lastProcessedBlock + ($i * $maxBlocksToRead) + 1;
-            $endBlock = $lastProcessedBlock + ($i * $maxBlocksToRead) + $maxBlocksToRead;
-
-            if ($endBlock > $actualBlock) {
-                $endBlock = $actualBlock;
-            }
+        for ($offset = 0; $offset < $total; $offset += $limit) {
+            $log = $this->providerManager->getLogByWallet($wallet, $offset, $limit);
+            $total = (int)$log?->total;
 
             if ($output->isVerbose()) {
-                $output->writeln('Parsing block from: ' . $nextBlock . ', to: ' . $endBlock . ', iteration: ' . ($i + 1) . ' of ' . $packages);
+                $output->writeln('Parsing rows: ' . ($offset + 1) . '-' . min($offset + $limit, $total));
             }
 
-            $log = $this->providerManager->getLog($nextBlock, $maxBlocksToRead);
-
-            if (!is_array($log)) {
+            if (!is_array($log?->results)) {
                 $output->write('End time: ' . date('Y-m-d H:i:s '));
 
                 if ($output->isVerbose()) {
@@ -107,19 +79,21 @@ class ProcessContractLogCommand extends Command
                 return Command::INVALID;
             }
 
-            foreach ($log as $rowData) {
-                $paymentLog = $this->createPaymentLog($rowData);
+            foreach ($log->results as $rowData) {
+                $paymentLog = $this->createPaymentLog($rowData->tx);
 
-                if (!$paymentLog || $this->contractLogRepository->find($paymentLog->getId())) {
+                if (!$paymentLog) {
                     continue;
+                }
+
+                if ($this->contractLogRepository->find($paymentLog->getId())) {
+                    break;
                 }
 
                 $this->contractLogRepository->persist($paymentLog);
 
                 $addedLogs++;
             }
-
-            $lastProcessedBlockSettings->setValue(['block' => $endBlock]);
 
             $this->contractLogRepository->beginTransaction();
 

@@ -14,6 +14,7 @@
         "stx-creature-nft-sign-mint": "./bin/stx-creature-nft-sign-mint.js",
         "stx-get-block-number": "./bin/stx-get-block-number.js",
         "stx-get-log": "bin/stx-get-log.js",
+        "stx-get-log-by-wallet": "bin/stx-get-log-by-wallet.js",
         "stx-get-transaction-details": "bin/stx-get-transaction-details.js",
         "stx-get-transaction-status": "bin/stx-get-transaction-status.js",
         "stx-referral-nft-get-invitations-by-invitee": "./bin/stx-referral-nft-get-invitations-by-invitee.js",
