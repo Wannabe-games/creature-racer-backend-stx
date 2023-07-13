@@ -56,7 +56,9 @@ class UserController extends SymfonyAbstractController
         RewardPoolContractManager $poolContractManager,
         ContainerInterface $container
     ): JsonResponse {
-        $result['poolShare'] = $stakingContractManager->getTotalShare();
+        $result['userShare'] = $this->getUser()?->getWallet() ? $stakingContractManager->getUserShare($this->getUser()?->getWallet()) : 0;
+        $result['totalShare'] = $stakingContractManager->getTotalShare();
+        $result['myPoolShare'] = $result['totalShare'] > 0 ? round($result['userShare'] / $result['totalShare'] * 100, 2) : 0;
         $result['rewardPool'] = $poolContractManager->getCollectedCycleBalance($poolContractManager->getCurrentCycle());
         $result['nick'] = $user->getNick();
         $result['referralCode'] = $user->getMyReferralNft()?->getRefCode();
@@ -85,8 +87,9 @@ class UserController extends SymfonyAbstractController
         RewardPoolContractManager $poolContractManager
     ): JsonResponse {
         $currentCycle = $poolContractManager->getCurrentCycle();
-        $result['totalPoolShare'] = round($stakingContractManager->getTotalShare() / 1000000000000000000, 2);
-        $result['myPoolShare'] = round($stakingContractManager->getTotalShare() ? ($stakingContractManager->getUserShare($this->getUser()->getWallet()) / $stakingContractManager->getTotalShare() * 100) : 0, 2);
+        $result['userShare'] = $this->getUser()?->getWallet() ? $stakingContractManager->getUserShare($this->getUser()?->getWallet()) : 0;
+        $result['totalShare'] = $stakingContractManager->getTotalShare();
+        $result['myPoolShare'] = $result['totalShare'] > 0 ? round($result['userShare'] / $result['totalShare'] * 100, 2) : 0;
         $result['rewardPool'] = round(
             $poolContractManager->getCollectedCycleBalance($currentCycle)
             + $poolContractManager->getCollectedCycleBalance($currentCycle - 1)
